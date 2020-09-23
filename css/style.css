@@ -90,4 +90,12 @@
       .text-primary-color {
         color :#1f2833;
       }
-  }
+      
+      @media (max-width: 576px) { 
+        .sm-none {
+                display :none;
+              }
+      }
+
+
+
