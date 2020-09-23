@@ -2,95 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
-  <style>
-    @font-face {
-      font-family: Gilroy;
-      src: url(./fonts/Gilroy-Light.otf);
-    }
-    
-
-    .masthead {
-      height: 90vh;
-      min-height: 500px;
-    /*  background : url(./background2.png) center right;
-      background-repeat: no-repeat;
-      background-size: cover;*/
-    }
-
-    .text-color {
-      color :#1f2833;
-    }
-
-    .text-spacing  {
-      letter-spacing: 1.5px;
-    }
-
-    .say-hello-border {
-      border : 1.5px solid #1f2833;
-    }
-
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: auto;
-        width: auto;
-        opacity: 0;
-        transition: .5s ease;
-        background-color: #1d2630;
-      }
-
-      .col-project {
-        height : 50vh;
-        border : 5px solid #f2f2f2;
-      }
-
-      .col-project:hover .overlay {
-        opacity: 1;
-      }
-
-
-
-      .text-overlay {
-        color: white;
-        font-size: 2.7em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
-        font-family :Gilroy;
-      }
-
-      .text-overlay-sm {
-        color: white;
-        font-size: 1.7em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        font-family :Gilroy;
-      }
-
-
-      .project-link  {
-        text-decoration: none;
-        color :white;
-      }
-
-}
-  </style>
+  <title>Christopher Vistal | Portfolio</title>
+  <link rel="icon" href="./me.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <!-- Navigation -->
@@ -134,8 +49,8 @@
   <div class="container h-100">
     <div class="row h-100 align-items-center">
       <div class="col-12 text-center">
-        <h1 class="display-4 font-weight-bold" style="font-family: Gilroy"><span class="typed"></span></h1>
-        <p class="lead"><b>I like writing code and making my ideas into digital solution</b></p>
+        <h1 class="display-4 font-weight-bold"><span class="typed"></span></h1>
+        <p class="lead"><b>I like writing code and making my ideas into digital solution.</b></p>
         <img src="./unboxing.png" width="50%">
       </div>
     </div>
@@ -146,16 +61,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-8">
-      <div class="container mb-3 p-5" style="border : 7px solid #f2f2f2;">
-        <h2 style="font-family: Gilroy;" class="text-center">Hi, I'm Christopher</h2>
+      <div class="container mb-3 p-5 border-primary-color">
+        <h2 class="text-center">Hi, I'm Christopher</h2>
         <p class="lead text-justify">
           <b>Taken classes at Surigao del Sur State University helps me to truly discovered my passion in life and that is software development, on my perspective programming is not just writing some code which helps other people to solve their problems It also involves discipline, attitude, and communication.</b>
-        </p>  
+        </p>
+        <div class="text-center">
+          <a href="./resume/chris-resume.docx" class="btn btn-primary border-0 rounded-0" style="background : #1f2833;">RESUME</a>
+        </div>
       </div>    
     </div>
 
     <div class="col-lg-4">
-      <img src="./reading.png" width="600px" alt="">
+      <img src="./reading.png" width="600px">
     </div>
   </div>
 </div>
@@ -168,47 +86,46 @@
 
     <div class="col-lg-auto" >
       <div class="container mb-3 p-5">
-        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Back - End</b></h5>
+        <h5 class="display-4"><b>Back - End</b></h5>
         <hr>
-        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">PHP</p>
-        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Laravel</p>
-        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Lumen</p>
+        <p class="font-weight-light text-skills">PHP</p>
+        <p class="font-weight-light text-skills">Laravel</p>
+        <p class="font-weight-light text-skills">Lumen</p>
       </div>    
     </div>
 
     <div class="col-lg-auto" >
       <div class="container mb-3 p-5">
-        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Front - End</b></h5>
+        <h5 class="display-4 "><b>Front - End</b></h5>
         <hr>
-        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">CSS3</p>
-        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Javascript</p>
-        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">JQuery</p>
+        <p class="font-weight-light text-center text-skills">CSS3</p>
+        <p class="font-weight-light text-center text-skills">Javascript</p>
+        <p class="font-weight-light text-center text-skills">JQuery</p>
       </div>    
     </div>
 
     <div class="col-lg-auto" >
       <div class="container mb-3 p-5">
-        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Additional</b></h5>
+        <h5 class="display-4"><b>Additional</b></h5>
         <hr>
-        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">MySQL</p>
-        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Java</p>
-        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">SQLite</p>
+        <p class="font-weight-light text-right text-skills">MySQL</p>
+        <p class="font-weight-light text-right text-skills">Java</p>
+        <p class="font-weight-light text-right text-skills">SQLite</p>
       </div>    
     </div>
-
    
   </div>
 </div>
 
 
-<div class="text-center">
-  <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Projects</b></h5>
+<div class="text-center mb-4">
+  <h5 class="display-4"><b>Projects</b></h5>
 </div>
 
-  <div class="container mb-5">
+  <div class="container mb-5" id="projects">
     <div class="row">
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828810/portfolio/flyff-billposter-male2_ym49k9.jpg') center center; background-repeat: no-repeat; background-size:cover;">
+      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828810/portfolio/flyff-billposter-male2_ym49k9.jpg') center center; background-repeat: no-repeat; background-size:cover;">
 
         <a class="project-link"  href="http://www.resurgenceflyff.com/" target="_blank">
           <div class="overlay">
@@ -216,11 +133,9 @@
           </div>
         </a>
       </div>
-
-
       
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830227/portfolio/SDSSU_LOGO_z6xgmt.png') top center; background-repeat: no-repeat;  ">
+      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830227/portfolio/SDSSU_LOGO_z6xgmt.png') top center; background-repeat: no-repeat;  ">
         <a class="project-link"  href="https://www.preenrollment.sdssu.edu.ph/login" target="_blank">
           <div class="overlay">
             <h5 class="text-center text-overlay-sm">SDSSU Pre-Enrollment contribute some features for students.</h5>
@@ -228,7 +143,7 @@
         </a>
       </div>
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1598363784/soulstice-flyff/templar_jj3yx8.png') left center; background-repeat: no-repeat; background-size: cover; ">
+      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1598363784/soulstice-flyff/templar_jj3yx8.png') left center; background-repeat: no-repeat; background-size: cover; ">
         <a class="project-link"  href="http://soulsticeflyff.com/" target="_blank">
           <div class="overlay">
             <h5 class="text-center text-overlay">Soulstice Flyff</h5>
@@ -236,7 +151,7 @@
         </a>
       </div>
 
-      <div class="col-lg-4 col-project"  style="background : url(https://res.cloudinary.com/dhoso0sdj/image/upload/v1600829713/portfolio/seraph_nywktn.jpg) center center; background-repeat: no-repeat; background-size: cover; ">
+      <div class="col-lg-4 col-project border-primary-color"  style="background : url(https://res.cloudinary.com/dhoso0sdj/image/upload/v1600829713/portfolio/seraph_nywktn.jpg) center center; background-repeat: no-repeat; background-size: cover; ">
         <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
           <div class="overlay">
             <h5 class="text-center text-overlay">Flyff Siege Parser</h5>
@@ -244,7 +159,7 @@
         </a>
       </div>
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830333/portfolio/message_nimkxz.png') top center; background-repeat: no-repeat; background-size: cover; ">
+      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830333/portfolio/message_nimkxz.png') top center; background-repeat: no-repeat; background-size: cover; ">
         <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
           <div class="overlay">
             <h5 class="text-center text-overlay-sm">A android application for sending SMS from website to smart phone.</h5>
@@ -253,7 +168,7 @@
       </div>
 
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828860/portfolio/flyff-acrobat-female_wdxdij.jpg') top center; background-repeat: no-repeat; background-size: cover; ">
+      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828860/portfolio/flyff-acrobat-female_wdxdij.jpg') top center; background-repeat: no-repeat; background-size: cover; ">
         <a class="project-link"  href="https://essence-flyff.com/" target="_blank">
           <div class="overlay">
             <h5 class="text-center text-overlay">Essence Flyff</h5>
@@ -264,6 +179,15 @@
 
     </div>
   </div>
+
+  <footer class="footer text-white p-3" style="background : #1f2833;">
+        <div class="container text-center">
+          <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a></div>
+          <div>Doodles made by <a href="https://www.opendoodles.com/" target="_blank">OpenDoodles</a> from <a href="https://www.opendoodles.com/" target="_blank">www.opendoodles.com</a></div>
+        </div>
+      </footer>
+
+
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 <script>
   var typed = new Typed('.typed', {
