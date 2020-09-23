@@ -1,261 +1,279 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-	<title>Christopher Vistal</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
-	<link rel="stylesheet" type="text/css" href="https://themes.gohugo.io//theme/hugo-uilite/css/styles.css">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:800" rel="stylesheet">
-	<link rel="stylesheet" href="https://themes.gohugo.io//theme/hugo-uilite/css/highlight.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    @font-face {
+      font-family: Gilroy;
+      src: url(./fonts/Gilroy-Light.otf);
+    }
+    
+
+    .masthead {
+      height: 90vh;
+      min-height: 500px;
+    /*  background : url(./background2.png) center right;
+      background-repeat: no-repeat;
+      background-size: cover;*/
+    }
+
+    .text-color {
+      color :#1f2833;
+    }
+
+    .text-spacing  {
+      letter-spacing: 1.5px;
+    }
+
+    .say-hello-border {
+      border : 1.5px solid #1f2833;
+    }
+
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+        width: auto;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #1d2630;
+      }
+
+      .col-project {
+        height : 50vh;
+        border : 5px solid #f2f2f2;
+      }
+
+      .col-project:hover .overlay {
+        opacity: 1;
+      }
+
+
+
+      .text-overlay {
+        color: white;
+        font-size: 2.7em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-family :Gilroy;
+      }
+
+      .text-overlay-sm {
+        color: white;
+        font-size: 1.7em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        font-family :Gilroy;
+      }
+
+
+      .project-link  {
+        text-decoration: none;
+        color :white;
+      }
+
+}
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="clearfix" style="overflow-x: hidden;">
-<section id="sidebar" class="sidebar d-flex align-items-center p-5">
-  <div class="main-info">
-
-    <img src="./img/me.jpg" class="rounded-circle mb-3" width="160px">
-
-    <h1 class="heading">hey world, i&#39;m <span class="highlight">Chris</span></h1>
-    <p class="text-muted">A Web Developer.</p>
-
-    <div class="social my-4">
-        <a target="_blank" href="https://www.facebook.com/tooshort06" rel="me">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a target="_blank" href="https://twitter.com/Christo89399910" rel="me">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a target="_blank" href="https://github.com/christophervistal25" rel="me">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-    <a href="./resume/chris-resume.docx" class="btn btn-dark btn-lg">Resume</a>
-  </div>
-</section>
-
-
-<div class="main-content">
-	
-
-<section id="skills" class="aqua text-light">
-  <h2 class="heading">Skills</h2>
-    <div class="skill">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">FRONT - END</h5>
-          <hr>
-          <div class="row">
-            <div class="col-lg-4 text-center">
-              <img src="./img/html5.png" height="80" width="80" alt="HTML5">
-              <br>
-              <span class="font-weight-bold mt-2">HTML5</span>
-            </div>
-            <div class="col-lg-4 text-center">
-              <img src="./img/css3.png" height="80" width="80" alt="CSS3">
-              <br>
-              <span class="font-weight-bold mt-2">CSS3</span>
-            </div>
-            <div class="col-lg-4 text-center">
-              <img src="./img/bootstrap.png" height="80" width="80" alt="boostrap">
-              <br>
-              <span class="font-weight-bold mt-2">Boostrap</span>
-            </div>
-            <div class=" text-center">
-            </div>
-            <div class="col-md-12">
-              <hr>
-            </div>
-            <div class="col-md-4 text-center">
-              <img src="./img/javascript.png" height="80" width="80" alt="javascript">
-              <br>
-              <span class="font-weight-bold mt-2">Javascript</span>
-            </div>
-            <div class="col-md-4 text-center">
-              <img src="./img/jquery.png" height="80" width="80" alt="boostrap">
-              <br>
-              <span class="font-weight-bold mt-2">JQuery</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">BACK - END</h5>
-          <hr>
-          <div class="row">
-            <div class="col-lg-4 text-center">
-              <img src="./img/php.png" height="80" width="80" alt="PHP">
-              <br>
-              <span class="font-weight-bold mt-2">PHP</span>
-            </div>
-
-            <div class="col-lg-4 text-center">
-              <img src="./img/lumen.png" height="77" width="77" alt="Lumen">
-              <br>
-              <span class="font-weight-bold mt-2">Lumen</span>
-            </div>
-
-            <div class="col-lg-4 text-center">
-              <img src="./img/laravel.png" width="76" height="76" alt="Laravel">
-              <br>
-              <span class="font-weight-bold mt-2">Laravel</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="skill">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">DATABASE & ADDITIONAL</h5>
-          <hr>
-          <div class="row">
-            <div class="col-lg-4 text-center">
-              <img src="./img/mysql.png" height="80" width="80" alt="MySQL">
-              <br>
-              <span class="font-weight-bold mt-2">MySQL</span>
-            </div>
-
-            <div class="col-lg-4 text-center">
-              <img src="./img/sqlite.png" height="80" alt="SQLite">
-              <br>
-              <span class="font-weight-bold">SQLite</span>
-            </div>
-
-            <div class="col-lg-4 text-center">
-              <img src="./img/java.png" height="80" width="80"  alt="Java">
-              <br>
-              <span class="font-weight-bold">Java</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-</section>
-	
-<!-- 
-<section id="experience" class="green">
-  <h2 class="heading">Experience</h2>
-  <div id="timeline">
-    
-    <div class="timeline-item clearfix">
-      <div class="timeline-icon"></div>
-      
-      <div class="timeline-content  right ">
-        <span class="date">May 2019 - May 2019</span>
-        <h6 class="h3 my-2">Points PH</h6>
-        
-        <p>Work at this company as a Junior Software Engineer</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item clearfix">
-      <div class="timeline-icon"></div>
-      
-      <div class="timeline-content ">
-        <span class="date">Nov 2017 - Present</span>
-        <h6 class="h3 my-2">Google</h6>
-        
-        
-        <p class="">Nunc sapien nisi, maximus eleifend hendrerit sit amet, rutrum vel diam. Duis quam nibh, tincidunt eget nunc nec, suscipit pretium dolor. </p>
-      </div>
-    </div>
-    
-  </div>
-</section> -->
-	
-
-<section class="blue">
-  <h2 class="heading">Projects</h2>
-  <div class="row justify-content-md-center text-center">
-
-    <div class="col-12 col-lg-6 col-md-6 mb-3">
-      <div class="card p-4">
-        <i class="mt-3  fa fa-pencil-ruler fa-3x"></i>
-        <h5 class="mt-4"><a href="https://github.com/christophervistal25/LMS" target="_blank">LMS</a></h5>
-        <p class="text-muted text-justify">A Web application <span class="font-weight-bold">Library Management System with Barcode Scanner</span> made using <span class="font-italic font-weight-bold">Laravel Framework</span></p>
-      </div>
-    </div>
-    <div class="col-12 col-lg-6 col-md-6 mb-3">
-      <div class="card p-4">
-        <i class="mt-3  fa fa-pencil-ruler fa-3x"></i>
-        <h5 class="mt-4"><a href="https://github.com/christophervistal24/english-dialect-2" target="_blank">English Dialect</a></h5>
-        <p class="text-muted text-justify">A Android Game Application for kids <span class="font-italic font-weight-bold">made in Android studio using Java Language.</span></p>
-      </div>
-    </div>
-
-    <div class="col-12 col-lg-6 col-md-6 mb-3">
-      <div class="card p-4">
-        <i class="mt-3  fa fa-pencil-ruler fa-3x"></i>
-        <h5 class="mt-4"><a href="https://github.com/christophervistal24/english-dialect-2" target="_blank">ASCB-OGI</a></h5>
-        <p class="text-muted text-justify">Andres Soriano Colleges of Bislig Online Grade Inquiry a web application <span class="font-italic font-weight-bold">made in Laravel.</span></p>
-      </div>
-    </div>
-
-    <div class="col-12 col-lg-6 col-md-6 mb-3">
-      <div class="card p-4">
-        <i class="mt-3  fa fa-pencil-ruler fa-3x"></i>
-        <h5 class="mt-4"><a href="https://github.com/christophervistal24/english-dialect-2" target="_blank">ASDI</a></h5>
-        <p class="text-muted text-justify">Apit Subiri Dental Information System a web application <span class="font-italic font-weight-bold">made in Laravel.</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-</div>
-
-<div style="z-index: 4; position: relative;">
-	
-	
-</div>
-
-<div class="main-content">
-	
-
-<section id="contact" class="bg-light d-flex align-items-center" style="height: 100vh;">
+<body>
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
   <div class="container">
-      <h2 class="heading mb-3">Contact</h2>
+    <a class="navbar-brand" href="/">
+      <img src="./mylogo.png" alt="" width="65">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active say-hello-border">
+          <a class="nav-link btn text-color p-2 text-spacing " href="mailto:christophervistal25@gmail.com">Say Hello
+          </a>
+        </li>
 
-      <div class="text-success my-3">
+        <li class="nav-item active say-hello-border">
+          <a class="nav-link btn text-color p-2 text-spacing " href="https://www.facebook.com/tooshort06" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831459/portfolio/facebook_1_orsfs4.png" alt="">
+          </a>
+        </li>
+
+        <li class="nav-item active say-hello-border">
+          <a class="nav-link btn text-color p-2 text-spacing " href="https://twitter.com/Christo89399910" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831496/portfolio/twitter_tzwhua.png" alt="">
+          </a>
+        </li>
+
+        <li class="nav-item active say-hello-border">
+          <a class="nav-link btn text-color p-2 text-spacing " href="https://github.com/christophervistal25" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831710/portfolio/github_ihsws8.png" alt="">
+          </a>
+        </li>
         
-      </div>
-
-      <form action="https://formspree.io/christophervistal25@gmail.com" method="post">
-        <div class="form-row">
-          <div class="col-12 col-xl-6 col-lg-6 col-md-6">
-            <label>Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Name">
-          </div>
-          <div class="col-12 col-xl-6 col-lg-6 col-md-6">
-            <label>Email</label>
-            <input type="email" class="form-control" name="_replyto" placeholder="Email">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="Message" name="message" class="form-control" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn btn-dark">Submit</button>
-      </form>
+      </ul>
+    </div>
   </div>
-</section>
-		
+</nav>
+
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="display-4 font-weight-bold" style="font-family: Gilroy"><span class="typed"></span></h1>
+        <p class="lead"><b>I like writing code and making my ideas into digital solution</b></p>
+        <img src="./unboxing.png" width="50%">
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="container mb-3 p-5" style="border : 7px solid #f2f2f2;">
+        <h2 style="font-family: Gilroy;" class="text-center">Hi, I'm Christopher</h2>
+        <p class="lead text-justify">
+          <b>Taken classes at Surigao del Sur State University helps me to truly discovered my passion in life and that is software development, on my perspective programming is not just writing some code which helps other people to solve their problems It also involves discipline, attitude, and communication.</b>
+        </p>  
+      </div>    
+    </div>
+
+    <div class="col-lg-4">
+      <img src="./reading.png" width="600px" alt="">
+    </div>
+  </div>
 </div>
 
-<script src="https://blog.uicard.io/js/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-</body>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-lg-4">
+      <img src="./coffe.png" width="600px" alt="">
+    </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://themes.gohugo.io//theme/hugo-uilite/js/main.js"></script>
+    <div class="col-lg-auto" >
+      <div class="container mb-3 p-5">
+        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Back - End</b></h5>
+        <hr>
+        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">PHP</p>
+        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Laravel</p>
+        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Lumen</p>
+      </div>    
+    </div>
+
+    <div class="col-lg-auto" >
+      <div class="container mb-3 p-5">
+        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Front - End</b></h5>
+        <hr>
+        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">CSS3</p>
+        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Javascript</p>
+        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">JQuery</p>
+      </div>    
+    </div>
+
+    <div class="col-lg-auto" >
+      <div class="container mb-3 p-5">
+        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Additional</b></h5>
+        <hr>
+        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">MySQL</p>
+        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Java</p>
+        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">SQLite</p>
+      </div>    
+    </div>
+
+   
+  </div>
+</div>
+
+
+<div class="text-center">
+  <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Projects</b></h5>
+</div>
+
+  <div class="container mb-5">
+    <div class="row">
+
+      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828810/portfolio/flyff-billposter-male2_ym49k9.jpg') center center; background-repeat: no-repeat; background-size:cover;">
+
+        <a class="project-link"  href="http://www.resurgenceflyff.com/" target="_blank">
+          <div class="overlay">
+            <h5 class="text-center text-overlay">Resurgence Flyff</h5>
+          </div>
+        </a>
+      </div>
+
+
+      
+
+      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830227/portfolio/SDSSU_LOGO_z6xgmt.png') top center; background-repeat: no-repeat;  ">
+        <a class="project-link"  href="https://www.preenrollment.sdssu.edu.ph/login" target="_blank">
+          <div class="overlay">
+            <h5 class="text-center text-overlay-sm">SDSSU Pre-Enrollment contribute some features for students.</h5>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1598363784/soulstice-flyff/templar_jj3yx8.png') left center; background-repeat: no-repeat; background-size: cover; ">
+        <a class="project-link"  href="http://soulsticeflyff.com/" target="_blank">
+          <div class="overlay">
+            <h5 class="text-center text-overlay">Soulstice Flyff</h5>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-4 col-project"  style="background : url(https://res.cloudinary.com/dhoso0sdj/image/upload/v1600829713/portfolio/seraph_nywktn.jpg) center center; background-repeat: no-repeat; background-size: cover; ">
+        <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
+          <div class="overlay">
+            <h5 class="text-center text-overlay">Flyff Siege Parser</h5>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830333/portfolio/message_nimkxz.png') top center; background-repeat: no-repeat; background-size: cover; ">
+        <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
+          <div class="overlay">
+            <h5 class="text-center text-overlay-sm">A android application for sending SMS from website to smart phone.</h5>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828860/portfolio/flyff-acrobat-female_wdxdij.jpg') top center; background-repeat: no-repeat; background-size: cover; ">
+        <a class="project-link"  href="https://essence-flyff.com/" target="_blank">
+          <div class="overlay">
+            <h5 class="text-center text-overlay">Essence Flyff</h5>
+          </div>
+         </a>
+      </div>
+
+
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script>
+  var typed = new Typed('.typed', {
+   strings: ['Hello I\'m a ^1000 Web ^1000 Developer'],
+   typeSpeed: 50,
+    // time before typing starts
+    startDelay: 1200,
+    loop: true,
+    loopCount: 5,
+  });
+</script>
+</body>
 </html>
