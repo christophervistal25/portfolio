@@ -1,211 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Christopher Vistal | Portfolio</title>
-  <link rel="icon" href="./me.png">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #444;
+      background: #ffc600;
+      font: 300 18px/18px Roboto, sans-serif;
+    }
+
+    *,
+    :after,
+    :before {
+      box-sizing: border-box
+    }
+
+    .pull-left {
+      float: left
+    }
+
+    .pull-right {
+      float: right
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+      content: '';
+      display: table
+    }
+
+    .clearfix:after {
+      clear: both;
+      display: block
+    }
+
+    .machine-wrap {
+      top: 50%;
+      left: 50%;
+      width: 475px;
+      height: 145px;
+      position: absolute;
+      margin-top: -72.5px;
+      margin-left: -237.5px;
+      border-bottom: 5px solid #271e01;
+    }
+
+    .machine {
+      width: 475px;
+      height: 145px;
+      padding-bottom: 20px;
+    }
+
+    .machine .machine-roof,
+    .machine .machine-main {
+      margin: auto;
+    }
+
+    .machine-wrap .road .mud:before,
+    .machine-wrap .road .mud:after,
+    .machine .machine-roof .machine-silencer:before,
+    .machine .machine-roof .machine-silencer:after,
+    .machine .machine-body:before,
+    .machine .machine-body:after,
+    .machine .machine-main .machine-back:before,
+    .machine .machine-main .machine-back:after,
+    .machine .machine-main .machine-front:after {
+      content: '';
+      position: absolute;
+    }
+
+    .machine .machine-roof {
+      width: 80px;
+      height: 60px;
+      bottom: -1px;
+      position: relative;
+      background: #ffc600;
+      border: 15px solid #271e01;
+      border-bottom: none;
+    }
+
+    .machine .machine-roof .machine-silencer {
+      width: 14px;
+      left: -50px;
+      height: 12px;
+      bottom: -1px;
+      position: absolute;
+      background: #271e01;
+    }
+
+    .machine .machine-roof .machine-silencer:before {
+      height: 0;
+      bottom: 100%;
+      width: inherit;
+      border: 6px solid #271e01;
+      border-top: 4px solid transparent;
+      border-left: 8px solid transparent;
+    }
+
+    .machine .machine-roof .machine-silencer:after {
+      left: 4px;
+      width: 5px;
+      height: 12px;
+      bottom: 100%;
+      background: inherit;
+      transform: skewY(-35deg);
+    }
+
+    .machine .machine-roof .machine-silencer .machine-smoke {
+      left: -5px;
+      width: 16px;
+      height: 16px;
+      bottom: 20px;
+      border-radius: 50%;
+      position: absolute;
+      background: #271e01;
+      transform: scale(0);
+      animation: moveSmoke .5s linear infinite;
+    }
+
+    .machine-main {
+      height: 60px;
+      width: 185px;
+      position: relative;
+    }
+
+    .machine .machine-main .machine-body {
+      height: inherit;
+      width: inherit;
+      position: relative;
+      background: #271e01;
+    }
+
+    .machine .machine-main .machine-body:before {
+      left: -15px;
+      width: 30px;
+      height: inherit;
+      background: inherit;
+      transform: skewX(-20deg);
+    }
+
+    .machine .machine-main .machine-body:after {
+      bottom: 0;
+      right: 15px;
+      width: 35px;
+      height: 41px;
+      background: #ffc600;
+    }
+
+    .machine .machine-main .machine-back {
+      bottom: -1px;
+      width: 75px;
+      height: 45px;
+      position: absolute;
+    }
+
+    .machine .machine-main .machine-back:before {
+      width: 75px;
+      height: 45px;
+      background: #ffc600;
+      border-radius: 50% 50% 0 0 / 85% 85% 0 0;
+    }
+
+    .machine .machine-main .machine-back:after {
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-top: -15px;
+      margin-left: -30px;
+      background: transparent;
+      border: 15px solid #271e01;
+    }
+
+    .machine .machine-main .machine-front {
+      z-index: 1;
+      width: 60px;
+      height: 60px;
+      right: -24px;
+      bottom: -20px;
+      border-radius: 50%;
+      position: absolute;
+      background: #271e01;
+      border-top: 2px solid #ffc600;
+    }
+
+    .machine .machine-main .machine-front:after {
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 20px;
+      margin-top: -10px;
+      margin-left: -40px;
+      background: inherit;
+      border: 2px solid #ffc600;
+    }
+
+    .machine-wrap .road {
+      right: 0;
+      bottom: 0;
+      height: 15px;
+      width: 140px;
+      overflow: hidden;
+      position: absolute;
+    }
+
+    .machine-wrap .road .mud-wrap {
+      width: 160px;
+      position: absolute;
+      animation: moveRoad .4s linear infinite;
+    }
+
+    .machine-wrap .road .mud {
+      bottom: 0;
+      width: 40px;
+      float: left;
+      height: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .machine-wrap .road .mud:before,
+    .machine-wrap .road .mud:after {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: #271e01;
+      transform: rotate(45deg);
+    }
+
+    .machine-wrap .road .mud:before {
+      left: 0;
+      bottom: -17px;
+    }
+
+    .machine-wrap .road .mud:after {
+      right: 0;
+      bottom: -20px;
+    }
+
+    .machine-wrap .machine-roof,
+    .machine-wrap .machine-body,
+    .machine-wrap .machine-silencer,
+    .machine-wrap .machine-back:before,
+    .machine-wrap .machine-front {
+      animation: upDown .6s linear infinite;
+    }
+
+    .machine-wrap .machine-silencer {
+      animation-duration: .4s;
+    }
+
+    .machine-wrap .machine-front {
+      animation-duration: .3s;
+    }
+
+    .machine-wrap .machine-back {
+      animation: upDown .8s linear infinite;
+    }
+
+    @keyframes moveRoad {
+      0% {
+        right: -40px;
+      }
+
+      100% {
+        right: 0;
+      }
+    }
+
+    @keyframes moveSmoke {
+      0% {
+        opacity: 0;
+        transform: scale(0) translate(0);
+      }
+
+      60% {
+        transform: scale(.5) translate(0);
+      }
+
+      100% {
+        opacity: .6;
+        transform: scale(1) translate(-10px, -40px);
+      }
+    }
+
+    @keyframes upDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(2px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
-  <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <img src="./mylogo.png" alt="" width="65">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="mailto:christophervistal25@gmail.com">Say Hello
-          </a>
-        </li>
-
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="https://www.facebook.com/tooshort06" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831459/portfolio/facebook_1_orsfs4.png" alt="">
-          </a>
-        </li>
-
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="https://twitter.com/Christo89399910" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831496/portfolio/twitter_tzwhua.png" alt="">
-          </a>
-        </li>
-
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="https://github.com/christophervistal25" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831710/portfolio/github_ihsws8.png" alt="">
-          </a>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- Full Page Image Header with Vertically Centered Content -->
-<header class="masthead">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-12 text-center">
-        <h1 class="display-4 font-weight-bold"><span class="typed"></span></h1>
-        <p class="lead"><b>I like writing code and making my ideas into a digital solution.</b></p>
-          <img src="./unboxing.png" width="50%" class="sm-none">
-      </div>
-    </div>
-  </div>
-</header>
-
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-auto">
-      <div class="container mb-3 p-5 border-primary-color">
-        <h2 class="text-center">Hi, I'm Christopher</h2>
-        <p class="lead text-justify">
-          <b>Taken classes at <a href="https://www.sdssu.edu.ph/" target="_blank">Surigao del Sur State University</a> help me discover my passion in life: software development. From my perspective, programming is not just writing code that allows other people to solve their problems. It also involves discipline, attitude, and communication.
- </b>
-        </p>
-        <div class="text-center">
-          <a href="./resume/chris-resume.docx" class="btn btn-primary border-0 rounded-0" style="background : #1f2833;">RESUME</a>
+  <div class="machine-wrap">
+    <div class="machine">
+      <div class="machine-roof">
+        <div class="machine-silencer">
+          <div class="machine-smoke"></div>
         </div>
-      </div>    
+      </div>
+      <div class="machine-main">
+        <div class="machine-body"></div>
+        <div class="machine-back"></div>
+        <div class="machine-front"></div>
+      </div>
     </div>
-
-    <div class="col-lg-4 sm-none">
-      <img src="./reading.png" width="600px">
+    <div class="road">
+      <div class="mud-wrap clearfix">
+        <div class="mud"></div>
+        <div class="mud"></div>
+        <div class="mud"></div>
+        <div class="mud"></div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="container-fluid mt-5">
-  <div class="row">
-    <div class="col-lg-4 sm-none">
-      <img src="./coffe.png" width="600px">
-    </div>
-
-    <div class="col-lg-auto" >
-      <div class="container mb-3 p-5">
-        <h5 class="display-4"><b>Back - End</b></h5>
-        <hr>
-        <p class="font-weight-light text-skills">PHP</p>
-        <p class="font-weight-light text-skills">Laravel</p>
-        <p class="font-weight-light text-skills">Lumen</p>
-      </div>    
-    </div>
-
-    <div class="col-lg-auto" >
-      <div class="container mb-3 p-5">
-        <h5 class="display-4 "><b>Front - End</b></h5>
-        <hr>
-        <p class="font-weight-light text-center text-skills">CSS3</p>
-        <p class="font-weight-light text-center text-skills">Javascript</p>
-        <p class="font-weight-light text-center text-skills">JQuery</p>
-      </div>    
-    </div>
-
-    <div class="col-lg-auto">
-      <div class="container mb-3 p-5">
-        <h5 class="display-4"><b>Additional</b></h5>
-        <hr>
-        <p class="font-weight-light text-right text-skills">MySQL</p>
-        <p class="font-weight-light text-right text-skills">Java</p>
-        <p class="font-weight-light text-right text-skills">SQLite</p>
-      </div>    
-    </div>
-   
-  </div>
-</div>
-
-
-<div class="text-center mb-4">
-  <h5 class="display-4"><b>Projects</b></h5>
-</div>
-
-  <div class="container mb-5" id="projects">
-    <div class="row">
-
-      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828810/portfolio/flyff-billposter-male2_ym49k9.jpg') center center; background-repeat: no-repeat; background-size:cover;">
-
-        <a class="project-link"  href="http://www.resurgenceflyff.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Resurgence Flyff</h5>
-          </div>
-        </a>
-      </div>
-      
-
-      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830227/portfolio/SDSSU_LOGO_z6xgmt.png') top center; background-repeat: no-repeat;  ">
-        <a class="project-link"  href="https://www.preenrollment.sdssu.edu.ph/login" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay-sm">SDSSU Pre-Enrollment contribute some features for students.</h5>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1598363784/soulstice-flyff/templar_jj3yx8.png') left center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="http://soulsticeflyff.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Soulstice Flyff</h5>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-4 col-project border-primary-color"  style="background : url(https://res.cloudinary.com/dhoso0sdj/image/upload/v1600829713/portfolio/seraph_nywktn.jpg) center center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Flyff Siege Parser</h5>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830333/portfolio/message_nimkxz.png') top center; background-repeat: no-repeat; background-size: cover; ">
-          <div class="overlay">
-            <h5 class="text-center text-overlay-sm">A android application for sending SMS from website to smart phone.</h5>
-          </div>
-      </div>
-
-
-      <div class="col-lg-4 col-project border-primary-color"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828860/portfolio/flyff-acrobat-female_wdxdij.jpg') top center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="https://www.world-flyff.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">World Flyff</h5>
-          </div>
-         </a>
-      </div>
-
-
-
-    </div>
-  </div>
-
-  <footer class="footer text-white p-3" style="background : #1f2833;">
-        <div class="container text-center">
-          <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a></div>
-          <div>Doodles made by <a href="https://www.opendoodles.com/" target="_blank">OpenDoodles</a> from <a href="https://www.opendoodles.com/" target="_blank">www.opendoodles.com</a></div>
-        </div>
-      </footer>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-<script>
-  var typed = new Typed('.typed', {
-   strings: ['Hello I\'m a ^1000 Web ^1000 Developer'],
-   typeSpeed: 50,
-    // time before typing starts
-    startDelay: 1200,
-    loop: true,
-    loopCount: 5,
-  });
-</script>
 </body>
+
 </html>
