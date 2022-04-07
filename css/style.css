@@ -1,101 +1,84 @@
-@font-face {
-      font-family: Gilroy;
-      src: url(./../fonts/Gilroy-Light.otf);
-    }
+.masthead {
+  height: 90vh;
+  min-height: 500px;
+}
 
-    body {
-      font-family :Gilroy;
-    }
+.text-color {
+  color: #1f2833;
+}
 
-    .masthead {
-      height: 90vh;
-      min-height: 500px;
-    }
+.text-spacing {
+  letter-spacing: 1.5px;
+}
 
-    .text-color {
-      color :#1f2833;
-    }
+.say-hello-border {
+  border: 1.5px solid #1f2833;
+}
 
-    .text-spacing  {
-      letter-spacing: 1.5px;
-    }
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #1d2630;
+}
 
-    .say-hello-border {
-      border : 1.5px solid #1f2833;
-    }
+.col-project {
+  height: 50vh;
+}
 
+.border-primary-color {
+  border: 5px solid #f2f2f2;
+}
 
-    .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: auto;
-        width: auto;
-        opacity: 0;
-        transition: .5s ease;
-        background-color: #1d2630;
-      }
+.col-project:hover .overlay {
+  opacity: 1;
+}
 
-      .col-project {
-        height : 50vh;
-      }
+.text-overlay {
+  color: white;
+  font-size: 2.7em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
-      .border-primary-color {
-        border : 5px solid #f2f2f2;
-      }
+.text-overlay-sm {
+  color: white;
+  font-size: 1.7em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-      .col-project:hover .overlay {
-        opacity: 1;
-      }
+.project-link {
+  text-decoration: none;
+  color: white;
+}
 
+.text-skills {
+  color: #1f2833;
+  font-size: 2.3rem;
+}
 
+.text-primary-color {
+  color: #1f2833;
+}
 
-      .text-overlay {
-        color: white;
-        font-size: 2.7em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
-      }
-
-      .text-overlay-sm {
-        color: white;
-        font-size: 1.7em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-      }
-
-
-      .project-link  {
-        text-decoration: none;
-        color :white;
-      }
-
-      .text-skills {
-        color :#1f2833; 
-        font-size: 2.3rem
-      }
-
-
-      .text-primary-color {
-        color :#1f2833;
-      }
-      
-      @media (max-width: 576px) { 
-        .sm-none {
-                display :none;
-              }
-      }
-
-
-
+@media (max-width: 576px) {
+  .sm-none {
+    display: none;
+  }
+}
