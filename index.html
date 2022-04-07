@@ -1,295 +1,986 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js">
+
 <head>
-  <meta charset="UTF-8">
-<<<<<<< HEAD
-  <title>Hello My name is Christopher Vistal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
-=======
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
->>>>>>> parent of ee46ca1 (Add title)
-  <style>
-    * {
-      font-family: 'DM Sans', sans-serif;
-    }
+	<!-- Metas -->
+	<meta charset="utf-8" />
+	<title>Christopher Vistal</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    .masthead {
-      height: 90vh;
-      min-height: 500px;
-    }
+	<!-- Css -->
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/owl-carousel/owl.carousel.css" rel="stylesheet" media="all" />
+	<link href="css/owl-carousel/owl.theme.css" rel="stylesheet" media="all" />
+	<link href="css/magnific-popup.css" type="text/css" rel="stylesheet" media="all" />
+	<link href="css/font.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/fontello.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/base.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/main.css" rel="stylesheet" type="text/css" media="all" />
 
-    .text-color {
-      color :#1f2833;
-    }
+	<!--Alternate styles-->
 
-    .text-spacing  {
-      letter-spacing: 1.5px;
-    }
+	<style>
+		.text-dark {
+			color: black;
+		}
+	</style>
 
-    .say-hello-border {
-      border : 1.5px solid #1f2833;
-    }
-
-
-    .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: auto;
-        width: auto;
-        opacity: 0;
-        transition: .5s ease;
-        background-color: #1d2630;
-      }
-
-      .col-project {
-        height : 50vh;
-        border : 5px solid #f2f2f2;
-      }
-
-      .col-project:hover .overlay {
-        opacity: 1;
-      }
-
-
-
-      .text-overlay {
-        color: white;
-        font-size: 2.7em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
-      }
-
-      .text-overlay-sm {
-        color: white;
-        font-size: 1.7em;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-      }
-
-
-      .project-link  {
-        text-decoration: none;
-        color :white;
-      }
-
-      .pull-left {
-        float: left;
-      }
-
-      .machine-wrap {
-        top: 50%;
-        left: 50%;
-        width: 475px;
-        height: 145px;
-        position: absolute;
-        margin-top: -72.5px;
-        margin-left: -237.5px;
-        border-bottom: 5px solid #271e01;
-      }
-
-      .machine-main {
-        height: 60px;
-        width: 185px;
-        position: relative;
-      }
-
-      .machine .machine-main .machine-body:before {
-        left: -15px;
-        width: 30px;
-        height: inherit;
-        background: inherit;
-        transform: skewX(-20deg);
-      }
-
-
-  </style>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<!--[if gte IE 9]>
+      <link rel="stylesheet" type="text/css" href="css/ie9.css" />
+    <![endif]-->
 </head>
+
 <body>
-  <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <img src="./mylogo.png" alt="" width="65">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="mailto:christophervistal25@gmail.com">Say Hello
-          </a>
-        </li>
+	<!-- Preloader -->
+	<div id="loader">
+		<!-- Preloader inner -->
+		<div id="loaderInner">
+			<div class="spinner"></div>
+		</div>
+		<!-- End preloader inner -->
+	</div>
+	<!-- End preloader-->
 
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="https://www.facebook.com/tooshort06" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831459/portfolio/facebook_1_orsfs4.png" alt="">
-          </a>
-        </li>
+	<!--Wrapper-->
+	<div id="wrapper" class="margLTop margLBottom">
 
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="https://twitter.com/Christo89399910" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831496/portfolio/twitter_tzwhua.png" alt="">
-          </a>
-        </li>
+		<!--Container-->
+		<div class="container">
+			<div class="row">
+				<!--Left content-->
 
-        <li class="nav-item active say-hello-border">
-          <a class="nav-link btn text-color p-2 text-spacing " href="https://github.com/christophervistal25" target="_blank"><img width="19" src="https://res.cloudinary.com/dhoso0sdj/image/upload/v1600831710/portfolio/github_ihsws8.png" alt="">
-          </a>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+				<div class="col-md-3 nopr left-content">
+					<!--Header-->
+					<header id="header">
+						<!--Main header-->
+						<div class="main-header">
+							<!--Profile image-->
+							<figure class="img-profile">
+								<img src="img/profile.jpg" alt="" />
+							</figure>
+							<!--End profile image-->
 
-<!-- Full Page Image Header with Vertically Centered Content -->
-<header class="masthead">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-12 text-center">
-        <h1 class="display-4 font-weight-bold" style="font-family: Gilroy"><span class="typed"></span></h1>
-        <p class=""><b>I like writing code and making my ideas into digital solution</b></p>
-        <img src="./unboxing.png" width="50%">
-      </div>
-    </div>
-  </div>
-</header>
+							<!--Main navigation-->
+							<nav id="main-nav" class="main-nav clearfix tabbed">
+								<ul>
+									<li>
+										<a href="#about"><i class="icon-user"></i>About</a>
+									</li>
+									<li>
+										<a href="#portfolio"><i class="icon-camera"></i>MY WORKS</a>
+									</li>
+								</ul>
+							</nav>
+							<!--End main navigation-->
+						</div>
+						<!--End main header-->
+					</header>
+					<!--End  header-->
+				</div>
+				<!--End left content-->
+
+				<!--Right content-->
+				<div class="col-md-9 right-content">
+					<!--About Tab-->
+					<section id="about" class="bgWhite ofsInBottom">
+						<!--About -->
+						<div class="about">
+							<!--Main title-->
+
+							<div class="main-title">
+								<h1>who am i</h1>
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+	29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
+							</div>
+
+							<!--End main title-->
+
+							<!--Content-->
+							<div class="content">
+								<!--Block content-->
+								<div class="block-content margBSmall">
+									<div class="profile margBSmall">
+										<h1>Christopher Vistal</h1>
+										<h3>Web developer & Android Developer</h3>
+									</div>
+
+									<!--Row-->
+									<div class="row">
+										<div class="col-md-12">
+											<p class="text-dark">
+												Hands-on Software Developer eager to collaborate with
+												customers to find optimal solutions. Carefully
+												customizes each product to user needs and budgets.
+												Provides reliably actionable code and software assets
+												for customers and internal data libraries.
+											</p>
+										</div>
+									</div>
+									<!--End row-->
+								</div>
+								<!--End block content-->
+
+								<!--Block content-->
+								<div class="block-content">
+									<div class="info">
+										<!--Row-->
+										<div class="row">
+											<div class="col-md-6">
+												<ul class="info-list clearfix">
+													<li>
+														<span class="inf">Name </span>
+														<span class="value">Christopher Vistal</span>
+													</li>
+													<li>
+														<span class="inf">Date of birth</span>
+														<span class="value"> January 6, 1997 </span>
+													</li>
+													<li>
+														<span class="inf">Address</span>
+														<span class="value">
+															Awasian Tandag City</span>
+													</li>
+												</ul>
+											</div>
+
+											<div class="col-md-6">
+												<ul class="info-list">
+													<li>
+														<span class="inf">Email</span>
+														<span class="value">christophervistal25@gmail.com</span>
+													</li>
+													<li>
+														<span class="inf">Phone</span>
+														<span class="value">09273273277</span>
+													</li>
+													<li>
+														<span class="inf">Facebook</span>
+														<span class="value">
+															<a target="_blank"
+																href="https://www.facebook.com/tooshort06">Facebook
+																Profile</a>
+														</span>
+														</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<!--End row-->
+									</div>
+								</div>
+								<!--End block content-->
+							</div>
+							<!--End content-->
+
+							<!--Main title-->
+
+							<div class="main-title">
+								<h1>professional skills</h1>
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+		29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
+							</div>
+
+							<!--End main title-->
+
+							<!--Content-->
+							<div class="content">
+								<!--Block content-->
+								<div class="block-content margBMedium">
+									<!--Skill design-->
+									<div class="skill des">
+										<!--Row-->
+										<div class="row">
+											<div class="vc">
+												<div class="col-md-11">
+													<ul class="skills-list clearfix">
+														<li>
+															<h4>Photoshop</h4>
+														</li>
+														<li>
+															<br>
+															<h4>Adobe XD</h4>
+														</li>
+													</ul>
+												</div>
+
+												<div class="col-md-1">
+													<div class="title des">
+														<span>design</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--End row-->
+									</div>
+									<!--End skill design-->
+								</div>
+								<!--End block content-->
+
+								<!--Block content-->
+								<div class="block-content margBMedium">
+									<!--Skill design-->
+									<div class="skill dev">
+										<!--Row-->
+										<div class="row">
+											<div class="vc">
+												<div class="col-md-11">
+													<ul class="skills-list clearfix">
+														<li>
+															<br>
+															<h4>Html/css</h4>
+														</li>
+														<li>
+															<br>
+															<h4>javascript</h4>
+														</li>
+														<li>
+															<br>
+															<h4>Vue JS</h4>
+														</li>
+														<li>
+															<br>
+															<h4>php/mysql</h4>
+														</li>
+														<li>
+															<br>
+															<h4>Laravel</h4>
+														</li>
+
+														<li>
+															<br>
+															<h4>Java (Android Development)</h4>
+														</li>
+													</ul>
+												</div>
+
+												<div class="col-md-1">
+													<div class="title dev">
+														<span>Coding </span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--End row-->
+									</div>
+									<!--End skill design-->
+								</div>
+								<!--End block content-->
+
+								<!--Block content-->
+								<div class="block-content">
+									<!--Skill design-->
+									<div class="skill prs">
+										<!--Row-->
+										<div class="row">
+											<div class="vc">
+												<div class="col-md-11">
+													<ul class="skills-list clearfix">
+														<li>
+															<br>
+															<h4>Responsible</h4>
+														</li>
+														<li>
+															<br>
+															<h4>Creative</h4>
+														</li>
+														<li>
+															<br>
+															<h4>Multitasking</h4>
+														</li>
+													</ul>
+												</div>
+
+												<div class="col-md-1">
+													<div class="title prs">
+														<span>assets </span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--End row-->
+									</div>
+									<!--End skill design-->
+								</div>
+								<!--End block content-->
+							</div>
+							<!--End content-->
+
+							<!--Main title-->
+
+							<div class="main-title">
+								<h1>experience</h1>
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+		29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
+							</div>
+
+							<!--End main title-->
+
+							<!--Content-->
+							<div class="content">
+								<!--Block content-->
+								<div class="block-content">
+									<!--Timeline-->
+									<div class="timeline experience">
+										<!--Row-->
+										<div class="row">
+											<div class="col-md-12">
+												<!--Experience holder-->
+												<div class="exp-holder margTop">
+													<!--Experience-->
+													<div class="exp">
+														<div class="hgroup">
+															<h4>Lead Software Developer – Province of Surigao del Sur
+															</h4>
+															<h6>
+																<i class="icon-calendar"></i>Jan 2021 -
+																<span class="current">Current</span>
+															</h6>
+														</div>
+														<p>
+															<li class="text-dark">
+																Updated old code bases to modern development standards,
+																improving functionality.Works closely with the copy
+																writing team.
+															</li>
+
+															<li class='text-dark'>Participated in software field testing
+																to verify
+																performance
+																of
+																developed projects.
+															</li>
+
+															<li class='text-dark'>
+																Collaborated with project managers to select ambitious,
+																but
+																realistic coding milestones on pre-release software
+																project
+																development.
+															</li>
+															<li class='text-dark'>
+																Designed customized solutions for proposals to potential
+																customer
+																Designed reusable and reliable code for use within
+																distributed
+																cloud environments.
+															</li>
+															<li class='text-dark'>
+																Discussed issues with team members to provide resolution
+																and
+																apply best practices
+															</li>
+														</p>
+													</div>
+													<!--End experience-->
+												</div>
+												<!--End experience holder-->
+											</div>
+										</div>
+										<!--End row-->
+									</div>
+									<!--End timeline-->
+								</div>
+								<!--End block content-->
+							</div>
+							<!--End content-->
+
+							<!--Main title-->
+
+							<div class="main-title">
+								<h1>education</h1>
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+		29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
+							</div>
+
+							<!--End main title-->
+
+							<!--Content-->
+							<div class="content">
+								<!--Block content-->
+								<div class="block-content">
+									<!--Timeline-->
+									<div class="timeline education">
+										<!--Row-->
+										<div class="row">
+											<div class="col-md-12">
+												<!--Experience holder-->
+												<div class="exp-holder margTop">
+													<!--Experience-->
+													<div class="exp">
+														<div class="hgroup">
+															<h4>College - Surigao del Sur State University - Bachelor of
+																Science
+																in Computer Science</h4>
+															<h6>
+																<i class="icon-calendar"></i>Jan 2015 - April
+																2019
+															</h6>
+														</div>
+														<p>
+															<li class="text-dark">
+																Win 2nd Place PSITE held in Caraga State
+																University (Butuan)
+															</li>
+														</p>
+													</div>
+													<!--End experience-->
+
+													<!--Experience-->
+													<div class="exp">
+														<div class="hgroup">
+															<h4>Secondary – Vicente L. Pimentel Sr. National High School
+															</h4>
+															<h6>
+																<i class="icon-calendar"></i>Jan 2014 - April 2015
+															</h6>
+														</div>
+														<p>
+															<li class="text-dark">
+																Placement Test examination passer
+															</li>
+														</p>
+													</div>
+													<!--End experience-->
+
+													<!--Experience-->
+													<div class="exp">
+														<div class="hgroup">
+															<h4>Manuel L. Quezon Elementary School</h4>
+															<h6>
+																<i class="icon-calendar"></i>Jan 2010 - April
+																2011
+															</h6>
+														</div>
+													</div>
+													<!--End experience-->
+												</div>
+												<!--End experience holder-->
+											</div>
+										</div>
+										<!--End row-->
+									</div>
+									<!--End timeline-->
+								</div>
+								<!--End block content-->
+							</div>
+							<!--End content-->
+
+							<!--Main title-->
+
+							<div class="main-title">
+								<h1>Service</h1>
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+		29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
+							</div>
+
+							<!--End main title-->
+
+							<!--Content-->
+							<div class="content">
+								<!--Block content-->
+								<div class="block-content">
+									<!--Services-->
+									<div class="services">
+										<!--Row-->
+										<div class="row">
+											<!--Block-->
+											<div class="block service tCenter">
+												<div class="col-md-6">
+													<div class="ico">
+														<i class="icon-print-1"></i>
+													</div>
+
+													<div class="det">
+														<h3>Build Static Website</h3>
+														<p class="text-dark">
+															Code & Build a static website to make your business grow.
+														</p>
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="ico">
+														<i class="icon-megaphone"></i>
+													</div>
+
+													<div class="det">
+														<h3>Software Development</h3>
+														<p class="text-dark">
+															Helps you to convert your ideas into digital solutions.
+														</p>
+													</div>
+												</div>
+											</div>
+											<!--End block-->
+										</div>
+										<!--End row-->
+
+										<!--Row-->
+										<div class="row">
+											<!--Divider-->
+											<div class="divider-m tCenter margTSmall margBSmall clearfix">
+												<div class="col-md-12">
+													<div class="zigzag medium clearfix" data-svg-drawing="yes">
+														<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="45"
+															height="5" y="0px" x="0px"
+															xmlns:xlink="http://www.w3.org/1999/xlink"
+															xmlns="http://www.w3.org/2000/svg" version="1.1">
+															<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+					29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                                    stroke-dasharray: 93.9851, 93.9851;
+                                    stroke-dashoffset: 0;
+                                  " />
+														</svg>
+													</div>
+												</div>
+											</div>
+											<!--End divider-->
+										</div>
+										<!--End row-->
+
+										<!--Row-->
+										<div class="row">
+											<!--Block-->
+											<div class="block service tCenter">
+												<div class="col-md-12">
+													<div class="ico">
+														<i class="icon-tools"></i>
+													</div>
+
+													<div class="det">
+														<h3>Android Development</h3>
+														<p class="text-dark">
+															Code & Build an Android Application for your business.
+														</p>
+													</div>
+												</div>
+											</div>
+											<!--End block-->
+										</div>
+										<!--End row-->
+									</div>
+									<!--End servcices-->
+								</div>
+								<!--End block content-->
+							</div>
+							<!--End content-->
+
+							<!--Main title-->
 
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="container mb-3 p-5" style="border : 7px solid #f2f2f2;">
-        <h2 style="font-family: Gilroy;" class="text-center">Hi, I'm Christopher</h2>
-        <p class="lead text-justify">
-          <b>Taken classes at Surigao del Sur State University helps me to truly discovered my passion in life and that is software development, on my perspective programming is not just writing some code which helps other people to solve their problems It also involves discipline, attitude, and communication.</b>
-        </p>  
-      </div>    
-    </div>
+							<!--End main title-->
 
-    <div class="col-lg-4">
-      <img src="./reading.png" width="600px" alt="">
-    </div>
-  </div>
-</div>
+							<!--Content-->
+							<!--End content-->
 
-      
+							<!--Button-->
+							<div class="button margTop ofsInTop tCenter">
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+			29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
 
-    <div class="col-lg-auto" >
-      <div class="container mb-3 p-5">
-        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Back - End</b></h5>
-        <hr>
-        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">PHP</p>
-        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Laravel</p>
-        <p class="font-weight-light" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Lumen</p>
-      </div>    
-    </div>
+								<!--Row-->
+								<div class="row">
+									<div class="col-md-12">
+										<a class="but opc-2 ico" target="_blank" href="./Christopher-Resume.pdf"
+											download>my resume</a>
+									</div>
+								</div>
+								<!--End row-->
+							</div>
+							<!--End button-->
+						</div>
+						<!--End about-->
+					</section>
+					<!--End about tab-->
 
-    <div class="col-lg-auto" >
-      <div class="container mb-3 p-5">
-        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Front - End</b></h5>
-        <hr>
-        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">CSS3</p>
-        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Javascript</p>
-        <p class="font-weight-light text-center" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">JQuery</p>
-      </div>    
-    </div>
+					<!--Portfolio Tab-->
+					<section id="portfolio" class="bgWhite ofsInBottom">
+						<!--Portfolio -->
+						<div class="portfolio">
+							<!--Main title-->
 
-    <div class="col-lg-auto" >
-      <div class="container mb-3 p-5">
-        <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Additional</b></h5>
-        <hr>
-        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">MySQL</p>
-        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">Java</p>
-        <p class="font-weight-light text-right" style="color :#1f2833; font-family : Gilroy; font-size: 2.3rem">SQLite</p>
-      </div>    
-    </div>
+							<div class="main-title">
+								<h1>my works</h1>
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+				29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
+							</div>
 
-   
-  </div>
-</div>
+							<!--End main title-->
 
-  
+							<!--Content-->
+							<div class="content">
+								<!--Block content-->
+								<div class="block-content">
+									<!--Works-->
+									<div class="works">
+										<!--Row-->
+										<div class="row">
+											<div class="block-filter tCenter">
+												<ul id="category" class="filter">
+													<li>
+														<a data-filter="all" href="#" class="active">all</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<!--End row-->
 
-<div class="text-center">
-  <h5 class="display-4 font-weight-bold" style="color :#1f2833; font-family : Gilroy;"><b>Projects</b></h5>
-</div>
+										<!--Row-->
+										<div class="row">
+											<div class="divider-m tCenter margTSSmall margBSmall clearfix">
+												<div class="col-md-12">
+													<div class="zigzag medium clearfix" data-svg-drawing="yes">
+														<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="45"
+															height="5" y="0px" x="0px"
+															xmlns:xlink="http://www.w3.org/1999/xlink"
+															xmlns="http://www.w3.org/2000/svg" version="1.1">
+															<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+		29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                                    stroke-dasharray: 93.9851, 93.9851;
+                                    stroke-dashoffset: 0;
+                                  " />
+														</svg>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--End row-->
 
-  <div class="container mb-5">
-    <div class="row">
+										<!--Row-->
+										<div class="row">
+											<ul class="work">
+												<li class="col-md-4">
+													<!--Item-->
+													<div class="item web">
+														<a href="https://eflyff.com/" target="_blank">
+															<div class="desc">
+																<h3 class="proj-desc">
+																	Ember Flyff
+																	<span class="zigzag work clearfix"
+																		data-svg-drawing="yes">
+																		<svg xml:space="preserve"
+																			viewBox="0 0 69.172 14.975" width="25"
+																			height="10" y="0px" x="0px"
+																			xmlns:xlink="http://www.w3.org/1999/xlink"
+																			xmlns="http://www.w3.org/2000/svg"
+																			version="1.1">
+																			<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+														29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+																							stroke-dasharray: 93.9851, 93.9851;
+																							stroke-dashoffset: 0;
+                                          " />
+																		</svg>
+																	</span>
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828810/portfolio/flyff-billposter-male2_ym49k9.jpg') center center; background-repeat: no-repeat; background-size:cover;">
+																	<span>Game Website</span>
+																</h3>
+															</div>
 
-        <a class="project-link"  href="http://www.resurgenceflyff.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Resurgence Flyff</h5>
-          </div>
-        </a>
-      </div>
+															<img alt="" src="img/portfolio/3.jpg" />
+														</a>
+													</div>
+													<!--End item-->
+												</li>
+
+												<li class="col-md-4">
+													<!--Item-->
+													<div class="item web">
+														<a href="https://fantasticflyff.com/" target="_blank">
+															<div class="desc">
+																<h3 class="proj-desc">
+																	Fantastic Flyff
+																	<span class="zigzag work clearfix"
+																		data-svg-drawing="yes">
+																		<svg xml:space="preserve"
+																			viewBox="0 0 69.172 14.975" width="25"
+																			height="10" y="0px" x="0px"
+																			xmlns:xlink="http://www.w3.org/1999/xlink"
+																			xmlns="http://www.w3.org/2000/svg"
+																			version="1.1">
+																			<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+														29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+																							stroke-dasharray: 93.9851, 93.9851;
+																							stroke-dashoffset: 0;
+                                          " />
+																		</svg>
+																	</span>
+
+																	<span>Game Website</span>
+																</h3>
+															</div>
+
+															<img alt="" src="img/portfolio/3.jpg" />
+														</a>
+													</div>
+													<!--End item-->
+												</li>
+
+												<li class="col-md-4">
+													<!--Item-->
+													<div class="item web">
+														<a href="https://preenrollment.sdssu.edu.ph/" target="_blank">
+															<div class="desc">
+																<h3 class="proj-desc">
+																	SMS Gateway of NEMSU Pre-Enrollment
+																	<span class="zigzag work clearfix"
+																		data-svg-drawing="yes">
+																		<svg xml:space="preserve"
+																			viewBox="0 0 69.172 14.975" width="25"
+																			height="10" y="0px" x="0px"
+																			xmlns:xlink="http://www.w3.org/1999/xlink"
+																			xmlns="http://www.w3.org/2000/svg"
+																			version="1.1">
+																			<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+														29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+																							stroke-dasharray: 93.9851, 93.9851;
+																							stroke-dashoffset: 0;
+                                          " />
+																		</svg>
+																	</span>
+
+																	<span>Android Application</span>
+																</h3>
+															</div>
+
+															<img alt="" src="img/portfolio/2.jpg" />
+														</a>
+													</div>
+													<!--End item-->
+												</li>
+
+												<li class="col-md-4">
+													<!--Item-->
+													<div class="item web">
+														<a href="https://preenrollment.sdssu.edu.ph/" target="_blank">
+															<div class="desc">
+																<h3 class="proj-desc">
+																	Rock-Paper-Scissor (Real Time with NODE JS)
+																	<span class="zigzag work clearfix"
+																		data-svg-drawing="yes">
+																		<svg xml:space="preserve"
+																			viewBox="0 0 69.172 14.975" width="25"
+																			height="10" y="0px" x="0px"
+																			xmlns:xlink="http://www.w3.org/1999/xlink"
+																			xmlns="http://www.w3.org/2000/svg"
+																			version="1.1">
+																			<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+														29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+																							stroke-dasharray: 93.9851, 93.9851;
+																							stroke-dashoffset: 0;
+                                          " />
+																		</svg>
+																	</span>
+
+																	<span>Game</span>
+																</h3>
+															</div>
+
+															<img alt="" src="img/portfolio/3.jpg" />
+														</a>
+													</div>
+													<!--End item-->
+												</li>
+
+												<li class="col-md-4">
+													<!--Item-->
+													<div class="item web">
+														<a href="https://flyff-eden-wiki.netlify.app/" target="_blank">
+															<div class="desc">
+																<h3 class="proj-desc">
+																	Eden Flyff Wiki
+																	<span class="zigzag work clearfix"
+																		data-svg-drawing="yes">
+																		<svg xml:space="preserve"
+																			viewBox="0 0 69.172 14.975" width="25"
+																			height="10" y="0px" x="0px"
+																			xmlns:xlink="http://www.w3.org/1999/xlink"
+																			xmlns="http://www.w3.org/2000/svg"
+																			version="1.1">
+																			<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+														29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+																							stroke-dasharray: 93.9851, 93.9851;
+																							stroke-dashoffset: 0;
+                                          " />
+																		</svg>
+																	</span>
+
+																	<span>Game Item Documentation Website Written in Vue JS and Lumen Micro-framework</span>
+																</h3>
+															</div>
+
+															<img alt="" src="img/portfolio/3.jpg" />
+														</a>
+													</div>
+													<!--End item-->
+												</li>
+
+												
 
 
-      
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830227/portfolio/SDSSU_LOGO_z6xgmt.png') top center; background-repeat: no-repeat;  ">
-        <a class="project-link"  href="https://www.preenrollment.sdssu.edu.ph/login" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay-sm">SDSSU Pre-Enrollment contribute some features for students.</h5>
-          </div>
-        </a>
-      </div>
+											</ul>
+										</div>
+										<!--End row-->
+									</div>
+									<!--End works-->
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1598363784/soulstice-flyff/templar_jj3yx8.png') left center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="http://soulsticeflyff.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Soulstice Flyff</h5>
-          </div>
-        </a>
-      </div>
+									<div class="clearfix"></div>
+								</div>
+								<!--End block content-->
+							</div>
+							<!--End content-->
 
-      <div class="col-lg-4 col-project"  style="background : url(https://res.cloudinary.com/dhoso0sdj/image/upload/v1600829713/portfolio/seraph_nywktn.jpg) center center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Flyff Siege Parser</h5>
-          </div>
-        </a>
-      </div>
+							<!--Button-->
+							<div class="button ofsInTop tCenter clearfix">
+								<div class="divider">
+									<div class="zigzag large clearfix" data-svg-drawing="yes">
+										<svg xml:space="preserve" viewBox="0 0 69.172 14.975" width="37" height="28"
+											y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
+											xmlns="http://www.w3.org/2000/svg" version="1.1">
+											<path d="M1.357,12.26 10.807,2.81 20.328,12.332
+			29.781,2.879 39.223,12.321 48.754,2.79 58.286,12.321 67.815,2.793 " style="
+                            stroke-dasharray: 93.9851, 93.9851;
+                            stroke-dashoffset: 0;
+                          " />
+										</svg>
+									</div>
+								</div>
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600830333/portfolio/message_nimkxz.png') top center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="http://flyff-gs.herokuapp.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay-sm">A android application for sending SMS from website to smart phone.</h5>
-          </div>
-        </a>
-      </div>
+								<!--Row-->
+								<div class="row">
+									<div class="col-md-12">
+										<a class="but opc-2 ico" target="_blank" href="./Christopher-Resume.pdf"
+											download>my resume</a>
+									</div>
+								</div>
+								<!--End row-->
+							</div>
+							<!--End button-->
+						</div>
+						<!--End portfolio-->
+					</section>
+					<!--End portfolio tab-->
+				</div>
+				<!--End right content-->
+			</div>
+			<!--End  row-->
+		</div>
+		<!--End  container-->
+	</div>
+	<!--End wrapper-->
 
-    
+	<!--Javascript-->
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+	<script src="js/jquery-migrate-1.2.1.js" type="text/javascript"></script>
+	<script src="js/owl.carousel.js" type="text/javascript"></script>
+	<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+	<script src="js/jquery.easytabs.min.js" type="text/javascript"></script>
+	<script src="js/jquery.easing.1.3.js" type="text/javascript"></script>
+	<script src="js/modernizr.js" type="text/javascript"></script>
+	<script src="js/placeholders.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/Switcher/switcher.js"></script>
+	<script src="js/script.js" type="text/javascript"></script>
+	<script>
+		(function ($) {
+			"use strict";
 
-      <div class="col-lg-4 col-project"  style="background : url('https://res.cloudinary.com/dhoso0sdj/image/upload/v1600828860/portfolio/flyff-acrobat-female_wdxdij.jpg') top center; background-repeat: no-repeat; background-size: cover; ">
-        <a class="project-link"  href="https://essence-flyff.com/" target="_blank">
-          <div class="overlay">
-            <h5 class="text-center text-overlay">Essence Flyff</h5>
-          </div>
-         </a>
-      </div>
+			$(document).ready(function () {
+				$("#wrapper").easytabs({
+					animate: true,
+					updateHash: false,
+					transitionIn: "fadeIn",
+					transitionOut: "fadeOut",
+					animationSpeed: 100,
+					tabActiveClass: "active",
+					tabs: " #main-nav.tabbed > ul > li ",
+					transitionInEasing: "linear",
+					transitionOutEasing: "linear",
+				});
+			});
+		})(jQuery);
+	</script>
 
+	<!-- Google analytics -->
 
-    </div>
-  </div>
+	<!-- End google analytics -->
 </body>
+
 </html>
