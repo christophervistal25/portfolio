@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            height: 90vh;
+            background-color: #f7fafc;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.125rem;
+            color: #a0aec0;
+        }
+
+        .profile {
+            border-radius: 50%;
+            width: 8%;
+            box-shadow: 0 0 0 0.25rem #fff, 0 0 0 0.5rem black;
+            margin-bottom: 1rem;
+        }
+
+        .text-uppercase {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .fw-bold {
+            font-weight: 600;
+        }
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            font-family: arial;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+            cursor: pointer;
+            border: none;
+            margin: 10px;
+            padding: 0.87rem;
+            -o-transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+            background-color: #edadad;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            background-size: 250% 100%;
+            background-image: linear-gradient(60deg, #edadad 0%, #edadad 40%, #efd3d3 66%, #edadad 93%);
+        }
+
+        .button:hover,
+        .button:focus {
+            transform: scale(1.05);
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            animation: none;
+        }
+
+        .button:disabled:hover {
+            outline: none;
+            transform: none;
+            filter: none;
+        }
+
+        .button--secondary {
+            background-image: linear-gradient(95deg, #323a6a 0%, #323a6a 40%, #065c94 66%, #323a6a 93%);
+        }
+
+        .jetbrains-font {
+            font-family: JetBrains Mono Medium, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/profile.jpg" class="profile" alt="">
+    <p class="text-uppercase">
+        <span class="fw-bold">Christopher Vistal</span> | <span id="typed">Full Stack Developer</span>
+    </p>
+    <a class="button button--secondary jetbrains-font" href="profile.html">
+        {{ auth()->user()->profile }}
+    </a>
+
+    <script>
+        var options = {
+            strings: ['Hello, world!', 'Back-end', 'Front-end', 'Full Stack', 'I love to code.'],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        };
+
+        var typed = new Typed('#typed', options);
+    </script>
+</body>
+
+</html>
