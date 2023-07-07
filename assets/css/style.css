@@ -887,6 +887,18 @@ section {
   color: #1f5297 !important;
 }
 
+.action-color {
+  color: #1f5297 !important;
+}
+
+.resume-color {
+  background: #173b6c !important;
+}
+
+.social-links-color {
+  color: #173b6c !important;
+}
+
 .bg-action-color {
   background: #1f5297 !important;
 }
