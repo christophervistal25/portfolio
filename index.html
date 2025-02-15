@@ -1,493 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Existing meta tags -->
-    <meta name="description" content="Christopher Vistal - Software Engineer Portfolio. Experienced in full-stack development, cloud solutions, and enterprise applications.">
+    <meta name="description"
+        content="Christopher Vistal - Software Engineer Portfolio. Experienced in full-stack development, cloud solutions, and enterprise applications.">
     <meta name="keywords" content="software engineer, web developer, full stack developer, React, Node.js, PHP">
     <meta name="author" content="Christopher Vistal">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Christopher Vistal - Software Engineer Portfolio">
-    <meta property="og:description" content="Experienced software engineer specializing in full-stack development and cloud solutions.">
+    <meta property="og:description"
+        content="Experienced software engineer specializing in full-stack development and cloud solutions.">
     <meta property="og:image" content="https://chris-dev/netlify.app/me.png">
     <meta property="og:url" content="https://chris-dev.netlify.app">
     <!-- Theme Color for browsers -->
     <meta name="theme-color" content="#0f172a">
     <title>Chris Developer - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;700&display=swap');
-
-        .gradient-text {
-            background: linear-gradient(45deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .project-card:hover .project-title {
-            color: #38bdf8;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-
-    <style>
-        /* Dark mode specific styles */
-        .dark body {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-
-        .dark .bg-slate-800\/30 {
-            background-color: rgba(15, 23, 42, 0.3);
-        }
-
-        .dark .bg-slate-800\/50 {
-            background-color: rgba(15, 23, 42, 0.5);
-        }
-
-        .dark .bg-slate-800 {
-            background-color: #1e293b;
-        }
-
-        .dark .text-slate-400 {
-            color: #94a3b8;
-        }
-
-        .dark .text-slate-300 {
-            color: #cbd5e1;
-        }
-
-        .dark .text-slate-100 {
-            color: #f1f5f9;
-        }
-
-        * {
-                transition-property: background-color, border-color, color, fill, stroke;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 200ms;
-            }
-    </style>
-
-    <style>
-        .image-loading {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-loading::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .hero-pattern {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-pattern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                linear-gradient(
-                    to bottom right,
-                    rgba(56, 189, 248, 0.1),
-                    rgba(129, 140, 248, 0.1)
-                ),
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(56, 189, 248, 0.05) 0%,
-                    transparent 25%
-                ),
-                radial-gradient(
-                    circle at 80% 80%,
-                    rgba(129, 140, 248, 0.05) 0%,
-                    transparent 25%
-                );
-            opacity: 0.5;
-            z-index: -1;
-        }
-
-        .hero-pattern::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239BA9B4' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
-            z-index: -1;
-        }
-    </style>
-
-    <style>
-    .animate-gradient {
-        background: linear-gradient(-45deg, #38bdf8, #818cf8, #3b82f6, #1d4ed8);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-    }
-
-    @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .animate-text {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeUp 0.5s ease forwards;
-    }
-
-    @keyframes fadeUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    </style>
-
-    <style>
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .animated-bg-gradient {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle at center,
-                rgba(56, 189, 248, 0.03) 0%,
-                rgba(29, 78, 216, 0.03) 25%,
-                transparent 50%);
-            animation: rotate 30s linear infinite;
-        }
-
-        .animated-bg-dots {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveBackground 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes moveBackground {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(-50px);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .animated-line {
-            position: absolute;
-            width: 100%;
-            max-width: 1000px;
-            height: 1px;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(56, 189, 248, 0.2) 50%,
-                transparent 100%);
-            animation: moveLine 3s linear infinite;
-        }
-
-        @keyframes moveLine {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-    </style>
-
-    <style>
-        /* Floating animation effects */
-        .floating-element {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        .floating-element-delayed {
-            animation: floating 3s ease-in-out 1.5s infinite;
-        }
-
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Particle effect */
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(56, 189, 248, 0.2);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        /* Glowing dots */
-        .glowing-dot {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #38bdf8;
-            border-radius: 50%;
-            filter: blur(1px);
-            animation: glowing 2s ease-in-out infinite;
-        }
-
-        @keyframes glowing {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Grid pattern */
-        .grid-pattern {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: moveGrid 15s linear infinite;
-        }
-
-        @keyframes moveGrid {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-50px, -50px); }
-        }
-
-        /* Spotlight effect */
-        .spotlight {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(
-                circle at center,
-                rgba(56, 189, 248, 0.05) 0%,
-                transparent 70%
-            );
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Wave effect */
-        .wave {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            background: linear-gradient(
-                45deg,
-                transparent 45%,
-                rgba(56, 189, 248, 0.1) 50%,
-                transparent 55%
-            );
-            animation: waveMove 3s linear infinite;
-        }
-
-        @keyframes waveMove {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-    </style>
-
-    <style>
-    /* Professional animated background styles */
-    .hero-bg {
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
-    }
-
-    .hero-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            linear-gradient(45deg, transparent 48%, rgba(56, 189, 248, 0.1) 50%, transparent 52%),
-            linear-gradient(-45deg, transparent 48%, rgba(129, 140, 248, 0.1) 50%, transparent 52%);
-        background-size: 4em 4em;
-        animation: gradientMove 8s linear infinite;
-        opacity: 0.5;
-    }
-
-    .hero-bg::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            radial-gradient(circle at 40% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-            radial-gradient(circle at 60% 70%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
-        animation: pulseGlow 6s ease-in-out infinite alternate;
-    }
-
-    .floating-squares {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: 1;
-    }
-
-    .square {
-        position: absolute;
-        border: 1px solid rgba(56, 189, 248, 0.1);
-        background: rgba(56, 189, 248, 0.02);
-        animation: float 20s linear infinite;
-        opacity: 0;
-    }
-
-    @keyframes gradientMove {
-        0% { background-position: 0 0; }
-        100% { background-position: 4em 4em; }
-    }
-
-    @keyframes pulseGlow {
-        0% { opacity: 0.5; }
-        100% { opacity: 0.8; }
-    }
-
-    @keyframes float {
-        0% {
-            transform: translateY(100%) rotate(0deg);
-            opacity: 0;
-        }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% {
-            transform: translateY(-100vh) rotate(360deg);
-            opacity: 0;
-        }
-    }
-</style>
-
-    <style>
-    .tech-background {
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.97), rgba(15, 23, 42, 0.98));
-    }
-
-    .floating-tech {
-        position: absolute;
-        /* Updated color and opacity */
-        color: rgba(56, 189, 248, 0.25); /* Increased opacity for better visibility */
-        background: linear-gradient(45deg, 
-            rgba(56, 189, 248, 0.2),
-            rgba(129, 140, 248, 0.2)
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        font-family: 'Space Mono', monospace;
-        pointer-events: none;
-        user-select: none;
-        white-space: nowrap;
-        font-weight: 700;
-        text-shadow: 0 0 20px rgba(56, 189, 248, 0.1); /* Added subtle glow */
-    }
-
-    @keyframes fadeInOut {
-        0% {
-            opacity: 0;
-            transform: translateY(20px) scale(0.8);
-        }
-        20% {
-            opacity: 0.3; 
-            transform: translateY(0) scale(1);
-        }
-        80% {
-            opacity: 0.7;
-            transform: translateY(0) scale(1);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(-20px) scale(1.2);
-        }
-    }
-</style>
+    <link rel="stylesheet" href="styles.css">
 
     <script>
-            tailwind.config = {
-                darkMode: 'class',
-                theme: {
-                    extend: {}
-                }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
             }
-        </script>
+        }
+    </script>
 </head>
 
 <body class="bg-slate-900 text-slate-300 font-inter transition-colors duration-200">
     <!-- Social Links Sidebar -->
-    <div class="fixed left-10 bottom-0 hidden lg:flex flex-col items-center gap-6 after:h-32 after:w-px after:bg-slate-400 z-50">
-        <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all">
+    <div
+        class="fixed left-10 bottom-0 hidden lg:flex flex-col items-center gap-6 after:h-32 after:w-px after:bg-slate-400 z-50">
+        <a href="https://github.com" target="_blank"
+            class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
             </svg>
         </a>
-        <a href="https://linkedin.com" target="_blank" class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all">
+        <a href="https://linkedin.com" target="_blank"
+            class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                <path
+                    d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
             </svg>
         </a>
-        <a href="https://twitter.com" target="_blank" class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all">
+        <a href="https://twitter.com" target="_blank"
+            class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
             </svg>
         </a>
     </div>
@@ -495,53 +62,67 @@
     <!-- Navigation -->
     <nav class="fixed w-full bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
-                    <!-- Left side: Logo with social icons for mobile -->
-                    <div class="flex items-center">
-                        <!-- Logo - hidden on mobile -->
-                        <a href="#" class="text-2xl font-bold gradient-text hidden md:block md:mr-4">C</a>
-                        <!-- Social icons - mobile only -->
-                        <div class="flex items-center space-x-4">
-                            <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-blue-400 md:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </a>
-                            <a href="https://twitter.com" target="_blank" class="text-slate-400 hover:text-blue-400 md:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                                </svg>
-                            </a>
-                            <a href="https://linkedin.com" target="_blank" class="text-slate-400 hover:text-blue-400 md:hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                </svg>
-                            </a>
-                        </div>
+            <div class="flex justify-between items-center h-16">
+                <!-- Left side: Logo with social icons for mobile -->
+                <div class="flex items-center">
+                    <!-- Logo - hidden on mobile -->
+                    <a href="#" class="text-2xl font-bold gradient-text hidden md:block md:mr-4">C</a>
+                    <!-- Social icons - mobile only -->
+                    <div class="flex items-center space-x-4">
+                        <a href="https://github.com" target="_blank"
+                            class="text-slate-400 hover:text-blue-400 md:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank"
+                            class="text-slate-400 hover:text-blue-400 md:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank"
+                            class="text-slate-400 hover:text-blue-400 md:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
                     </div>
+                </div>
 
                 <!-- Hamburger menu button -->
                 <button class="md:hidden text-slate-300" id="mobile-menu-button">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
 
                 <!-- Desktop menu -->
                 <div class="hidden md:flex space-x-8">
                     <a href="#about" class="hover:text-blue-400 transition-colors font-['Space_Mono']">About</a>
-                    <a href="#experience" class="hover:text-blue-400 transition-colors font-['Space_Mono']">Experience</a>
+                    <a href="#experience"
+                        class="hover:text-blue-400 transition-colors font-['Space_Mono']">Experience</a>
                     <a href="#projects" class="hover:text-blue-400 transition-colors font-['Space_Mono']">Projects</a>
                     <a href="#contact" class="hover:text-blue-400 transition-colors font-['Space_Mono']">Contact</a>
                     <a class="hover:text-blue-400 transition-colors">
                         <button id="theme-toggle" class="rounded-lg hover:bg-slate-700 transition-colors">
                             <!-- Sun icon (for dark mode) -->
-                            <svg id="light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+                            <svg id="light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
                             </svg>
                             <!-- Moon icon (for light mode) -->
-                            <svg id="dark-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                            <svg id="dark-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                             </svg>
                         </button>
                     </a>
@@ -564,22 +145,26 @@
     <section class="min-h-[85vh] flex items-center pt-16 relative overflow-hidden tech-background">
         <div id="techBg" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <p class="animate-text text-blue-400 font-space text-sm md:text-base" style="animation-delay: 0.2s">Hi, my name is</p>
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-4 animate-text" style="animation-delay: 0.4s; background: linear-gradient(45deg, #38bdf8, #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent;">
+            <p class="animate-text text-blue-400 font-space text-sm md:text-base" style="animation-delay: 0.2s">Hi, my
+                name is</p>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-4 animate-text"
+                style="animation-delay: 0.4s; background: linear-gradient(45deg, #38bdf8, #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent;">
                 Christopher Vistal
             </h1>
             <h2 class="text-3xl md:text-5xl font-bold text-slate-400 mb-6 animate-text" style="animation-delay: 0.6s">
                 Software Engineer
             </h2>
-            <p class="max-w-2xl text-base md:text-lg text-slate-400 leading-relaxed animate-text" style="animation-delay: 0.8s">
-                I'm a results-driven software engineer with 5+ years of experience delivering high-impact software solutions.
-                I specialize in transforming business challenges into efficient, scalable digital solutions that drive growth
+            <p class="max-w-2xl text-base md:text-lg text-slate-400 leading-relaxed animate-text"
+                style="animation-delay: 0.8s">
+                I'm a results-driven software engineer with 5+ years of experience delivering high-impact software
+                solutions.
+                I specialize in transforming business challenges into efficient, scalable digital solutions that drive
+                growth
                 and improve operations.
             </p>
             <!-- Optional: Add a CTA button -->
             <div class="mt-8 animate-text" style="animation-delay: 1s">
-                <a href="#contact"
-                   class="inline-block px-6 py-3 bg-blue-500 text-white rounded-lg font-medium
+                <a href="#contact" class="inline-block px-6 py-3 bg-blue-500 text-white rounded-lg font-medium
                           hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
                     Get in touch
                 </a>
@@ -635,8 +220,10 @@
                         </div>
 
                         <p class="mb-4">
-                            I believe in creating software that not only solves problems but transforms how businesses operate.
-                            My approach combines technical expertise with business acumen to deliver solutions that drive real value.
+                            I believe in creating software that not only solves problems but transforms how businesses
+                            operate.
+                            My approach combines technical expertise with business acumen to deliver solutions that
+                            drive real value.
                         </p>
                     </div>
                 </div>
@@ -645,13 +232,10 @@
                 <div class="relative hidden md:flex items-center">
                     <div class="relative max-w-md mx-auto">
                         <div class="relative overflow-hidden rounded-lg p-6">
-                            <img src="me.png"
-                                 alt="Profile"
-                                 class="w-full h-auto max-h-[400px] object-cover transition-all duration-300
+                            <img src="me.png" alt="Profile" class="w-full h-auto max-h-[400px] object-cover transition-all duration-300
                                         hover:scale-105 filter hover:brightness-110
                                         drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]
-                                        hover:drop-shadow-[0_0_25px_rgba(59,130,246,0.8)]"
-                                 loading="lazy">
+                                        hover:drop-shadow-[0_0_25px_rgba(59,130,246,0.8)]" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-r from-slate-800/10 to-transparent
                                         animate-loading group-hover:opacity-0 transition-opacity"></div>
                         </div>
@@ -660,770 +244,424 @@
             </div>
         </div>
     </section>
-        <section class="py-20 bg-slate-800/30 dark:bg-slate-800/20">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                        <span class="text-blue-400 mr-4 font-['Space_Mono']">02.</span>
-                        Skills & Technologies
-                    </h3>
+    <section class="py-20 bg-slate-800/30 dark:bg-slate-800/20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
+                <span class="text-blue-400 mr-4 font-['Space_Mono']">02.</span>
+                Skills & Technologies
+            </h3>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Frontend -->
-                        <div class="bg-slate-800/50 p-6 rounded-lg group">
-                            <h4 class="text-blue-400 font-['Space_Mono'] mb-4">Frontend</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-blue-400 mr-2">▹</span>
-                                    Vue.js
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-blue-400 mr-2">▹</span>
-                                    TypeScript
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-blue-400 mr-2">▹</span>
-                                    Tailwind CSS
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-blue-400 mr-2">▹</span>
-                                    Vanilla Javascript / HTML/CSS
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Backend -->
-                        <div class="bg-slate-800/50 p-6 rounded-lg">
-                            <h4 class="text-green-400 font-['Space_Mono'] mb-4">Backend</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-green-400 mr-2">▹</span>
-                                    Node.js/Express
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-green-400 mr-2">▹</span>
-                                    Php/Laravel
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-green-400 mr-2">▹</span>
-                                    MySQL/SQL Server
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-green-400 mr-2">▹</span>
-                                    RESTful APIs
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Tools & Others -->
-                        <div class="bg-slate-800/50 p-6 rounded-lg">
-                            <h4 class="text-purple-400 font-['Space_Mono'] mb-4">Tools & Others</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-purple-400 mr-2">▹</span>
-                                    Git/GitHub
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-purple-400 mr-2">▹</span>
-                                    AWS
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-purple-400 mr-2">▹</span>
-                                    Docker
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-purple-400 mr-2">▹</span>
-                                    PHPUnit/Pest
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Additional Languages -->
-                        <div class="bg-slate-800/50 p-6 rounded-lg">
-                            <h4 class="text-yellow-400 font-['Space_Mono'] mb-4">Additional Languages</h4>
-                            <ul class="space-y-2">
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-yellow-400 mr-2">▹</span>
-                                    Java (Android)
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-yellow-400 mr-2">▹</span>
-                                    Go Lang
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-yellow-400 mr-2">▹</span>
-                                    Python
-                                </li>
-                                <li class="flex items-center text-slate-300">
-                                    <span class="text-yellow-400 mr-2">▹</span>
-                                    C# (.NET)
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="experience" class="py-20">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                        <span class="text-blue-400 mr-4 font-['Space_Mono']">03.</span>
-                        Professional Experience
-                    </h3>
-
-                    <div class="relative">
-                        <!-- Timeline -->
-                        <div class="border-l-2 border-slate-700 ml-4">
-                            <!-- Software Engineer Position -->
-                            <div class="relative mb-12 pl-8">
-                                <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[10px] top-1"></div>
-                                <div class="group">
-                                    <a href="https://goo.gl/maps/HnWTokwBwda5kUWv5"
-                                       target="_blank"
-                                       class="text-slate-100 font-bold text-xl mb-1 block group-hover:text-blue-400 transition-colors">
-                                        Software Engineer
-                                    </a>
-                                    <p class="text-sm text-blue-400 font-['Space_Mono'] mb-4">2021 - (Present)</p>
-
-                                    <ul class="space-y-4">
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Collaborate with cross-functional teams to gather requirements, analyze user needs, and design software solutions that meet business objectives.</span>
-                                        </li>
-
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Develop and maintain software documentation, including technical specifications, user manuals, and system diagrams, to ensure clear understanding and facilitate future maintenance.</span>
-                                        </li>
-
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Participate in code reviews and provide constructive feedback to ensure code quality, maintainability, and adherence to coding standards.</span>
-                                        </li>
-
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Implement software enhancements and new features by writing clean, efficient, and maintainable code using programming languages.</span>
-                                        </li>
-
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Conduct thorough testing, including unit testing, integration testing, and system testing, to identify and fix software defects and ensure the reliability and stability of the software.</span>
-                                        </li>
-
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Stay up-to-date with emerging technologies, industry trends, and best practices in software engineering to continuously improve skills and contribute to the innovation and evolution of software systems.</span>
-                                        </li>
-
-                                        <li class="flex items-start text-slate-400">
-                                            <span class="text-blue-400 mr-2 mt-1.5">▹</span>
-                                            <span>Troubleshoot and debug software issues by analyzing logs, conducting root cause analysis, and implementing effective solutions to minimize downtime and optimize system performance.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-                <section id="projects" class="py-20 bg-slate-800/30">
-                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                            <span class="text-blue-400 mr-4 font-['Space_Mono']">04.</span>
-                            Projects Showcase
-                        </h3>
-                        <p class="text-slate-400 mb-12">Here, you will find a collection of my projects that demonstrate my skills and expertise.</p>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <!-- GSIS Deduction System -->
-                            <div class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg"></div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">GSIS Deduction System</h4>
-                                    <span class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEB APP</span>
-                                </div>
-                                <p class="text-slate-400 mb-4">
-                                    I created a GSIS using Native PHP with custom routing and ORM which I build, incorporating a Twig Template Engine for a user-friendly interface to manage service insurance records.
-                                </p>
-                                <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                                    <span class="text-blue-400">PHP</span>
-                                    <span class="text-green-400">Twig</span>
-                                    <span class="text-purple-400">Custom ORM</span>
-                                </div>
-                                <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank" class="absolute inset-0" aria-label="Project Link"></a>
-                            </div>
-
-                            <!-- Kronos Flyff -->
-                            <div class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg"></div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Kronos Flyff Gaming Website</h4>
-                                    <span class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEBSITE</span>
-                                </div>
-                                <p class="text-slate-400 mb-4">
-                                    An online gaming website providing players with well-designed and optimized classic and modern games, featuring a user-friendly interface and community features for an immersive gaming experience.
-                                </p>
-                                <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                                    <span class="text-blue-400">PHP</span>
-                                    <span class="text-green-400">MySQL</span>
-                                    <span class="text-yellow-400">JavaScript</span>
-                                </div>
-                                <a href="https://github.com/christophervistal25/gaia-v1" target="_blank" class="absolute inset-0" aria-label="Project Link"></a>
-                            </div>
-
-                            <!-- Rock Paper Scissors -->
-                            <div class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg"></div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <h4 class="project-title text-xl  text-slate-100 transition-colors  font-['Space_Mono']">Real-time RPS Game</h4>
-                                    <span class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEB APP</span>
-                                </div>
-                                <p class="text-slate-400 mb-4">
-                                    A multiplayer rock paper scissors game featuring real-time communication and scorekeeping using Socket.io, providing an engaging gaming experience.
-                                </p>
-                                <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                                    <span class="text-blue-400">Node.js</span>
-                                    <span class="text-green-400">Socket.io</span>
-                                    <span class="text-yellow-400">JavaScript</span>
-                                </div>
-                                <a href="https://www.youtube.com/watch?v=B-Aj7DVPXaM" target="_blank" class="absolute inset-0" aria-label="Project Link"></a>
-                            </div>
-
-                            <!-- NEMSU SMS Gateway -->
-                            <div class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg"></div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">NEMSU SMS Gateway</h4>
-                                    <span class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">ANDROID</span>
-                                </div>
-                                <p class="text-slate-400 mb-4">
-                                    Developed an Android SMS Gateway for NEMSU pre-enrollment system, implementing features to improve notification delivery to pre-enrolled students.
-                                </p>
-                                <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                                    <span class="text-blue-400">Android</span>
-                                    <span class="text-green-400">Java</span>
-                                    <span class="text-purple-400">SMS API</span>
-                                </div>
-                                <a href="https://preenrollment.nemsu.edu.ph/login" target="_blank" class="absolute inset-0" aria-label="Project Link"></a>
-                            </div>
-
-                            <!-- Dental Care System -->
-                            <div class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg"></div>
-                                <div class="flex justify-between items-start mb-4">
-                                    <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Dental Clinic System</h4>
-                                    <span class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEB APP</span>
-                                </div>
-                                <p class="text-slate-400 mb-4">
-                                    A comprehensive Dental Clinic Information System featuring an SVG-based tooth chart for precise client information input and dental record management.
-                                </p>
-                                <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                                    <span class="text-blue-400">PHP</span>
-                                    <span class="text-green-400">SVG</span>
-                                    <span class="text-yellow-400">JavaScript</span>
-                                </div>
-                                <a href="https://github.com/christophervistal25/dental-care-system" target="_blank" class="absolute inset-0" aria-label="Project Link"></a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="contact" class="py-20 bg-slate-800/30 dark:bg-slate-900/30 relative overflow-hidden">
-    <!-- Background elements -->
-    <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
-        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-    </div>
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-8">
-            <span class="text-blue-400 mr-4 font-['Space_Mono']">05.</span>
-            Get In Touch
-        </h3>
-        
-        <div class="max-w-2xl mx-auto backdrop-blur-sm bg-slate-800/40 p-8 rounded-lg border border-slate-700/50 shadow-xl">
-            <p class="text-slate-300 mb-8 text-center">
-                Have a question or want to work together? Feel free to reach out!
-            </p>
-
-            <form id="contact-form" class="space-y-6">
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <div class="relative group">
-                        <label for="name" class="block text-sm font-medium text-slate-300 mb-2 transition-colors group-focus-within:text-blue-400">
-                            Name
-                        </label>
-                        <div class="relative">
-                            <input type="text" id="name" name="name" required
-                                class="block w-full px-4 py-3 bg-slate-900/50 text-slate-300 rounded-lg border-2 border-slate-600 
-                                       focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all
-                                       placeholder-slate-500 backdrop-blur-sm"
-                                placeholder="John Doe">
-                            <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 
-                                      group-focus-within:opacity-100 transition-opacity pointer-events-none"></div>
-                        </div>
-                    </div>
-
-                    <div class="relative group">
-                        <label for="email" class="block text-sm font-medium text-slate-300 mb-2 transition-colors group-focus-within:text-blue-400">
-                            Email
-                        </label>
-                        <div class="relative">
-                            <input type="email" id="email" name="email" required
-                                class="block w-full px-4 py-3 bg-slate-900/50 text-slate-300 rounded-lg border-2 border-slate-600 
-                                       focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all
-                                       placeholder-slate-500 backdrop-blur-sm"
-                                placeholder="john@example.com">
-                            <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 
-                                      group-focus-within:opacity-100 transition-opacity pointer-events-none"></div>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend -->
+                <div class="bg-slate-800/50 p-6 rounded-lg group">
+                    <h4 class="text-blue-400 font-['Space_Mono'] mb-4">Frontend</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-blue-400 mr-2">▹</span>
+                            Vue.js
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-blue-400 mr-2">▹</span>
+                            TypeScript
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-blue-400 mr-2">▹</span>
+                            Tailwind CSS
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-blue-400 mr-2">▹</span>
+                            Vanilla Javascript / HTML/CSS
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="relative group">
-                    <label for="subject" class="block text-sm font-medium text-slate-300 mb-2 transition-colors group-focus-within:text-blue-400">
-                        Subject
-                    </label>
-                    <div class="relative">
-                        <input type="text" id="subject" name="subject" required
-                            class="block w-full px-4 py-3 bg-slate-900/50 text-slate-300 rounded-lg border-2 border-slate-600 
-                                   focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all
-                                   placeholder-slate-500 backdrop-blur-sm"
-                            placeholder="Project Discussion">
-                        <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 
-                                  group-focus-within:opacity-100 transition-opacity pointer-events-none"></div>
-                    </div>
+                <!-- Backend -->
+                <div class="bg-slate-800/50 p-6 rounded-lg">
+                    <h4 class="text-green-400 font-['Space_Mono'] mb-4">Backend</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-green-400 mr-2">▹</span>
+                            Node.js/Express
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-green-400 mr-2">▹</span>
+                            Php/Laravel
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-green-400 mr-2">▹</span>
+                            MySQL/SQL Server
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-green-400 mr-2">▹</span>
+                            RESTful APIs
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="relative group">
-                    <label for="message" class="block text-sm font-medium text-slate-300 mb-2 transition-colors group-focus-within:text-blue-400">
-                        Message
-                    </label>
-                    <div class="relative">
-                        <textarea id="message" name="message" rows="5" required
-                            class="block w-full px-4 py-3 bg-slate-900/50 text-slate-300 rounded-lg border-2 border-slate-600 
-                                   focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none transition-all
-                                   placeholder-slate-500 resize-none backdrop-blur-sm"
-                            placeholder="Your message here..."></textarea>
-                        <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 
-                                  group-focus-within:opacity-100 transition-opacity pointer-events-none"></div>
-                    </div>
+                <!-- Tools & Others -->
+                <div class="bg-slate-800/50 p-6 rounded-lg">
+                    <h4 class="text-purple-400 font-['Space_Mono'] mb-4">Tools & Others</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-purple-400 mr-2">▹</span>
+                            Git/GitHub
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-purple-400 mr-2">▹</span>
+                            AWS
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-purple-400 mr-2">▹</span>
+                            Docker
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-purple-400 mr-2">▹</span>
+                            PHPUnit/Pest
+                        </li>
+                    </ul>
                 </div>
 
-                <button type="submit"
-                    class="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium
-                           hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                           focus:ring-offset-slate-800 transition-all duration-300 transform hover:scale-[1.02]
-                           active:scale-[0.98] group flex items-center justify-center gap-2 shadow-lg">
-                    <span>Send Message</span>
-                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </button>
-            </form>
+                <!-- Additional Languages -->
+                <div class="bg-slate-800/50 p-6 rounded-lg">
+                    <h4 class="text-yellow-400 font-['Space_Mono'] mb-4">Additional Languages</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-yellow-400 mr-2">▹</span>
+                            Java (Android)
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-yellow-400 mr-2">▹</span>
+                            Go Lang
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-yellow-400 mr-2">▹</span>
+                            Python
+                        </li>
+                        <li class="flex items-center text-slate-300">
+                            <span class="text-yellow-400 mr-2">▹</span>
+                            C# (.NET)
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Decorative elements -->
-    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-900/50 to-transparent pointer-events-none"></div>
-    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
-</section>
+    <section id="experience" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
+                <span class="text-blue-400 mr-4 font-['Space_Mono']">03.</span>
+                Professional Experience
+            </h3>
 
-                <footer class="py-6 text-center text-slate-400" >
-                  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col items-center gap-4" >
-                                        <!-- Mobile Social Links -->
-                                        <div class="flex gap-6 lg:hidden mb-4">
-                                            <!-- Social links -->
-                                            <a href="#" class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                                </svg>
-                                            </a>
-                                            <!-- Social links -->
-                                            <a href="#" class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
-                                                </svg>
-                                            </a>
-                                            <!-- Social links -->
-                                            <a href="#" class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </footer>
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="border-l-2 border-slate-700 ml-4">
+                    <!-- Software Engineer Position -->
+                    <div class="relative mb-12 pl-8">
+                        <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[10px] top-1"></div>
+                        <div class="group">
+                            <a href="https://goo.gl/maps/HnWTokwBwda5kUWv5" target="_blank"
+                                class="text-slate-100 font-bold text-xl mb-1 block group-hover:text-blue-400 transition-colors">
+                                Software Engineer
+                            </a>
+                            <p class="text-sm text-blue-400 font-['Space_Mono'] mb-4">2021 - (Present)</p>
+
+                            <ul class="space-y-4">
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Collaborate with cross-functional teams to gather requirements, analyze user
+                                        needs, and design software solutions that meet business objectives.</span>
+                                </li>
+
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Develop and maintain software documentation, including technical
+                                        specifications, user manuals, and system diagrams, to ensure clear understanding
+                                        and facilitate future maintenance.</span>
+                                </li>
+
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Participate in code reviews and provide constructive feedback to ensure code
+                                        quality, maintainability, and adherence to coding standards.</span>
+                                </li>
+
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Implement software enhancements and new features by writing clean, efficient,
+                                        and maintainable code using programming languages.</span>
+                                </li>
+
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Conduct thorough testing, including unit testing, integration testing, and
+                                        system testing, to identify and fix software defects and ensure the reliability
+                                        and stability of the software.</span>
+                                </li>
+
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Stay up-to-date with emerging technologies, industry trends, and best
+                                        practices in software engineering to continuously improve skills and contribute
+                                        to the innovation and evolution of software systems.</span>
+                                </li>
+
+                                <li class="flex items-start text-slate-400">
+                                    <span class="text-blue-400 mr-2 mt-1.5">▹</span>
+                                    <span>Troubleshoot and debug software issues by analyzing logs, conducting root
+                                        cause analysis, and implementing effective solutions to minimize downtime and
+                                        optimize system performance.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-slate-800/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
+                <span class="text-blue-400 mr-4 font-['Space_Mono']">04.</span>
+                Projects Showcase
+            </h3>
+            <p class="text-slate-400 mb-12">Here, you will find a collection of my projects that demonstrate my skills
+                and expertise.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- GSIS Deduction System -->
+                <div
+                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">GSIS
+                            Deduction</h4>
+                        <span
+                            class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEB
+                            APP</span>
+                    </div>
+                    <p class="text-slate-400 mb-4">
+                        I created a GSIS using Native PHP with custom routing and ORM which I build, incorporating a
+                        Twig Template Engine for a user-friendly interface to manage service insurance records.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
+                        <span class="text-blue-400">PHP</span>
+                        <span class="text-green-400">Twig</span>
+                        <span class="text-purple-400">Custom ORM</span>
+                    </div>
+                    <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank"
+                        class="absolute inset-0" aria-label="Project Link"></a>
+                </div>
+
+                <!-- Kronos Flyff -->
+                <div
+                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Kronos
+                            Flyff Gaming Website</h4>
+                        <span
+                            class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEBSITE</span>
+                    </div>
+                    <p class="text-slate-400 mb-4">
+                        An online gaming website providing players with well-designed and optimized classic and modern
+                        games, featuring a user-friendly interface and community features for an immersive gaming
+                        experience.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
+                        <span class="text-blue-400">PHP</span>
+                        <span class="text-green-400">MySQL</span>
+                        <span class="text-yellow-400">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/christophervistal25/gaia-v1" target="_blank" class="absolute inset-0"
+                        aria-label="Project Link"></a>
+                </div>
+
+                <!-- Rock Paper Scissors -->
+                <div
+                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="project-title text-xl  text-slate-100 transition-colors  font-['Space_Mono']">
+                            Real-time RPS Game</h4>
+                        <span
+                            class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEB
+                            APP</span>
+                    </div>
+                    <p class="text-slate-400 mb-4">
+                        A multiplayer rock paper scissors game featuring real-time communication and scorekeeping using
+                        Socket.io, providing an engaging gaming experience.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
+                        <span class="text-blue-400">Node.js</span>
+                        <span class="text-green-400">Socket.io</span>
+                        <span class="text-yellow-400">JavaScript</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=B-Aj7DVPXaM" target="_blank" class="absolute inset-0"
+                        aria-label="Project Link"></a>
+                </div>
+
+                <!-- NEMSU SMS Gateway -->
+                <div
+                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">NEMSU
+                            SMS Gateway</h4>
+                        <span
+                            class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">ANDROID</span>
+                    </div>
+                    <p class="text-slate-400 mb-4">
+                        Developed an Android SMS Gateway for NEMSU pre-enrollment system, implementing features to
+                        improve notification delivery to pre-enrolled students.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
+                        <span class="text-blue-400">Android</span>
+                        <span class="text-green-400">Java</span>
+                        <span class="text-purple-400">SMS API</span>
+                    </div>
+                    <a href="https://preenrollment.nemsu.edu.ph/login" target="_blank" class="absolute inset-0"
+                        aria-label="Project Link"></a>
+                </div>
+
+                <!-- Dental Care System -->
+                <div
+                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                    </div>
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Dental
+                            Clinic</h4>
+                        <span
+                            class="text-xs text-blue-400 font-['Space_Mono'] px-2 py-1 border border-blue-400 rounded">WEB
+                            APP</span>
+                    </div>
+                    <p class="text-slate-400 mb-4">
+                        A comprehensive Dental Clinic Information System featuring an SVG-based tooth chart for precise
+                        client information input and dental record management.
+                    </p>
+                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
+                        <span class="text-blue-400">PHP</span>
+                        <span class="text-green-400">SVG</span>
+                        <span class="text-yellow-400">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/christophervistal25/dental-care-system" target="_blank"
+                        class="absolute inset-0" aria-label="Project Link"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-slate-800/30 dark:bg-slate-900/30 relative overflow-hidden">
+        <!-- Background elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
+            <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-8">
+                <span class="text-blue-400 mr-4 font-['Space_Mono']">05.</span>
+                Download My CV
+            </h3>
+
+            <div
+                class="max-w-2xl mx-auto backdrop-blur-sm bg-slate-800/40 p-8 rounded-lg border border-slate-700/50 shadow-xl">
+                <div class="text-center space-y-6">
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold text-slate-100">Want to know more about my experience?</h4>
+                        <p class="text-slate-300">Download my CV to see my full professional background, skills, and
+                            achievements.</p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <!-- English CV -->
+                        <a href="/path/to/your/cv-en.pdf" download class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg 
+                              hover:from-blue-600 hover:to-blue-700 transition-all duration-300 
+                              transform hover:scale-[1.02] active:scale-[0.98] shadow-lg
+                              flex items-center gap-3">
+                            <span class="text-white font-medium">Download CV (English)</span>
+                            <svg class="w-5 h-5 text-white transition-transform duration-300 group-hover:translate-y-[-2px]"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Additional info or alternative contact method -->
+                    <div class="mt-8 pt-6 border-t border-slate-700/50">
+                        <p class="text-slate-400">You can also reach me directly at:</p>
+                        <a href="mailto:christophervistal25@gmail.com"
+                            class="text-blue-400 hover:text-blue-300 transition-colors">
+                            christophervistal25@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative elements -->
+        <div
+            class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-900/50 to-transparent pointer-events-none">
+        </div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
+    </section>
+
+    <footer class="py-6 text-center text-slate-400">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center gap-4">
+                <!-- Mobile Social Links -->
+                <div class="flex gap-6 lg:hidden mb-4">
+                    <!-- Social links -->
+                    <a href="#"
+                        class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                    <!-- Social links -->
+                    <a href="#"
+                        class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                        </svg>
+                    </a>
+                    <!-- Social links -->
+                    <a href="#"
+                        class="text-slate-400 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
-                            <button id="scroll-to-top" class="fixed bottom-8 right-8 bg-blue-500 text-white p-2 rounded-full opacity-0 transition-opacity duration-300 hover:bg-blue-600">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                                    </svg>
-                                </button>
-                                <script>
-                                        // Mobile menu toggle
-                                        const mobileMenuButton = document.getElementById('mobile-menu-button');
-                                        const mobileMenu = document.getElementById('mobile-menu');
+    <button id="scroll-to-top"
+        class="fixed bottom-8 right-8 bg-blue-500 text-white p-2 rounded-full opacity-0 transition-opacity duration-300 hover:bg-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+    <script src="/app.js"></script>
+</body>
 
-                                        mobileMenuButton.addEventListener('click', () => {
-                                            mobileMenu.classList.toggle('hidden');
-                                        });
-
-                                        // Close mobile menu when clicking a link
-                                        document.querySelectorAll('#mobile-menu a').forEach(link => {
-                                            link.addEventListener('click', () => {
-                                                mobileMenu.classList.add('hidden');
-                                            });
-                                        });
-
-                                        // Smooth scroll behavior
-                                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                                            anchor.addEventListener('click', function (e) {
-                                                e.preventDefault();
-                                                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                                                    behavior: 'smooth'
-                                                });
-                                            });
-                                        });
-
-                                        // Scroll to Top Button
-                                        const scrollToTopBtn = document.getElementById('scroll-to-top');
-
-                                        window.addEventListener('scroll', () => {
-                                            if (window.pageYOffset > 300) {
-                                                scrollToTopBtn.style.opacity = '1';
-                                            } else {
-                                                scrollToTopBtn.style.opacity = '0';
-                                            }
-                                        });
-
-                                        scrollToTopBtn.addEventListener('click', () => {
-                                            window.scrollTo({
-                                                top: 0,
-                                                behavior: 'smooth'
-                                            });
-                                        });
-
-                                        // Add scroll reveal animations (optional)
-                                        window.addEventListener('scroll', () => {
-                                            const reveals = document.querySelectorAll('section');
-
-                                            reveals.forEach(reveal => {
-                                                const windowHeight = window.innerHeight;
-                                                const elementTop = reveal.getBoundingClientRect().top;
-                                                const elementVisible = 150;
-
-                                                if (elementTop < windowHeight - elementVisible) {
-                                                    reveal.classList.add('opacity-100');
-                                                    reveal.classList.remove('opacity-0');
-                                                }
-                                            });
-                                        });
-
-
-
-                                        const contactForm = document.getElementById('contact-form');
-
-                                        contactForm.addEventListener('submit', async (e) => {
-                                            e.preventDefault();
-
-                                            const formData = new FormData(contactForm);
-                                            const data = Object.fromEntries(formData);
-
-                                            try {
-                                                const response = await fetch('/api/contact', {
-                                                    method: 'POST',
-                                                    headers: {
-                                                        'Content-Type': 'application/json',
-                                                    },
-                                                    body: JSON.stringify(data),
-                                                });
-
-                                                if (response.ok) {
-                                                    alert('Message sent successfully!');
-                                                    contactForm.reset();
-                                                } else {
-                                                    throw new Error('Failed to send message');
-                                                }
-                                            } catch (error) {
-                                                alert('Error sending message. Please try again.');
-                                                console.error(error);
-                                            }
-                                        });
-
-
-                                    </script>
-                                    <script>
-                                    <!-- theme switch -->
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        // Get references to DOM elements
-                                        const themeToggleBtn = document.getElementById('theme-toggle');
-                                        const lightIcon = document.getElementById('light-icon');
-                                        const darkIcon = document.getElementById('dark-icon');
-
-                                        // Check if elements exist to prevent errors
-                                        if (!themeToggleBtn || !lightIcon || !darkIcon) {
-                                            console.error('Theme toggle elements not found');
-                                            return;
-                                        }
-
-                                        // Function to set theme
-                                        function setTheme(theme) {
-                                            if (theme === 'dark') {
-                                                document.documentElement.classList.add('dark');
-                                                darkIcon.classList.add('hidden');
-                                                lightIcon.classList.remove('hidden');
-                                                localStorage.setItem('theme', 'dark');
-                                            } else {
-                                                document.documentElement.classList.remove('dark');
-                                                darkIcon.classList.remove('hidden');
-                                                lightIcon.classList.add('hidden');
-                                                localStorage.setItem('theme', 'light');
-                                            }
-                                        }
-
-                                        // Check initial theme
-                                        if (localStorage.getItem('theme') === 'dark' ||
-                                            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                                            setTheme('dark');
-                                        } else {
-                                            setTheme('light');
-                                        }
-
-                                        // Toggle theme when button is clicked
-                                        themeToggleBtn.addEventListener('click', () => {
-                                            if (document.documentElement.classList.contains('dark')) {
-                                                setTheme('light');
-                                            } else {
-                                                setTheme('dark');
-                                            }
-                                        });
-
-                                        // Listen for system theme changes
-                                        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                                            if (!localStorage.getItem('theme')) {
-                                                setTheme(e.matches ? 'dark' : 'light');
-                                            }
-                                        });
-                                    });
-                                    </script>
-
-                                    <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        // Image loading animation
-                                        const images = document.querySelectorAll('img[loading="lazy"]');
-                                        images.forEach(img => {
-                                            img.style.opacity = '0';
-                                            img.style.transition = 'opacity 0.3s ease-in-out';
-
-                                            img.addEventListener('load', () => {
-                                                img.style.opacity = '1';
-                                            });
-                                        });
-
-                                        // Project demo video modal
-                                        const demoButtons = document.querySelectorAll('[data-demo]');
-                                        demoButtons.forEach(button => {
-                                            button.addEventListener('click', () => {
-                                                // Implement video modal functionality
-                                            });
-                                        });
-                                    });
-                                    </script>
-                                    <script>
-    // Particle effect
-    function createParticle(x, y) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        
-        // Random movement
-        const angle = Math.random() * Math.PI * 2;;
-        const velocity = Math.random() * 2 + 1;
-        const dx = Math.cos(angle) * velocity;
-        const dy = Math.sin(angle) * velocity;
-        
-        document.querySelector('.animated-bg').appendChild(particle);
-        
-        let opacity = 1;
-        const animate = () => {
-            if (opacity <= 0) {
-                particle.remove();
-                return;
-            }
-            
-            opacity -= 0.02;
-            particle.style.opacity = opacity;
-            particle.style.left = (parseFloat(particle.style.left) + dx) + 'px';
-            particle.style.top = (parseFloat(particle.style.top) + dy) + 'px';
-            
-            requestAnimationFrame(animate);
-        };
-        
-        requestAnimationFrame(animate);
-    }
-
-    // Spotlight effect
-    function updateSpotlight(e) {
-        const spotlight = document.querySelector('.spotlight');
-        const rect = document.querySelector('.animated-bg').getBoundingClientRect();
-        
-        spotlight.style.left = (e.clientX - rect.left - 200) + 'px';
-        spotlight.style.top = (e.clientY - rect.top - 200) + 'px';
-        spotlight.style.opacity = '1';
-    }
-
-    // Event listeners
-    document.querySelector('.animated-bg').addEventListener('mousemove', (e) => {
-        updateSpotlight(e);
-        if (Math.random() < 0.1) { // Reduce particle creation rate
-            createParticle(e.clientX, e.clientY);
-        }
-    });
-
-    document.querySelector('.animated-bg').addEventListener('mouseleave', () => {
-        document.querySelector('.spotlight').style.opacity = '0';
-    });
-
-    // Create floating squares
-    function createSquares() {
-        const container = document.getElementById('squaresContainer');
-        const squareCount = 15;
-
-        for (let i = 0; i < squareCount; i++) {
-            const square = document.createElement('div');
-            square.className = 'square';
-            
-            // Random size between 10 and 30 pixels
-            const size = Math.random() * 20 + 10;
-            square.style.width = `${size}px`;
-            square.style.height = `${size}px`;
-            
-            // Random position
-            square.style.left = `${Math.random() * 100}%`;
-            
-            // Random animation duration between 15 and 25 seconds
-            const duration = Math.random() * 10 + 15;
-            square.style.animationDuration = `${duration}s`;
-            
-            // Random delay
-            square.style.animationDelay = `${Math.random() * 10}s`;
-            
-            container.appendChild(square);
-        }
-    }
-
-    // Initialize squares when the page loads
-    document.addEventListener('DOMContentLoaded', createSquares);
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const technologies = [
-            'JavaScript', 'PHP', 'Python', 'React', 'Vue.js', 
-            'Laravel', 'Node.js', 'TypeScript', 'MongoDB', 
-            'PostgreSQL', 'Docker', 'AWS', 'Git', 'REST API',
-            'HTML5', 'CSS3', 'Tailwind', 'MySQL', 'Redis', 'Inertia.js',
-            'Socket.io', 'Composer', 'Nginx', 'Apache'
-        ];
-
-        const container = document.getElementById('techBg');
-        const sectionHeight = container.offsetHeight;
-        const sectionWidth = container.offsetWidth;
-        
-        // Track occupied spaces
-        const occupiedSpaces = [];
-        
-        function isSpaceOccupied(x, y, width, height) {
-            const margin = 50; // Minimum space between elements
-            return occupiedSpaces.some(space => {
-                return !(x + width + margin < space.x ||
-                        x > space.x + space.width + margin ||
-                        y + height + margin < space.y ||
-                        y > space.y + space.height + margin);
-            });
-        }
-
-        function findFreeSpace(textWidth, textHeight) {
-            let attempts = 0;
-            let x, y;
-            
-            do {
-                x = Math.random() * (sectionWidth - textWidth);
-                y = Math.random() * (sectionHeight - textHeight);
-                attempts++;
-                
-                if (attempts > 50) return null; // Prevent infinite loop
-            } while (isSpaceOccupied(x, y, textWidth, textHeight));
-            
-            return { x, y };
-        }
-
-        function createTechElement() {
-            const tech = technologies[Math.floor(Math.random() * technologies.length)];
-            const element = document.createElement('div');
-            element.className = 'floating-tech';
-            element.textContent = tech;
-            
-            // Estimate text dimensions
-            const textWidth = tech.length * 15; // Rough estimate of text width
-            const textHeight = 30; // Rough estimate of text height
-            
-            // Find free space
-            const freeSpace = findFreeSpace(textWidth, textHeight);
-            if (!freeSpace) return; // Skip if no free space found
-            
-            // Random size between 1rem and 1.5rem (smaller range)
-            const size = 1 + Math.random() * 0.5;
-            
-            element.style.cssText = `
-                left: ${freeSpace.x}px;
-                top: ${freeSpace.y}px;
-                font-size: ${size}rem;
-                animation: fadeInOut ${2.5 + Math.random() * 1.5}s ease-in-out forwards;
-                z-index: 1;
-            `;
-
-            // Track occupied space
-            occupiedSpaces.push({
-                x: freeSpace.x,
-                y: freeSpace.y,
-                width: textWidth,
-                height: textHeight,
-                element: element
-            });
-
-            container.appendChild(element);
-
-            // Remove element and its occupied space after animation
-            element.addEventListener('animationend', () => {
-                const index = occupiedSpaces.findIndex(space => space.element === element);
-                if (index > -1) {
-                    occupiedSpaces.splice(index, 1);
-                }
-                element.remove();
-            });
-        }
-
-        // Create new elements periodically
-        setInterval(createTechElement, 500); // One element per second
-
-        // Initial elements
-        for (let i = 0; i < 4; i++) {
-            setTimeout(createTechElement, i * 800);
-        }
-
-        // Update occupied spaces on window resize
-        window.addEventListener('resize', () => {
-            occupiedSpaces.length = 0; // Clear occupied spaces
-        });
-    });
-</script>
-                                </body>
-                                </html>
+</html>
