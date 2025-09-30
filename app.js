@@ -223,3 +223,76 @@ document.addEventListener('DOMContentLoaded', function () {
         occupiedSpaces.length = 0; // Clear occupied spaces
     });
 });
+
+// Global Geometric Animation
+document.addEventListener('DOMContentLoaded', function () {
+    const globalBg = document.getElementById('globalBg');
+    if (!globalBg) return;
+
+    const shapes = ['circle', 'square', 'diamond'];
+    const colors = [
+        'rgba(59, 130, 246, 0.08)', // blue - more subtle for global use
+        'rgba(139, 92, 246, 0.08)',  // purple
+        'rgba(16, 185, 129, 0.08)',  // emerald
+        'rgba(245, 158, 11, 0.08)'   // amber
+    ];
+
+    function createGeometricShape() {
+        const shape = document.createElement('div');
+        const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        // Random size between 12px and 35px (slightly smaller for global)
+        const size = 12 + Math.random() * 23;
+
+        shape.className = `floating-shape floating-${shapeType}`;
+        shape.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${Math.random() * 100}%;
+            background: ${color};
+            border-color: ${color.replace('0.08', '0.15')};
+            animation-duration: ${20 + Math.random() * 15}s;
+            animation-delay: ${Math.random() * 8}s;
+        `;
+
+        globalBg.appendChild(shape);
+
+        // Remove element after animation
+        shape.addEventListener('animationend', () => {
+            shape.remove();
+        });
+    }
+
+    function createPulseDot() {
+        const dot = document.createElement('div');
+        dot.className = 'pulse-dot';
+        dot.style.cssText = `
+            left: ${10 + Math.random() * 80}%;
+            top: ${10 + Math.random() * 80}%;
+            animation-delay: ${Math.random() * 4}s;
+            opacity: 0.4;
+        `;
+
+        globalBg.appendChild(dot);
+
+        // Remove after 8 seconds
+        setTimeout(() => {
+            dot.remove();
+        }, 8000);
+    }
+
+    // Create shapes periodically - slower for global background
+    setInterval(createGeometricShape, 3000); // New shape every 3 seconds
+    setInterval(createPulseDot, 5000); // New pulse dot every 5 seconds
+
+    // Initial shapes - fewer for subtlety
+    for (let i = 0; i < 2; i++) {
+        setTimeout(createGeometricShape, i * 1500);
+    }
+
+    // Initial pulse dots
+    for (let i = 0; i < 4; i++) {
+        setTimeout(createPulseDot, i * 1200);
+    }
+});

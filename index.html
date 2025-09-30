@@ -18,7 +18,13 @@
     <meta property="og:url" content="https://chris-dev.netlify.app">
     <!-- Theme Color for browsers -->
     <meta name="theme-color" content="#0f172a">
-    <title>Chris Developer - Portfolio</title>
+    <title>Christopher Vistal - Software Engineer</title>
+
+    <!-- Professional Font System -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 
@@ -26,13 +32,34 @@
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                extend: {}
+                extend: {
+                    fontFamily: {
+                        'sans': ['Manrope', 'system-ui', 'sans-serif'],
+                        'body': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'Consolas', 'monospace']
+                    },
+                    fontSize: {
+                        'xs': ['0.75rem', { lineHeight: '1.5' }],
+                        'sm': ['0.875rem', { lineHeight: '1.6' }],
+                        'base': ['1rem', { lineHeight: '1.7' }],
+                        'lg': ['1.125rem', { lineHeight: '1.7' }],
+                        'xl': ['1.25rem', { lineHeight: '1.8' }],
+                        '2xl': ['1.5rem', { lineHeight: '1.4' }],
+                        '3xl': ['1.875rem', { lineHeight: '1.3' }],
+                        '4xl': ['2.25rem', { lineHeight: '1.2' }],
+                        '5xl': ['3rem', { lineHeight: '1.1' }],
+                        '6xl': ['3.75rem', { lineHeight: '1' }],
+                        '7xl': ['4.5rem', { lineHeight: '1' }]
+                    }
+                }
             }
         }
     </script>
 </head>
 
-<body class="bg-slate-900 text-slate-300 font-inter transition-colors duration-200">
+<body class="bg-slate-900 text-slate-300 font-body transition-colors duration-300 antialiased">
+<!-- Global Animated Background -->
+<div id="globalBg" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 <div class="fixed left-10 bottom-0 hidden lg:flex flex-col items-center gap-6 after:h-32 after:w-px after:bg-slate-400 z-50">
  <a
     href="https://github.com/christophervistal25" target="_blank"
@@ -68,13 +95,45 @@
 
 
     <!-- Navigation -->
-    <nav class="fixed w-full bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm z-50">
+    <nav class="fixed w-full bg-slate-900/90 backdrop-blur-sm z-50 relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Left side: Logo with social icons for mobile -->
                 <div class="flex items-center">
                     <!-- Logo - hidden on mobile -->
-                    <a href="#" class="text-2xl font-bold gradient-text hidden md:block md:mr-4">C</a>
+                    <a href="#" class="hidden md:block md:mr-4">
+                        <div class="professional-logo">
+                            <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                    </linearGradient>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <!-- Outer circle -->
+                                <circle cx="20" cy="20" r="18" fill="none" stroke="url(#logoGradient)" stroke-width="2" opacity="0.3"/>
+                                <!-- Inner geometric design -->
+                                <circle cx="20" cy="20" r="14" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.5"/>
+                                <!-- Letter C -->
+                                <path d="M 28 12 A 10 10 0 0 1 28 28 M 16 12 A 10 10 0 0 0 16 28"
+                                      stroke="url(#logoGradient)"
+                                      stroke-width="3"
+                                      fill="none"
+                                      stroke-linecap="round"
+                                      filter="url(#glow)"/>
+                                <!-- Accent dot -->
+                                <circle cx="30" cy="20" r="2" fill="url(#logoGradient)" opacity="0.8"/>
+                            </svg>
+                        </div>
+                    </a>
                     <!-- Social icons - mobile only -->
                     <div class="flex items-center space-x-4">
                         <a href="https://github.com/christophervistal25" target="_blank"
@@ -116,11 +175,11 @@
 
                 <!-- Desktop menu -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="hover:text-blue-400 transition-colors font-['Space_Mono']">About</a>
-                    <a href="#projects" class="hover:text-blue-400 transition-colors font-['Space_Mono']">Projects</a>
+                    <a href="#about" class="hover:text-blue-400 transition-colors font-medium font-body">Journey</a>
+                    <a href="#projects" class="hover:text-blue-400 transition-colors font-medium font-body">Projects</a>
                     <a href="#experience"
-                    class="hover:text-blue-400 transition-colors font-['Space_Mono']">Experience</a>
-                    <a href="#contact" class="hover:text-blue-400 transition-colors font-['Space_Mono']">Contact</a>
+                    class="hover:text-blue-400 transition-colors font-medium font-body">Experience</a>
+                    <a href="#contact" class="hover:text-blue-400 transition-colors font-medium font-body">Contact</a>
                     <!-- <a class="hover:text-blue-400 transition-colors">
                         <button id="theme-toggle" class="rounded-lg hover:bg-slate-700 transition-colors">
                             <svg id="light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -141,7 +200,7 @@
         <!-- Mobile Menu -->
         <div class="md:hidden absolute top-16 left-0 right-0 bg-slate-900/95 backdrop-blur-sm hidden" id="mobile-menu">
             <div class="px-4 py-4 space-y-4">
-                <a href="#about" class="block hover:text-blue-400 transition-colors">About</a>
+                <a href="#about" class="block hover:text-blue-400 transition-colors">Journey</a>
                 <a href="#projects" class="block hover:text-blue-400 transition-colors">Projects</a>
                 <a href="#experience" class="block hover:text-blue-400 transition-colors">Experience</a>
                 <a href="#contact" class="block hover:text-blue-400 transition-colors">Contact</a>
@@ -149,88 +208,56 @@
         </div>
     </nav>
 
-    <!-- Updated Hero Section -->
-    <section class="min-h-[85vh] flex items-center pt-16 relative overflow-hidden tech-background">
-        <div id="techBg" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <p class="animate-text text-blue-400 font-space text-sm md:text-base" style="animation-delay: 0.2s">Hi, my
-                name is</p>
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-100 mb-4 animate-text"
-                style="animation-delay: 0.4s; background: linear-gradient(45deg, #38bdf8, #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent;">
-                Christopher Vistal
-            </h1>
-            <h2 class="text-3xl md:text-5xl font-bold text-slate-400 mb-6 animate-text" style="animation-delay: 0.6s">
-                Software Engineer
-            </h2>
-            <p class="max-w-2xl text-base md:text-lg text-slate-400 leading-relaxed animate-text"
-                style="animation-delay: 0.8s">
-                I'm a results-driven software engineer with 5+ years of experience delivering high-impact software
-                solutions.
-                I specialize in transforming business challenges into efficient, scalable digital solutions that drive
-                growth
-                and improve operations.
-            </p>
-            <div class="mt-8 animate-text flex justify-center">
-                <a href="#contact" class="inline-block px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105">
-                    Get in touch
-                </a>
-            </div>
-        </div>
-    </section>
-    <section id="about" class="pt-10 pb-5">
+    <section id="about" class="pt-24 pb-16 relative z-10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                <span class="text-blue-400 mr-4 font-['Space_Mono']">01.</span>
-                Professional Journey
+            <h3 class="flex items-center text-3xl md:text-4xl font-heading font-bold text-slate-100 mb-16 accent-border">
+                <span class="text-blue-400 mr-6 font-mono text-xl md:text-2xl">01.</span>
+                <span class="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">Professional Journey</span>
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Left content -->
                 <div class="text-slate-400">
                     <div class="mb-8">
-                        <h4 class="text-xl text-blue-400 mb-4 font-['Space_Mono']">Philosophy</h4>
+                        <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                            Full-stack developer with <span class="text-blue-400 font-medium">5+ years of experience</span> building enterprise applications.
+                            I specialize in transforming complex requirements into scalable solutions across government, healthcare, and tech industries.
+                        </p>
 
                         <!-- Code-style introduction -->
-                        <div class="font-mono text-sm leading-relaxed mb-4 bg-slate-800/50 p-4 rounded-lg">
+                        <div class="font-mono text-sm leading-relaxed mb-6 bg-slate-800/50 p-4 rounded-lg">
                             <div class="text-blue-400">// Developer Profile</div>
                             <div class="pl-4">
                                 <span class="text-purple-400">const</span>
                                 <span class="text-green-400">developer</span> = {
                             </div>
                             <div class="pl-8">
-                                <span class="text-orange-300">name:</span>
-                                <span class="text-green-300">'Christopher Vistal'</span>,
-                            </div>
-                            <div class="pl-8">
-                                <span class="text-orange-300">role:</span>
-                                <span class="text-green-300">'Full Stack Developer'</span>,
+                                <span class="text-orange-300">experience:</span>
+                                <span class="text-green-300">'5+ years'</span>,
                             </div>
                             <div class="pl-8">
                                 <span class="text-orange-300">stack:</span>
-                                <span class="text-green-300">['Laravel', 'Vue.js', 'Inertia']</span>,
+                                <span class="text-green-300">['Laravel', 'Vue.js', 'Node.js']</span>,
                             </div>
                             <div class="pl-8">
-                                <span class="text-orange-300">expertise:</span> [
+                                <span class="text-orange-300">focus:</span>
+                                <span class="text-green-300">'Enterprise solutions that scale'</span>
                             </div>
-                            <div class="pl-12">
-                                <span class="text-green-300">'Web Development'</span>,
-                            </div>
-                            <div class="pl-12">
-                                <span class="text-green-300">'System Architecture'</span>,
-                            </div>
-                            <div class="pl-12">
-                                <span class="text-green-300">'Problem Solving'</span>
-                            </div>
-                            <div class="pl-8">]</div>
                             <div class="pl-4">};</div>
                         </div>
 
-                        <p class="mb-4">
-                            I believe in creating software that not only solves problems but transforms how businesses
-                            operate.
-                            My approach combines technical expertise with business acumen to deliver solutions that
-                            drive real value.
-                        </p>
+                        <!-- Call to Action -->
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <a href="#projects" class="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-medium font-body hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
+                                <span>View My Work</span>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </a>
+                            <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-slate-600 text-slate-300 rounded-lg font-medium font-body hover:border-blue-500 hover:text-blue-400 transition-all duration-300">
+                                <span>Get in Touch</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -247,249 +274,359 @@
         </div>
     </section>
 
-       <section id="projects" class="pt-20 pb-5 bg-slate-900/30">
+       <section id="projects" class="pt-20 pb-5 bg-slate-900/30 relative z-10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                <span class="text-blue-400 mr-4 font-['Space_Mono']">02.</span>
-                Projects Showcase
+            <h3 class="flex items-center text-3xl md:text-4xl font-heading font-bold text-slate-100 mb-16 accent-border">
+                <span class="text-blue-400 mr-6 font-mono text-xl md:text-2xl">02.</span>
+                <span class="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">Featured Projects</span>
             </h3>
-            <p class="text-slate-400 mb-12">Here, you will find a collection of my projects that demonstrate my skills
-                and expertise.</p>
+            <p class="text-xl text-slate-300 mb-16 max-w-3xl leading-relaxed">A curated selection of projects showcasing my expertise in full-stack development, system architecture, and innovative problem-solving across diverse industries.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- GSIS Deduction System -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Transcriber -->
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-blue-400 transition-colors duration-300 mb-2">Transcriber</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full border border-blue-400/20">AI-POWERED</span>
+                                    <span class="text-xs font-medium text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full border border-purple-400/20">WEB APP</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-blue-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Advanced speech-to-text application powered by AI and CTranslate2, featuring real-time audio recording, synchronized waveform visualization, and intelligent transcription processing.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Node.js</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">Python</span>
+                            <span class="px-3 py-1 text-sm bg-purple-500/10 text-purple-400 rounded-lg border border-purple-500/20">Laravel</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">Vue.js</span>
+                            <span class="px-3 py-1 text-sm bg-indigo-500/10 text-indigo-400 rounded-lg border border-indigo-500/20">AI/ML</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Key Features:</span> Real-time processing, Waveform sync
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Transcriber</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">WEB</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                            Built a speech-to-text application using AI and CTranslate2, featuring audio recording and synchronized waveform visualization.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Node.js</span>
-                        <span class="text-green-400">Python</span>
-                        <span class="text-purple-400">Laravel</span>
-                        <span class="text-yellow-400">Vue.js</span>
-                        <span class="text-yellow-400">Inertia.js</span>
-                    </div>
-                    <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank"
-                        class="absolute inset-0" aria-label="Project Link"></a>
+
+                    <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank" class="absolute inset-0 z-20" aria-label="View Transcriber Project"></a>
                 </div>
 
 
                 <!-- GSIS Deduction System -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-green-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-600/5 to-emerald-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-green-400 transition-colors duration-300 mb-2">GSIS Deduction</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-green-400 bg-green-400/10 px-3 py-1 rounded-full border border-green-400/20">ENTERPRISE</span>
+                                    <span class="text-xs font-medium text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full border border-blue-400/20">GOVERNMENT</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-green-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Enterprise-grade Government Service Insurance System built with custom PHP architecture, featuring custom routing, ORM, and Twig template engine for comprehensive insurance record management.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">PHP</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">Twig</span>
+                            <span class="px-3 py-1 text-sm bg-purple-500/10 text-purple-400 rounded-lg border border-purple-500/20">Custom ORM</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">MVC</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Architecture:</span> Custom MVC, Service Layer
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://github.com/christophervistal25/GSIS-Deduction"
-                        target="_blank"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">GSIS
-                            Deduction</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">WEB</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                        I created a GSIS using Native PHP with custom routing and ORM which I build, incorporating a
-                        Twig Template Engine for a user-friendly interface to manage service insurance records.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Laravel / PHP</span>
-                        <span class="text-green-400">Twig</span>
-                        <span class="text-purple-400">Custom ORM</span>
-                    </div>
-                    <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank"
-                        class="absolute inset-0" aria-label="Project Link"></a>
+
+                    <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank" class="absolute inset-0 z-20" aria-label="View GSIS Deduction Project"></a>
                 </div>
 
-                <!-- Dragonica Spidpex Flyff -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <!-- Dragonica Spidpex -->
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-indigo-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-indigo-400 transition-colors duration-300 mb-2">Dragonica Spidpex</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-indigo-400 bg-indigo-400/10 px-3 py-1 rounded-full border border-indigo-400/20">GAMING</span>
+                                    <span class="text-xs font-medium text-purple-400 bg-purple-400/10 px-3 py-1 rounded-full border border-purple-400/20">LIVE</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-indigo-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Comprehensive online gaming platform featuring classic and modern games with optimized performance, intuitive user interface, and robust community features for enhanced player engagement.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Laravel</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">MySQL</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">Vue.js</span>
+                            <span class="px-3 py-1 text-sm bg-purple-500/10 text-purple-400 rounded-lg border border-purple-500/20">Inertia.js</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Platform:</span> Full-stack gaming portal
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://dragonicaspidpex.com/"
-                        target="_blank"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">
-                            Dragonica Spidpex</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">WEB</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                        An online gaming website providing players with well-designed and optimized classic and modern
-                        games, featuring a user-friendly interface and community features for an immersive gaming
-                        experience.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Laravel / PHP</span>
-                        <span class="text-green-400">MySQL</span>
-                        <span class="text-yellow-400">JavaScript</span>
-                        <span class="text-yellow-400">Vue.js</span>
-                        <span class="text-yellow-400">Inertia.js</span>
-                    </div>
-                    <a href="https://github.com/christophervistal25/gaia-v1" target="_blank" class="absolute inset-0"
-                        aria-label="Project Link"></a>
+
+                    <a href="https://dragonicaspidpex.com/" target="_blank" class="absolute inset-0 z-20" aria-label="View Dragonica Spidpex Project"></a>
                 </div>
 
-                <!-- Rock Paper Scissors -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <!-- Real-time RPS Game -->
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-orange-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-600/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-orange-400 transition-colors duration-300 mb-2">Real-time RPS Game</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-orange-400 bg-orange-400/10 px-3 py-1 rounded-full border border-orange-400/20">REAL-TIME</span>
+                                    <span class="text-xs font-medium text-red-400 bg-red-400/10 px-3 py-1 rounded-full border border-red-400/20">MULTIPLAYER</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-orange-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Interactive multiplayer rock-paper-scissors game with real-time communication powered by Socket.io, featuring live scorekeeping and seamless player matchmaking for engaging gameplay.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Node.js</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">Socket.io</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">JavaScript</span>
+                            <span class="px-3 py-1 text-sm bg-orange-500/10 text-orange-400 rounded-lg border border-orange-500/20">WebSockets</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Demo:</span> Video walkthrough available
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://www.youtube.com/watch?v=B-Aj7DVPXaM&ab_channel=TopherTips"
-                        target="_blank"
-                        >
-                        <h4 class="project-title text-xl  text-slate-100 transition-colors  font-['Space_Mono']">
-                            Real-time RPS Game</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">WEB</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                        A multiplayer rock paper scissors game featuring real-time communication and scorekeeping using
-                        Socket.io, providing an engaging gaming experience.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Node.js</span>
-                        <span class="text-green-400">Socket.io</span>
-                        <span class="text-yellow-400">JavaScript</span>
-                    </div>
-                    <a href="https://www.youtube.com/watch?v=B-Aj7DVPXaM" target="_blank" class="absolute inset-0"
-                        aria-label="Project Link"></a>
+
+                    <a href="https://www.youtube.com/watch?v=B-Aj7DVPXaM&ab_channel=TopherTips" target="_blank" class="absolute inset-0 z-20" aria-label="View RPS Game Demo"></a>
                 </div>
 
                 <!-- NEMSU SMS Gateway -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-cyan-400 transition-colors duration-300 mb-2">NEMSU SMS Gateway</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full border border-cyan-400/20">ANDROID</span>
+                                    <span class="text-xs font-medium text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full border border-blue-400/20">EDUCATION</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-cyan-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Advanced Android SMS Gateway system for NEMSU's pre-enrollment platform, streamlining automated notification delivery and improving communication efficiency with enrolled students.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-cyan-500/10 text-cyan-400 rounded-lg border border-cyan-500/20">Android</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">Java</span>
+                            <span class="px-3 py-1 text-sm bg-purple-500/10 text-purple-400 rounded-lg border border-purple-500/20">SMS API</span>
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Mobile</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Platform:</span> Educational system integration
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://preenrollment.nemsu.edu.ph/login"
-                        target="_blank"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">NEMSU
-                            SMS Gateway</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">ANDROID</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                        Developed an Android SMS Gateway for NEMSU pre-enrollment system, implementing features to
-                        improve notification delivery to pre-enrolled students.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Android</span>
-                        <span class="text-green-400">Java</span>
-                        <span class="text-purple-400">SMS API</span>
-                    </div>
-                    <a href="https://preenrollment.nemsu.edu.ph/login" target="_blank" class="absolute inset-0"
-                        aria-label="Project Link"></a>
+
+                    <a href="https://preenrollment.nemsu.edu.ph/login" target="_blank" class="absolute inset-0 z-20" aria-label="View NEMSU SMS Gateway"></a>
                 </div>
 
                 <!-- Dental Care System -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-teal-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-teal-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-600/5 to-emerald-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-teal-400 transition-colors duration-300 mb-2">Dental Clinic</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full border border-teal-400/20">HEALTHCARE</span>
+                                    <span class="text-xs font-medium text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded-full border border-emerald-400/20">INTERACTIVE</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-teal-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Comprehensive dental clinic management system featuring interactive SVG-based tooth charts for precise patient record input, treatment tracking, and streamlined dental practice operations.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Laravel</span>
+                            <span class="px-3 py-1 text-sm bg-teal-500/10 text-teal-400 rounded-lg border border-teal-500/20">SVG</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">JavaScript</span>
+                            <span class="px-3 py-1 text-sm bg-emerald-500/10 text-emerald-400 rounded-lg border border-emerald-500/20">Interactive UI</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Specialty:</span> Healthcare management system
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://github.com/christophervistal25/dental-care-system"
-                        target="_blank"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Dental
-                            Clinic</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">WEB</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                        A comprehensive Dental Clinic Information System featuring an SVG-based tooth chart for precise
-                        client information input and dental record management.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Laravel / PHP</span>
-                        <span class="text-green-400">SVG</span>
-                        <span class="text-yellow-400">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/christophervistal25/dental-care-system" target="_blank"
-                        class="absolute inset-0" aria-label="Project Link"></a>
+
+                    <a href="https://github.com/christophervistal25/dental-care-system" target="_blank" class="absolute inset-0 z-20" aria-label="View Dental Clinic System"></a>
                 </div>
 
                 <!-- Bike Rental Timer -->
-                <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-lime-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-lime-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-lime-600/5 to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-lime-400 transition-colors duration-300 mb-2">Bicycle Rent Timer</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-lime-400 bg-lime-400/10 px-3 py-1 rounded-full border border-lime-400/20">MOBILE</span>
+                                    <span class="text-xs font-medium text-green-400 bg-green-400/10 px-3 py-1 rounded-full border border-green-400/20">BUSINESS</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-lime-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Professional Android timer management application designed for bike rental businesses, featuring precise rental duration tracking, automated billing calculations, and comprehensive sales record management.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-lime-500/10 text-lime-400 rounded-lg border border-lime-500/20">Android</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">Java</span>
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Timer System</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">Business Logic</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Available:</span> Google Play Store
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://play.google.com/store/apps/details?id=com.bikerent"
-                        target="_blank"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">Bicycle Rent Timer</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">ANDROID</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                    Bike Rent is a timer management app designed to help bike rental businesses track rental durations and manage sales records efficiently.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Android</span>
-                        <span class="text-green-400">Java</span>
-                    </div>
+
+                    <a href="https://play.google.com/store/apps/details?id=com.bikerent" target="_blank" class="absolute inset-0 z-20" aria-label="View Bicycle Rent Timer App"></a>
                 </div>
 
                 <!-- ATA Law Firm -->
-                 <div
-                    class="project-card bg-slate-800/50 dark:bg-slate-900/50 p-6 rounded-lg hover:bg-slate-700/50 dark:hover:bg-slate-800/50 transition-colors">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity rounded-lg">
+                <div class="group relative bg-gradient-to-br from-slate-800/60 to-slate-900/60 p-8 rounded-2xl border border-slate-700/50 hover:border-amber-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/10 hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-br from-amber-600/5 to-yellow-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h4 class="text-2xl font-heading font-bold text-slate-100 group-hover:text-amber-400 transition-colors duration-300 mb-2">ATA Law Firm</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-medium text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">LEGAL TECH</span>
+                                    <span class="text-xs font-medium text-yellow-400 bg-yellow-400/10 px-3 py-1 rounded-full border border-yellow-400/20">ENTERPRISE</span>
+                                </div>
+                            </div>
+                            <div class="text-slate-400 group-hover:text-amber-400 transition-colors duration-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-300 mb-6 leading-relaxed text-base">
+                            Enterprise-grade law firm management system with comprehensive case management, client portal, document automation, and cloud infrastructure designed for scalable legal operations.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 text-sm bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20">Laravel</span>
+                            <span class="px-3 py-1 text-sm bg-green-500/10 text-green-400 rounded-lg border border-green-500/20">MySQL</span>
+                            <span class="px-3 py-1 text-sm bg-red-500/10 text-red-400 rounded-lg border border-red-500/20">Redis</span>
+                            <span class="px-3 py-1 text-sm bg-purple-500/10 text-purple-400 rounded-lg border border-purple-500/20">AWS</span>
+                            <span class="px-3 py-1 text-sm bg-yellow-500/10 text-yellow-400 rounded-lg border border-yellow-500/20">Vue.js</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-700/50">
+                            <div class="text-sm text-slate-400">
+                                <span class="font-medium">Status:</span> Live production system
+                            </div>
+                        </div>
                     </div>
-                    <a class="flex justify-between items-start mb-4"
-                        href="https://atafirm.ph"
-                        target="_blank"
-                    >
-                        <h4 class="project-title text-xl text-slate-100 transition-colors  font-['Space_Mono']">ATA Law Firm</h4>
-                        <span
-                            class="text-xs text-blue-400 font-['Inter'] px-2 py-1 border border-blue-400 rounded">WEB</span>
-                    </a>
-                    <p class="text-slate-400 mb-4">
-                        A comprehensive Law Firm Management System designed to streamline case management, client interactions, and document handling, ensuring efficient and organized legal operations.
-                    </p>
-                    <div class="flex flex-wrap gap-3 text-sm font-['Space_Mono']">
-                        <span class="text-blue-400">Laravel / PHP</span>
-                        <span class="text-green-400">MySQL</span>
-                        <span class="text-red-400">Redis</span>
-                        <span class="text-purple-400">AWS</span>
-                        <span class="text-yellow-400">Vue.js</span>
-                        <span class="text-yellow-400">Inertia.js</span>
-                    </div>
+
+                    <a href="https://atafirm.ph" target="_blank" class="absolute inset-0 z-20" aria-label="View ATA Law Firm System"></a>
                 </div>
             </div>
         </div>
     </section>
-     <section class="pt-20 pb-5 bg-slate-900/30 ">
+     <section class="pt-20 pb-5 bg-slate-900/30 relative z-10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                <span class="text-blue-400 mr-4 font-['Space_Mono']">03.</span>
-                Skills & Technologies
+            <h3 class="flex items-center text-3xl md:text-4xl font-heading font-bold text-slate-100 mb-16 accent-border">
+                <span class="text-blue-400 mr-6 font-mono text-xl md:text-2xl">03.</span>
+                <span class="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">Technical Expertise</span>
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Frontend -->
                 <div class="bg-slate-800/50 p-6 rounded-lg group">
-                    <h4 class="text-blue-400 font-['Space_Mono'] mb-4">Frontend</h4>
+                    <h4 class="text-blue-400 font-mono font-semibold mb-4">Frontend</h4>
                     <ul class="space-y-2">
                         <li class="flex items-center text-slate-300">
                             <span class="text-blue-400 mr-2">▹</span>
@@ -512,7 +649,7 @@
 
                 <!-- Backend -->
                 <div class="bg-slate-800/50 p-6 rounded-lg">
-                    <h4 class="text-green-400 font-['Space_Mono'] mb-4">Backend</h4>
+                    <h4 class="text-green-400 font-mono font-semibold mb-4">Backend</h4>
                     <ul class="space-y-2">
                         <li class="flex items-center text-slate-300">
                             <span class="text-green-400 mr-2">▹</span>
@@ -535,7 +672,7 @@
 
                 <!-- Tools & Others -->
                 <div class="bg-slate-800/50 p-6 rounded-lg">
-                    <h4 class="text-purple-400 font-['Space_Mono'] mb-4">Tools & Others</h4>
+                    <h4 class="text-purple-400 font-mono font-semibold mb-4">Tools & Others</h4>
                     <ul class="space-y-2">
                         <li class="flex items-center text-slate-300">
                             <span class="text-purple-400 mr-2">▹</span>
@@ -558,7 +695,7 @@
 
                 <!-- Additional Languages -->
                 <div class="bg-slate-800/50 p-6 rounded-lg">
-                    <h4 class="text-yellow-400 font-['Space_Mono'] mb-4">Additional Languages</h4>
+                    <h4 class="text-yellow-400 font-mono font-semibold mb-4">Additional Languages</h4>
                     <ul class="space-y-2">
                         <li class="flex items-center text-slate-300">
                             <span class="text-yellow-400 mr-2">▹</span>
@@ -579,13 +716,14 @@
                     </ul>
                 </div>
             </div>
+
         </div>
     </section>
-    <section id="experience" class="pt-20">
+    <section id="experience" class="pt-20 relative z-10">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-12">
-                <span class="text-blue-400 mr-4 font-['Space_Mono']">04.</span>
-                Professional Experience
+            <h3 class="flex items-center text-3xl md:text-4xl font-heading font-bold text-slate-100 mb-16 accent-border">
+                <span class="text-blue-400 mr-6 font-mono text-xl md:text-2xl">04.</span>
+                <span class="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">Professional Experience</span>
             </h3>
 
             <div class="relative">
@@ -599,7 +737,7 @@
                                 class="text-slate-100 font-bold text-xl mb-1 block group-hover:text-blue-400 transition-colors">
                                 Software Engineer · Province of Surigao del Sur
                             </a>
-                            <p class="text-sm text-blue-400 font-['Space_Mono'] mb-4">January 2021 - December 2023</p>
+                            <p class="text-sm text-blue-400 font-mono font-medium mb-4">January 2021 - December 2023</p>
 
                             <ul class="space-y-4">
                                 <li class="flex items-start text-slate-400">
@@ -666,7 +804,7 @@
                                 class="text-slate-100 font-bold text-xl mb-1 block group-hover:text-blue-400 transition-colors">
                                 Intern · North Eastern Mindanao State University
                             </a>
-                            <p class="text-sm text-blue-400 font-['Space_Mono'] mb-4">July  2018 - August 2018</p>
+                            <p class="text-sm text-blue-400 font-mono font-medium mb-4">July  2018 - August 2018</p>
 
                             <ul class="space-y-4">
                                 <li class="flex items-start text-slate-400">
@@ -702,17 +840,12 @@
 
    
 
-    <section id="contact" class="pb-10 pt-10 bg-slate-900/30 relative overflow-hidden">
-        <!-- Background elements -->
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
-            <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        </div>
+    <section id="contact" class="pb-10 pt-10 relative overflow-hidden z-10">
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <h3 class="flex items-center text-2xl font-bold text-slate-100 mb-8">
-                <span class="text-blue-400 mr-4 font-['Space_Mono']">05.</span>
-                Download My CV
+            <h3 class="flex items-center text-3xl md:text-4xl font-heading font-bold text-slate-100 mb-12 accent-border">
+                <span class="text-blue-400 mr-6 font-mono text-xl md:text-2xl">05.</span>
+                <span class="bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">Let's Connect</span>
             </h3>
 
             <div
@@ -749,13 +882,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Decorative elements -->
-        <div
-            class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-slate-900/50 to-transparent pointer-events-none">
-        </div>
-        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
     </section>
 
     <button id="scroll-to-top"

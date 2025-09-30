@@ -1,15 +1,53 @@
 
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;700&display=swap');
-
+        /* Enhanced Professional Color System */
         .gradient-text {
-            background: linear-gradient(45deg, #38bdf8, #818cf8);
+            background: linear-gradient(135deg, #38bdf8, #818cf8, #6366f1);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
+        .gradient-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+
+        .gradient-accent {
+            background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+        }
+
+        .glass-effect {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .shadow-professional {
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .shadow-glow-blue {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .shadow-glow-purple {
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+        }
+
+        /* Enhanced Project Card Interactions */
         .project-card:hover .project-title {
             color: #38bdf8;
+        }
+
+        .card-professional {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(71, 85, 105, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-professional:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 40px rgba(59, 130, 246, 0.1);
         }
 
         html {
@@ -48,10 +86,46 @@
             color: #f1f5f9;
         }
 
+        /* Professional Typography System */
+        .font-heading {
+            font-family: 'Manrope', system-ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .font-body {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-weight: 400;
+        }
+
+        .font-code {
+            font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-weight: 500;
+        }
+
+        /* Enhanced Typography Hierarchy */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Manrope', system-ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .text-display {
+            font-family: 'Manrope', system-ui, sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .text-accent {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        /* Professional transitions */
         * {
-            transition-property: background-color, border-color, color, fill, stroke;
+            transition-property: background-color, border-color, color, fill, stroke, box-shadow, transform;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 200ms;
+            transition-duration: 300ms;
         }
     
 
@@ -154,6 +228,7 @@
     
 
     
+        /* Professional Background Effects */
         .animated-bg {
             position: absolute;
             top: 0;
@@ -162,6 +237,138 @@
             height: 100%;
             overflow: hidden;
             z-index: -1;
+        }
+
+        .bg-professional {
+            background: linear-gradient(135deg,
+                rgba(15, 23, 42, 0.97) 0%,
+                rgba(30, 41, 59, 0.95) 50%,
+                rgba(15, 23, 42, 0.98) 100%);
+        }
+
+        .accent-border {
+            position: relative;
+        }
+
+        .accent-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+        }
+
+        /* Animated Geometric Patterns */
+        .floating-shape {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            pointer-events: none;
+            animation: floatGeometric 20s linear infinite;
+        }
+
+        .floating-circle {
+            border-radius: 50%;
+        }
+
+        .floating-square {
+            border-radius: 4px;
+        }
+
+        .floating-diamond {
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+
+        @keyframes floatGeometric {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Pulsing dots */
+        .pulse-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.6);
+            border-radius: 50%;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* Professional Logo Styles */
+        .professional-logo {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .professional-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .professional-logo svg {
+            transition: all 0.3s ease;
+        }
+
+        .professional-logo:hover svg {
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
+        }
+
+        /* Logo animation on load */
+        .professional-logo svg circle,
+        .professional-logo svg path {
+            animation: logoFadeIn 1s ease-out;
+        }
+
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Rotating accent dot */
+        .professional-logo svg circle:last-child {
+            animation: rotateDot 8s linear infinite;
+            transform-origin: 20px 20px;
+        }
+
+        @keyframes rotateDot {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .animated-bg-gradient {
