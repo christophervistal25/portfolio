@@ -218,8 +218,31 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(createTechElement, i * 800);
     }
 
-    // Update occupied spaces on window resize
     window.addEventListener('resize', () => {
         occupiedSpaces.length = 0; // Clear occupied spaces
     });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentPath = window.location.pathname;
+    const isDesign2 = currentPath.endsWith('index2.html');
+    
+    themeToggle.checked = isDesign2;
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            window.location.href = 'index2.html';
+        } else {
+            window.location.href = 'index.html'; 
+        }
+    });
+    
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
 });
