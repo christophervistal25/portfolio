@@ -1,300 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christopher Vistal - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-mono { font-family: 'IBM Plex Sans', sans-serif; }
-        @media print {
-            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        }
-
-        .skill-tag {
-            @apply px-4 py-2 bg-white border border-slate-200 text-sm font-medium text-slate-700 rounded-lg shadow-sm;
-        }
-
-        .professional-underline {
-            text-decoration: none; 
-            border-bottom: 2px solid; 
-            padding-bottom: 1px; 
-            line-height: 1.5; 
-            transition: all 0.2s ease-in-out; 
-        }
-        .professional-underline:hover {
-            border-color: #1e40af;
-        }
-
-        .fixed-top-right {
-            position: fixed;
-            top: 2rem; 
-            right: 2rem; 
-            z-index: 50; 
-        }
-    </style>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="description" content="Christopher Vistal - Software Engineer. Full-stack development, cloud solutions, and enterprise applications.">
+    <meta name="keywords" content="software engineer, web developer, full stack developer, Laravel, Vue.js, Node.js, PHP">
+    <meta name="author" content="Christopher Vistal">
+    <meta property="og:title" content="Christopher Vistal - Software Engineer Portfolio">
+    <meta property="og:description" content="Software engineer specializing in full-stack development and cloud solutions.">
+    <meta property="og:url" content="https://chris-dev.netlify.app">
+    <title>Christopher Vistal - Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
 </head>
+<body>
 
-<body class="bg-gray-50 text-slate-800 antialiased p-8 md:p-16 print:p-0 print:bg-white">
-<div class="fixed-top-right bg-white p-4 rounded-xl shadow-lg border border-gray-100 print:hidden">
-        <p class="text-xs font-medium text-slate-500">
-            To view more details, <strong>go to Front-end</strong>
-        </p>
-        <div class="flex items-center space-x-3">
-            <span class="text-sm font-medium text-slate-500">Back-end</span>
-            
-            <label for="theme-toggle" class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" value="" id="theme-toggle" class="sr-only peer">
-                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-            </label>
-            
-            <span class="text-sm font-medium text-slate-500">Front-end</span>
+<header class="wrap">
+    <div class="header-inner">
+        <div>
+            <h1>Christopher Vistal</h1>
+            <p class="header-role">Software Engineer · Full-Stack · Cloud Solutions</p>
+            <p class="header-bio">Full-stack engineer specializing in government, legal, and enterprise systems. I turn complex workflows into clean, reliable software using Laravel, Vue.js, and AWS.</p>
+            <div class="header-contacts">
+                <a href="mailto:christophervistal25@gmail.com">christophervistal25@gmail.com</a>
+                <span class="sep">·</span>
+                <a href="https://github.com/christophervistal25" target="_blank">github.com/christophervistal25</a>
+                <span class="sep">·</span>
+                <a href="https://www.linkedin.com/in/christopher-vistal-650602210/" target="_blank">LinkedIn</a>
+                <span class="sep">·</span>
+                <a href="https://www.youtube.com/@tophertips3387/videos" target="_blank">YouTube</a>
+                <span class="sep">·</span>
+                <span>Surigao del Sur, Philippines</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <img src="avatar.png" alt="Christopher Vistal" class="avatar"/>
+            <div class="btn-cv-wrap">
+                <a href="https://drive.google.com/file/d/1Qbg0KwlK4dzyOjmBvP4Z3TDsjiO38jyy" target="_blank" class="btn-cv">Download CV</a>
+            </div>
         </div>
     </div>
-    <main class="max-w-6xl mx-auto bg-white p-12 md:p-20 shadow-sm border border-gray-100 print:shadow-none print:border-none print:p-0">
-        
-        <header class="border-b border-gray-200 pb-12 mb-12">
-            <!-- Mobile: stacked layout, Desktop: side by side -->
-            <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-8">
-                
-                <!-- Profile image - centered on mobile, right on desktop -->
-                <div class="flex justify-center md:hidden">
-                    <img src="https://googleusercontent.com/profile/picture/0" alt="Christopher Vistal" class="w-24 h-24 rounded-full object-cover border-2 border-white shadow-sm bg-gray-100">
-                </div>
+</header>
 
-                <!-- Name and bio -->
-                <div class="text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">Christopher Vistal</h1>
-                    <h2 class="text-xl md:text-2xl text-slate-500 mt-3 font-medium">Software Engineer</h2>
-                    <p class="text-base text-slate-400 mt-6 max-w-lg leading-relaxed mx-auto md:mx-0">
-                        Full-stack developer with 5+ years of experience. I build enterprise web application for government, healthcare, and legal industries using Laravel, Vue.js, and Node.js.
-                    </p>
-                </div>
+<main class="wrap">
 
-                <!-- Contact info -->
-                <div class="text-center md:text-right flex flex-col items-center md:items-end">
-                    <!-- Desktop only image -->
-                    <img src="https://googleusercontent.com/profile/picture/0" alt="Christopher Vistal" class="hidden md:block w-24 h-24 rounded-full mb-6 object-cover border-2 border-white shadow-sm bg-gray-100">
-                    
-                    <a href="mailto:christophervistal25@gmail.com" class="block text-blue-600 hover:text-blue-800 transition-colors mb-2 font-medium text-base break-all md:break-normal">christophervistal25@gmail.com</a>
-                    <a href="https://github.com/christophervistal25" target="_blank" class="text-base text-blue-600 hover:text-blue-800 transition-colors mb-2">github.com/christophervistal25</a>
-                    <span class="text-sm text-slate-400">Surigao del Sur, Philippines</span>
-                </div>
-            </div>
-        </header>
+    <!-- Experience -->
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="exp-list">
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-
-            <div class="md:col-span-2">
-                
-                <section>
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-8 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" /></svg>
-                        Professional Experience
-                    </h3>
-                    
-                    <div class="mb-12 relative pl-8 border-l-2 border-slate-200">
-                        <div class="absolute -left-[11px] top-3 h-5 w-5 rounded-full bg-emerald-500 border-2 border-white shadow"></div>
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-3">
-                            <h4 class="font-bold text-xl text-slate-800">Freelance Software Engineer</h4>
-                            <span class="text-base text-slate-500  bg-slate-100 px-3 py-1.5 rounded mt-2 sm:mt-0">2023 — Present</span>
-                        </div>
-                        <div class="text-base font-medium text-blue-600 mb-4">Self-Employed</div>
-                        <ul class="list-disc list-outside ml-6 space-y-3 text-base text-slate-600 leading-relaxed marker:text-slate-300">
-                            <li>Built and deployed ATA Law Firm  — case management, client portal, and document automation on AWS.</li>
-                            <li>Developed AI transcription app with real-time waveform visualization using CTranslate2.</li>
-                            <li>Delivered full-stack gaming platform (Dragonica Spidpex) with Laravel and Vue.js.</li>
-                        </ul>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="job-title">Freelance Software Engineer</div>
+                        <div class="job-company">Self-Employed</div>
                     </div>
-
-                    <div class="mb-12 relative pl-8 border-l-2 border-slate-200">
-                        <div class="absolute -left-[11px] top-3 h-5 w-5 rounded-full bg-white border-2 border-slate-300"></div>
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-3">
-                            <h4 class="font-bold text-xl text-slate-800">Software Engineer</h4>
-                            <span class="text-base text-slate-500  bg-slate-100 px-3 py-1.5 rounded mt-2 sm:mt-0">2021 — 2023</span>
-                        </div>
-                        <div class="text-base font-medium text-blue-600 mb-4">Province of Surigao del Sur</div>
-                        <ul class="list-disc list-outside ml-6 space-y-3 text-base text-slate-600 leading-relaxed marker:text-slate-300">
-                            <li>Built the GSIS Deduction System from scratch — custom MVC framework, ORM, and Twig templates for provincial insurance records.</li>
-                            <li>Wrote and maintained technical docs: specs, user manuals, and system diagrams.</li>
-                            <li>Led code reviews and enforced coding standards across the team.</li>
-                            <li>Reduced system downtime through proactive debugging and root cause analysis.</li>
-                        </ul>
-                    </div>
-
-                    <div class="relative pl-8 border-l-2 border-slate-200">
-                        <div class="absolute -left-[11px] top-3 h-5 w-5 rounded-full bg-white border-2 border-slate-300"></div>
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline mb-3">
-                            <h4 class="font-bold text-xl text-slate-800">Intern Developer</h4>
-                            <span class="text-base text-slate-500  bg-slate-100 px-3 py-1.5 rounded mt-2 sm:mt-0">2018</span>
-                        </div>
-                        <div class="text-base font-medium text-blue-600 mb-4">North Eastern Mindanao State University</div>
-                        <ul class="list-disc list-outside ml-6 space-y-3 text-base text-slate-600 leading-relaxed marker:text-slate-300">
-                            <li>Built a Faculty Evaluation app with Python NLP sentiment analysis — used by 3,000+ students.</li>
-                            <li>Gave faculty actionable insights to improve teaching based on student feedback.</li>
-                        </ul>
-                    </div>
-                </section>
+                    <div class="job-date job-date--current">2023 — Present</div>
+                </div>
+                <ul class="job-bullets">
+                    <li><span>&bull;</span> Built and deployed ATA Law Firm — case management, client portal, and document automation on AWS.</li>
+                    <li><span>&bull;</span> Developed AI transcription app with real-time waveform visualization using CTranslate2.</li>
+                    <li><span>&bull;</span> Delivered full-stack gaming platform (Dragonica Spidpex) with Laravel and Vue.js.</li>
+                </ul>
             </div>
 
-            <div class="space-y-12">
-                
-                <section>
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-8 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                        Technical Skills
-                    </h3>
-                    
-                    <div class="mb-8">
-                        <h4 class="text-base font-bold text-slate-700 mb-4">Backend</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag">PHP / Laravel</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">REST APIs</span>
-                        </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="job-title">Software Engineer</div>
+                        <div class="job-company">Province of Surigao del Sur</div>
                     </div>
+                    <div class="job-date">Jan 2021 — Dec 2023</div>
+                </div>
+                <ul class="job-bullets">
+                    <li><span>&bull;</span> Gathered requirements and designed software solutions with cross-functional teams.</li>
+                    <li><span>&bull;</span> Maintained technical documentation: specs, user manuals, and system diagrams.</li>
+                    <li><span>&bull;</span> Conducted code reviews to enforce quality and coding standards.</li>
+                    <li><span>&bull;</span> Built features and enhancements across multiple government projects.</li>
+                    <li><span>&bull;</span> Wrote unit, integration, and system tests to ensure reliability.</li>
+                    <li><span>&bull;</span> Debugged production issues and optimized system performance.</li>
+                </ul>
+            </div>
 
-                    <div class="mb-8">
-                        <h4 class="text-base font-bold text-slate-700 mb-4">Frontend</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag">Vue.js</span>
-                            <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">Tailwind CSS</span>
-                            <span class="skill-tag">Inertia.js</span>
-                        </div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="job-title">Intern Developer</div>
+                        <div class="job-company">North Eastern Mindanao State University</div>
                     </div>
+                    <div class="job-date">Jul — Aug 2018</div>
+                </div>
+                <ul class="job-bullets">
+                    <li><span>&bull;</span> Built a Faculty Evaluation Web App with Python NLP sentiment analysis for 3,000+ users.</li>
+                    <li><span>&bull;</span> Helped faculty act on sentiment insights to improve teaching.</li>
+                </ul>
+            </div>
 
-                    <div class="mb-8">
-                        <h4 class="text-base font-bold text-slate-700 mb-4">DevOps & Tools</h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag">Git / GitHub</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">Socket.io</span>
-                        </div>
-                    </div>
-                </section>
+        </div>
+    </section>
 
-                <section>
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-8 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7 2a1 1 0 00-.707 1.707L7 4.414v3.758a1 1 0 01-.293.707l-4 4C.816 14.769 2.049 17.5 4.385 17.5h6.23c2.336 0 3.569-2.731 1.678-4.622l-4-4A1 1 0 018 8.172V4.414l.707-.707A1 1 0 008 2H7zm2 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" /></svg>
-                        Languages
-                    </h3>
-                    <ul class="space-y-3 text-base text-slate-600">
-                        <li class="flex justify-between items-center">
-                            <span class="font-medium">English</span>
-                            <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1.5 rounded-full">Professional</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span class="font-medium">Filipino</span>
-                            <span class="text-sm text-slate-400 bg-slate-100 px-3 py-1.5 rounded-full">Native</span>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-8 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-1.05.174v-4.102l1.69-1.724A3 3 0 0017 10v4a3 3 0 003-3v-4a3 3 0 00-1.05-2.276l-1.69 1.724a1 1 0 01-1.05.174 11.026 11.026 0 01.25-3.762 1 1 0 01-.89-.89 8.968 8.968 0 00-1.05.174v-4.102l1.69-1.724a3 3 0 00-3.64 0L9.3 16.573z"/></svg>
-                        Education
-                    </h3>
-                    <div class="text-base border-l-2 border-slate-100 pl-6">
-                        <div class="font-bold text-slate-800 text-lg">BS Computer Science</div>
-                        <div class="text-blue-600 mt-2 font-medium">North Eastern Mindanao State University</div>
-                        <div class="text-slate-400 mt-1 text-sm">2018</div>
-                    </div>
-                </section>
-                
-                <section class="pt-8 border-t border-gray-100 print:hidden">
-                    <a href="https://drive.google.com/file/d/1Qbg0KwlK4dzyOjmBvP4Z3TDsjiO38jyy" target="_blank" class="group flex items-center justify-center w-full px-6 py-4 bg-blue-600 text-white text-base font-bold rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl">
-                        Download Full CV
-                    </a>
-                </section>
-
+    <!-- Skills -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skill-rows">
+            <div class="skill-row">
+                <span class="skill-label">Backend</span>
+                <span class="skill-items">PHP / Laravel · Node.js / Express · MySQL / SQL Server · RESTful APIs · Socket.io</span>
+            </div>
+            <div class="skill-row">
+                <span class="skill-label">Frontend</span>
+                <span class="skill-items">Vue.js · TypeScript · Tailwind CSS · Inertia.js · Vanilla JS / HTML / CSS</span>
+            </div>
+            <div class="skill-row">
+                <span class="skill-label">DevOps &amp; Tools</span>
+                <span class="skill-items">Git / GitHub · AWS · Docker · PHPUnit / Pest</span>
+            </div>
+            <div class="skill-row">
+                <span class="skill-label">Other Languages</span>
+                <span class="skill-items">Java (Android) · Go · C# (.NET) · Python</span>
             </div>
         </div>
+    </section>
 
-        <!-- Full-width Projects Section -->
-   <section class="mt-16">
-            <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-8 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
-                Selected Projects
-            </h3>
-            <div class="space-y-10"> <div class="flex gap-4 pb-4 border-b border-gray-100"> <span class=" text-slate-400 text-lg  pt-1">01.</span> <div class="flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                            <h4 class="font-bold text-xl text-slate-900"> <a href="https://atafirm.ph" class="text-blue-700 hover:text-blue-900 professional-underline">ATA Law Firm</a>
-                            </h4>
-                            <span class="text-xs uppercase font-bold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full mt-2 sm:mt-0">Live</span> </div>
-                        <p class="text-base text-slate-600 leading-relaxed mb-3">
-                            Law firm management with case tracking, client portal, and document automation on AWS.
-                        </p>
-                        <div class="flex flex-wrap gap-2"> <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Laravel</span> <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Vue.js</span>
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#AWS</span>
-                        </div>
-                    </div>
+    <!-- Projects -->
+    <section id="projects">
+        <h2 class="section-title">Selected Projects</h2>
+        <div class="project-list">
+
+            <a href="https://atafirm.ph" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">ATA Law Firm</div>
+                    <div class="project-desc">Case management, client portal &amp; document automation</div>
                 </div>
+                <span class="project-label">Live</span>
+            </a>
 
-                <div class="flex gap-4 pb-4 border-b border-gray-100">
-                    <span class=" text-slate-400 text-lg  pt-1">02.</span>
-                    <div class="flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                            <h4 class="font-bold text-xl text-slate-900">
-                                <a href="#" class="text-blue-700 hover:text-blue-900 professional-underline">AI Transcription App</a>
-                            </h4>
-                            <span class="text-xs uppercase font-bold bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full mt-2 sm:mt-0">AI/ML</span>
-                        </div>
-                        <p class="text-base text-slate-600 leading-relaxed mb-3">
-                            Speech-to-text with real-time recording, waveform visualization, and CTranslate2.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Node.js</span>
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Python</span>
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Vue.js</span>
-                        </div>
-                    </div>
+            <div class="project-item">
+                <div>
+                    <div class="project-name">Transcriber</div>
+                    <div class="project-desc">AI speech-to-text with real-time waveform visualization</div>
                 </div>
-
-                <div class="flex gap-4"> <span class=" text-slate-400 text-lg  pt-1">03.</span>
-                    <div class="flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
-                            <h4 class="font-bold text-xl text-slate-900">
-                                <a href="#" class="text-blue-700 hover:text-blue-900 professional-underline">NEMSU - University Data Hub</a>
-                            </h4>
-                            <span class="text-xs uppercase font-bold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full mt-2 sm:mt-0">Live</span>
-                        </div>
-                        <p class="text-base text-slate-600 leading-relaxed mb-3">
-                            Centralized data platform for NEMSU — student records, academics, and reporting.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Laravel</span>
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#Vue.js</span>
-                            <span class="px-2 py-1 bg-gray-50 text-xs font-medium text-slate-500 rounded-md">#MySQL</span>
-                        </div>
-                    </div>
-                </div>
-
+                <span class="project-label">AI / ML</span>
             </div>
-        </section>
-    </main>
 
-    <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentPage = window.location.pathname.split('/').pop();
-    
-    if (currentPage === 'index2.html') {
-        themeToggle.checked = true;
-    }
-    
-    themeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            window.location.href = 'index2.html';
-        } else {
-            window.location.href = 'index.html'; 
-        }
-    });
-</script>
+            <a href="https://udh.nemsu.edu.ph/" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">NEMSU Data Hub</div>
+                    <div class="project-desc">Centralized university data platform for student records</div>
+                </div>
+                <span class="project-label">Live</span>
+            </a>
+
+            <a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">GSIS Deduction</div>
+                    <div class="project-desc">Government insurance records with custom PHP framework</div>
+                </div>
+                <span class="project-label">Web</span>
+            </a>
+
+            <a href="https://dragonicaspidpex.com/" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">Dragonica Spidpex</div>
+                    <div class="project-desc">Full-stack gaming platform with community features</div>
+                </div>
+                <span class="project-label">Live</span>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=B-Aj7DVPXaM&ab_channel=TopherTips" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">Real-time RPS Game</div>
+                    <div class="project-desc">Multiplayer rock-paper-scissors with live Socket.io sync</div>
+                </div>
+                <span class="project-label">Web</span>
+            </a>
+
+            <div class="project-item">
+                <div>
+                    <div class="project-name">NEMSU SMS Gateway</div>
+                    <div class="project-desc">Android SMS notifications for university pre-enrollment</div>
+                </div>
+                <span class="project-label">Android</span>
+            </div>
+
+            <a href="https://github.com/christophervistal25/dental-care-system" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">Dental Clinic</div>
+                    <div class="project-desc">Clinic management with interactive SVG tooth charting</div>
+                </div>
+                <span class="project-label">Web</span>
+            </a>
+
+            <a href="https://play.google.com/store/apps/details?id=com.bikerent" target="_blank" class="project-item">
+                <div>
+                    <div class="project-name">Bicycle Rent Timer</div>
+                    <div class="project-desc">Timer app for bike rental durations and sales tracking</div>
+                </div>
+                <span class="project-label">Android</span>
+            </a>
+
+            <hr>
+
+        </div>
+    </section>
+
+</main>
+
 </body>
 </html>
