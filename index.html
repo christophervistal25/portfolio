@@ -1,1406 +1,861 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Christopher Vistal — Software Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Christopher Vistal — Full-Stack Engineer</title>
+    <meta
+      name="description"
+      content="Full-stack engineer building production systems for government, law, and enterprise — case management, citizen records, and AI-powered tools."
+    />
+    <meta
+      property="og:title"
+      content="Christopher Vistal — Full-Stack Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Full-stack engineer building production systems for government, law, and enterprise."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                400: "#ff8a50",
-                500: "#ff6b2c",
-                600: "#e65214",
-                700: "#c4410a",
-              },
-              surface: {
-                DEFAULT: "#09090b",
-                50: "#111113",
-                100: "#141416",
-                200: "#1a1a1d",
-                300: "#222225",
-              },
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-            },
-            letterSpacing: { tighter: "-0.04em" },
-          },
-        },
-      };
-    </script>
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background: #09090b;
-        color: #e5e5e5;
-      }
-      ::-webkit-scrollbar {
-        width: 4px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #09090b;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1f1f23;
-        border-radius: 2px;
-      }
-
-      .fade-in {
-        opacity: 0;
-        transform: translateY(16px);
-        transition:
-          opacity 0.5s ease,
-          transform 0.5s ease;
-      }
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .nav-blur {
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-      }
-
-      /* Cursor blink */
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-      }
-      .cursor {
-        display: inline-block;
-        width: 2px;
-        height: 1.15em;
-        background: #ff6b2c;
-        margin-left: 1px;
-        vertical-align: text-bottom;
-        animation: blink 1s step-end infinite;
-      }
-
-      /* Ledger */
-      .ledger-row {
-        transition:
-          background 0.15s,
-          border-color 0.15s;
-      }
-      .ledger-row:hover {
-        background: rgba(255, 255, 255, 0.02);
-      }
-      .ledger-row:hover .ledger-title {
-        color: #fff;
-      }
-      .ledger-row:hover .ledger-arrow {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      .ledger-arrow {
-        opacity: 0;
-        transform: translateX(-5px);
-        transition:
-          opacity 0.15s,
-          transform 0.15s;
-      }
-      .ledger-row.ai-row:hover {
-        background: rgba(255, 107, 44, 0.025);
-        border-color: rgba(255, 107, 44, 0.12);
-      }
-
-      /* AI dot */
-      @keyframes dot-pulse {
-        0%,
-        100% {
-          box-shadow: 0 0 0 0 rgba(255, 107, 44, 0.35);
-        }
-        50% {
-          box-shadow: 0 0 0 4px rgba(255, 107, 44, 0);
-        }
-      }
-      .ai-dot {
-        animation: dot-pulse 2.5s ease-in-out infinite;
-      }
-
-      /* Experience line */
-      .exp-item {
-        position: relative;
-      }
-      .exp-item::before {
-        content: "";
-        position: absolute;
-        left: 5px;
-        top: 18px;
-        bottom: -20px;
-        width: 1px;
-        background: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.06),
-          transparent
-        );
-      }
-      .exp-item:last-child::before {
-        display: none;
-      }
-
-      /* Tag hover */
-      .tag {
-        transition:
-          background 0.15s,
-          border-color 0.15s;
-      }
-      .tag:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.08);
-      }
-
-      /* Section line accent */
-      .section-line::after {
-        content: "";
-        display: block;
-        height: 1px;
-        background: linear-gradient(
-          to right,
-          rgba(255, 107, 44, 0.3),
-          rgba(255, 255, 255, 0.04),
-          transparent
-        );
-        margin-top: 0;
-      }
-
-      /* Doodles */
-      .doodle {
-        pointer-events: none;
-        user-select: none;
-      }
-      .doodle svg {
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        fill: none;
-      }
-      @keyframes dfloat {
-        0%,
-        100% {
-          transform: translateY(0) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-6px) rotate(1.5deg);
-        }
-      }
-      @keyframes dfloat2 {
-        0%,
-        100% {
-          transform: translateY(0) rotate(0deg);
-        }
-        50% {
-          transform: translateY(5px) rotate(-1.5deg);
-        }
-      }
-      @keyframes dspin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes dpulse {
-        0%,
-        100% {
-          opacity: 0.03;
-        }
-        50% {
-          opacity: 0.055;
-        }
-      }
-      @keyframes ddraw {
-        0% {
-          stroke-dashoffset: 400;
-        }
-        100% {
-          stroke-dashoffset: 0;
-        }
-      }
-      .dfloat {
-        animation: dfloat 7s ease-in-out infinite;
-      }
-      .dfloat2 {
-        animation: dfloat2 8s ease-in-out infinite;
-      }
-      .dspin {
-        animation: dspin 28s linear infinite;
-      }
-      .dpulse {
-        animation: dpulse 5s ease-in-out infinite;
-      }
-      .ddraw {
-        stroke-dasharray: 400;
-        animation: ddraw 4s ease forwards;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
-  <body class="antialiased">
-    <!-- Doodles -->
-    <div class="fixed inset-0 z-0 overflow-hidden">
-      <div class="doodle absolute -top-8 -left-8 opacity-[0.035] dfloat">
-        <svg width="180" height="180" viewBox="0 0 180 180">
-          <path
-            d="M90,18 C128,13 160,42 164,90 C168,138 136,166 90,162 C44,158 14,128 18,90 C22,52 52,23 90,18"
-            stroke="white"
-            stroke-width="1.3"
-          />
-        </svg>
-      </div>
-      <div class="doodle absolute top-16 right-6 opacity-[0.03] dspin">
-        <svg width="50" height="50" viewBox="0 0 50 50">
-          <line
-            x1="25"
-            y1="4"
-            x2="25"
-            y2="46"
-            stroke="white"
-            stroke-width="0.8"
-          />
-          <line
-            x1="4"
-            y1="25"
-            x2="46"
-            y2="25"
-            stroke="white"
-            stroke-width="0.8"
-          />
-          <line
-            x1="10"
-            y1="10"
-            x2="40"
-            y2="40"
-            stroke="white"
-            stroke-width="0.8"
-          />
-          <line
-            x1="40"
-            y1="10"
-            x2="10"
-            y2="40"
-            stroke="white"
-            stroke-width="0.8"
-          />
-        </svg>
-      </div>
-      <div class="doodle absolute top-[28%] -left-5 opacity-[0.03] ddraw">
-        <svg width="35" height="260" viewBox="0 0 35 260">
-          <path
-            d="M17,0 C30,25 4,50 17,75 C30,100 4,125 17,150 C30,175 4,200 17,225 C30,250 4,260 17,250"
-            stroke="white"
-            stroke-width="1"
-          />
-        </svg>
-      </div>
-      <div class="doodle absolute top-[42%] -right-3 opacity-[0.04] dpulse">
-        <svg width="45" height="110" viewBox="0 0 45 110">
-          <circle cx="9" cy="9" r="1.8" fill="white" />
-          <circle cx="28" cy="13" r="1.3" fill="white" />
-          <circle cx="18" cy="30" r="2.2" fill="white" />
-          <circle cx="36" cy="40" r="1.3" fill="white" />
-          <circle cx="7" cy="54" r="1.8" fill="white" />
-          <circle cx="30" cy="63" r="1.5" fill="white" />
-          <circle cx="14" cy="82" r="1.8" fill="white" />
-          <circle cx="34" cy="92" r="1.3" fill="white" />
-          <circle cx="22" cy="106" r="2" fill="white" />
-        </svg>
-      </div>
-      <div class="doodle absolute top-[52%] left-5 opacity-[0.025] dfloat2">
-        <svg width="24" height="24" viewBox="0 0 24 24">
-          <line
-            x1="4"
-            y1="4"
-            x2="20"
-            y2="20"
-            stroke="white"
-            stroke-width="1.2"
-          />
-          <line
-            x1="20"
-            y1="4"
-            x2="4"
-            y2="20"
-            stroke="white"
-            stroke-width="1.2"
-          />
-        </svg>
-      </div>
-      <div class="doodle absolute bottom-[18%] -left-6 opacity-[0.03] dfloat">
-        <svg width="70" height="70" viewBox="0 0 70 70">
-          <path d="M35,7 L63,60 L7,60 Z" stroke="white" stroke-width="1" />
-        </svg>
-      </div>
-      <div
-        class="doodle absolute bottom-[12%] right-3 opacity-[0.025] dspin"
-        style="animation-duration: 32s"
-      >
-        <svg width="70" height="70" viewBox="0 0 70 70">
-          <path
-            d="M35,35 C35,31 39,27 43,27 C50,27 54,33 54,39 C54,48 46,54 38,54 C27,54 20,45 20,35 C20,23 29,15 40,15"
-            stroke="white"
-            stroke-width="0.8"
-          />
-        </svg>
-      </div>
-      <div
-        class="doodle absolute -bottom-3 left-[18%] opacity-[0.03] ddraw"
-        style="stroke-dasharray: 300; animation-duration: 3s"
-      >
-        <svg width="220" height="24" viewBox="0 0 220 24">
-          <path
-            d="M0,12 L18,4 L36,20 L54,4 L72,20 L90,4 L108,20 L126,4 L144,20 L162,4 L180,20 L198,4 L216,12"
-            stroke="white"
-            stroke-width="0.8"
-          />
-        </svg>
-      </div>
-      <div
-        class="doodle absolute top-[75%] right-[12%] opacity-[0.025] dfloat2"
-      >
-        <svg width="18" height="18" viewBox="0 0 18 18">
-          <line
-            x1="3"
-            y1="3"
-            x2="15"
-            y2="15"
-            stroke="white"
-            stroke-width="0.8"
-          />
-          <line
-            x1="15"
-            y1="3"
-            x2="3"
-            y2="15"
-            stroke="white"
-            stroke-width="0.8"
-          />
-        </svg>
-      </div>
-      <div
-        class="doodle absolute top-[13%] left-[10%] opacity-[0.02] dfloat"
-        style="animation-delay: -2.5s"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16">
-          <circle cx="8" cy="8" r="6" stroke="white" stroke-width="0.8" />
-        </svg>
-      </div>
-      <div
-        class="doodle absolute top-0 left-0 right-0 h-[35vh] opacity-[0.012]"
-        style="
-          background-image: radial-gradient(white 0.8px, transparent 0.8px);
-          background-size: 36px 36px;
-        "
-      ></div>
-      <div
-        class="doodle absolute bottom-0 left-0 right-0 h-[25vh] opacity-[0.008]"
-        style="
-          background-image: radial-gradient(white 0.8px, transparent 0.8px);
-          background-size: 36px 36px;
-        "
-      ></div>
-    </div>
+  <body data-density="comfortable">
 
     <!-- Nav -->
-    <nav
-      class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-2xl"
-    >
-      <div
-        class="nav-blur bg-surface/75 border border-white/[0.05] rounded-full px-2 py-1.5 flex items-center justify-between"
-      >
-        <a href="#top" class="flex items-center gap-2 pl-3">
-          <div
-            class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-600 to-brand-500 flex items-center justify-center"
-          >
-            <span class="text-white font-medium text-[10px] font-mono">~</span>
-          </div>
-          <span
-            class="text-[13px] font-semibold tracking-tight text-white hidden sm:block font-mono"
-            >chris.dev</span
-          >
+    <div class="nav-wrap">
+      <nav class="nav">
+        <a href="#top" class="nav-brand">
+          <span class="dot"></span>
+          <span>chris<span style="color: var(--text-3)">.dev</span></span>
         </a>
-        <div class="hidden md:flex items-center gap-0.5">
-          <a
-            href="#experience"
-            class="nav-link px-3 py-1.5 text-[11px] font-medium text-neutral-500 hover:text-white transition-colors rounded-full hover:bg-white/5"
-            >Experience</a
-          >
-          <a
-            href="#skills"
-            class="nav-link px-3 py-1.5 text-[11px] font-medium text-neutral-500 hover:text-white transition-colors rounded-full hover:bg-white/5"
-            >Skills</a
-          >
-          <a
-            href="#projects"
-            class="nav-link px-3 py-1.5 text-[11px] font-medium text-neutral-500 hover:text-white transition-colors rounded-full hover:bg-white/5"
-            >Projects</a
-          >
+        <div class="nav-center">
+          <a href="#work" class="nav-link"><span class="nav-slash">//</span>Work</a>
+          <span class="nav-sep">|</span>
+          <a href="#experience" class="nav-link"><span class="nav-slash">//</span>Experience</a>
+          <span class="nav-sep">|</span>
+          <a href="#skills" class="nav-link"><span class="nav-slash">//</span>Skills</a>
+          <span class="nav-sep">|</span>
+          <a href="#hire" class="nav-link"><span class="nav-slash">//</span>Services</a>
         </div>
-        <div class="flex items-center gap-2">
+        <a href="mailto:vistalchris@gmail.com" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+      <div class="container">
+        <h1>
+          <span style="color: var(--text-3); font-weight: 500">builds</span>
+          <span class="accent"> production systems</span
+          ><span style="color: var(--text-3); font-weight: 500">
+            that ship.</span
+          >
+        </h1>
+        <p class="hero-role">
+          Full-stack engineer based in the Philippines. I build case management systems,
+          citizen records platforms, and AI-powered tools for
+          <b>government agencies, law firms, and product teams.</b>
+        </p>
+        <div class="hero-cta-row">
+          <a href="mailto:vistalchris@gmail.com" class="btn btn-primary">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" />
+            </svg>
+            Start a project
+          </a>
           <a
-            href="mailto:vistalchris@gmail.com"
+            href="https://drive.google.com/file/d/1CDd4-ztY7c-qhJZ56g2nzw-SA3FXxE9Y/view"
             target="_blank"
-            class="bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white text-[11px] font-medium px-4 py-1.5 rounded-full transition-all duration-300 shadow-lg shadow-brand-500/15"
-            >Contact</a
+            rel="noopener"
+            class="btn btn-secondary"
           >
-          <button
-            id="mobile-toggle"
-            class="md:hidden w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors"
-          >
-            <i data-lucide="menu" class="w-3.5 h-3.5 text-neutral-500"></i>
-          </button>
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+            </svg>
+            Download CV
+          </a>
+          <div class="hero-socials">
+            <a href="https://github.com/christophervistal25" target="_blank" rel="noopener" class="hero-social-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5a3 3 0 0 0-.8-2.2c2.8-.3 5.7-1.4 5.7-6.1A4.7 4.7 0 0 0 18.6 7a4.4 4.4 0 0 0-.1-3.3s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.6 3.4 5.5 3.7 5.5 3.7A4.4 4.4 0 0 0 5.4 7 4.7 4.7 0 0 0 4 10.2c0 4.7 2.9 5.8 5.7 6.1a3 3 0 0 0-.8 2.2V22"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/christophervistal25/" target="_blank" rel="noopener" class="hero-social-link" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 11v5"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@tophertips3387" target="_blank" rel="noopener" class="hero-social-link" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label mono">Location</span>
+            <span class="hero-meta-value">Surigao del Sur, Philippines</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label mono">Email</span>
+            <span class="hero-meta-value"
+              ><a href="mailto:vistalchris@gmail.com"
+                >vistalchris@gmail.com</a
+              ></span
+            >
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label mono">Working hours</span>
+            <span class="hero-meta-value">PHT (UTC+8) · async-friendly</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label mono">Open to</span>
+            <span class="hero-meta-value">Remote · Contract · Full-time · Part-time</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label mono">Availability</span>
+            <span class="hero-meta-value" style="color:var(--green)">Open · June 2026</span>
+          </div>
         </div>
       </div>
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden mt-1.5 nav-blur bg-surface/85 border border-white/[0.05] rounded-xl p-3"
-      >
-        <a
-          href="#experience"
-          class="mobile-link block px-3 py-2 text-xs text-neutral-500 hover:text-white transition-colors rounded-lg hover:bg-white/5"
-          >Experience</a
-        >
-        <a
-          href="#skills"
-          class="mobile-link block px-3 py-2 text-xs text-neutral-500 hover:text-white transition-colors rounded-lg hover:bg-white/5"
-          >Skills</a
-        >
-        <a
-          href="#projects"
-          class="mobile-link block px-3 py-2 text-xs text-neutral-500 hover:text-white transition-colors rounded-lg hover:bg-white/5"
-          >Projects</a
-        >
+    </header>
+
+    <!-- Metrics -->
+    <section style="padding: 20px 0 0">
+      <div class="container">
+        <div class="metrics fade-in">
+          <div class="metric">
+            <div class="metric-num">5<span class="plus">+</span></div>
+            <div class="metric-label mono">
+              Years building<br />production systems
+            </div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">3,000<span class="plus">+</span></div>
+            <div class="metric-label mono">
+              End users on<br />systems I've shipped
+            </div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">9</div>
+            <div class="metric-label mono">
+              Live products across<br />gov, law, gaming
+            </div>
+          </div>
+          <div class="metric">
+            <div class="metric-num">100<span class="plus">%</span></div>
+            <div class="metric-label mono">
+              Offline AI —<br />zero cloud dependency
+            </div>
+          </div>
+        </div>
       </div>
-    </nav>
+    </section>
 
-    <!-- Content -->
-    <div id="top" class="relative z-10 max-w-2xl mx-auto px-5 sm:px-6">
-      <!-- Hero Terminal -->
-      <header class="pt-26 pb-14 fade-in" style="padding-top: 6.5rem">
-        <div
-          class="bg-white/[0.015] border border-white/[0.04] rounded-xl overflow-hidden"
-        >
-          <!-- Title bar -->
-          <div
-            class="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.03] bg-white/[0.01]"
-          >
-            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]/40"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]/40"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]/40"></div>
-            <span class="text-[10px] text-neutral-700 ml-2 font-mono"
-              >~/portfolio — christopher_vistal</span
-            >
+    <!-- Featured Work -->
+    <section id="work">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="section-num mono">01</span>
+            <span class="section-title">Featured Work</span>
           </div>
-          <!-- Terminal body -->
-          <div
-            class="p-4 sm:p-5 space-y-2 font-mono text-[11px] sm:text-xs leading-relaxed"
-          >
-            <div>
-              <span class="text-neutral-600 select-none">$ </span
-              ><span class="text-neutral-500">whoami</span>
-            </div>
-            <div class="text-neutral-300 pl-2">christopher_vistal</div>
-
-            <div class="pt-1">
-              <span class="text-neutral-600 select-none">$ </span
-              ><span class="text-neutral-500">cat role.yml</span>
-            </div>
-            <div class="pl-2 text-neutral-300">
-              Software Engineer · Full-Stack · Cloud & AI Solutions
-            </div>
-
-            <div class="pt-1">
-              <span class="text-neutral-600 select-none">$ </span
-              ><span class="text-neutral-500">cat about.txt</span>
-            </div>
-            <div class="pl-2 text-neutral-400">
-              Full-stack engineer focused on government and enterprise
-            </div>
-            <div class="pl-2 text-neutral-400">
-              systems in the Philippines — case management, citizen
-            </div>
-            <div class="pl-2 text-neutral-400">
-              records, and AI-powered tools. Laravel, Vue.js, Python, AWS.
-            </div>
-
-            <div class="pt-1">
-              <span class="text-neutral-600 select-none">$ </span
-              ><span class="text-neutral-500">echo $STATUS</span>
-            </div>
-            <div class="pl-2 flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span
-              ><span class="text-green-500/70">available_for_projects</span>
-            </div>
-
-            <div class="pt-1">
-              <span class="text-neutral-600 select-none">$ </span
-              ><span id="typed-text" class="text-neutral-300"></span
-              ><span class="cursor"></span>
-            </div>
-          </div>
+          <span class="section-aside mono">// case studies</span>
         </div>
-
-        <!-- Contact row -->
-        <div class="flex flex-wrap items-center gap-x-2 gap-y-1.5 mt-5">
+        <div class="case-grid fade-in">
           <a
-            href="mailto:vistalchris@gmail.com"
+            href="https://atafirm.ph"
             target="_blank"
-            class="flex items-center gap-1.5 text-[11px] text-neutral-600 hover:text-white transition-colors px-2.5 py-1.5 rounded-lg hover:bg-white/[0.025] border border-transparent hover:border-white/[0.04] font-mono"
+            rel="noopener"
+            class="case"
           >
-            <i data-lucide="mail" class="w-3 h-3"></i>email
-          </a>
-          <a
-            href="https://github.com/christophervistal25"
-            target="_blank"
-            class="flex items-center gap-1.5 text-[11px] text-neutral-600 hover:text-white transition-colors px-2.5 py-1.5 rounded-lg hover:bg-white/[0.025] border border-transparent hover:border-white/[0.04] font-mono"
-          >
-            <i data-lucide="github" class="w-3 h-3"></i>github
-          </a>
-          <a
-            href="https://www.linkedin.com/in/christophervistal25/"
-            target="_blank"
-            class="flex items-center gap-1.5 text-[11px] text-neutral-600 hover:text-white transition-colors px-2.5 py-1.5 rounded-lg hover:bg-white/[0.025] border border-transparent hover:border-white/[0.04] font-mono"
-          >
-            <i data-lucide="linkedin" class="w-3 h-3"></i>linkedin
-          </a>
-          <a
-            href="https://www.youtube.com/@tophertips3387"
-            target="_blank"
-            class="flex items-center gap-1.5 text-[11px] text-neutral-600 hover:text-white transition-colors px-2.5 py-1.5 rounded-lg hover:bg-white/[0.025] border border-transparent hover:border-white/[0.04] font-mono"
-          >
-            <i data-lucide="youtube" class="w-3 h-3"></i>youtube
-          </a>
-          <span
-            class="flex items-center gap-1.5 text-[10px] text-neutral-700 px-2.5 py-1.5 font-mono"
-          >
-            <i data-lucide="map-pin" class="w-2.5 h-2.5"></i>surigao_del_sur
-          </span>
-        </div>
-
-        <a
-          href="https://drive.google.com/file/d/1CDd4-ztY7c-qhJZ56g2nzw-SA3FXxE9Y/view"
-          target="_blank"
-          class="inline-flex items-center gap-1.5 mt-4 px-3.5 py-1.5 text-[11px] font-mono border border-white/[0.06] text-neutral-500 hover:text-white hover:border-white/[0.12] hover:bg-white/[0.02] rounded-lg transition-all duration-200"
-        >
-          <i data-lucide="download" class="w-3 h-3"></i>download_cv.pdf
-        </a>
-      </header>
-
-      <!-- Experience -->
-      <section id="experience" class="py-12 fade-in">
-        <div class="section-line pb-3 mb-6">
-          <div class="flex items-center gap-3">
-            <span
-              class="text-[10px] font-bold uppercase tracking-widest text-neutral-600 font-mono"
-              >experience</span
-            >
-            <span class="text-[9px] font-mono text-neutral-800"
-              >// professional</span
-            >
-          </div>
-        </div>
-
-        <div class="space-y-5">
-          <div class="exp-item flex gap-4">
-            <div class="pt-[7px] flex-shrink-0">
-              <div
-                class="w-[11px] h-[11px] rounded-full bg-brand-500 border-[3px] border-surface ai-dot"
-              ></div>
-            </div>
-            <div class="flex-1">
-              <div
-                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5"
-              >
-                <h3 class="text-[13px] font-medium text-white">
-                  Freelance Software Engineer
-                </h3>
-                <span class="text-[10px] font-mono text-brand-500/50"
-                  >2023 — present</span
+            <div class="case-body">
+              <div class="case-header">
+                <span class="case-tag mono">case management · aws</span>
+                <span class="case-arrow">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </span>
+              </div>
+              <div class="case-title">ATA Law Firm</div>
+              <p class="case-summary">
+                Designed and built a complete case management system on AWS —
+                case tracking, document automation, and a secure client portal
+                used in active legal practice.
+              </p>
+              <div class="case-impact mono">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
+                  />
+                </svg>
+                <span
+                  ><b>Impact:</b> Replaced spreadsheet-based workflows for an
+                  entire firm.</span
                 >
               </div>
-              <p class="text-[10px] text-neutral-600 font-mono mt-0.5 mb-2.5">
-                self-employed
+              <div class="case-stack">
+                <span class="tag">Laravel</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">AWS</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="case">
+            <div class="case-body">
+              <div class="case-header">
+                <span class="case-tag mono ai">ai · ctranslate2 · python</span>
+                <span class="case-arrow">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" />
+                  </svg>
+                </span>
+              </div>
+              <div class="case-title">Offline AI Transcriber</div>
+              <p class="case-summary">
+                Local-first speech-to-text with real-time waveform feedback.
+                Runs entirely on-device — no audio ever leaves the machine.
+                Built for sensitive legal/medical contexts.
               </p>
-              <ul class="space-y-1.5">
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
+              <div class="case-impact mono">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Built ATA Law Firm's case management system on AWS — case
-                  tracking, document automation, and a secure client portal used
-                  in active legal practice.
+                  <path
+                    d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
+                  />
+                </svg>
+                <span
+                  ><b>Impact:</b> Zero cloud dependency. Faster than cloud STT
+                  on modern CPUs.</span
+                >
+              </div>
+              <div class="case-stack">
+                <span class="tag ai">Python</span>
+                <span class="tag ai">CTranslate2</span>
+                <span class="tag ai">Whisper</span>
+                <span class="tag ai">PyQt</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- More Projects -->
+    <section style="padding-top: 0">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="section-num mono">02</span>
+            <span class="section-title">More Projects</span>
+          </div>
+          <span class="section-aside mono">// 6 more</span>
+        </div>
+        <div class="proj-list fade-in">
+          <a
+            href="https://udh.nemsu.edu.ph/"
+            target="_blank"
+            rel="noopener"
+            class="proj-row"
+          >
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-status live"></span>
+                <span class="proj-name">NEMSU Data Hub</span>
+              </div>
+              <div class="proj-desc" style="margin-left: 16px">
+                University data + faculty records
+              </div>
+            </div>
+            <span class="proj-stack">Laravel · Vue</span>
+            <span class="proj-arrow"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 17L17 7M9 7h8v8" /></svg
+            ></span>
+          </a>
+
+          <a
+            href="https://dragonicaspidpex.com/"
+            target="_blank"
+            rel="noopener"
+            class="proj-row"
+          >
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-status live"></span>
+                <span class="proj-name">Dragonica Spidpex</span>
+              </div>
+              <div class="proj-desc" style="margin-left: 16px">
+                Live gaming platform with player accounts &amp; community
+              </div>
+            </div>
+            <span class="proj-stack">Laravel · Vue</span>
+            <span class="proj-arrow"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 17L17 7M9 7h8v8" /></svg
+            ></span>
+          </a>
+
+          <a
+            href="https://github.com/christophervistal25/GSIS-Deduction"
+            target="_blank"
+            rel="noopener"
+            class="proj-row"
+          >
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-status dev"></span>
+                <span class="proj-name">GSIS Deduction System</span>
+              </div>
+              <div class="proj-desc" style="margin-left: 16px">
+                Government insurance computation engine
+              </div>
+            </div>
+            <span class="proj-stack">PHP · SQL Server</span>
+            <span class="proj-arrow"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 17L17 7M9 7h8v8" /></svg
+            ></span>
+          </a>
+
+          <a
+            href="https://www.youtube.com/watch?v=B-Aj7DVPXaM"
+            target="_blank"
+            rel="noopener"
+            class="proj-row"
+          >
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-status dev"></span>
+                <span class="proj-name">Real-time RPS</span>
+              </div>
+              <div class="proj-desc" style="margin-left: 16px">
+                Multiplayer game with live socket sync
+              </div>
+            </div>
+            <span class="proj-stack">Node.js · Socket.io</span>
+            <span class="proj-arrow"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 17L17 7M9 7h8v8" /></svg
+            ></span>
+          </a>
+
+          <a
+            href="https://github.com/christophervistal25/dental-care-system"
+            target="_blank"
+            rel="noopener"
+            class="proj-row"
+          >
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-status dev"></span>
+                <span class="proj-name">Dental Care System</span>
+              </div>
+              <div class="proj-desc" style="margin-left: 16px">
+                Clinic management with custom SVG charting
+              </div>
+            </div>
+            <span class="proj-stack">Laravel · Vue</span>
+            <span class="proj-arrow"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 17L17 7M9 7h8v8" /></svg
+            ></span>
+          </a>
+
+          <a
+            href="https://play.google.com/store/apps/details?id=com.bikerent"
+            target="_blank"
+            rel="noopener"
+            class="proj-row"
+          >
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-status apk"></span>
+                <span class="proj-name">Bicycle Rent Timer</span>
+              </div>
+              <div class="proj-desc" style="margin-left: 16px">
+                Rental timing + sales tracking app
+              </div>
+            </div>
+            <span class="proj-stack">Java</span>
+            <span class="proj-arrow"
+              ><svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 17L17 7M9 7h8v8" /></svg
+            ></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="section-num mono">03</span>
+            <span class="section-title">Experience</span>
+          </div>
+          <span class="section-aside mono">// 2018 — present</span>
+        </div>
+        <div class="exp-list fade-in">
+          <div class="exp-item current">
+            <div class="exp-date mono current">2023 — present</div>
+            <div class="exp-body">
+              <h3 class="exp-role">Freelance Software Engineer</h3>
+              <div class="exp-org">Self-employed</div>
+              <ul class="exp-bullets">
+                <li>
+                  Built <b>ATA Law Firm's</b> case management system on AWS —
+                  case tracking, document automation, and a secure client portal
+                  used in active legal practice.
                 </li>
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Built an offline AI transcription tool with CTranslate2 and
-                  Python — local speech-to-text with real-time waveform
+                <li>
+                  Built an <b>offline AI transcription tool</b> with CTranslate2
+                  and Python — local speech-to-text with real-time waveform
                   feedback, zero cloud dependency.
                 </li>
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Launched Dragonica Spidpex, a live gaming platform with
+                <li>
+                  Launched <b>Dragonica Spidpex</b>, a live gaming platform with
                   player accounts and community features, built with Laravel and
                   Vue.js.
                 </li>
+                <li>
+                  Launched <b>10+ community gaming websites</b> for Flyff — a popular online RPG — filling a gap before the game's official platform existed, each with player registration, item shops, and active user bases.
+                </li>
               </ul>
             </div>
           </div>
 
-          <div class="exp-item flex gap-4">
-            <div class="pt-[7px] flex-shrink-0">
-              <div
-                class="w-[11px] h-[11px] rounded-full bg-neutral-700 border-[3px] border-surface"
-              ></div>
-            </div>
-            <div class="flex-1">
-              <div
-                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5"
-              >
-                <h3 class="text-[13px] font-medium text-white">
-                  Software Engineer
-                </h3>
-                <span class="text-[10px] font-mono text-neutral-700"
-                  >jan 2021 — dec 2023</span
-                >
-              </div>
-              <p class="text-[10px] text-neutral-600 font-mono mt-0.5 mb-2.5">
-                province_of_surigao_del_sur
-              </p>
-              <ul class="space-y-1.5">
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Built Surigao del Sur's E-PDS system and tourism analytics
-                  dashboard — digitizing civil servant records and tracking
-                  visitor data for provincial planning.
+          <div class="exp-item">
+            <div class="exp-date mono">Jan 2021 — Dec 2023</div>
+            <div class="exp-body">
+              <h3 class="exp-role">Software Engineer</h3>
+              <div class="exp-org">Province of Surigao del Sur</div>
+              <ul class="exp-bullets">
+                <li>
+                  Built the province's
+                  <b>E-PDS system and tourism analytics dashboard</b> —
+                  digitizing civil servant records and tracking visitor data for
+                  provincial planning.
                 </li>
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Diagnosed and fixed performance bottlenecks in legacy
+                <li>
+                  Diagnosed and fixed performance bottlenecks in legacy
                   government applications, improving response times on
                   high-traffic reporting views.
                 </li>
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Conducted code reviews and maintained technical documentation
-                  across multiple government systems for a cross-functional
-                  team.
+                <li>
+                  <b>Introduced Git/GitHub and modern dev tooling</b> to the
+                  team — standardizing workflows and cutting integration
+                  friction across ongoing government projects.
+                </li>
+                <li>
+                  Mentored team members on Laravel fundamentals and production
+                  deployment — server environments, CI pipelines, and live
+                  release procedures.
+                </li>
+                <li>
+                  Built and delivered a suite of internal government tools — including <b>insurance deduction processing</b> (GSIS), <b>tax reporting integration</b> (BIR), an <b>SMS notification service</b>, and a <b>mobile app for employee records and 201 files</b> — reducing manual paperwork across provincial offices.
                 </li>
               </ul>
             </div>
           </div>
 
-          <div class="exp-item flex gap-4">
-            <div class="pt-[7px] flex-shrink-0">
-              <div
-                class="w-[11px] h-[11px] rounded-full bg-neutral-800 border-[3px] border-surface"
-              ></div>
-            </div>
-            <div class="flex-1">
-              <div
-                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5"
-              >
-                <h3 class="text-[13px] font-medium text-white">
-                  Intern Developer
-                </h3>
-                <span class="text-[10px] font-mono text-neutral-700"
-                  >jul — aug 2018</span
-                >
-              </div>
-              <p class="text-[10px] text-neutral-600 font-mono mt-0.5 mb-2.5">
-                nemsu
-              </p>
-              <ul class="space-y-1.5">
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Built a faculty evaluation web app with Python NLP sentiment
-                  analysis, used by 3,000+ students and staff.
+          <div class="exp-item">
+            <div class="exp-date mono">Jul — Aug 2018</div>
+            <div class="exp-body">
+              <h3 class="exp-role">Intern Developer</h3>
+              <div class="exp-org">NEMSU</div>
+              <ul class="exp-bullets">
+                <li>
+                  Built a
+                  <b
+                    >faculty evaluation web app with Python NLP sentiment
+                    analysis</b
+                  >, used by 3,000+ students and staff.
                 </li>
-                <li
-                  class="text-[11px] text-neutral-400 leading-relaxed flex gap-2"
-                >
-                  <span class="text-neutral-700 mt-px flex-shrink-0 font-mono"
-                    >›</span
-                  >Turned evaluation data into sentiment reports used by faculty
+                <li>
+                  Turned evaluation data into sentiment reports used by faculty
                   to identify and address teaching gaps.
                 </li>
+                <li>
+                  <b>Collaborated with the university's in-house developer</b> — introduced Laravel as a framework for rapid development, demonstrated its advantages, and co-ideated features that went from whiteboard to production during the internship.
+                </li>
+                <li>
+                  <b>Coached students on their research projects</b> — guided capstone teams through system design, tech stack decisions, and implementation, helping them turn academic requirements into working software.
+                </li>
               </ul>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Skills -->
-      <section id="skills" class="py-12 fade-in">
-        <div class="section-line pb-3 mb-6">
-          <div class="flex items-center gap-3">
-            <span
-              class="text-[10px] font-bold uppercase tracking-widest text-neutral-600 font-mono"
-              >skills</span
-            >
-            <span class="text-[9px] font-mono text-neutral-800"
-              >// technical</span
-            >
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="section-num mono">04</span>
+            <span class="section-title">Skills &amp; Stack</span>
+          </div>
+          <span class="section-aside mono">// what i reach for</span>
+        </div>
+        <div class="skills-list fade-in">
+          <div class="skill-row">
+            <span class="skill-row-cat mono">Backend</span>
+            <span class="skill-row-val">PHP / Laravel, Node.js, MySQL, SQL Server, REST APIs, Socket.io</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-row-cat mono">Frontend</span>
+            <span class="skill-row-val">Vue.js, TypeScript, Tailwind, Inertia.js, HTML / CSS / JS</span>
+          </div>
+          <div class="skill-row featured">
+            <span class="skill-row-cat mono"><span class="accent-dot"></span>AI &amp; ML</span>
+            <span class="skill-row-val accent-val">Python, CTranslate2, Whisper, NLP, Speech-to-Text</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-row-cat mono">DevOps &amp; Tools</span>
+            <span class="skill-row-val">Git, AWS, Docker, PHPUnit, Linux</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-row-cat mono">Other Languages</span>
+            <span class="skill-row-val">Java (Android), Go, C# (.NET)</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="grid sm:grid-cols-2 gap-2.5">
-          <div
-            class="bg-white/[0.015] border border-white/[0.035] rounded-lg p-3.5"
-          >
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-neutral-700 font-mono block mb-2.5"
-              >backend</span
-            >
-            <div class="flex flex-wrap gap-1.5">
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >php / laravel</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >node.js</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >mysql</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >sql server</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >rest apis</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >socket.io</span
-              >
-            </div>
+    <!-- Hire Me -->
+    <section id="hire">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="section-num mono">05</span>
+            <span class="section-title">Hire Me</span>
           </div>
-          <div
-            class="bg-white/[0.015] border border-white/[0.035] rounded-lg p-3.5"
-          >
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-neutral-700 font-mono block mb-2.5"
-              >frontend</span
-            >
-            <div class="flex flex-wrap gap-1.5">
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >vue.js</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >typescript</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >tailwind</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >inertia.js</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >html / css / js</span
-              >
-            </div>
-          </div>
-          <div
-            class="bg-brand-500/[0.015] border border-brand-500/[0.05] rounded-lg p-3.5"
-          >
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-brand-500/40 font-mono block mb-2.5"
-              >ai & ml</span
-            >
-            <div class="flex flex-wrap gap-1.5">
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >python</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-brand-500/50 bg-brand-500/[0.05] border border-brand-500/[0.08] rounded cursor-default"
-                >ctranslate2</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >nlp</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >speech-to-text</span
-              >
-            </div>
-          </div>
-          <div
-            class="bg-white/[0.015] border border-white/[0.035] rounded-lg p-3.5"
-          >
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-neutral-700 font-mono block mb-2.5"
-              >devops</span
-            >
-            <div class="flex flex-wrap gap-1.5">
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >git</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >aws</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >docker</span
-              >
-              <span
-                class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-                >phpunit</span
-              >
-            </div>
-          </div>
+          <span class="section-aside mono">// freelance &amp; contract</span>
         </div>
-
-        <div
-          class="mt-2.5 bg-white/[0.015] border border-white/[0.035] rounded-lg p-3.5"
-        >
-          <span
-            class="text-[9px] font-bold uppercase tracking-widest text-neutral-700 font-mono block mb-2.5"
-            >other_languages</span
-          >
-          <div class="flex flex-wrap gap-1.5">
-            <span
-              class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-              >java (android)</span
-            >
-            <span
-              class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-              >go</span
-            >
-            <span
-              class="tag px-2 py-0.5 text-[10px] font-mono text-neutral-500 bg-white/[0.025] border border-white/[0.035] rounded cursor-default"
-              >c# (.net)</span
-            >
+        <div class="services fade-in">
+          <div class="services-head">
+            <div>
+              <h2 class="services-title">Bring me in for the hard parts.</h2>
+              <p class="services-sub">
+                I take on full-stack projects end-to-end — from spec to
+                deployment — and I'm especially useful when there's a legacy
+                system to modernize or AI to integrate without leaking data to
+                the cloud.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="py-12 fade-in">
-        <div class="section-line pb-3 mb-6">
-          <div class="flex items-center gap-3">
-            <span
-              class="text-[10px] font-bold uppercase tracking-widest text-neutral-600 font-mono"
-              >projects</span
-            >
-            <span class="text-[9px] font-mono text-neutral-800"
-              >// selected — 9</span
-            >
-          </div>
-        </div>
-
-        <!-- Headers -->
-        <div class="flex items-center gap-3 px-3 pb-2 mb-0.5">
-          <div class="w-3 flex-shrink-0"></div>
-          <div class="flex-1 min-w-0">
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-              >name</span
-            >
-          </div>
-          <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-              >stack</span
-            >
-          </div>
-          <div class="w-12 text-right flex-shrink-0">
-            <span
-              class="text-[9px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-              >status</span
-            >
-          </div>
-          <div class="w-4 flex-shrink-0"></div>
-        </div>
-
-        <div class="space-y-px">
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-green-500/50"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >ATA Law Firm</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >case management · client portal · doc automation</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700"
-                >Laravel · Vue</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-green-500/40 font-mono"
-                >live</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row ai-row flex items-center gap-3 px-3 py-3 rounded-md border border-brand-500/[0.05]"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-brand-500 ai-dot"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5">
-                <span
-                  class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors truncate"
-                  >Transcriber</span
-                ><span
-                  class="px-1 py-px text-[7px] font-bold uppercase tracking-widest text-brand-400 bg-brand-500/[0.08] border border-brand-500/15 rounded flex-shrink-0"
-                  >ai</span
-                >
+          <div class="services-list">
+            <div class="service">
+              <span class="service-num">01</span>
+              <div>
+                <div class="service-name">Full-stack web apps</div>
+                <p class="service-desc">
+                  Laravel + Vue, end-to-end. From spec to deployment.
+                </p>
               </div>
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >offline stt · waveform · ctranslate2</span
+            </div>
+            <div class="service">
+              <span class="service-num">02</span>
+              <div>
+                <div class="service-name">Government / enterprise systems</div>
+                <p class="service-desc">
+                  Records management, case tracking, internal tools.
+                </p>
+              </div>
+            </div>
+            <div class="service">
+              <span class="service-num">03</span>
+              <div>
+                <div class="service-name">AI integration</div>
+                <p class="service-desc">
+                  Offline / on-prem speech, NLP, and inference pipelines.
+                </p>
+              </div>
+            </div>
+            <div class="service">
+              <span class="service-num">04</span>
+              <div>
+                <div class="service-name">Legacy modernization</div>
+                <p class="service-desc">
+                  Rescuing slow PHP systems. Profiling, refactoring, scaling.
+                </p>
+              </div>
+            </div>
+            <div class="service">
+              <span class="service-num">05</span>
+              <div>
+                <div class="service-name">DevOps &amp; deployment</div>
+                <p class="service-desc">
+                  AWS setup, CI/CD pipelines, server hardening.
+                </p>
+              </div>
+            </div>
+            <div class="service">
+              <span class="service-num">06</span>
+              <div>
+                <div class="service-name">Code review &amp; mentoring</div>
+                <p class="service-desc">
+                  Team upskilling, workflow standardization, technical docs.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="services-cta">
+            <div class="services-cta-text">
+              <b>Have a project in mind?</b> Tell me about it — I usually reply within 24 hours.
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; width: 100%; margin-top: 8px">
+              <a
+                href="mailto:vistalchris@gmail.com?subject=Project inquiry"
+                class="btn btn-primary"
               >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+                Let's Talk
+              </a>
             </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-brand-500/30"
-                >Python</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-                >—</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-brand-500/30"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-green-500/50"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >NEMSU Data Hub</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >university data · student records</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700"
-                >Laravel · Vue</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-green-500/40 font-mono"
-                >live</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-neutral-800"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >GSIS Deduction</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >gov insurance · custom php</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700"
-                >PHP · SQL</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-                >web</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-green-500/50"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >Dragonica Spidpex</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >gaming platform · community</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700"
-                >Laravel · Vue</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-green-500/40 font-mono"
-                >live</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-neutral-800"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >Real-time RPS Game</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >multiplayer · socket.io</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700"
-                >Node.js</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-                >web</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-neutral-800"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >NEMSU SMS Gateway</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >android sms · notifications</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700">Java</span>
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-blue-400/30 font-mono"
-                >apk</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-neutral-800"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >Dental Clinic</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >clinic mgmt · svg charting</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700"
-                >Laravel · Vue</span
-              >
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-neutral-800 font-mono"
-                >web</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
-
-          <a
-            href="#"
-            class="ledger-row flex items-center gap-3 px-3 py-3 rounded-md border border-transparent"
-          >
-            <div class="w-3 flex-shrink-0">
-              <div class="w-1.5 h-1.5 rounded-full bg-neutral-800"></div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span
-                class="ledger-title text-[13px] font-medium text-neutral-300 transition-colors block truncate"
-                >Bicycle Rent Timer</span
-              >
-              <span
-                class="text-[10px] text-neutral-700 font-mono block truncate mt-px"
-                >rental timer · sales tracking</span
-              >
-            </div>
-            <div class="hidden sm:block w-[72px] text-right flex-shrink-0">
-              <span class="text-[10px] font-mono text-neutral-700">Java</span>
-            </div>
-            <div class="w-12 text-right flex-shrink-0">
-              <span
-                class="text-[8px] font-bold uppercase tracking-widest text-blue-400/30 font-mono"
-                >apk</span
-              >
-            </div>
-            <div class="ledger-arrow w-4 flex-shrink-0 flex justify-end">
-              <i
-                data-lucide="arrow-up-right"
-                class="w-3 h-3 text-neutral-700"
-              ></i>
-            </div>
-          </a>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr class="border-white/[0.03]" />
-
-      <!-- Footer -->
-      <footer
-        class="py-8 flex flex-col sm:flex-row items-center justify-between gap-3"
-      >
-        <span class="text-[10px] text-neutral-800 font-mono"
-          >© 2025 christopher_vistal</span
-        >
-        <div class="flex items-center gap-2.5">
-          <a
-            href="mailto:vistalchris@gmail.com"
-            class="text-neutral-800 hover:text-neutral-400 transition-colors"
-            ><i data-lucide="mail" class="w-3.5 h-3.5"></i
-          ></a>
-          <a
-            href="https://github.com/christophervistal25"
-            target="_blank"
-            class="text-neutral-800 hover:text-neutral-400 transition-colors"
-            ><i data-lucide="github" class="w-3.5 h-3.5"></i
-          ></a>
-          <a
-            href="#"
-            class="text-neutral-800 hover:text-neutral-400 transition-colors"
-            ><i data-lucide="linkedin" class="w-3.5 h-3.5"></i
-          ></a>
-          <a
-            href="#"
-            class="text-neutral-800 hover:text-neutral-400 transition-colors"
-            ><i data-lucide="youtube" class="w-3.5 h-3.5"></i
-          ></a>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-left">
+            <h3>Let's build something.</h3>
+            <p>Currently accepting projects starting next month.</p>
+          </div>
+          <div class="footer-links">
+            <a class="footer-link" href="mailto:vistalchris@gmail.com">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="M3 7l9 6 9-6" />
+              </svg>
+              Email
+            </a>
+            <a
+              class="footer-link"
+              href="https://github.com/christophervistal25"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5a3 3 0 0 0-.8-2.2c2.8-.3 5.7-1.4 5.7-6.1A4.7 4.7 0 0 0 18.6 7a4.4 4.4 0 0 0-.1-3.3s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.6 3.4 5.5 3.7 5.5 3.7A4.4 4.4 0 0 0 5.4 7 4.7 4.7 0 0 0 4 10.2c0 4.7 2.9 5.8 5.7 6.1a3 3 0 0 0-.8 2.2V22"
+                />
+              </svg>
+              GitHub
+            </a>
+            <a
+              class="footer-link"
+              href="https://www.linkedin.com/in/christophervistal25/"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 11v5" />
+              </svg>
+              LinkedIn
+            </a>
+            <a
+              class="footer-link"
+              href="https://www.youtube.com/@tophertips3387"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+              YouTube
+            </a>
+          </div>
         </div>
-      </footer>
-    </div>
+        <div class="footer-bottom">
+          <span>© 2026 christopher_vistal · Surigao del Sur, PH</span>
+          <span>Built with care · v2.0</span>
+        </div>
+      </div>
+    </footer>
 
     <script>
-      lucide.createIcons();
-
-      // Typing
-      const cmds = [
-        "cat projects/*.md",
-        "ls -la skills/",
-        "git log --oneline",
-        "docker ps --format",
-        "python transcriber.py --help",
-      ];
-      let ci = 0,
-        chi = 0,
-        del = false;
-      const te = document.getElementById("typed-text");
-      function loop() {
-        const c = cmds[ci];
-        if (!del) {
-          te.textContent = c.substring(0, chi + 1);
-          chi++;
-          if (chi === c.length) {
-            del = true;
-            setTimeout(loop, 2200);
-            return;
-          }
-          setTimeout(loop, 55 + Math.random() * 35);
-        } else {
-          te.textContent = c.substring(0, chi - 1);
-          chi--;
-          if (chi === 0) {
-            del = false;
-            ci = (ci + 1) % cmds.length;
-            setTimeout(loop, 350);
-            return;
-          }
-          setTimeout(loop, 25);
-        }
-      }
-      setTimeout(loop, 1200);
-
-      // Fade in
       const obs = new IntersectionObserver(
-        (e) => {
-          e.forEach((x) => {
-            if (x.isIntersecting) x.target.classList.add("visible");
+        (entries) =>
+          entries.forEach(
+            (e) => e.isIntersecting && e.target.classList.add("visible"),
+          ),
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".fade-in").forEach((el) => obs.observe(el));
+
+      // Active nav link on scroll
+      const sections = document.querySelectorAll("section[id], header[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const navObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              navLinks.forEach((l) => l.classList.remove("active"));
+              const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+              if (active) active.classList.add("active");
+            }
           });
         },
-        { threshold: 0.08, rootMargin: "0px 0px -30px 0px" },
+        { rootMargin: "-40% 0px -55% 0px" }
       );
-      document.querySelectorAll(".fade-in").forEach((x) => obs.observe(x));
-
-      // Mobile menu
-      const mt = document.getElementById("mobile-toggle"),
-        mm = document.getElementById("mobile-menu");
-      let mo = false;
-      mt.addEventListener("click", () => {
-        mo = !mo;
-        mm.classList.toggle("hidden", !mo);
-      });
-      document.querySelectorAll(".mobile-link").forEach((l) =>
-        l.addEventListener("click", () => {
-          mo = false;
-          mm.classList.add("hidden");
-        }),
-      );
-
-      // Nav active
-      const secs = document.querySelectorAll("section[id]"),
-        nls = document.querySelectorAll(".nav-link");
-      window.addEventListener("scroll", () => {
-        let c = "";
-        secs.forEach((s) => {
-          if (window.scrollY >= s.offsetTop - 110) c = s.id;
-        });
-        nls.forEach((l) => {
-          l.classList.remove("text-white", "bg-white/5");
-          if (l.getAttribute("href") === "#" + c)
-            l.classList.add("text-white", "bg-white/5");
-        });
-      });
+      sections.forEach((s) => navObs.observe(s));
     </script>
   </body>
 </html>

@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christopher Vistal — Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text:    #111;
+      --muted:   #4b5563;
+      --light:   #9ca3af;
+      --border:  #e5e7eb;
+      --accent:  #2563eb;
+      --accent2: #1d4ed8;
+      --page:    760px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 9.5pt;
+      color: var(--text);
+      background: #f3f4f6;
+      line-height: 1.55;
+    }
+
+    /* ── Print bar ── */
+    .print-bar {
+      max-width: var(--page);
+      margin: 0 auto 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .print-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.01em;
+    }
+    .print-btn:hover { background: var(--accent2); }
+
+    /* ── Page ── */
+    .page {
+      background: #fff;
+      max-width: var(--page);
+      margin: 0 auto 48px;
+      padding: 44px 52px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--accent);
+    }
+
+    /* ── Header ── */
+    .resume-header { margin-bottom: 20px; }
+    .resume-header-left { display: block; }
+
+    .resume-name {
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .resume-name span { color: var(--text); }
+
+    .resume-title {
+      font-size: 10pt;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    /* Contact strip — 3-column grid, 2 rows */
+    .resume-contact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px 0;
+      font-size: 8pt;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 7px 0;
+    }
+    .resume-contact a { color: var(--muted); text-decoration: none; }
+    .resume-contact a:hover { color: var(--accent); }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .contact-item svg { color: var(--accent); flex-shrink: 0; }
+    .contact-sep { display: none; }
+
+    /* ── Section ── */
+    .section { margin-top: 18px; }
+
+    .section-title {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    /* ── Experience ── */
+    .exp-item { margin-bottom: 14px; }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 1px;
+    }
+    .exp-role { font-weight: 700; font-size: 9.5pt; color: var(--text); }
+    .exp-date {
+      font-size: 8pt;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .exp-org {
+      font-size: 8.5pt;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .exp-bullets { padding-left: 14px; }
+    .exp-bullets li {
+      margin-bottom: 3px;
+      color: var(--muted);
+      list-style-type: disc;
+    }
+    .exp-bullets li b { font-weight: 600; color: var(--text); }
+
+    /* ── Skills ── */
+    .skills-table { width: 100%; border-collapse: collapse; }
+    .skills-table tr { border-bottom: 1px solid var(--border); }
+    .skills-table tr:last-child { border-bottom: none; }
+    .skills-table td { padding: 5px 0; vertical-align: middle; }
+    .skills-table td:first-child {
+      font-weight: 600;
+      font-size: 8.5pt;
+      width: 120px;
+      color: var(--text);
+      padding-right: 16px;
+    }
+    .skills-table td:last-child {
+      color: var(--muted);
+      font-size: 8.5pt;
+    }
+    .skills-table tr.featured td:first-child { color: var(--accent); }
+    .skills-table tr.featured td:last-child { color: var(--text); }
+
+    /* ── Projects ── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 28px;
+    }
+    .proj-name-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .proj-name { font-weight: 600; font-size: 9pt; color: var(--text); }
+    .proj-url { font-size: 7.5pt; color: var(--accent); }
+    .proj-url a { color: var(--accent); text-decoration: none; }
+    .proj-url a:hover { text-decoration: underline; }
+    .proj-desc { font-size: 8pt; color: var(--muted); }
+
+    /* ── References ── */
+    .ref-item { padding: 2px 0; }
+    .ref-quote { font-size: 8.5pt; color: var(--muted); font-style: italic; }
+
+    /* ── Education ── */
+    .edu-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .edu-school { font-weight: 700; font-size: 9.5pt; color: var(--text); }
+    .edu-date { font-size: 8pt; color: var(--light); white-space: nowrap; }
+    .edu-degree { font-size: 8.5pt; color: var(--muted); font-style: italic; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; }
+      .page {
+        margin: 0; padding: 28px 36px;
+        box-shadow: none; max-width: 100%;
+        border-top: 3px solid var(--accent);
+      }
+      .print-bar { display: none; }
+      a { color: inherit !important; }
+      @page { margin: 0.3in 0.4in; size: letter; }
+    }
+
+    @media screen and (max-width: 800px) {
+      .page { padding: 24px 20px; }
+      .print-bar { padding: 12px 20px 0; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .resume-contact { flex-wrap: wrap; }
+      .contact-sep { display: none; }
+      .contact-item { flex: 1 0 45%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <button class="print-btn" onclick="window.print()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Save as PDF
+    </button>
+  </div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="resume-header">
+      <div class="resume-header-left">
+      <div class="resume-name">Christopher <span>Vistal</span></div>
+      <div class="resume-title">Full-Stack Software Engineer &nbsp;·&nbsp; Government, Law &amp; Enterprise Systems</div>
+      <div class="resume-contact">
+        <!-- Row 1 -->
+        <span class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+        </span>
+        <span class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Tandag, Surigao del Sur, PH
+        </span>
+        <span class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5a3 3 0 0 0-.8-2.2c2.8-.3 5.7-1.4 5.7-6.1A4.7 4.7 0 0 0 18.6 7a4.4 4.4 0 0 0-.1-3.3s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.6 3.4 5.5 3.7 5.5 3.7A4.4 4.4 0 0 0 5.4 7 4.7 4.7 0 0 0 4 10.2c0 4.7 2.9 5.8 5.7 6.1a3 3 0 0 0-.8 2.2V22"/></svg>
+          <a href="https://github.com/christophervistal25" target="_blank">github.com/christophervistal25</a>
+        </span>
+        <!-- Row 2 -->
+        <span class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 11v5"/></svg>
+          <a href="https://www.linkedin.com/in/christophervistal25/" target="_blank">linkedin.com/in/christophervistal25</a>
+        </span>
+        <span class="contact-item">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          <a href="https://chris-dev.netlify.app" target="_blank">chris-dev.netlify.app</a>
+        </span>
+      </div>
+      </div><!-- end resume-header-left -->
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Freelance Software Engineer</span>
+          <span class="exp-date">2023 — Present</span>
+        </div>
+        <div class="exp-org">Independent Contractor</div>
+        <ul class="exp-bullets">
+          <li>Delivered <b>ATA Law Firm's</b> case management platform on AWS — case tracking, document automation, and a client portal in active daily use.</li>
+          <li>Engineered an <b>offline AI transcription tool</b> with CTranslate2 and Python — local speech-to-text with real-time waveform feedback, zero cloud dependency.</li>
+          <li>Launched <b>Dragonica Spidpex</b>, a live gaming platform with player accounts, leaderboards, and an active community, built with Laravel and Vue.js.</li>
+          <li>Launched <b>10+ community gaming websites</b> for Flyff — each with player registration, item shops, and active user bases.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Software Engineer</span>
+          <span class="exp-date">Jan 2021 — Dec 2023</span>
+        </div>
+        <div class="exp-org">Province of Surigao del Sur</div>
+        <ul class="exp-bullets">
+          <li>Built the province's <b>E-PDS system and tourism analytics dashboard</b> — digitizing civil servant records and tracking visitor data for provincial planning.</li>
+          <li>Delivered a suite of internal tools: <b>GSIS insurance deduction processing</b>, <b>BIR tax reporting integration</b>, an <b>SMS notification service</b>, and a <b>mobile app for employee 201 files</b> — reducing manual paperwork across provincial offices.</li>
+          <li>Cut response times on high-traffic government reporting views by resolving bottlenecks in legacy applications.</li>
+          <li><b>Introduced Git/GitHub and modern dev tooling</b> to the team — standardizing workflows and cutting integration friction across ongoing government projects.</li>
+          <li>Mentored team members on Laravel fundamentals and production deployment — server environments, CI pipelines, and live release procedures.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Intern Developer</span>
+          <span class="exp-date">Jul — Aug 2018</span>
+        </div>
+        <div class="exp-org">N.E. Mindanao State University</div>
+        <ul class="exp-bullets">
+          <li>Built a <b>faculty evaluation web app with Python NLP sentiment analysis</b> — adopted by 3,000+ students and staff across the university.</li>
+          <li>Collaborated with the university's in-house developer — introduced Laravel for rapid development and co-shipped features from whiteboard to production.</li>
+          <li>Coached capstone students through system design, stack decisions, and implementation — turning academic requirements into working software.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <table class="skills-table">
+        <tr>
+          <td>Backend</td>
+          <td>PHP / Laravel &nbsp;·&nbsp; Node.js / Express &nbsp;·&nbsp; MySQL / SQL Server &nbsp;·&nbsp; RESTful APIs &nbsp;·&nbsp; Socket.io</td>
+        </tr>
+        <tr>
+          <td>Frontend</td>
+          <td>Vue.js &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Tailwind CSS &nbsp;·&nbsp; Inertia.js &nbsp;·&nbsp; HTML / CSS / JS</td>
+        </tr>
+        <tr class="featured">
+          <td>AI &amp; ML</td>
+          <td>Python &nbsp;·&nbsp; CTranslate2 &nbsp;·&nbsp; Whisper &nbsp;·&nbsp; NLP &nbsp;·&nbsp; Speech-to-Text</td>
+        </tr>
+        <tr>
+          <td>DevOps &amp; Tools</td>
+          <td>Git / GitHub &nbsp;·&nbsp; AWS (EC2, S3, RDS) &nbsp;·&nbsp; Docker &nbsp;·&nbsp; PHPUnit / Pest &nbsp;·&nbsp; Linux</td>
+        </tr>
+        <tr>
+          <td>Other</td>
+          <td>Java (Android) &nbsp;·&nbsp; Go &nbsp;·&nbsp; C# (.NET)</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Selected Projects -->
+    <div class="section">
+      <div class="section-title">Selected Projects</div>
+      <div class="proj-grid">
+        <div class="proj-item">
+          <div class="proj-name-row">
+            <span class="proj-name">ATA Law Firm</span>
+            <span class="proj-url"><a href="https://atafirm.ph" target="_blank">atafirm.ph</a></span>
+          </div>
+          <div class="proj-desc">Production case management system — case tracking, document automation, client portal on AWS. Laravel, Vue.js.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name-row">
+            <span class="proj-name">NEMSU Data Hub</span>
+            <span class="proj-url"><a href="https://udh.nemsu.edu.ph" target="_blank">udh.nemsu.edu.ph</a></span>
+          </div>
+          <div class="proj-desc">Live university data platform managing student and faculty records. Laravel, Vue.js, MySQL.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name-row">
+            <span class="proj-name">Dragonica Spidpex</span>
+            <span class="proj-url"><a href="https://dragonicaspidpex.com" target="_blank">dragonicaspidpex.com</a></span>
+          </div>
+          <div class="proj-desc">Live gaming platform with player accounts, leaderboards, and community features. Laravel, Vue.js.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name-row">
+            <span class="proj-name">Offline AI Transcriber</span>
+          </div>
+          <div class="proj-desc">Local speech-to-text with real-time waveform visualization — no cloud, fully on-device. Python, CTranslate2, Whisper.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name-row">
+            <span class="proj-name">GSIS Deduction System</span>
+            <span class="proj-url"><a href="https://github.com/christophervistal25/GSIS-Deduction" target="_blank">github</a></span>
+          </div>
+          <div class="proj-desc">Government insurance deduction tracker for civil servants. PHP, SQL Server.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name-row">
+            <span class="proj-name">Dental Care System</span>
+            <span class="proj-url"><a href="https://github.com/christophervistal25/dental-care-system" target="_blank">github</a></span>
+          </div>
+          <div class="proj-desc">Clinic management with interactive SVG tooth charting. Laravel, Vue.js.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- References -->
+    <div class="section">
+      <div class="section-title">References</div>
+      <div class="ref-item">
+        <span class="ref-quote">"Available upon request — including a reference from ATA Law Firm."</span>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu-header">
+        <span class="edu-school">Surigao del Sur State University</span>
+        <span class="edu-date">2015 — 2019</span>
+      </div>
+      <div class="edu-degree">Bachelor of Science in Computer Science</div>
+    </div>
+
+  </div>
+
+</body>
+</html>
