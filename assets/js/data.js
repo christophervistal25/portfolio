@@ -40,6 +40,16 @@ window.PORTFOLIO_DATA = {
       stack: ["Python", "CTranslate2", "Whisper", "PyQt"],
       ai: true,
     },
+    {
+      key: "repository-cleaner",
+      title: "Repository Cleaner",
+      tag: "go · bubbletea · tui",
+      summary:
+        "Terminal-based GitHub repo manager built with Go and Bubbletea — browse, search, mark, and bulk-delete repositories with an animated progress bar. Vim-style bindings, real-time filter, and browser integration from the terminal.",
+      impact: "Manage hundreds of repos in seconds — no browser needed.",
+      stack: ["Go", "Bubbletea", "Lipgloss", "GitHub API"],
+      url: "https://github.com/christophervistal25/repository-cleaner",
+    },
   ],
   projects: [
     {

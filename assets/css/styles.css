@@ -484,8 +484,11 @@ section {
 /* ----- Featured case studies ----- */
 .case-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 14px;
+}
+@media (max-width: 960px) {
+  .case-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 720px) {
   .case-grid { grid-template-columns: 1fr; }
