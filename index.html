@@ -50,8 +50,33 @@
           >
         </div>
         <a href="mailto:vistalchris@gmail.com" class="nav-cta">Contact</a>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </nav>
     </div>
+
+    <!-- Mobile nav drawer -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#work" class="mobile-nav-link" onclick="closeMobileNav()"
+        ><span class="nav-slash">//</span>Work</a
+      >
+      <a href="#experience" class="mobile-nav-link" onclick="closeMobileNav()"
+        ><span class="nav-slash">//</span>Experience</a
+      >
+      <a href="#skills" class="mobile-nav-link" onclick="closeMobileNav()"
+        ><span class="nav-slash">//</span>Skills</a
+      >
+      <a href="#hire" class="mobile-nav-link" onclick="closeMobileNav()"
+        ><span class="nav-slash">//</span>Services</a
+      >
+      <a href="mailto:vistalchris@gmail.com" class="mobile-nav-cta">Contact</a>
+    </div>
+    <div
+      class="mobile-nav-backdrop"
+      id="mobileNavBackdrop"
+      onclick="closeMobileNav()"
+    ></div>
 
     <!-- Hero -->
     <header class="hero" id="top">
@@ -86,7 +111,7 @@
             Start a project
           </a>
           <a
-            href="https://github.com/christophervistal25"
+            href="https://drive.google.com/file/d/1lThwA75b7XgcvIsg_-LCxV23xQRO4elG/view?usp=sharing"
             target="_blank"
             rel="noopener"
             class="btn btn-secondary"
@@ -195,18 +220,6 @@
             <span class="hero-meta-label mono">Working hours</span>
             <span class="hero-meta-value">PHT (UTC+8) · async-friendly</span>
           </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label mono">Open to</span>
-            <span class="hero-meta-value"
-              >Remote · Contract · Full-time · Part-time</span
-            >
-          </div>
-          <div class="hero-meta-item">
-            <span class="hero-meta-label mono">Availability</span>
-            <span class="hero-meta-value" style="color: var(--green)"
-              >Open · June 2026</span
-            >
-          </div>
         </div>
       </div>
     </header>
@@ -261,12 +274,26 @@
             class="case"
           >
             <div class="case-body">
-              <div class="case-header">
+              <div class="case-left">
                 <span class="case-tag mono">case management · aws</span>
-                <span class="case-arrow">
+                <div class="case-title">ATA Law Firm</div>
+                <div class="case-stack">
+                  <span class="tag">Laravel</span>
+                  <span class="tag">Vue.js</span>
+                  <span class="tag">AWS</span>
+                  <span class="tag">MySQL</span>
+                </div>
+              </div>
+              <div class="case-right">
+                <p class="case-summary">
+                  Designed and built a complete case management system on AWS —
+                  case tracking, document automation, and a secure client portal
+                  used in active legal practice.
+                </p>
+                <div class="case-impact mono">
                   <svg
-                    width="16"
-                    height="16"
+                    width="12"
+                    height="12"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -274,20 +301,20 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="M7 17L17 7M9 7h8v8" />
+                    <path
+                      d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
+                    />
                   </svg>
-                </span>
+                  <span
+                    ><b>Impact:</b> Replaced spreadsheet-based workflows for an
+                    entire firm.</span
+                  >
+                </div>
               </div>
-              <div class="case-title">ATA Law Firm</div>
-              <p class="case-summary">
-                Designed and built a complete case management system on AWS —
-                case tracking, document automation, and a secure client portal
-                used in active legal practice.
-              </p>
-              <div class="case-impact mono">
+              <span class="case-arrow">
                 <svg
-                  width="12"
-                  height="12"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -295,32 +322,39 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path
-                    d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
-                  />
+                  <path d="M7 17L17 7M9 7h8v8" />
                 </svg>
-                <span
-                  ><b>Impact:</b> Replaced spreadsheet-based workflows for an
-                  entire firm.</span
-                >
-              </div>
-              <div class="case-stack">
-                <span class="tag">Laravel</span>
-                <span class="tag">Vue.js</span>
-                <span class="tag">AWS</span>
-                <span class="tag">MySQL</span>
-              </div>
+              </span>
             </div>
           </a>
 
-          <a href="https://github.com/christophervistal25/repository-cleaner" target="_blank" rel="noopener" class="case">
+          <a
+            href="https://github.com/christophervistal25/repository-cleaner"
+            target="_blank"
+            rel="noopener"
+            class="case"
+          >
             <div class="case-body">
-              <div class="case-header">
+              <div class="case-left">
                 <span class="case-tag mono">go · bubbletea · tui</span>
-                <span class="case-arrow">
+                <div class="case-title">Repository Cleaner</div>
+                <div class="case-stack">
+                  <span class="tag">Go</span>
+                  <span class="tag">Bubbletea</span>
+                  <span class="tag">Lipgloss</span>
+                  <span class="tag">GitHub API</span>
+                </div>
+              </div>
+              <div class="case-right">
+                <p class="case-summary">
+                  Terminal-based GitHub repo manager — browse, search, mark, and
+                  bulk-delete repositories with an animated progress bar.
+                  Vim-style bindings and real-time filter from the terminal.
+                </p>
+                <div class="case-impact mono">
                   <svg
-                    width="16"
-                    height="16"
+                    width="12"
+                    height="12"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -328,21 +362,20 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="M7 17L17 7M9 7h8v8" />
+                    <path
+                      d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
+                    />
                   </svg>
-                </span>
+                  <span
+                    ><b>Impact:</b> Manage hundreds of repos in seconds — no
+                    browser needed.</span
+                  >
+                </div>
               </div>
-              <div class="case-title">Repository Cleaner</div>
-              <p class="case-summary">
-                Terminal-based GitHub repo manager built with Go and Bubbletea —
-                browse, search, mark, and bulk-delete repositories with an
-                animated progress bar. Vim-style bindings, real-time filter,
-                and browser integration from the terminal.
-              </p>
-              <div class="case-impact mono">
+              <span class="case-arrow">
                 <svg
-                  width="12"
-                  height="12"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -350,29 +383,34 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path
-                    d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
-                  />
+                  <path d="M7 17L17 7M9 7h8v8" />
                 </svg>
-                <span><b>Impact:</b> Manage hundreds of repos in seconds — no browser needed.</span>
-              </div>
-              <div class="case-stack">
-                <span class="tag">Go</span>
-                <span class="tag">Bubbletea</span>
-                <span class="tag">Lipgloss</span>
-                <span class="tag">GitHub API</span>
-              </div>
+              </span>
             </div>
           </a>
 
           <a href="#" class="case">
             <div class="case-body">
-              <div class="case-header">
+              <div class="case-left">
                 <span class="case-tag mono ai">ai · ctranslate2 · python</span>
-                <span class="case-arrow">
+                <div class="case-title">Offline AI Transcriber</div>
+                <div class="case-stack">
+                  <span class="tag ai">Python</span>
+                  <span class="tag ai">CTranslate2</span>
+                  <span class="tag ai">Whisper</span>
+                  <span class="tag ai">PyQt</span>
+                </div>
+              </div>
+              <div class="case-right">
+                <p class="case-summary">
+                  Local-first speech-to-text with real-time waveform feedback.
+                  Runs entirely on-device — no audio ever leaves the machine.
+                  Built for sensitive legal/medical contexts.
+                </p>
+                <div class="case-impact mono">
                   <svg
-                    width="16"
-                    height="16"
+                    width="12"
+                    height="12"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -380,20 +418,20 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="M7 17L17 7M9 7h8v8" />
+                    <path
+                      d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
+                    />
                   </svg>
-                </span>
+                  <span
+                    ><b>Impact:</b> Zero cloud dependency. Faster than cloud STT
+                    on modern CPUs.</span
+                  >
+                </div>
               </div>
-              <div class="case-title">Offline AI Transcriber</div>
-              <p class="case-summary">
-                Local-first speech-to-text with real-time waveform feedback.
-                Runs entirely on-device — no audio ever leaves the machine.
-                Built for sensitive legal/medical contexts.
-              </p>
-              <div class="case-impact mono">
+              <span class="case-arrow">
                 <svg
-                  width="12"
-                  height="12"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -401,21 +439,9 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 >
-                  <path
-                    d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"
-                  />
+                  <path d="M7 17L17 7M9 7h8v8" />
                 </svg>
-                <span
-                  ><b>Impact:</b> Zero cloud dependency. Faster than cloud STT
-                  on modern CPUs.</span
-                >
-              </div>
-              <div class="case-stack">
-                <span class="tag ai">Python</span>
-                <span class="tag ai">CTranslate2</span>
-                <span class="tag ai">Whisper</span>
-                <span class="tag ai">PyQt</span>
-              </div>
+              </span>
             </div>
           </a>
         </div>
@@ -1013,6 +1039,21 @@
         { threshold: 0.1 },
       );
       document.querySelectorAll(".fade-in").forEach((el) => obs.observe(el));
+
+      // Hamburger menu
+      const navToggle = document.getElementById("navToggle");
+      const mobileNav = document.getElementById("mobileNav");
+      const mobileNavBackdrop = document.getElementById("mobileNavBackdrop");
+      navToggle.addEventListener("click", () => {
+        const open = mobileNav.classList.toggle("open");
+        navToggle.classList.toggle("open", open);
+        mobileNavBackdrop.classList.toggle("open", open);
+      });
+      function closeMobileNav() {
+        mobileNav.classList.remove("open");
+        navToggle.classList.remove("open");
+        mobileNavBackdrop.classList.remove("open");
+      }
 
       // Active nav link on scroll
       const sections = document.querySelectorAll("section[id], header[id]");
