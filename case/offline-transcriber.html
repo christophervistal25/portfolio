@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline AI Transcriber — On-Device Speech-to-Text · Christopher Vistal</title>
+    <meta
+      name="description"
+      content="A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, designed for sensitive legal and medical audio."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Offline AI Transcriber — On-Device Speech-to-Text" />
+    <meta
+      property="og:description"
+      content="Local speech-to-text with CTranslate2 + Whisper. No audio ever leaves the machine. Built for sensitive legal/medical contexts."
+    />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-density="comfortable">
+    <main class="case-wrap">
+      <a href="../index.html" class="case-back">back to portfolio</a>
+
+      <header class="case-frontmatter">
+        <span class="case-eyebrow">// Case Study 03 &nbsp;·&nbsp; on-device AI</span>
+        <h1 class="case-h1">Offline AI Transcriber — speech-to-text without the cloud</h1>
+        <p class="case-deck">
+          A local-first speech-to-text tool built on Whisper via CTranslate2.
+          <b>Zero cloud dependency.</b> Real-time waveform feedback, fast
+          enough on a modern CPU to compete with cloud APIs, and built for
+          the contexts where you cannot ship audio off the machine in the
+          first place.
+        </p>
+        <dl class="case-meta">
+          <dt>Role</dt><dd>Sole engineer — research, build, packaging</dd>
+          <dt>Stack</dt><dd>Python, CTranslate2, faster-whisper, PyQt, NumPy</dd>
+          <dt>Status</dt><dd>Working tool, used in private engagements</dd>
+        </dl>
+      </header>
+
+      <article class="case-prose">
+        <h2>Why offline</h2>
+        <p>
+          Cloud speech-to-text is a solved problem if you can send the
+          audio. The interesting work is when you cannot. A legal interview
+          covered by privilege. A medical session. Internal recordings
+          you would prefer not to hand to a third party for transcription,
+          let alone for the third party's training data.
+        </p>
+        <p>
+          The market for on-device speech is real and has been narrow on
+          tooling. The off-the-shelf desktop apps are either slow, paid
+          subscriptions that still ping a server, or locked to a specific
+          hardware vendor. I wanted a tool that was honest about its
+          architecture: the audio file enters the process, the transcript
+          comes out, nothing crosses the boundary in either direction.
+        </p>
+
+        <h2>The technical choices</h2>
+        <h3>Whisper via CTranslate2</h3>
+        <p>
+          OpenAI's Whisper models are the obvious starting point. The
+          obvious deployment, the reference PyTorch model, is also slow
+          on CPU. CTranslate2 reimplements transformer inference in
+          optimized C++ with quantization, dramatically cutting both
+          memory and latency.
+        </p>
+        <p>
+          In practice the same audio file that takes a reference Whisper
+          model a minute on CPU runs in a fraction of that with
+          faster-whisper / CTranslate2 at int8 quantization. The quality
+          drop at int8 on the medium and large models is small enough
+          that a human reviewer rarely catches a difference compared to
+          the float16 baseline.
+        </p>
+
+        <h3>Real-time waveform feedback</h3>
+        <p>
+          The thing that made the tool feel professional instead of
+          academic was not the transcription quality. It was the
+          waveform.
+        </p>
+        <p>
+          During recording or playback, the UI renders a live waveform
+          driven from the audio buffer. Spikes show where speech is
+          present. Silent gaps are visible. The user can see which slice
+          of the recording is being processed and seek directly to a
+          region. Pairing waveform-driven seeking with the segmented
+          output Whisper produces gave the UI an editing-board feel
+          rather than a black-box-with-a-progress-bar feel.
+        </p>
+        <pre><code># waveform.py — buffer-driven peaks
+def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
+    chunk = max(1, len(samples) // target_buckets)
+    chunks = np.array_split(samples[: chunk * target_buckets], target_buckets)
+    return np.array([np.abs(c).max() for c in chunks], dtype=np.float32)</code></pre>
+
+        <h3>Segment-level output, not a wall of text</h3>
+        <p>
+          Whisper returns segments with start and end timestamps. The
+          transcript view in the app respects those boundaries — each
+          segment is its own clickable line. Clicking a segment seeks the
+          audio to its start. Editing a segment edits only that
+          segment's text. The user is never staring at an unbroken
+          paragraph and trying to find where their attention was three
+          minutes ago.
+        </p>
+
+        <h2>Packaging the offline promise</h2>
+        <p>
+          A tool that claims to be offline cannot ship as a Python script
+          that pulls models from the internet on first run. The packaging
+          had to make the offline promise legible.
+        </p>
+        <ul>
+          <li>
+            Models are downloaded once, into a known local cache
+            directory under the user's data path. The download is an
+            explicit, one-time UI step, not an invisible side-effect.
+          </li>
+          <li>
+            After the first download, the app runs with the network off.
+            I verify this by literally disabling the network adapter
+            during integration tests on the build machine.
+          </li>
+          <li>
+            No telemetry. No analytics. No update-check ping. The app
+            does not call out, period. That is the product.
+          </li>
+        </ul>
+
+        <h2>What surprised me</h2>
+        <h3>CPU was enough</h3>
+        <p>
+          I designed the architecture assuming I would eventually need to
+          ship a GPU path. For the audiences this tool serves —
+          attorneys with modern laptops, clinicians with workstations —
+          the CPU path is already faster than real-time on the
+          medium-quality model. The GPU path is a future-me problem, not
+          a today-me problem.
+        </p>
+        <h3>The hard part was the editing experience</h3>
+        <p>
+          Transcription accuracy plateaued early. The remaining work was
+          all about giving the human reviewer good tools to fix the
+          mistakes Whisper made — keyboard navigation across segments,
+          undo on edits, fast playback for the segment under the cursor,
+          export to plain text or DOCX. The interface is now most of the
+          value of the tool.
+        </p>
+
+        <h2>What I would do next</h2>
+        <ul>
+          <li>
+            <b>Speaker diarization.</b> Whisper doesn't separate
+            speakers. A diarization step layered on top would turn the
+            tool from a transcription tool into a meeting tool.
+          </li>
+          <li>
+            <b>Vocabulary biasing.</b> Domain-specific names — case
+            numbers, medical terms, proper nouns — are where on-device
+            transcription still fumbles. A user-managed glossary that
+            reweights the decoder would close most of that gap.
+          </li>
+          <li>
+            <b>Cross-platform installers.</b> Currently focused on
+            Windows. macOS and Linux installer pipelines are the next
+            unglamorous deliverable.
+          </li>
+        </ul>
+
+        <div class="case-cta">
+          <div class="case-cta-text">
+            <b>Need on-device AI integration?</b> I take on offline /
+            on-prem speech, NLP, and inference pipeline work end-to-end.
+          </div>
+          <a href="mailto:vistalchris@gmail.com?subject=On-device AI project" class="btn btn-primary">Start a conversation</a>
+        </div>
+
+        <div class="case-nextprev">
+          <a href="./ata-law-firm.html">// previous: ATA Law Firm — case management on AWS</a>
+          <a href="./e-pds.html">// previous: E-PDS — civic tech for a province</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEMSU Data Hub — Google Drive for Universities · Christopher Vistal</title>
+    <meta
+      name="description"
+      content="Building a unified file + submissions platform connecting all campuses of NEMSU. Team workspaces, shared records, and the file-sharing layer the university actually needed."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="NEMSU Data Hub — Google Drive for Universities" />
+    <meta
+      property="og:description"
+      content="Multi-campus file federation, submissions, and team collaboration platform for NEMSU. Laravel + Vue.js + MySQL."
+    />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-density="comfortable">
+    <main class="case-wrap">
+      <a href="../index.html" class="case-back">back to portfolio</a>
+
+      <header class="case-frontmatter">
+        <span class="case-eyebrow">// Case Study 04 &nbsp;·&nbsp; university platform</span>
+        <h1 class="case-h1">NEMSU Data Hub &mdash; one drive across every campus</h1>
+        <p class="case-deck">
+          A <b>Google Drive-style platform for NEMSU</b> &mdash; the
+          North Eastern Mindanao State University system. The brief in one
+          sentence: stop scattering files across campuses, inboxes, and
+          USB sticks, and give every department and student team a single
+          place to work together.
+        </p>
+        <dl class="case-meta">
+          <dt>Role</dt><dd>Engineer &mdash; build + ongoing maintenance</dd>
+          <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), ClamAV, S3 + local FS, Google Workspace (Sheets, Docs, OAuth Sign-In), Tailwind CSS</dd>
+          <dt>Status</dt><dd><a href="https://udh.nemsu.edu.ph" target="_blank" rel="noopener">udh.nemsu.edu.ph</a> &mdash; live, in daily use</dd>
+        </dl>
+      </header>
+
+      <article class="case-prose">
+        <h2>The starting line</h2>
+        <p>
+          NEMSU runs across <b>multiple campuses</b>. Cantilan, Tagbina,
+          Bislig, the main campus &mdash; each one has its own admin
+          office, its own faculty, and its own way of moving paperwork
+          around. The shared layer between them was, in practice, email
+          attachments and the occasional USB stick brought to a meeting.
+        </p>
+        <p>
+          Submissions from students to instructors lived in inboxes.
+          Department reports for the central office lived in inboxes.
+          Memos from administration to faculty lived in inboxes. Every
+          time someone needed last quarter's file, they searched for it
+          in their own inbox, and if they couldn't find it, asked the
+          author to resend.
+        </p>
+        <p>
+          The university wanted what every organization eventually
+          wants: <b>one place where the file lives, with the right people
+          able to see it</b>. A Google Drive that knew about campuses,
+          departments, faculty, and student teams.
+        </p>
+
+        <h2>Constraints</h2>
+        <ul>
+          <li>
+            <b>Multi-campus by design.</b> A file owned by the Cantilan
+            campus has different default visibility than a file owned by
+            the main campus. The system has to know about campus as a
+            first-class concept, not as a tag.
+          </li>
+          <li>
+            <b>Mixed network conditions.</b> Some campuses have decent
+            connectivity, some have what a Friday afternoon can do to a
+            shared link. Uploads have to survive flaky connections and
+            partial failures.
+          </li>
+          <li>
+            <b>Two audiences, two surfaces.</b> Faculty and admin need a
+            full workspace UI. Students need a focused, narrow surface
+            &mdash; submit assignments, view feedback, see grades. Same
+            backend, different fronts.
+          </li>
+          <li>
+            <b>Run on the university's own infrastructure.</b> Education
+            data, in-country servers.
+          </li>
+        </ul>
+
+        <h2>Architecture in one picture</h2>
+        <div class="case-diagram">
+<pre>
+                              ┌──────────────────────────┐
+                              │     udh.nemsu.edu.ph     │
+                              └────────────┬─────────────┘
+                                           │
+                                  ┌────────▼────────┐
+                                  │      Nginx      │  TLS, routing
+                                  └────────┬────────┘
+                  ┌────────────────────────┴────────────────────────┐
+                  │                                                 │
+        ┌─────────▼──────────┐                          ┌───────────▼───────────┐
+        │  Laravel + Inertia │                          │   Go upload service   │
+        │  - Auth + AuthZ    │                          │   - tus protocol      │
+        │  - File metadata   │◀── signed handoff ───────│   - resumable chunks  │
+        │  - Submissions     │                          │   - high concurrency  │
+        │  - Audit log       │                          └────────────┬──────────┘
+        └──┬─────────┬───────┘                                       │
+           │         │                                               │
+           │         │              ┌────────────────────┐           │
+           │         │              │  ClamAV scanner    │◀──────────┤
+           │         │              │  (quarantine bad)  │           │
+           │         │              └────────────────────┘           │
+           │         │                                               │
+           │         │              ┌────────────────────┐           │
+           │         ├─────────────▶│  Go PDF signer     │           │
+           │         │              │  (X.509 signature) │           │
+           │         │              └────────────────────┘           │
+           │         │                                               │
+           │         │              ┌────────────────────┐           │
+           │         └─────────────▶│  Google Workspace  │           │
+           │                        │  (Sheets, Docs,    │           │
+           │                        │   OAuth Sign-In)   │           │
+           │                        └────────────────────┘           │
+           │                                                         │
+    ┌──────▼──────┐                  ┌─────────────────┐   ┌─────────▼─────────┐
+    │    MySQL    │                  │   Amazon S3     │   │     Local FS      │
+    │  (records)  │                  │ (cold + shared) │   │  (hot + recent)   │
+    └─────────────┘                  └─────────────────┘   └───────────────────┘
+</pre>
+          <div class="case-diagram-caption">// multi-campus platform with go upload + scan + sign sidecars</div>
+        </div>
+        <p>
+          The headline picture is a Laravel monolith. The honest picture
+          has <b>three sidecars</b>: a Go upload service, a ClamAV
+          scanner, and a Go PDF signer. Each one exists because PHP was
+          the wrong tool for a specific job and pretending otherwise
+          would have hurt the platform.
+        </p>
+
+        <h2>Modelling a university as a graph</h2>
+        <p>
+          Every file in the system belongs to one of four owners: a
+          <b>campus</b>, a <b>department</b>, a <b>team</b>, or a
+          <b>person</b>. Everything else &mdash; visibility, sharing,
+          inheritance &mdash; falls out of getting those four right.
+        </p>
+        <p>
+          A user belongs to a campus. They may belong to one or more
+          departments inside that campus. They may belong to one or more
+          teams (a research group, a class section, an admin committee).
+          When a file is uploaded, the upload chooses an owner. The
+          owner decides the file's default visibility, and the visibility
+          decides who can find it in search.
+        </p>
+        <pre><code>// app/Policies/FilePolicy.php
+public function view(User $user, File $file): bool
+{
+    return match ($file-&gt;owner_type) {
+        OwnerType::CAMPUS     =&gt; $user-&gt;campus_id === $file-&gt;owner_id,
+        OwnerType::DEPARTMENT =&gt; $user-&gt;belongsToDepartment($file-&gt;owner_id),
+        OwnerType::TEAM       =&gt; $user-&gt;belongsToTeam($file-&gt;owner_id),
+        OwnerType::PERSON     =&gt; $user-&gt;id === $file-&gt;owner_id
+                                  || $file-&gt;sharedWith($user),
+    };
+}</code></pre>
+        <p>
+          Sharing layers on top. A file with a personal owner can be
+          explicitly shared with a team. A team file can be promoted to
+          the department. A campus-owned policy file can be readable
+          by every user in the system, but only editable by campus
+          admins. The graph fans out from the four owner types and stays
+          comprehensible.
+        </p>
+
+        <h2>Submissions as first-class objects</h2>
+        <p>
+          The hard part wasn't the file storage. The hard part was
+          submissions &mdash; the recurring student-to-instructor
+          workflow that had been bouncing through email forever.
+        </p>
+        <p>
+          A submission is not just a file. It's <b>a request, a deadline,
+          a list of accepted file types, a list of expected submitters,
+          and a feedback loop</b>. The instructor creates a submission
+          slot for a team or a class section. Students see it in their
+          dashboard with a countdown. They upload. The instructor reviews,
+          leaves a comment, and either accepts or returns it for revision.
+          The student sees the result on the same screen.
+        </p>
+        <p>
+          Modeling it explicitly meant we could do things email could
+          never do cleanly: <b>show every student whether their
+          classmates have submitted</b> (without revealing the
+          submission contents), <b>auto-close at the deadline</b>, and
+          <b>regenerate a clean folder of all submissions</b> for the
+          instructor with one click at the end.
+        </p>
+
+        <h2>Resumable uploads: Go + tus, not PHP</h2>
+        <p>
+          The first upload pipeline ran through PHP. It worked &mdash;
+          until exam week. Hundreds of students submitting on the same
+          afternoon, dozens of faculty syncing folders in the background,
+          and PHP-FPM spent more time juggling long-lived multipart
+          requests than serving the actual app. <b>PHP is great at
+          short request/response cycles. It is not great at hundreds of
+          concurrent streaming uploads.</b>
+        </p>
+        <p>
+          So I broke uploads off into a <b>Go service speaking the tus
+          protocol</b> &mdash; the open standard for resumable file
+          uploads. The Laravel app still owns authorization and
+          metadata. When a user wants to upload, Laravel hands the
+          client a <b>signed tus URL with an expiry</b>. The client
+          uploads to the Go service in chunks. If the connection drops
+          at chunk 7 of 12, the next request resumes at chunk 8 instead
+          of starting over.
+        </p>
+        <pre><code>// Laravel hands off to Go upload service
+public function authorizeUpload(Request $r)
+{
+    $this-&gt;authorize('uploadTo', [File::class, $r-&gt;input('folder_id')]);
+
+    $token = JWT::encode([
+        'sub'        =&gt; $r-&gt;user()-&gt;id,
+        'folder_id'  =&gt; $r-&gt;input('folder_id'),
+        'max_bytes'  =&gt; $r-&gt;user()-&gt;quotaRemaining(),
+        'exp'        =&gt; now()-&gt;addMinutes(15)-&gt;timestamp,
+    ], config('tus.secret'));
+
+    return [
+        'endpoint' =&gt; config('tus.endpoint'),  // Go service
+        'token'    =&gt; $token,
+    ];
+}</code></pre>
+        <p>
+          The Go service runs <b>one goroutine per active upload</b>,
+          eats hundreds of concurrent streams comfortably on the same
+          VPS, and never blocks the PHP workers. After exam week
+          stopped feeling like exam week, the architecture earned its
+          place.
+        </p>
+
+        <h2>Antivirus: every upload through ClamAV</h2>
+        <p>
+          The platform accepts files from thousands of student accounts.
+          Treating them as trusted by default is a bad plan. I wired
+          <b>ClamAV</b> into the post-upload pipeline so every file
+          gets scanned before it becomes visible in the system.
+        </p>
+        <p>
+          When the Go upload service finishes assembling a file, it
+          notifies Laravel. Laravel queues a scan job. The worker
+          streams the file to a <b>clamd</b> daemon over a Unix socket
+          and waits for the verdict. Clean files flip to
+          <code>status: ready</code>. Infected files flip to
+          <code>status: quarantined</code>, the blob is moved out of
+          the user-visible path, and an alert lands in the admin
+          channel with the signature name.
+        </p>
+        <pre><code>// app/Jobs/ScanUpload.php
+public function handle(ClamAvClient $clam): void
+{
+    $verdict = $clam-&gt;scanStream($this-&gt;file-&gt;readStream());
+
+    if ($verdict-&gt;infected) {
+        $this-&gt;file-&gt;quarantine($verdict-&gt;signature);
+        AdminAlert::dispatch("ClamAV: {$verdict-&gt;signature} on {$this-&gt;file-&gt;id}");
+        return;
+    }
+
+    $this-&gt;file-&gt;markReady();
+}</code></pre>
+        <p>
+          One scan per upload, no exceptions. False positives are rare
+          and easy to release manually from the admin surface. The cost
+          of running clamd is small compared to the cost of an
+          institution-wide platform serving its first piece of malware.
+        </p>
+
+        <h2>PDF signing in Go: digital signatures on official documents</h2>
+        <p>
+          Universities generate official documents constantly &mdash;
+          certificates, transcripts, memos, signed approvals. A PDF
+          downloaded from the platform needs to be <b>verifiable as
+          authentic</b>, not just visually convincing. That means
+          real cryptographic signatures embedded into the PDF itself,
+          not a watermark.
+        </p>
+        <p>
+          PHP's PDF signing story is workable but slow and fiddly. Go's
+          ecosystem here is cleaner. I wrote a small <b>Go signer
+          service</b> that holds the institutional signing key, accepts
+          a PDF and a context payload, embeds an X.509 signature using
+          the PKCS#7 detached profile, and returns the signed bytes.
+          The Go service is the only process that touches the private
+          key &mdash; Laravel never sees it.
+        </p>
+        <pre><code>// Laravel calls Go signer when a document is finalized
+$signed = Http::withToken(config('signer.token'))
+    -&gt;attach('pdf', $unsignedPdf, 'document.pdf')
+    -&gt;post(config('signer.endpoint'), [
+        'subject' =&gt; $document-&gt;title,
+        'signed_by_id' =&gt; $approver-&gt;id,
+        'reason' =&gt; 'NEMSU official document',
+    ])-&gt;body();
+
+$document-&gt;storeSigned($signed);</code></pre>
+        <p>
+          Validators in Adobe Reader and the OS-level PDF viewers
+          confirm the signature against the institution's certificate
+          chain. The signed PDF carries its own provenance even after
+          it leaves the platform.
+        </p>
+
+        <h2>Hot vs cold: S3 and local FS, both</h2>
+        <p>
+          Storage isn't one thing. I run a <b>two-tier blob layer</b>:
+          local file system for hot data and shared <b>Amazon S3</b>
+          for cold + cross-campus access.
+        </p>
+        <ul>
+          <li>
+            <b>Local FS</b> is fast, latency-free, and lives on the same
+            host as the app. Recently-uploaded files, in-flight
+            submissions, and anything written or read in the last day
+            sit here.
+          </li>
+          <li>
+            <b>S3</b> is the durable, geographically-shared layer.
+            Anything older than a configurable threshold gets migrated
+            asynchronously by a queue worker. Cross-campus retrieval
+            and disaster recovery both lean on it.
+          </li>
+        </ul>
+        <p>
+          When a file is requested, Laravel checks the local cache
+          first and falls back to S3. Reads from S3 warm the local
+          cache so the next read is fast. The user never has to know
+          which tier the bytes came from.
+        </p>
+
+        <div class="case-callout">
+          <span class="case-callout-label">// Lesson</span>
+          Authorization rules, upload reliability, virus scanning,
+          signed PDFs, and tiered storage are where a university
+          platform earns its keep. Picking the right language for
+          each one of those jobs &mdash; PHP for the app, Go for the
+          long-lived and security-sensitive bits &mdash; was the
+          difference between a portal that survived exam week and one
+          that didn't.
+        </div>
+
+        <h2>Editing Google Sheets and Docs in place</h2>
+        <p>
+          A lot of the university's living documents &mdash; class lists,
+          grading rubrics, departmental rosters, committee minutes &mdash;
+          already lived in Google Sheets and Google Docs. The first version
+          of the platform let users upload a static export, which everyone
+          hated. Faculty wanted to keep editing the real spreadsheet, not
+          re-upload it after every change.
+        </p>
+        <p>
+          So I integrated the platform directly with <b>Google Workspace</b>.
+          A user signs in once with <b>Google OAuth</b>, the platform stores
+          a long-lived refresh token, and from then on the user can
+          <b>create, view, and edit Google Sheets and Docs from inside the
+          Data Hub</b>. The file in the platform is a first-class record;
+          the Google file is the source of truth for content.
+        </p>
+        <pre><code>// app/Services/GoogleWorkspace.php
+public function openEditor(User $user, File $file): string
+{
+    $client = $this-&gt;clientFor($user); // refreshes token if needed
+
+    return match ($file-&gt;google_type) {
+        'sheet' =&gt; "https://docs.google.com/spreadsheets/d/{$file-&gt;google_id}/edit",
+        'doc'   =&gt; "https://docs.google.com/document/d/{$file-&gt;google_id}/edit",
+    };
+}</code></pre>
+        <p>
+          Permissions on the Google side are synced from the platform:
+          when a user gets added to a department, their Workspace
+          account is automatically granted edit access to that
+          department's shared Sheets and Docs. Removing them from the
+          department revokes it. <b>One source of truth for access,
+          two surfaces.</b>
+        </p>
+        <p>
+          Google Sign-In doubles as the platform's primary auth path.
+          Most users already had an
+          <code>@nemsu.edu.ph</code> Workspace account &mdash; making them
+          create a second password was friction nobody asked for. The
+          platform accepts Google identities, maps them to local user
+          records, and falls back to email + password only for accounts
+          that don't have a Workspace identity.
+        </p>
+
+        <h2>What broke, or surprised me</h2>
+        <h3>Departments don't map cleanly to org charts</h3>
+        <p>
+          The first version assumed each department had one clear
+          parent. Reality: cross-listed departments, joint programs,
+          and one campus where a single instructor was attached to
+          three departments at once. I rewrote the membership model
+          from "user has one department" to "user has many department
+          memberships, each with a role." Slight schema change, much
+          less hand-editing.
+        </p>
+        <h3>Search was the second-most-used feature</h3>
+        <p>
+          The folder tree did most of the work but search was a close
+          second. Faculty using the system long enough stopped
+          navigating to files and just typed names. I tuned the search
+          path to do filename, owner, and content-aware indexing on
+          common document types so the second-place feature wouldn't
+          feel second-class.
+        </p>
+
+        <h2>What it does today</h2>
+        <ul>
+          <li>One platform shared across every NEMSU campus.</li>
+          <li>Files, folders, and submissions with per-owner visibility rules.</li>
+          <li>Team workspaces for departments, research groups, class sections, and admin committees.</li>
+          <li>Resumable uploads via a Go tus service that survives flaky campus networks and exam-week traffic.</li>
+          <li>Every upload scanned by ClamAV before becoming visible.</li>
+          <li>Official documents signed in Go with embedded X.509 signatures, verifiable in any standard PDF reader.</li>
+          <li>Two-tier storage: hot local FS, cold and shared Amazon S3.</li>
+          <li>Google Sheets and Docs edited in place, with platform-controlled access synced to Google Workspace.</li>
+          <li>Google Sign-In as primary auth path for <code>@nemsu.edu.ph</code> accounts.</li>
+          <li>Audit trail of file views, downloads, and submission activity.</li>
+          <li>Live in production on the university's own infrastructure.</li>
+        </ul>
+
+        <h2>What I'd do differently next time</h2>
+        <ul>
+          <li>
+            <b>Search as a real subsystem.</b> The current path leans on
+            the database. Indexed search via something like Meilisearch
+            would have been worth the operational cost given how heavily
+            search ended up being used.
+          </li>
+          <li>
+            <b>Mobile app for submissions.</b> Students were doing more
+            submissions from their phones than I planned for. A native
+            wrapper with reliable background upload would have made a
+            common case feel less fragile on flaky networks.
+          </li>
+        </ul>
+
+        <h2>What I take away</h2>
+        <p>
+          Universities are sprawling. The temptation is always to
+          rebuild Google Drive. The actual work is figuring out which
+          of the university's own concepts &mdash; campus, department,
+          team, submission &mdash; deserve to be first-class in the
+          schema. The platform is only as useful as the model
+          underneath it.
+        </p>
+
+        <div class="case-cta">
+          <div class="case-cta-text">
+            <b>Need a platform that fits how your organization actually
+            works?</b> I take on full-stack Laravel + Vue builds end-to-end.
+          </div>
+          <a href="mailto:vistalchris@gmail.com?subject=Platform inquiry" class="btn btn-primary">Start a conversation</a>
+        </div>
+
+        <div class="case-nextprev">
+          <a href="./ata-law-firm.html">// previous: ATA Law Firm &mdash; case management on AWS</a>
+          <a href="./e-pds.html">// next: E-PDS &mdash; civic tech for a province &rarr;</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

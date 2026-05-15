@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATA Law Firm — Case Management on AWS · Christopher Vistal</title>
+    <meta
+      name="description"
+      content="How I designed and shipped a single-tenant case management platform for a Philippine law firm on AWS — document automation, client portal, and an access model built around attorney-client privilege."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="ATA Law Firm — Case Management on AWS" />
+    <meta
+      property="og:description"
+      content="Single-tenant Laravel + Vue case management built around attorney-client privilege. Document automation, secure portal, and AWS architecture."
+    />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-density="comfortable">
+    <main class="case-wrap">
+      <a href="../index.html" class="case-back">back to portfolio</a>
+
+      <header class="case-frontmatter">
+        <span class="case-eyebrow">// Case Study 01 &nbsp;·&nbsp; case management on AWS</span>
+        <h1 class="case-h1">ATA Law Firm — taking a firm off spreadsheets</h1>
+        <p class="case-deck">
+          A single-tenant case management platform for a Philippine law firm.
+          Active daily production use by attorneys, paralegals, and clients.
+          The build forced a real design decision on every page: how do you
+          model <b>attorney-client privilege</b> in a relational schema and a
+          permission system without leaking a single row across cases?
+        </p>
+        <dl class="case-meta">
+          <dt>Role</dt><dd>Sole engineer — architecture, build, deployment</dd>
+          <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Tailwind CSS, AWS (EC2, RDS, S3)</dd>
+          <dt>Duration</dt><dd>~4 months initial build, ongoing maintenance</dd>
+          <dt>Status</dt><dd><a href="https://atafirm.ph" target="_blank" rel="noopener">atafirm.ph</a> — live, in daily use</dd>
+        </dl>
+      </header>
+
+      <article class="case-prose">
+        <h2>The starting line</h2>
+        <p>
+          When the firm called me in, the entire practice ran on three things:
+          shared spreadsheets in a cloud drive, a forest of Word templates
+          named <code>final_v3_REAL.docx</code>, and email threads carrying
+          attachments back and forth with clients. Cases lived in heads and
+          inboxes. Deadlines lived in someone's calendar, maybe.
+        </p>
+        <p>
+          The brief was small in words and large in scope: <b>get the firm
+          onto a real system</b>. Track cases. Generate documents without
+          retyping client details. Let clients see their own case status
+          without a phone call. Run it on AWS for trust reasons. Don't break
+          anything during the rollout.
+        </p>
+
+        <h2>Constraints that shaped every decision</h2>
+        <p>
+          The non-negotiables drove the design more than the feature list did.
+        </p>
+        <ul>
+          <li>
+            <b>Attorney-client privilege.</b> Two cases in the same firm, on
+            opposing sides of a regulatory matter, cannot bleed data into one
+            another. Not in search results, not in document references, not in
+            recently-viewed lists, not anywhere.
+          </li>
+          <li>
+            <b>Single tenant by default.</b> The firm wanted their data on
+            their own infrastructure, not shared with anyone else's. That
+            ruled out off-the-shelf multi-tenant SaaS and set the AWS layout.
+          </li>
+          <li>
+            <b>Solo build.</b> No team, no on-call rotation. Anything I shipped
+            had to be operable by one person — and recoverable by them.
+          </li>
+          <li>
+            <b>Daily use from day one of rollout.</b> No staging-only periods.
+            The firm needed to keep practicing law while we migrated.
+          </li>
+        </ul>
+
+        <h2>Architecture in one picture</h2>
+        <div class="case-diagram">
+<pre>
+                ┌─────────────────────────────────────────┐
+                │              Cloudflare DNS            │
+                └────────────────────┬───────────────────┘
+                                     │
+                            ┌────────▼────────┐
+                            │   Nginx (EC2)   │   TLS, gzip, rate limits
+                            └────────┬────────┘
+                                     │
+                  ┌──────────────────▼──────────────────┐
+                  │        Laravel monolith (PHP-FPM)   │
+                  │  - Inertia.js → Vue SPA pages       │
+                  │  - Policy-driven authorization      │
+                  │  - Document automation pipeline     │
+                  │  - Queue worker (database driver)   │
+                  └──┬──────────────┬──────────────┬────┘
+                     │              │              │
+              ┌──────▼─────┐  ┌─────▼─────┐  ┌─────▼─────┐
+              │  MySQL RDS │  │   S3      │  │ SES (mail)│
+              │  (private) │  │ documents │  │           │
+              └────────────┘  └───────────┘  └───────────┘
+</pre>
+          <div class="case-diagram-caption">// single-tenant AWS layout</div>
+        </div>
+        <p>
+          Single VPC, two subnets, one Nginx-fronted EC2 running PHP-FPM, one
+          RDS instance in the private subnet, S3 for documents with
+          server-side encryption, SES for transactional email. No
+          microservices, no Kubernetes, no Redis cluster. A monolith was the
+          right answer for a sole engineer running a firm-sized workload.
+        </p>
+
+        <h2>The document automation engine</h2>
+        <p>
+          Half the pain at the firm was retyping the same client name, case
+          number, court details, and dates into ten different documents.
+          Document automation is what gets a legal platform off the ground.
+        </p>
+        <p>
+          The core idea is simple: documents are <b>templates with named
+          placeholders</b>, rendered against a <b>case context</b>. The
+          surface area is small, but the failure modes are nasty in legal
+          work — a wrong court address on a pleading is not just embarrassing.
+        </p>
+        <h3>Templates as data, not as files</h3>
+        <p>
+          Templates live in the database with their placeholder map, version,
+          and an immutable hash. When an attorney creates a new template,
+          we don't overwrite the old one — we add a new version row. Every
+          generated document records the exact template version it was
+          rendered from. If we ever need to ask <i>"what did we send last
+          June?"</i>, the answer is reproducible.
+        </p>
+        <pre><code>// app/Models/DocumentTemplate.php
+public function renderFor(Case $case, array $overrides = []): string
+{
+    $context = array_merge($case->toTemplateContext(), $overrides);
+
+    return $this->compile($this->body, $context);
+}
+
+protected function compile(string $body, array $context): string
+{
+    return preg_replace_callback(
+        '/\{\{\s*([a-z0-9_.]+)\s*\}\}/i',
+        fn ($m) => Arr::get($context, $m[1], '«missing:'.$m[1].'»'),
+        $body
+    );
+}</code></pre>
+        <p>
+          The <code>«missing»</code> sentinel is intentional. A silently-blank
+          field on a legal document is worse than an obviously-broken one.
+          Reviewers catch the angle brackets immediately.
+        </p>
+
+        <h3>Generation pipeline</h3>
+        <p>
+          When a document is requested, the request is queued, rendered to
+          DOCX, then archived to S3 with a content-addressed key. The case
+          record holds a foreign key to the generated artifact, not the
+          artifact itself. Documents become first-class entities with their
+          own ACL, audit trail, and download history.
+        </p>
+
+        <h2>Access control under attorney-client privilege</h2>
+        <p>
+          The interesting problem on this build wasn't the documents — it was
+          the access model. The naïve approach in Laravel is to put a
+          <code>user_id</code> column on everything and call it a day. That
+          model is wrong for a law firm.
+        </p>
+        <p>
+          A case has multiple people legitimately attached to it: a lead
+          attorney, an associate, a paralegal, the client. Each role sees a
+          different surface. The client must never see internal billing
+          notes. The associate must never see cases they were not assigned
+          to. Searches and "recently viewed" lists must respect the case
+          membership boundary, not just per-record permissions.
+        </p>
+        <h3>Membership over ownership</h3>
+        <p>
+          I built it around a <code>case_members</code> pivot table with a
+          role enum. Every read query that touches case-scoped data joins
+          through it. The Laravel policy layer enforces the same rule at the
+          record level. The two enforcement points back each other up — if
+          one is bypassed, the other still holds the line.
+        </p>
+        <pre><code>// app/Models/Concerns/ScopedByCaseMembership.php
+public function scopeVisibleTo(Builder $q, User $user): Builder
+{
+    return $q->whereHas('case.members', fn ($m) => $m->where('user_id', $user->id));
+}
+
+// app/Policies/CaseDocumentPolicy.php
+public function view(User $user, CaseDocument $doc): bool
+{
+    return $doc-&gt;case-&gt;members-&gt;contains('user_id', $user-&gt;id);
+}</code></pre>
+        <p>
+          Every search endpoint, every list endpoint, every report endpoint
+          passes through <code>visibleTo($user)</code>. There is no global
+          scope on the model — global scopes are easy to forget when writing
+          a raw query during a hot fix. An explicit scope on every read is
+          ugly and safe. I chose ugly and safe.
+        </p>
+
+        <div class="case-callout">
+          <span class="case-callout-label">// Lesson</span>
+          Defense in depth on authorization is not paranoia in legal
+          software. It is the floor. The cost of a single cross-case leak is
+          larger than the cost of writing the scope twice.
+        </div>
+
+        <h3>Client portal as a different surface</h3>
+        <p>
+          The client portal isn't a smaller version of the attorney UI — it
+          is a different surface that happens to read from the same
+          database. Clients authenticate against a separate guard. The
+          policies on every model return a strict <code>false</code> by
+          default for the <code>client</code> guard unless the model is
+          explicitly flagged as client-visible.
+        </p>
+        <p>
+          Whitelisting visibility, not blacklisting it, was the design
+          principle I trusted most. Forgetting to hide something is a much
+          easier bug to write than forgetting to expose something.
+        </p>
+
+        <h2>AWS infrastructure decisions</h2>
+        <h3>Why a monolith on one EC2 instance</h3>
+        <p>
+          Tempting alternative architectures for a 2026 portfolio piece:
+          ECS Fargate, Lambda for document generation, ElastiCache, a queue
+          on SQS, observability on CloudWatch Logs Insights. All defensible.
+          None of them were the right call here.
+        </p>
+        <p>
+          The firm's workload is dominated by maybe a dozen concurrent users
+          and a handful of background document generations per day. A
+          single appropriately-sized EC2 instance handles it with headroom.
+          ECS would have added control-plane operations I did not want to
+          run alone. Lambda would have added cold-start variance on document
+          generation that the firm would feel. The monolith is boring; the
+          monolith ships.
+        </p>
+        <h3>What I did invest in</h3>
+        <ul>
+          <li>
+            <b>RDS automated backups</b> with point-in-time recovery
+            enabled. The cost is small. The peace of mind is large.
+          </li>
+          <li>
+            <b>S3 versioning</b> on the documents bucket. A deleted document
+            is recoverable for ninety days. An overwritten document is
+            recoverable.
+          </li>
+          <li>
+            <b>SSM Parameter Store for secrets.</b> Nothing sensitive lives
+            in the <code>.env</code> on disk. The deploy script pulls
+            secrets at boot.
+          </li>
+          <li>
+            <b>Per-case S3 prefix</b> with bucket policies that scope object
+            keys to case-membership claims in pre-signed URLs. A pre-signed
+            URL leak still cannot grant access to another case's documents.
+          </li>
+        </ul>
+
+        <h2>What broke, or surprised me</h2>
+        <h3>Templates are software, not content</h3>
+        <p>
+          I shipped the first version of templates editable as freeform
+          rich text. Attorneys promptly added handcrafted placeholder syntax
+          like <code>[CLIENT NAME]</code> alongside the real
+          <code>{{ client.name }}</code> tokens. Renders looked correct
+          until they didn't. The fix was a template-authoring UI that
+          inserts placeholders as visual chips, not as raw text. Templates
+          had become software — they needed an authoring environment, not a
+          text box.
+        </p>
+        <h3>Mobile portal usage was double what I assumed</h3>
+        <p>
+          The client-side traffic skewed heavily toward phones. The original
+          portal was responsive but designed for the desktop case detail
+          first. After the first month I rebuilt the mobile portal around a
+          short single-column flow with case status, latest documents, and a
+          message-attorney button — three taps from the home screen to
+          anything that mattered.
+        </p>
+        <h3>Document download spikes</h3>
+        <p>
+          The firm occasionally ran end-of-month exports that pulled a
+          burst of large documents from S3. The first version streamed them
+          through the Laravel app. After watching the EC2 instance sweat,
+          I moved downloads to <b>pre-signed S3 URLs</b> with short TTLs
+          scoped to the requesting user's case membership. The app issues
+          the URL, S3 serves the bytes. The app's job is authorization, not
+          file delivery.
+        </p>
+
+        <h2>What it does today</h2>
+        <ul>
+          <li>Active daily use across the firm — attorneys, paralegals, and the firm's clients.</li>
+          <li>Case tracking with status, deadlines, and a per-case timeline.</li>
+          <li>Document automation generating standard pleadings, contracts, and client correspondence from versioned templates.</li>
+          <li>Client portal with case status, document downloads, and direct messaging to the assigned attorney.</li>
+          <li>Audit trail of who viewed, edited, or downloaded what — visible to firm administrators.</li>
+        </ul>
+        <p>
+          The spreadsheet workflow is retired. The firm has not asked to go
+          back.
+        </p>
+
+        <h2>What I'd do differently next time</h2>
+        <ul>
+          <li>
+            <b>Filament admin from day one.</b> I built the internal admin
+            screens by hand. Filament would have given the firm a
+            self-service surface for managing users, roles, and lookup
+            tables without me. Cheap leverage I left on the table.
+          </li>
+          <li>
+            <b>Horizon for the queue.</b> The database queue driver is fine
+            at this scale, but I would not bet on it scaling with the firm.
+            Redis plus Horizon gives me visibility and back-pressure I
+            currently squint at logs to find.
+          </li>
+          <li>
+            <b>Tenant-ready data model on day one.</b> The schema is
+            single-tenant by design. If a sister firm ever wants the same
+            platform, I would re-derive the <code>case_members</code> model
+            with a <code>tenant_id</code> seam up front rather than retrofit
+            it.
+          </li>
+          <li>
+            <b>An export endpoint, properly.</b> The end-of-month export
+            story still feels like a feature waiting for a real
+            specification.
+          </li>
+        </ul>
+
+        <h2>What I take away</h2>
+        <p>
+          The hardest parts of this build were not the parts I could anticipate
+          from a feature list. They were the access model, the template
+          authoring problem, and the small infrastructure choices that decide
+          whether a platform stays operable by one person. Those problems are
+          worth more on this build than any framework choice was.
+        </p>
+
+        <div class="case-cta">
+          <div class="case-cta-text">
+            <b>Building something similar?</b> I take on full-stack Laravel
+            and Vue projects end-to-end. Open to remote roles + select
+            contracts.
+          </div>
+          <a href="mailto:vistalchris@gmail.com?subject=Project inquiry" class="btn btn-primary">Start a conversation</a>
+        </div>
+
+        <div class="case-nextprev">
+          <a href="./e-pds.html">// next: E-PDS — civic tech for a province →</a>
+          <a href="./offline-transcriber.html">// also: Offline AI Transcriber →</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

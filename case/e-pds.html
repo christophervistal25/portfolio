@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-PDS — Civic Tech for a Province · Christopher Vistal</title>
+    <meta
+      name="description"
+      content="Building the Province of Surigao del Sur's civil servant records platform and tourism analytics dashboard — digitizing 500+ employee 201 files and modernizing the team's dev workflow along the way."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="E-PDS — Civic Tech for a Province" />
+    <meta property="og:description" content="Records platform + tourism dashboard for the Province of Surigao del Sur. Laravel, MySQL, Vue.js, on-prem." />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-density="comfortable">
+    <main class="case-wrap">
+      <a href="../index.html" class="case-back">back to portfolio</a>
+
+      <header class="case-frontmatter">
+        <span class="case-eyebrow">// Case Study 02 &nbsp;·&nbsp; civic tech</span>
+        <h1 class="case-h1">E-PDS — civil servant records, and a workflow upgrade</h1>
+        <p class="case-deck">
+          The Province of Surigao del Sur ran on filing cabinets and Excel
+          sheets. Over three years I built the platform that replaced them
+          and, along the way, brought the IT team onto <b>Git, code
+          review, and modern deployment</b>. The systems and the workflow
+          are both still running.
+        </p>
+        <dl class="case-meta">
+          <dt>Role</dt><dd>Software engineer — Province of Surigao del Sur</dd>
+          <dt>Stack</dt><dd>Laravel, Vue.js, MySQL / SQL Server, Java (Android), Nginx</dd>
+          <dt>Duration</dt><dd>Jan 2021 — Dec 2023</dd>
+          <dt>Scope</dt><dd>500+ civil servant 201 files digitized, ongoing tourism analytics</dd>
+        </dl>
+      </header>
+
+      <article class="case-prose">
+        <h2>The starting line</h2>
+        <p>
+          Provincial HR managed civil servants the way most LGUs in the
+          Philippines do — paper 201 files in cabinets, plus Excel sheets
+          tracking deductions, leaves, and assignments. Reports for the
+          Civil Service Commission and the Commission on Audit were
+          handcrafted every cycle. Tourism data came in as
+          field-officer-typed forms and was summarized by counting rows.
+        </p>
+        <p>
+          The brief from the office: get the records and the reports
+          off paper, and make tourism numbers something the planning
+          office could look at without a meeting.
+        </p>
+
+        <h2>Constraints</h2>
+        <ul>
+          <li>
+            <b>On-premise hosting.</b> Government data, no cloud. Everything
+            ran on provincial servers under the IT office.
+          </li>
+          <li>
+            <b>Mixed database reality.</b> Existing legacy applications
+            used SQL Server. New work used MySQL. Some queries had to span
+            both worlds.
+          </li>
+          <li>
+            <b>Mixed audience.</b> HR staff who had never used a CRUD app.
+            Tourism officers in the field with patchy connectivity. Planning
+            officers who wanted clean charts.
+          </li>
+          <li>
+            <b>A team learning as we built.</b> Most of my colleagues had
+            shipped PHP, but not with Laravel, Git, or a code review
+            workflow. Production deployments were FTP uploads.
+          </li>
+        </ul>
+
+        <h2>The platform</h2>
+        <h3>E-PDS — digitizing the 201 file</h3>
+        <p>
+          The first deliverable was a digital Personal Data Sheet. The
+          paper PDS is a multi-page CSC form with around 200 fields, family
+          composition, work history, eligibility, training. I modeled it
+          carefully — not as one giant table, but as a personal-record
+          aggregate with relations for family members, employment, civil
+          service eligibilities, learning and development, and references.
+        </p>
+        <p>
+          Critically, every change to a record was version-tracked. A
+          civil servant who updated their employment history did not erase
+          the previous entry — they appended. The audit trail is what
+          made the data trustworthy enough for HR to retire the cabinet.
+        </p>
+
+        <h3>Tourism analytics dashboard</h3>
+        <p>
+          Tourism officers collected visitor arrivals at municipal entry
+          points. The old workflow ended in a spreadsheet attached to an
+          email. The new workflow ended in a Vue.js dashboard pulling
+          aggregates straight from the database, sliced by municipality,
+          month, country of origin, and purpose of visit.
+        </p>
+        <p>
+          The dashboard was deliberately small. Three views, no filters
+          beyond date range and municipality, and a CSV export. Planning
+          officers wanted a thing they could glance at, not a BI tool to
+          learn.
+        </p>
+
+        <h3>Internal tooling suite</h3>
+        <p>
+          The records platform was the headline deliverable. The unglamorous
+          deliverable, which moved the office more, was the smaller tools.
+        </p>
+        <ul>
+          <li>
+            <b>GSIS deduction processor</b> — generated the monthly
+            insurance deduction file the GSIS office consumed. The old
+            workflow took half a day. The new one is a button.
+          </li>
+          <li>
+            <b>BIR tax reporting integration</b> — produced the report
+            files required by the Bureau of Internal Revenue in their
+            exact expected format. The fragile part was always the format,
+            not the math.
+          </li>
+          <li>
+            <b>SMS notification service</b> — small Laravel service that
+            sent payroll, leave, and announcement messages. SMS was the
+            channel field officers actually read.
+          </li>
+          <li>
+            <b>Android employee app for 201 files</b> — Java app letting
+            employees view their own record, request edits, and see leave
+            balances. Built specifically so employees did not have to walk
+            to the HR office for everything.
+          </li>
+        </ul>
+
+        <h2>The performance work</h2>
+        <p>
+          The reporting views on the legacy applications had a familiar
+          smell: response times measured in tens of seconds for endpoints
+          hit by the whole office during cutoff weeks. I profiled,
+          fixed the obvious N+1s, added the missing indexes on the
+          high-traffic queries, and consolidated a few report-generation
+          loops into batched queries.
+        </p>
+        <p>
+          High-traffic reporting endpoints came down by around 60% in
+          response time. The wins were not exotic. They were the standard
+          set of database hygiene tasks that legacy applications never get
+          because nobody is paid to revisit them.
+        </p>
+
+        <h2>The workflow upgrade nobody asked for</h2>
+        <p>
+          The most durable contribution from this stretch was not a system.
+          It was the change to how the team shipped software.
+        </p>
+        <p>
+          When I joined, the production deployment story was: copy files
+          via FileZilla, hope nothing on the server changed. There was no
+          version control of substance. A bug fix could overwrite a
+          colleague's in-flight change.
+        </p>
+        <div class="case-callout">
+          <span class="case-callout-label">// What I introduced</span>
+          Git, GitHub, code review on pull requests, a basic deployment
+          script that pulled from <code>main</code> and ran
+          <code>composer install</code> and <code>php artisan migrate</code>.
+          Boring. Transformational.
+        </div>
+        <p>
+          I paired with three of my colleagues through real changes — not
+          tutorial code — until they were comfortable opening pull
+          requests and rolling back failed deployments. By the time I left
+          for full-time freelance work, the team was operating their own
+          workflow without me in the loop.
+        </p>
+
+        <h2>What I would do differently</h2>
+        <ul>
+          <li>
+            <b>Standardize on one database earlier.</b> The cross-engine
+            queries between MySQL and SQL Server were the worst-feeling
+            code in the project. A migration plan to land on one engine
+            should have been the first roadmap item, not the last.
+          </li>
+          <li>
+            <b>Invest in seed data and integration tests.</b> A government
+            HR system is a forms project. Forms projects rot when nobody
+            owns them. A seed dataset plus a handful of HTTP integration
+            tests on the boring CRUD paths would have made the platform
+            survivable past my tenure with less ceremony.
+          </li>
+          <li>
+            <b>Build the field officer Android app as a PWA.</b> Native
+            Java was overkill for what was, in the end, a thin client
+            over the same API. A PWA would have been faster to ship and
+            faster to update.
+          </li>
+        </ul>
+
+        <h2>What it does today</h2>
+        <p>
+          The records platform, the dashboard, and the internal tools are
+          still in production use across provincial offices. The workflow
+          changes — Git, pull requests, code review — outlived my time on
+          the team. That second outcome matters more in the long run than
+          any one feature I shipped.
+        </p>
+
+        <div class="case-cta">
+          <div class="case-cta-text">
+            <b>Need a civic-tech build?</b> I take on government and
+            enterprise records platforms, internal tools, and legacy
+            modernization end-to-end.
+          </div>
+          <a href="mailto:vistalchris@gmail.com?subject=Civic-tech project" class="btn btn-primary">Start a conversation</a>
+        </div>
+
+        <div class="case-nextprev">
+          <a href="./ata-law-firm.html">// previous: ATA Law Firm — case management on AWS</a>
+          <a href="./offline-transcriber.html">// next: Offline AI Transcriber →</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

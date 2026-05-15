@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dragonica Spidpex — Hardening a Game Server Under Attack · Christopher Vistal</title>
+    <meta
+      name="description"
+      content="A live Dragonica private server I joined as a player and stayed on as the security engineer. Hardening web auth, item economy, and infrastructure against the common attacks script kiddies actually run."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Dragonica Spidpex — Hardening a Game Server Under Attack" />
+    <meta
+      property="og:description"
+      content="Joined as a player, stayed as the security engineer. Hardened auth, item economy, and infrastructure against ongoing attacks."
+    />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-density="comfortable">
+    <main class="case-wrap">
+      <a href="../index.html" class="case-back">back to portfolio</a>
+
+      <header class="case-frontmatter">
+        <span class="case-eyebrow">// Case Study 05 &nbsp;·&nbsp; game server hardening</span>
+        <h1 class="case-h1">Dragonica Spidpex &mdash; hardening a server I was playing on</h1>
+        <p class="case-deck">
+          A live <b>Dragonica</b> private server I joined as a player. One
+          night the server went sideways &mdash; attackers were chewing on
+          the web layer, the cash shop, and account credentials. I
+          messaged the owner offering to help. I stayed on as the engineer
+          who patched the holes and locked the doors.
+        </p>
+        <dl class="case-meta">
+          <dt>Role</dt><dd>Web + security engineer &mdash; offered, accepted, ongoing</dd>
+          <dt>Stack</dt><dd>Laravel, Vue.js, Socket.io, MySQL, Nginx, Redis, Cloudflare</dd>
+          <dt>Status</dt><dd><a href="https://dragonicaspidpex.com" target="_blank" rel="noopener">dragonicaspidpex.com</a> &mdash; live, in daily use by an active player base</dd>
+        </dl>
+      </header>
+
+      <article class="case-prose">
+        <h2>The starting line</h2>
+        <p>
+          Private servers for older MMORPGs live in a strange world.
+          They are run by passionate people in their spare time, on a
+          patchwork of community emulators and homegrown web panels.
+          The community keeps them alive. The threat model around them
+          is the same as any other web service on the public internet,
+          plus the in-game economy as a financial layer on top.
+        </p>
+        <p>
+          I was a player on Spidpex. One evening the website went
+          unreachable. Player accounts started behaving strangely &mdash;
+          unauthorized cash shop purchases, items vanishing, password
+          reset emails landing on the wrong addresses. Classic
+          <b>script-kiddie symptoms</b>: low-effort attacks landing
+          because the front door was thin.
+        </p>
+        <p>
+          I sent the owner a Discord message: <i>"I'm an engineer. I
+          can help. Free of charge."</i> The owner accepted. The next
+          week I had server access and a long list of holes to plug.
+        </p>
+
+        <h2>The threat model in plain terms</h2>
+        <p>
+          Game-server attackers are not the well-funded APT in the
+          security textbooks. They are a mix of:
+        </p>
+        <ul>
+          <li>
+            <b>Account farmers</b> running brute-force credential
+            stuffing against the login form using leaked password
+            lists.
+          </li>
+          <li>
+            <b>Cash shop abusers</b> hunting for race conditions in
+            the purchase flow so they can double-spend in-game
+            currency.
+          </li>
+          <li>
+            <b>Item dupers</b> looking for TOCTOU races between the
+            web inventory and the game inventory.
+          </li>
+          <li>
+            <b>Web kiddies</b> firing automated SQLi / XSS / CSRF
+            payloads at every form on the site to see what sticks.
+          </li>
+          <li>
+            <b>Network-level pests</b> firing volumetric DDoS at the
+            login page during peak hours.
+          </li>
+        </ul>
+        <p>
+          None of these are sophisticated. <b>All of them work if you
+          leave the door open.</b>
+        </p>
+
+        <h2>What I found on day one</h2>
+        <ul>
+          <li>
+            Passwords stored as <b>unsalted MD5</b>, the way many
+            community emulator schemas still ship.
+          </li>
+          <li>
+            Login endpoint with <b>no rate limit</b> and no captcha.
+          </li>
+          <li>
+            Cash shop purchase using two separate queries with no
+            transaction &mdash; deduct currency, then add item. A
+            failure between them either lost the item or doubled it.
+          </li>
+          <li>
+            User-supplied input rendered into the forum and the
+            character profile pages without escaping, perfect for
+            stored XSS.
+          </li>
+          <li>
+            CSRF protection on the account panel was either missing
+            or one-token-for-the-whole-session, easily replayable.
+          </li>
+          <li>
+            Password reset flow leaking which emails existed in the
+            database via different response text.
+          </li>
+        </ul>
+        <p>
+          Not bad luck. <b>The default state of a community panel
+          glued together over years.</b>
+        </p>
+
+        <h2>What I changed, in order of who was getting hurt first</h2>
+
+        <h3>1. Stop the credential stuffing</h3>
+        <p>
+          The login endpoint went behind <b>Cloudflare</b>, with bot
+          fight mode and a strict rate-limit rule for
+          <code>POST /login</code>. Application-level rate limiting
+          per IP + per username, with exponential backoff and a
+          captcha after the third bad attempt. Successful logins from
+          a new device send an email to the account holder with the
+          IP, country, and a single-click revoke link.
+        </p>
+        <pre><code>// app/Http/Middleware/LoginThrottle.php
+$ipKey   = 'login:ip:' . $request-&gt;ip();
+$userKey = 'login:user:' . strtolower($request-&gt;input('username'));
+
+foreach ([$ipKey, $userKey] as $key) {
+    if (RateLimiter::tooManyAttempts($key, 10)) {
+        return $this-&gt;captchaChallenge($request);
+    }
+    RateLimiter::hit($key, decaySeconds: 600);
+}</code></pre>
+
+        <h3>2. Rehash every password on next login</h3>
+        <p>
+          Migrating MD5 to <b>Argon2id</b> in one shot was not
+          possible &mdash; we didn't have the plaintext. I shipped a
+          <b>silent re-hash on next successful login</b>: when a user
+          logs in and their stored hash is the old MD5, the password
+          they just typed gets re-hashed with Argon2id and the column
+          is upgraded in place. After a few weeks of regular logins,
+          the legacy hashes were gone from active accounts.
+        </p>
+
+        <h3>3. Wrap the cash shop in a real transaction</h3>
+        <p>
+          The double-spend hole in the cash shop was the most obvious
+          financial bug, so it was the first to fix. The purchase
+          flow now opens an <b>explicit database transaction</b>,
+          re-reads the user's balance with a row lock, deducts the
+          cost, inserts the item grant, and commits. A failure at
+          any point rolls back. Item delivery to the in-game database
+          is a separate idempotent step keyed by the purchase ID so a
+          retry can never grant the item twice.
+        </p>
+        <pre><code>// app/Services/CashShop.php
+DB::transaction(function () use ($user, $product) {
+    $row = User::lockForUpdate()-&gt;find($user-&gt;id);
+
+    if ($row-&gt;balance &lt; $product-&gt;price) {
+        throw new InsufficientFunds();
+    }
+
+    $row-&gt;decrement('balance', $product-&gt;price);
+
+    Purchase::create([
+        'user_id'    =&gt; $row-&gt;id,
+        'product_id' =&gt; $product-&gt;id,
+        'amount'     =&gt; $product-&gt;price,
+        'idempotency_key' =&gt; (string) Str::uuid(),
+        'status' =&gt; 'pending_delivery',
+    ]);
+});</code></pre>
+
+        <h3>4. Escape everything user-supplied. Everywhere.</h3>
+        <p>
+          The XSS holes in the forum and the character profile pages
+          were closed by switching every render path to escape
+          output by default. Vue handles this for the bulk of the
+          modern UI; the few Blade views that still rendered raw HTML
+          for nostalgic reasons were rewritten. A strict
+          <b>Content Security Policy</b> via Nginx adds a second wall:
+          inline scripts blocked, only same-origin assets allowed, and
+          a reporting endpoint catches the few places I missed.
+        </p>
+
+        <h3>5. CSRF and SameSite, the boring way</h3>
+        <p>
+          Laravel's CSRF middleware is enabled site-wide, with a
+          freshly-rotated token on every form. Session cookies set to
+          <code>SameSite=Lax; Secure; HttpOnly</code>. The account
+          panel endpoints reject any cross-origin POST without an
+          explicit allow. Boring. Effective.
+        </p>
+
+        <h3>6. The leaky password-reset response</h3>
+        <p>
+          The password reset endpoint returned a different message
+          for &ldquo;email not found&rdquo; vs &ldquo;email sent&rdquo;
+          &mdash; a classic user-enumeration leak. <b>Both branches
+          now return the same success response</b>, and the actual
+          email is queued for delivery only when the address exists.
+          Account farmers can no longer scrape the database for valid
+          emails one form post at a time.
+        </p>
+
+        <div class="case-callout">
+          <span class="case-callout-label">// Lesson</span>
+          Most of what stops script kiddies is unglamorous. Rate
+          limiting, transactions, escaped output, CSRF tokens, equal
+          response branches. None of it is a clever idea. All of it
+          is a closed door.
+        </div>
+
+        <h2>The boring infrastructure pass</h2>
+        <ul>
+          <li>
+            <b>Cloudflare in front of everything</b>, with the origin
+            firewalled to accept connections only from Cloudflare IPs.
+          </li>
+          <li>
+            <b>Nginx</b> with strict client-body limits, per-endpoint
+            rate limits, and a long block list of suspicious user
+            agents seen in the access log during the first attack
+            week.
+          </li>
+          <li>
+            <b>Fail2ban</b> on the SSH side &mdash; basic, but the
+            login attempts on the box itself were nonzero.
+          </li>
+          <li>
+            <b>Daily encrypted offsite backups</b> of the database
+            and the in-game character files. If the next attack
+            succeeds, we can roll back.
+          </li>
+          <li>
+            <b>Discord webhook alerts</b> on suspicious patterns:
+            sudden spike in failed logins, cash shop purchases above
+            a threshold per hour, item grants for items not currently
+            for sale.
+          </li>
+        </ul>
+
+        <h2>What broke, or surprised me</h2>
+        <h3>Players also tried to hack the server</h3>
+        <p>
+          The biggest threat after the initial attack wave was not
+          outsiders. It was a small group of regular players
+          probing the cash shop and the inventory APIs with
+          modified clients, looking for new races. <b>Some of the
+          most useful security fixes came from reading their
+          attempts in the access log</b> and patching ahead of the
+          next try.
+        </p>
+        <h3>Logging was the actual product</h3>
+        <p>
+          The most valuable thing I built was not a defense. It was
+          the <b>structured log</b>. Every login, every purchase,
+          every item grant, every password change, written to a
+          searchable store with the IP, the user agent, the request
+          ID, and the previous and next state. When something looked
+          wrong, the log answered &ldquo;what actually happened&rdquo;
+          in seconds. Without it, every incident is a guess.
+        </p>
+
+        <h2>What it does today</h2>
+        <ul>
+          <li>Live <b>Dragonica</b> private server with an active player base and community features.</li>
+          <li>Hardened login flow: rate limits, captcha, device email alerts, Argon2id hashing.</li>
+          <li>Cash shop with transactional purchases, idempotent item delivery, anomaly alerts.</li>
+          <li>Forum and profile pages safe from stored XSS, with a strict CSP as backup.</li>
+          <li>Cloudflare + Nginx + Fail2ban perimeter.</li>
+          <li>Structured audit log of every financially-sensitive action.</li>
+        </ul>
+
+        <h2>What I'd do differently next time</h2>
+        <ul>
+          <li>
+            <b>Threat-model the cash economy first.</b> The web
+            panel got most of my initial attention. The
+            in-game-currency &harr; cash-shop seam was where the
+            money actually was, and where the more patient attackers
+            went next.
+          </li>
+          <li>
+            <b>Set up the log first, fix second.</b> I built the
+            structured log in week two. Should have been day one.
+            Half the early fixes were based on stitching guesses from
+            multiple log files.
+          </li>
+          <li>
+            <b>Treat client modifications as the default.</b> Anything
+            the server trusts the client to tell it &mdash; positions,
+            inventory state, kill counts &mdash; gets checked
+            server-side. Easy to write down. Hard to remember in
+            every feature.
+          </li>
+        </ul>
+
+        <h2>What I take away</h2>
+        <p>
+          Hardening a service under attack is one of the most
+          honest pieces of engineering work you can do. You can see
+          the attempts in the logs. You can measure the failure rate
+          before and after. The fixes are boring, the wins are
+          visible, and the server stays up.
+        </p>
+
+        <div class="case-cta">
+          <div class="case-cta-text">
+            <b>Have a service taking heat?</b> I take on hardening
+            engagements for web platforms, game servers, and small
+            SaaS products end-to-end.
+          </div>
+          <a href="mailto:vistalchris@gmail.com?subject=Security hardening" class="btn btn-primary">Start a conversation</a>
+        </div>
+
+        <div class="case-nextprev">
+          <a href="./nemsu-data-hub.html">// previous: NEMSU Data Hub &mdash; Google Drive for universities</a>
+          <a href="./ata-law-firm.html">// also: ATA Law Firm &mdash; case management on AWS</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

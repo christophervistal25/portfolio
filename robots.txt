@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chris-dev.netlify.app/sitemap.xml

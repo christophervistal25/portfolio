@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      .bg { fill: oklch(0.13 0.008 50); }
+      .accent { fill: oklch(0.72 0.19 45); }
+      .text-1 { fill: oklch(0.94 0.004 50); font-family: 'Inter', system-ui, sans-serif; }
+      .text-2 { fill: oklch(0.71 0.006 50); font-family: 'Inter', system-ui, sans-serif; }
+      .text-3 { fill: oklch(0.53 0.007 50); font-family: 'JetBrains Mono', ui-monospace, monospace; }
+      .border { stroke: oklch(0.95 0.005 50 / 0.07); stroke-width: 1; fill: none; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="630"/>
+  <rect x="60" y="60" width="1080" height="510" rx="14" class="border"/>
+
+  <!-- top mono label -->
+  <text x="96" y="118" class="text-3" font-size="20" letter-spacing="2">// portfolio</text>
+
+  <!-- name -->
+  <text x="96" y="220" class="text-1" font-size="72" font-weight="700" letter-spacing="-2">Christopher Vistal</text>
+
+  <!-- headline -->
+  <text x="96" y="318" class="text-2" font-size="44" font-weight="500">
+    <tspan>ships </tspan><tspan class="accent" font-weight="600">production web platforms</tspan><tspan> end-to-end.</tspan>
+  </text>
+
+  <!-- stack -->
+  <text x="96" y="396" class="text-2" font-size="26" font-weight="400">Laravel · Vue.js · AWS · 5+ years shipping</text>
+
+  <!-- accent rule -->
+  <rect x="96" y="436" width="80" height="3" class="accent"/>
+
+  <!-- bottom row -->
+  <text x="96" y="510" class="text-3" font-size="22">chris-dev.netlify.app</text>
+  <text x="96" y="544" class="text-3" font-size="18">// Surigao del Sur, PH · open to remote roles + contracts</text>
+
+  <!-- corner dot -->
+  <circle cx="1090" cy="115" r="9" class="accent"/>
+</svg>
