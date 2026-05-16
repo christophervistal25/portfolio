@@ -76,6 +76,15 @@ body {
   --space-block: 36px;
 }
 
+/* Mobile: tighten section rhythm */
+@media (max-width: 640px) {
+  [data-density="comfortable"] {
+    --space-section: 44px;
+    --space-block: 20px;
+  }
+  .container { padding: 0 18px; }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -227,6 +236,47 @@ body {
 .hero {
   padding: 140px 0 60px;
   position: relative;
+}
+.hero-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 14px 6px 6px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  margin-bottom: 22px;
+  text-decoration: none;
+}
+.hero-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--overlay-06);
+}
+.hero-identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.hero-identity-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+.hero-identity-role {
+  font-size: 10.5px;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+@media (max-width: 640px) {
+  .hero-identity { gap: 10px; padding: 5px 12px 5px 5px; }
+  .hero-avatar { width: 36px; height: 36px; }
+  .hero-identity-role { font-size: 10px; }
 }
 .hero-eyebrow {
   display: inline-flex;
@@ -1868,4 +1918,101 @@ button.proj-thumb { background: var(--surface-1); cursor: pointer; }
   .nav .nav-brand { border-right: none; }
   .nav-hamburger { display: flex; margin-left: auto; margin-right: 4px; }
   .mobile-nav { display: flex; }
+}
+
+/* ============================================================
+   Mobile polish (≤640px) — tightens spacing, stacks CTAs cleanly
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Hero */
+  .hero { padding: 110px 0 32px; }
+  .hero h1 { font-size: clamp(28px, 8vw, 36px); }
+  .hero-role { font-size: 16px; margin-bottom: 18px; }
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .hero-cta-row .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 18px;
+  }
+  .hero-socials {
+    margin-left: 0;
+    margin-top: 4px;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .hero-meta {
+    margin-top: 28px;
+    padding-top: 20px;
+    grid-template-columns: 1fr;
+  }
+  .hero-meta-item {
+    padding: 10px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    margin-right: 0;
+  }
+  .hero-meta-item:last-child { border-bottom: none; }
+
+  /* Section heads */
+  section { padding: 36px 0; }
+  .section-head { margin-bottom: 20px; padding-bottom: 12px; }
+  .section-aside { display: none; }
+
+  /* Stats strip */
+  .stats-strip { padding: 18px 0 0; }
+  .stats-line { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 0 4px; }
+  .stat { width: 100%; }
+
+  /* Case (featured) cards */
+  .case-body { flex-direction: column; gap: 12px; padding: 16px 18px; }
+  .case-left { flex: none; width: 100%; }
+  .case-arrow { display: none; }
+
+  /* Bento — single column, shorter tiles */
+  .proj-list.fun-bento {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: 180px;
+    gap: 10px;
+  }
+  .proj-list.fun-bento .proj-row,
+  .proj-list.fun-bento .proj-row:nth-child(n) { grid-column: span 1 !important; }
+  .proj-list.fun-bento .proj-name { font-size: 18px !important; }
+
+  /* Skills rows */
+  .skill-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  .skill-row-cat { font-size: 10px; }
+  .skill-row-val { font-size: 14px; }
+
+  /* Services panel */
+  .services { padding: 22px 18px; border-radius: 12px; }
+  .services-head { gap: 14px; margin-bottom: 18px; }
+  .services-title { font-size: 19px; }
+  .services-sub { font-size: 14px; }
+  .services-list { grid-template-columns: 1fr; }
+  .service { padding: 14px 0; }
+  .service:nth-child(even) { padding-left: 0; border-left: none; }
+  .services-cta { margin-top: 20px; padding-top: 18px; }
+  .services-cta-text { font-size: 13px; }
+
+  /* Experience */
+  .exp-list { gap: 22px; }
+  .exp-bullets li { font-size: 14px; }
+
+  /* Trust quotes */
+  .trust-quote blockquote { font-size: 15px; }
+
+  /* Footer */
+  .footer {
+    margin-top: 36px;
+    padding: 40px 0 24px;
+    gap: 28px;
+  }
+  .footer-bottom { padding-top: 20px; font-size: 10px; }
+  .footer-cta { width: 100%; justify-content: center; }
 }
