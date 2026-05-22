@@ -17,6 +17,7 @@ Case management platforms, citizen records systems, and AI-powered tools that sh
 | [Dragonica Spidpex](https://dragonicaspidpex.com) | Live gaming platform with player accounts, leaderboards & community | Laravel, Vue.js |
 | Offline AI Transcriber | Local speech-to-text, real-time waveform feedback — zero cloud dependency | Python, CTranslate2, Whisper |
 | GSIS Deduction System | Government insurance deduction engine for civil servants | PHP, SQL Server |
+| chriscast | File launcher for Linux | Go, GTK3 |
 
 ---
 

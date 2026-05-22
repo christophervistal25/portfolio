@@ -806,17 +806,19 @@ section {
   text-shadow: 0 1px 2px oklch(0.08 0.010 50 / 0.7);
 }
 
-/* Tile spans: 6-col bento rhythm for 5 items */
+/* Tile spans: 6-col bento rhythm for 6 items */
 .proj-list.fun-bento .proj-row:nth-child(1) { grid-column: span 4; }
-.proj-list.fun-bento .proj-row:nth-child(2) { grid-column: span 6; }
-.proj-list.fun-bento .proj-row:nth-child(3) { grid-column: span 2; }
-.proj-list.fun-bento .proj-row:nth-child(4) { grid-column: span 4; }
-.proj-list.fun-bento .proj-row:nth-child(5) { grid-column: span 2; }
+.proj-list.fun-bento .proj-row:nth-child(2) { grid-column: span 2; }
+.proj-list.fun-bento .proj-row:nth-child(3) { grid-column: span 3; }
+.proj-list.fun-bento .proj-row:nth-child(4) { grid-column: span 3; }
+.proj-list.fun-bento .proj-row:nth-child(5) { grid-column: span 4; }
+.proj-list.fun-bento .proj-row:nth-child(6) { grid-column: span 2; }
 
 /* Featured (large) tile gets bigger name + visible desc */
 .proj-list.fun-bento .proj-row:nth-child(1) .proj-name,
-.proj-list.fun-bento .proj-row:nth-child(2) .proj-name,
-.proj-list.fun-bento .proj-row:nth-child(4) .proj-name {
+.proj-list.fun-bento .proj-row:nth-child(3) .proj-name,
+.proj-list.fun-bento .proj-row:nth-child(4) .proj-name,
+.proj-list.fun-bento .proj-row:nth-child(5) .proj-name {
   font-size: 22px;
 }
 

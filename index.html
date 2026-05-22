@@ -823,6 +823,46 @@
 
           <div
             class="proj-row no-arrow"
+            data-drawer-target="chriscast"
+            role="button"
+            tabindex="0"
+            aria-label="Open chriscast details"
+          >
+            <span
+              class="proj-bg"
+              aria-hidden="true"
+              style="
+                background-image: url(&quot;assets/images/chriscast/thumbnail.png&quot;);
+              "
+            ></span>
+            <span class="proj-thumb" aria-hidden="true">
+              <img
+                src="assets/images/chriscast/thumbnail.png"
+                alt=""
+                loading="lazy"
+              />
+            </span>
+            <div class="proj-row-content">
+              <div class="proj-name-row">
+                <span class="proj-name">chriscast</span>
+                <span class="proj-status dev">Open Source</span>
+              </div>
+              <div class="proj-desc">
+                Raycast-style file launcher for Linux. Pure-Go core with a
+                custom trie + trigram index and fzf-style scoring. Indexes
+                200K+ files in ~5s; sub-millisecond search latency.
+              </div>
+              <span class="proj-stack"
+                >Go<span class="proj-stack-dot">·</span>GTK3<span
+                  class="proj-stack-dot"
+                  >·</span
+                >fsnotify<span class="proj-stack-dot">·</span>X11</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="proj-row no-arrow"
             data-drawer-target="real-time-rps"
             role="button"
             tabindex="0"
@@ -1550,6 +1590,68 @@
         <img
           src="assets/images/go-repository-cleaner/thumbnail.png"
           alt="Repository Cleaner TUI"
+          loading="lazy"
+        />
+      </div>
+    </template>
+
+    <template id="drawer-chriscast">
+      <h2 class="drawer-title">chriscast</h2>
+      <p class="drawer-meta">OPEN SOURCE &nbsp;·&nbsp; Go + GTK3</p>
+
+      <div class="drawer-section-label">Why I built it</div>
+      <div class="drawer-prose">
+        <p>
+          macOS users have <b>Raycast</b> and <b>Spotlight</b>, but on Linux
+          the launchers I tried &mdash; Albert, Ulauncher, Rofi &mdash; either
+          felt sluggish on big home directories or needed Python plugins to
+          feel modern.
+        </p>
+        <p>
+          So I built a <b>pure-Go core</b>: a rune-keyed prefix trie, a padded
+          trigram inverted index, and an <b>fzf-style greedy scorer</b> with
+          word-boundary, camelCase, and consecutive-match bonuses, plus a
+          recency boost and extension bias.
+        </p>
+        <p>
+          It indexes <b>200K+ files in about 5 seconds</b>, search latency
+          stays <b>sub-millisecond</b>, and the GTK3 overlay sits behind a
+          <b>Ctrl+Space</b> global hotkey with live fsnotify updates so the
+          index is always fresh.
+        </p>
+      </div>
+
+      <div class="drawer-section-label">Stack</div>
+      <div class="drawer-tags">
+        <span class="drawer-tag">Go</span>
+        <span class="drawer-tag">GTK3</span>
+        <span class="drawer-tag">fsnotify</span>
+        <span class="drawer-tag">X11</span>
+        <span class="drawer-tag">msgpack</span>
+      </div>
+
+      <div class="drawer-section-label">Repository</div>
+      <div class="drawer-prose">
+        <p>
+          <a
+            href="https://github.com/christophervistal25/christcast"
+            target="_blank"
+            rel="noopener"
+            style="
+              color: var(--accent);
+              text-decoration: none;
+              border-bottom: 1px dashed var(--accent-line);
+            "
+            >github.com/christophervistal25/christcast &nbsp;↗</a
+          >
+        </p>
+      </div>
+
+      <div class="drawer-section-label">Screenshot</div>
+      <div class="drawer-images">
+        <img
+          src="assets/images/chriscast/thumbnail.png"
+          alt="chriscast overlay"
           loading="lazy"
         />
       </div>
