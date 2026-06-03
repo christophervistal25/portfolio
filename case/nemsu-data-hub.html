@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEMSU Data Hub — Google Drive for Universities · Christopher Vistal</title>
+    <title>NEMSU Data Hub, Google Drive for Universities · Christopher Vistal</title>
     <meta
       name="description"
       content="Building a unified file + submissions platform connecting all campuses of NEMSU. Team workspaces, shared records, and the file-sharing layer the university actually needed."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="NEMSU Data Hub — Google Drive for Universities" />
+    <meta property="og:title" content="NEMSU Data Hub, Google Drive for Universities" />
     <meta
       property="og:description"
       content="Multi-campus file federation, submissions, and team collaboration platform for NEMSU. Laravel + Vue.js + MySQL."
@@ -22,34 +22,39 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=45" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default', themeVariables: { fontFamily: 'Geist, sans-serif' } });</script>
   </head>
   <body data-density="comfortable">
+    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
     <main class="case-wrap">
       <a href="../index.html" class="case-back">back to portfolio</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">// Case Study 04 &nbsp;·&nbsp; university platform</span>
-        <h1 class="case-h1">NEMSU Data Hub &mdash; one drive across every campus</h1>
+        <span class="case-eyebrow">Case Study 04 &nbsp;·&nbsp; university platform</span>
+        <h1 class="case-h1">NEMSU Data Hub, one drive across every campus</h1>
         <p class="case-deck">
-          A <b>Google Drive-style platform for NEMSU</b> &mdash; the
+          A <b>Google Drive-style platform for NEMSU</b>, the
           North Eastern Mindanao State University system. The brief in one
           sentence: stop scattering files across campuses, inboxes, and
           USB sticks, and give every department and student team a single
           place to work together.
         </p>
         <dl class="case-meta">
-          <dt>Role</dt><dd>Engineer &mdash; build + ongoing maintenance</dd>
+          <dt>Role</dt><dd>Engineer, build + ongoing maintenance</dd>
           <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), ClamAV, S3 + local FS, Google Workspace (Sheets, Docs, OAuth Sign-In), Tailwind CSS</dd>
-          <dt>Status</dt><dd><a href="https://udh.nemsu.edu.ph" target="_blank" rel="noopener">udh.nemsu.edu.ph</a> &mdash; live, in daily use</dd>
+          <dt>Status</dt><dd><a href="https://udh.nemsu.edu.ph" target="_blank" rel="noopener">udh.nemsu.edu.ph</a>, live, in daily use</dd>
         </dl>
       </header>
+      <div class="case-hero"><img src="../assets/imagesv2/nemsu.png" alt="" loading="eager" /></div>
+
 
       <article class="case-prose">
         <h2>The starting line</h2>
         <p>
           NEMSU runs across <b>multiple campuses</b>. Cantilan, Tagbina,
-          Bislig, the main campus &mdash; each one has its own admin
+          Bislig, the main campus, each one has its own admin
           office, its own faculty, and its own way of moving paperwork
           around. The shared layer between them was, in practice, email
           attachments and the occasional USB stick brought to a meeting.
@@ -86,7 +91,7 @@
           <li>
             <b>Two audiences, two surfaces.</b> Faculty and admin need a
             full workspace UI. Students need a focused, narrow surface
-            &mdash; submit assignments, view feedback, see grades. Same
+           , submit assignments, view feedback, see grades. Same
             backend, different fronts.
           </li>
           <li>
@@ -97,46 +102,50 @@
 
         <h2>Architecture in one picture</h2>
         <div class="case-diagram">
-<pre>
-                              ┌──────────────────────────┐
-                              │     udh.nemsu.edu.ph     │
-                              └────────────┬─────────────┘
-                                           │
-                                  ┌────────▼────────┐
-                                  │      Nginx      │  TLS, routing
-                                  └────────┬────────┘
-                  ┌────────────────────────┴────────────────────────┐
-                  │                                                 │
-        ┌─────────▼──────────┐                          ┌───────────▼───────────┐
-        │  Laravel + Inertia │                          │   Go upload service   │
-        │  - Auth + AuthZ    │                          │   - tus protocol      │
-        │  - File metadata   │◀── signed handoff ───────│   - resumable chunks  │
-        │  - Submissions     │                          │   - high concurrency  │
-        │  - Audit log       │                          └────────────┬──────────┘
-        └──┬─────────┬───────┘                                       │
-           │         │                                               │
-           │         │              ┌────────────────────┐           │
-           │         │              │  ClamAV scanner    │◀──────────┤
-           │         │              │  (quarantine bad)  │           │
-           │         │              └────────────────────┘           │
-           │         │                                               │
-           │         │              ┌────────────────────┐           │
-           │         ├─────────────▶│  Go PDF signer     │           │
-           │         │              │  (X.509 signature) │           │
-           │         │              └────────────────────┘           │
-           │         │                                               │
-           │         │              ┌────────────────────┐           │
-           │         └─────────────▶│  Google Workspace  │           │
-           │                        │  (Sheets, Docs,    │           │
-           │                        │   OAuth Sign-In)   │           │
-           │                        └────────────────────┘           │
-           │                                                         │
-    ┌──────▼──────┐                  ┌─────────────────┐   ┌─────────▼─────────┐
-    │    MySQL    │                  │   Amazon S3     │   │     Local FS      │
-    │  (records)  │                  │ (cold + shared) │   │  (hot + recent)   │
-    └─────────────┘                  └─────────────────┘   └───────────────────┘
-</pre>
-          <div class="case-diagram-caption">// multi-campus platform with go upload + scan + sign sidecars</div>
+        <pre class="mermaid">
+flowchart TB
+    domain["udh.nemsu.edu.ph"]
+    nginx["Nginx\nTLS, routing"]
+
+    subgraph app["Application Layer"]
+        laravel["Laravel + Inertia\nAuth + AuthZ\nFile metadata\nSubmissions\nAudit log"]
+        tus["Go upload service\ntus protocol\nresumable chunks\nhigh concurrency"]
+    end
+
+    subgraph services["Sidecars"]
+        clamav["ClamAV scanner\n(quarantine bad)"]
+        signer["Go PDF signer\n(X.509 signature)"]
+        gws["Google Workspace\n(Sheets, Docs,\nOAuth Sign-In)"]
+    end
+
+    subgraph storage["Storage Layer"]
+        mysql["MySQL\n(records)"]
+        s3["Amazon S3\n(cold + shared)"]
+        local["Local FS\n(hot + recent)"]
+    end
+
+    domain --> nginx --> laravel
+    nginx --> tus
+    laravel <-->|"signed handoff"| tus
+    tus --> clamav
+    laravel --> signer
+    laravel --> gws
+    laravel --> mysql
+    laravel --> s3
+    laravel --> local
+
+    style domain fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style nginx fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style laravel fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style tus fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style clamav fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style signer fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style gws fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style mysql fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style s3 fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style local fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+        </pre>
+          <div class="case-diagram-caption">multi-campus platform with go upload + scan + sign sidecars</div>
         </div>
         <p>
           The headline picture is a Laravel monolith. The honest picture
@@ -150,8 +159,8 @@
         <p>
           Every file in the system belongs to one of four owners: a
           <b>campus</b>, a <b>department</b>, a <b>team</b>, or a
-          <b>person</b>. Everything else &mdash; visibility, sharing,
-          inheritance &mdash; falls out of getting those four right.
+          <b>person</b>. Everything else, visibility, sharing,
+          inheritance, falls out of getting those four right.
         </p>
         <p>
           A user belongs to a campus. They may belong to one or more
@@ -184,7 +193,7 @@ public function view(User $user, File $file): bool
         <h2>Submissions as first-class objects</h2>
         <p>
           The hard part wasn't the file storage. The hard part was
-          submissions &mdash; the recurring student-to-instructor
+          submissions, the recurring student-to-instructor
           workflow that had been bouncing through email forever.
         </p>
         <p>
@@ -207,7 +216,7 @@ public function view(User $user, File $file): bool
 
         <h2>Resumable uploads: Go + tus, not PHP</h2>
         <p>
-          The first upload pipeline ran through PHP. It worked &mdash;
+          The first upload pipeline ran through PHP. It worked ,
           until exam week. Hundreds of students submitting on the same
           afternoon, dozens of faculty syncing folders in the background,
           and PHP-FPM spent more time juggling long-lived multipart
@@ -217,7 +226,7 @@ public function view(User $user, File $file): bool
         </p>
         <p>
           So I broke uploads off into a <b>Go service speaking the tus
-          protocol</b> &mdash; the open standard for resumable file
+          protocol</b>, the open standard for resumable file
           uploads. The Laravel app still owns authorization and
           metadata. When a user wants to upload, Laravel hands the
           client a <b>signed tus URL with an expiry</b>. The client
@@ -289,7 +298,7 @@ public function handle(ClamAvClient $clam): void
 
         <h2>PDF signing in Go: digital signatures on official documents</h2>
         <p>
-          Universities generate official documents constantly &mdash;
+          Universities generate official documents constantly ,
           certificates, transcripts, memos, signed approvals. A PDF
           downloaded from the platform needs to be <b>verifiable as
           authentic</b>, not just visually convincing. That means
@@ -303,7 +312,7 @@ public function handle(ClamAvClient $clam): void
           a PDF and a context payload, embeds an X.509 signature using
           the PKCS#7 detached profile, and returns the signed bytes.
           The Go service is the only process that touches the private
-          key &mdash; Laravel never sees it.
+          key, Laravel never sees it.
         </p>
         <pre><code>// Laravel calls Go signer when a document is finalized
 $signed = Http::withToken(config('signer.token'))
@@ -350,20 +359,20 @@ $document-&gt;storeSigned($signed);</code></pre>
         </p>
 
         <div class="case-callout">
-          <span class="case-callout-label">// Lesson</span>
+          <span class="case-callout-label">Lesson</span>
           Authorization rules, upload reliability, virus scanning,
           signed PDFs, and tiered storage are where a university
           platform earns its keep. Picking the right language for
-          each one of those jobs &mdash; PHP for the app, Go for the
-          long-lived and security-sensitive bits &mdash; was the
+          each one of those jobs, PHP for the app, Go for the
+          long-lived and security-sensitive bits, was the
           difference between a portal that survived exam week and one
           that didn't.
         </div>
 
         <h2>Editing Google Sheets and Docs in place</h2>
         <p>
-          A lot of the university's living documents &mdash; class lists,
-          grading rubrics, departmental rosters, committee minutes &mdash;
+          A lot of the university's living documents, class lists,
+          grading rubrics, departmental rosters, committee minutes ,
           already lived in Google Sheets and Google Docs. The first version
           of the platform let users upload a static export, which everyone
           hated. Faculty wanted to keep editing the real spreadsheet, not
@@ -398,7 +407,7 @@ public function openEditor(User $user, File $file): string
         <p>
           Google Sign-In doubles as the platform's primary auth path.
           Most users already had an
-          <code>@nemsu.edu.ph</code> Workspace account &mdash; making them
+          <code>@nemsu.edu.ph</code> Workspace account, making them
           create a second password was friction nobody asked for. The
           platform accepts Google identities, maps them to local user
           records, and falls back to email + password only for accounts
@@ -461,8 +470,8 @@ public function openEditor(User $user, File $file): string
         <p>
           Universities are sprawling. The temptation is always to
           rebuild Google Drive. The actual work is figuring out which
-          of the university's own concepts &mdash; campus, department,
-          team, submission &mdash; deserve to be first-class in the
+          of the university's own concepts, campus, department,
+          team, submission, deserve to be first-class in the
           schema. The platform is only as useful as the model
           underneath it.
         </p>
@@ -476,10 +485,23 @@ public function openEditor(User $user, File $file): string
         </div>
 
         <div class="case-nextprev">
-          <a href="./ata-law-firm.html">// previous: ATA Law Firm &mdash; case management on AWS</a>
-          <a href="./e-pds.html">// next: E-PDS &mdash; civic tech for a province &rarr;</a>
+          <a href="./ata-law-firm.html">← ATA Law Firm</a>
+          <a href="./e-pds.html">E-PDS →</a>
         </div>
       </article>
     </main>
+      <script>
+      (() => {
+        const bar = document.getElementById("readProgress");
+        const upd = () => {
+          const d = document.documentElement;
+          const p = d.scrollTop / (d.scrollHeight - d.clientHeight || 1);
+          bar.style.width = Math.min(100, p * 100) + "%";
+        };
+        addEventListener("scroll", upd, { passive: true });
+        addEventListener("resize", upd);
+        upd();
+      })();
+    </script>
   </body>
 </html>

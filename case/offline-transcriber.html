@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Offline AI Transcriber — On-Device Speech-to-Text · Christopher Vistal</title>
+    <title>Offline AI Transcriber, On-Device Speech-to-Text · Christopher Vistal</title>
     <meta
       name="description"
       content="A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, designed for sensitive legal and medical audio."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Offline AI Transcriber — On-Device Speech-to-Text" />
+    <meta property="og:title" content="Offline AI Transcriber, On-Device Speech-to-Text" />
     <meta
       property="og:description"
       content="Local speech-to-text with CTranslate2 + Whisper. No audio ever leaves the machine. Built for sensitive legal/medical contexts."
@@ -22,15 +22,16 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=45" />
   </head>
   <body data-density="comfortable">
+    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
     <main class="case-wrap">
       <a href="../index.html" class="case-back">back to portfolio</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">// Case Study 03 &nbsp;·&nbsp; on-device AI</span>
-        <h1 class="case-h1">Offline AI Transcriber — speech-to-text without the cloud</h1>
+        <span class="case-eyebrow">Case Study 03 &nbsp;·&nbsp; on-device AI</span>
+        <h1 class="case-h1">Offline AI Transcriber, speech-to-text without the cloud</h1>
         <p class="case-deck">
           A local-first speech-to-text tool built on Whisper via CTranslate2.
           <b>Zero cloud dependency.</b> Real-time waveform feedback, fast
@@ -39,11 +40,13 @@
           first place.
         </p>
         <dl class="case-meta">
-          <dt>Role</dt><dd>Sole engineer — research, build, packaging</dd>
+          <dt>Role</dt><dd>Sole engineer, research, build, packaging</dd>
           <dt>Stack</dt><dd>Python, CTranslate2, faster-whisper, PyQt, NumPy</dd>
           <dt>Status</dt><dd>Working tool, used in private engagements</dd>
         </dl>
       </header>
+      <div class="case-hero"><img src="../assets/imagesv2/transcriber.png" alt="" loading="eager" /></div>
+
 
       <article class="case-prose">
         <h2>Why offline</h2>
@@ -96,7 +99,7 @@
           output Whisper produces gave the UI an editing-board feel
           rather than a black-box-with-a-progress-bar feel.
         </p>
-        <pre><code># waveform.py — buffer-driven peaks
+        <pre><code># waveform.py, buffer-driven peaks
 def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
     chunk = max(1, len(samples) // target_buckets)
     chunks = np.array_split(samples[: chunk * target_buckets], target_buckets)
@@ -105,7 +108,7 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
         <h3>Segment-level output, not a wall of text</h3>
         <p>
           Whisper returns segments with start and end timestamps. The
-          transcript view in the app respects those boundaries — each
+          transcript view in the app respects those boundaries, each
           segment is its own clickable line. Clicking a segment seeks the
           audio to its start. Editing a segment edits only that
           segment's text. The user is never staring at an unbroken
@@ -140,8 +143,8 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
         <h3>CPU was enough</h3>
         <p>
           I designed the architecture assuming I would eventually need to
-          ship a GPU path. For the audiences this tool serves —
-          attorneys with modern laptops, clinicians with workstations —
+          ship a GPU path. For the audiences this tool serves ,
+          attorneys with modern laptops, clinicians with workstations ,
           the CPU path is already faster than real-time on the
           medium-quality model. The GPU path is a future-me problem, not
           a today-me problem.
@@ -150,7 +153,7 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
         <p>
           Transcription accuracy plateaued early. The remaining work was
           all about giving the human reviewer good tools to fix the
-          mistakes Whisper made — keyboard navigation across segments,
+          mistakes Whisper made, keyboard navigation across segments,
           undo on edits, fast playback for the segment under the cursor,
           export to plain text or DOCX. The interface is now most of the
           value of the tool.
@@ -164,8 +167,8 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
             tool from a transcription tool into a meeting tool.
           </li>
           <li>
-            <b>Vocabulary biasing.</b> Domain-specific names — case
-            numbers, medical terms, proper nouns — are where on-device
+            <b>Vocabulary biasing.</b> Domain-specific names, case
+            numbers, medical terms, proper nouns, are where on-device
             transcription still fumbles. A user-managed glossary that
             reweights the decoder would close most of that gap.
           </li>
@@ -185,10 +188,23 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
         </div>
 
         <div class="case-nextprev">
-          <a href="./ata-law-firm.html">// previous: ATA Law Firm — case management on AWS</a>
-          <a href="./e-pds.html">// previous: E-PDS — civic tech for a province</a>
+          <a href="./ata-law-firm.html">← ATA Law Firm</a>
+          <a href="./batchphotos.html">BatchPhotos Online →</a>
         </div>
       </article>
     </main>
+      <script>
+      (() => {
+        const bar = document.getElementById("readProgress");
+        const upd = () => {
+          const d = document.documentElement;
+          const p = d.scrollTop / (d.scrollHeight - d.clientHeight || 1);
+          bar.style.width = Math.min(100, p * 100) + "%";
+        };
+        addEventListener("scroll", upd, { passive: true });
+        addEventListener("resize", upd);
+        upd();
+      })();
+    </script>
   </body>
 </html>

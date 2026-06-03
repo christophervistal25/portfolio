@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>E-PDS — Civic Tech for a Province · Christopher Vistal</title>
+    <title>E-PDS, Civic Tech for a Province · Christopher Vistal</title>
     <meta
       name="description"
-      content="Building the Province of Surigao del Sur's civil servant records platform and tourism analytics dashboard — digitizing 500+ employee 201 files and modernizing the team's dev workflow along the way."
+      content="Building the Province of Surigao del Sur's civil servant records platform and tourism analytics dashboard, digitizing 500+ employee 201 files and modernizing the team's dev workflow along the way."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="E-PDS — Civic Tech for a Province" />
+    <meta property="og:title" content="E-PDS, Civic Tech for a Province" />
     <meta property="og:description" content="Records platform + tourism dashboard for the Province of Surigao del Sur. Laravel, MySQL, Vue.js, on-prem." />
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -19,15 +19,16 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=45" />
   </head>
   <body data-density="comfortable">
+    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
     <main class="case-wrap">
       <a href="../index.html" class="case-back">back to portfolio</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">// Case Study 02 &nbsp;·&nbsp; civic tech</span>
-        <h1 class="case-h1">E-PDS — civil servant records, and a workflow upgrade</h1>
+        <span class="case-eyebrow">Case Study 02 &nbsp;·&nbsp; civic tech</span>
+        <h1 class="case-h1">E-PDS, civil servant records, and a workflow upgrade</h1>
         <p class="case-deck">
           The Province of Surigao del Sur ran on filing cabinets and Excel
           sheets. Over three years I built the platform that replaced them
@@ -36,18 +37,20 @@
           are both still running.
         </p>
         <dl class="case-meta">
-          <dt>Role</dt><dd>Software engineer — Province of Surigao del Sur</dd>
+          <dt>Role</dt><dd>Software engineer, Province of Surigao del Sur</dd>
           <dt>Stack</dt><dd>Laravel, Vue.js, MySQL / SQL Server, Java (Android), Nginx</dd>
-          <dt>Duration</dt><dd>Jan 2021 — Dec 2023</dd>
+          <dt>Duration</dt><dd>Jan 2021, Dec 2023</dd>
           <dt>Scope</dt><dd>500+ civil servant 201 files digitized, ongoing tourism analytics</dd>
         </dl>
       </header>
+      <div class="case-hero"><img src="../assets/imagesv2/e_pds.png" alt="" loading="eager" /></div>
+
 
       <article class="case-prose">
         <h2>The starting line</h2>
         <p>
           Provincial HR managed civil servants the way most LGUs in the
-          Philippines do — paper 201 files in cabinets, plus Excel sheets
+          Philippines do, paper 201 files in cabinets, plus Excel sheets
           tracking deductions, leaves, and assignments. Reports for the
           Civil Service Commission and the Commission on Audit were
           handcrafted every cycle. Tourism data came in as
@@ -83,19 +86,19 @@
         </ul>
 
         <h2>The platform</h2>
-        <h3>E-PDS — digitizing the 201 file</h3>
+        <h3>E-PDS, digitizing the 201 file</h3>
         <p>
           The first deliverable was a digital Personal Data Sheet. The
           paper PDS is a multi-page CSC form with around 200 fields, family
           composition, work history, eligibility, training. I modeled it
-          carefully — not as one giant table, but as a personal-record
+          carefully, not as one giant table, but as a personal-record
           aggregate with relations for family members, employment, civil
           service eligibilities, learning and development, and references.
         </p>
         <p>
           Critically, every change to a record was version-tracked. A
           civil servant who updated their employment history did not erase
-          the previous entry — they appended. The audit trail is what
+          the previous entry, they appended. The audit trail is what
           made the data trustworthy enough for HR to retire the cabinet.
         </p>
 
@@ -121,23 +124,23 @@
         </p>
         <ul>
           <li>
-            <b>GSIS deduction processor</b> — generated the monthly
+            <b>GSIS deduction processor</b>, generated the monthly
             insurance deduction file the GSIS office consumed. The old
             workflow took half a day. The new one is a button.
           </li>
           <li>
-            <b>BIR tax reporting integration</b> — produced the report
+            <b>BIR tax reporting integration</b>, produced the report
             files required by the Bureau of Internal Revenue in their
             exact expected format. The fragile part was always the format,
             not the math.
           </li>
           <li>
-            <b>SMS notification service</b> — small Laravel service that
+            <b>SMS notification service</b>, small Laravel service that
             sent payroll, leave, and announcement messages. SMS was the
             channel field officers actually read.
           </li>
           <li>
-            <b>Android employee app for 201 files</b> — Java app letting
+            <b>Android employee app for 201 files</b>, Java app letting
             employees view their own record, request edits, and see leave
             balances. Built specifically so employees did not have to walk
             to the HR office for everything.
@@ -172,15 +175,15 @@
           colleague's in-flight change.
         </p>
         <div class="case-callout">
-          <span class="case-callout-label">// What I introduced</span>
+          <span class="case-callout-label">What I introduced</span>
           Git, GitHub, code review on pull requests, a basic deployment
           script that pulled from <code>main</code> and ran
           <code>composer install</code> and <code>php artisan migrate</code>.
           Boring. Transformational.
         </div>
         <p>
-          I paired with three of my colleagues through real changes — not
-          tutorial code — until they were comfortable opening pull
+          I paired with three of my colleagues through real changes, not
+          tutorial code, until they were comfortable opening pull
           requests and rolling back failed deployments. By the time I left
           for full-time freelance work, the team was operating their own
           workflow without me in the loop.
@@ -213,7 +216,7 @@
         <p>
           The records platform, the dashboard, and the internal tools are
           still in production use across provincial offices. The workflow
-          changes — Git, pull requests, code review — outlived my time on
+          changes, Git, pull requests, code review, outlived my time on
           the team. That second outcome matters more in the long run than
           any one feature I shipped.
         </p>
@@ -228,10 +231,23 @@
         </div>
 
         <div class="case-nextprev">
-          <a href="./ata-law-firm.html">// previous: ATA Law Firm — case management on AWS</a>
-          <a href="./offline-transcriber.html">// next: Offline AI Transcriber →</a>
+          <a href="./ata-law-firm.html">← ATA Law Firm</a>
+          <a href="./offline-transcriber.html">Offline AI Transcriber →</a>
         </div>
       </article>
     </main>
+      <script>
+      (() => {
+        const bar = document.getElementById("readProgress");
+        const upd = () => {
+          const d = document.documentElement;
+          const p = d.scrollTop / (d.scrollHeight - d.clientHeight || 1);
+          bar.style.width = Math.min(100, p * 100) + "%";
+        };
+        addEventListener("scroll", upd, { passive: true });
+        addEventListener("resize", upd);
+        upd();
+      })();
+    </script>
   </body>
 </html>

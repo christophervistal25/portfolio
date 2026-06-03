@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About, Christopher Vistal</title>
+    <meta name="description" content="About Christopher Vistal, full-stack engineer (Laravel, Vue, Go, AWS). Experience, skills, and references." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Roboto+Slab:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/site.css?v=45" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <a href="index.html#top" class="topbar-name"><span class="brand-mark">CV</span></a>
+        <nav class="topbar-nav">
+          <a href="aboutme.html">About Me</a>
+          <a href="index.html#work">Work</a>
+          <a href="index.html#builds">Builds</a>
+          <a href="mailto:vistalchris@gmail.com">Contact</a>
+        </nav>
+      </header>
+
+      <!-- Experience -->
+      <section class="section" id="experience">
+        <div class="section-label">Experience</div>
+        <div class="exp fade-in">
+          <div class="exp-item">
+            <div class="exp-date">2023, present</div>
+            <div>
+              <div class="exp-role">Freelance Software Engineer</div>
+              <div class="exp-org">Self-employed</div>
+              <ul class="exp-bullets">
+                <li>Built <b>ATA Law Firm's</b> case management platform on AWS, case tracking, document automation, and a secure client portal, with an access model built around attorney-client privilege.</li>
+                <li>Built <b>NEMSU Data Hub</b>, a multi-campus file + submissions platform, <b>Go</b> services for resumable (tus) uploads and PDF signing, ClamAV scanning, S3 + local storage, Google Sheets/Docs editing.</li>
+                <li>Built an <b>offline AI transcription tool</b> with CTranslate2 and Python, local speech-to-text, zero cloud dependency for sensitive audio.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-date">Jan 2021, Dec 2023</div>
+            <div>
+              <div class="exp-role">Software Engineer</div>
+              <div class="exp-org">Province of Surigao del Sur</div>
+              <ul class="exp-bullets">
+                <li>Built the province's <b>E-PDS system and tourism analytics dashboard</b>, digitizing civil servant records and tracking visitor data for planning.</li>
+                <li>Cut response times on high-traffic reporting views by resolving N+1 bottlenecks and adding indexes on legacy applications.</li>
+                <li><b>Introduced Git/GitHub and modern dev tooling</b>, standardizing branching, code review, and deployment across government projects.</li>
+                <li>Delivered internal tools, GSIS deduction processing, BIR tax reporting, an SMS service, and an Android 201-files app, cutting manual paperwork.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-date">Jul, Aug 2018</div>
+            <div>
+              <div class="exp-role">Intern Developer</div>
+              <div class="exp-org">NEMSU</div>
+              <ul class="exp-bullets">
+                <li>Built a <b>faculty evaluation web app with Python NLP sentiment analysis</b>, adopted by 3,000+ students and staff.</li>
+                <li>Coached capstone teams through system design, stack decisions, and implementation, turning academic requirements into shipping software.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="section" id="skills">
+        <div class="section-label">Skills &amp; Stack</div>
+        <div class="skills fade-in">
+          <div class="skill-row"><span class="skill-cat">Backend</span><span class="skill-val">PHP / Laravel, Spatie packages, Node.js, MySQL, SQL Server, REST APIs, Socket.io</span></div>
+          <div class="skill-row"><span class="skill-cat">Frontend</span><span class="skill-val">Vue.js, TypeScript, Tailwind, Inertia.js, HTML / CSS / JS</span></div>
+          <div class="skill-row"><span class="skill-cat">Go</span><span class="skill-val">Go (tus uploads, PDF signing, Bubbletea TUIs), GTK3</span></div>
+          <div class="skill-row"><span class="skill-cat">AI &amp; ML</span><span class="skill-val">Python, CTranslate2, Whisper, NLP, Speech-to-Text</span></div>
+          <div class="skill-row"><span class="skill-cat">DevOps &amp; Sec</span><span class="skill-val">AWS (EC2, S3, RDS), Docker, Nginx, Cloudflare, ClamAV, Git, PHPUnit / Pest, Linux</span></div>
+          <div class="skill-row"><span class="skill-cat">Integrations</span><span class="skill-val">Google Workspace (Sheets, Docs, OAuth), GitHub API, Java (Android), C# (.NET)</span></div>
+        </div>
+      </section>
+
+      <!-- Trusted by -->
+      <section class="section" id="trust">
+        <div class="section-label">Trusted By</div>
+        <div class="quotes fade-in">
+          <figure class="quote">
+            <blockquote>"Chris took our entire firm off spreadsheets and onto a real platform. Case tracking, document automation, and the client portal have been running daily for over a year without drama."</blockquote>
+            <figcaption><span class="who">ATA Law Firm, Principal Attorney</span><span class="ctx">atafirm.ph · case management on AWS</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>"Christopher modernized our internal systems and brought the team onto Git and proper deployment. The E-PDS platform and tourism dashboard are still in production across the province."</blockquote>
+            <figcaption><span class="who">Province of Surigao del Sur, IT Supervisor</span><span class="ctx">civil servant records · analytics dashboard</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>"A dedicated, knowledgeable developer with strong skills across system design and backend. As a mentor, patient and reliable, always approachable."</blockquote>
+            <figcaption><span class="who">Professional Recommendation, Mentor / Colleague</span><span class="ctx">software development · mentorship</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer" id="contact">
+        <div class="footer-head">Let's build something.</div>
+        <p class="footer-sub">Full-stack engineer shipping Laravel + Vue platforms with Go where it matters. Open to full-time remote roles. I usually reply within 24 hours.</p>
+        <div class="footer-links">
+          <a href="mailto:vistalchris@gmail.com">Email</a><span class="sep">·</span>
+          <a href="https://github.com/christophervistal25" target="_blank" rel="noopener">GitHub</a><span class="sep">·</span>
+          <a href="https://www.linkedin.com/in/christophervistal25/" target="_blank" rel="noopener">LinkedIn</a><span class="sep">·</span>
+          <a href="index.html#work">Work</a><span class="sep">·</span>
+          <a href="https://drive.google.com/file/d/1jvaDjvo8qTKh5IHt14ZiXpNj9H-TjnF_/view?usp=sharing" target="_blank" rel="noopener">CV (PDF)</a>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Christopher Vistal · Surigao del Sur, PH (UTC+8)</span>
+          <span>Built with care</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const obs = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll(".fade-in").forEach((el) => obs.observe(el));
+    </script>
+  </body>
+</html>

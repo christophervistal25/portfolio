@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Christopher Vistal — Resume</title>
+    <title>Christopher Vistal, Resume</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap");
 
       *,
       *::before,
@@ -16,14 +16,15 @@
       }
 
       :root {
-        --text: oklch(0.18 0.012 254);
-        --muted: oklch(0.46 0.014 254);
-        --light: oklch(0.66 0.012 254);
-        --border: oklch(0.91 0.008 254);
-        --bg: oklch(0.97 0.005 254);
-        --paper: oklch(0.995 0.002 254);
-        --accent: oklch(0.52 0.18 258);
-        --accent2: oklch(0.44 0.2 258);
+        --text: #1a1a17;
+        --muted: #6c6c65;
+        --light: #9a9a92;
+        --border: rgba(20, 18, 12, 0.12);
+        --bg: #f1f0ea;
+        --paper: #fcfcfb;
+        --accent: #1a1a17;
+        --accent2: #000;
+        --serif: "Roboto Slab", Georgia, serif;
         --page: 740px;
       }
 
@@ -73,7 +74,7 @@
         box-shadow:
           0 1px 2px oklch(0.18 0.012 254 / 0.04),
           0 12px 32px oklch(0.18 0.012 254 / 0.08);
-        border-top: 3px solid var(--accent);
+        border-top: 2px solid var(--text);
         border-radius: 2px;
       }
 
@@ -86,9 +87,10 @@
       }
 
       .resume-name {
+        font-family: var(--serif);
         font-size: 26pt;
         font-weight: 700;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.4px;
         line-height: 1.05;
         color: var(--text);
         margin-bottom: 6px;
@@ -105,7 +107,7 @@
         margin-bottom: 14px;
       }
 
-      /* Contact strip — 3-column grid, 2 rows */
+      /* Contact strip, 3-column grid, 2 rows */
       .resume-contact {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -118,11 +120,12 @@
         line-height: 1.4;
       }
       .resume-contact a {
-        color: var(--muted);
+        color: var(--text);
         text-decoration: none;
+        border-bottom: 1px solid var(--border);
       }
       .resume-contact a:hover {
-        color: var(--accent);
+        border-color: var(--text);
       }
       .contact-item {
         display: flex;
@@ -151,7 +154,7 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1.4px;
-        color: var(--accent);
+        color: var(--light);
         margin-bottom: 12px;
         padding-bottom: 6px;
         border-bottom: 1px solid var(--border);
@@ -186,7 +189,7 @@
       }
       .exp-org {
         font-size: 8.5pt;
-        color: var(--accent);
+        color: var(--muted);
         font-weight: 500;
         margin-bottom: 6px;
       }
@@ -262,14 +265,16 @@
       }
       .proj-url {
         font-size: 7.5pt;
-        color: var(--accent);
+        color: var(--muted);
       }
       .proj-url a {
-        color: var(--accent);
+        color: var(--text);
         text-decoration: none;
+        border-bottom: 1px solid var(--border);
+        font-weight: 500;
       }
       .proj-url a:hover {
-        text-decoration: underline;
+        border-color: var(--text);
       }
       .proj-desc {
         font-size: 8.25pt;
@@ -480,15 +485,11 @@
       <div class="section">
         <div class="section-title">Summary</div>
         <p class="summary-text">
-          Full-Stack Software Engineer with 5+ years shipping production web
-          platforms in <b>Laravel, Vue.js, and AWS</b>, with <b>Go sidecars</b>
-          for the long-lived and security-sensitive bits (resumable uploads,
-          PDF signing, TUIs). Owned features end-to-end from architecture and
-          database design through deployment, security hardening, and live
-          release. Domain experience spans case management, civic tech,
-          multi-campus university platforms, on-device AI tooling, and game
-          server hardening. Open to
-          <b>full-time remote roles and select contracts.</b>
+          Full-Stack Software Engineer with <b>5+ years</b> shipping production
+          web platforms <b>end-to-end</b>, from architecture and database design
+          through deployment and security hardening. Domain experience across
+          legal, government, university, and on-device AI systems.
+          <b>Open to full-time remote roles and select contracts.</b>
         </p>
       </div>
 
@@ -499,38 +500,27 @@
         <div class="exp-item">
           <div class="exp-header">
             <span class="exp-role">Freelance Software Engineer</span>
-            <span class="exp-date">2023 — Present</span>
+            <span class="exp-date">2023 – Present</span>
           </div>
           <div class="exp-org">Independent Contractor</div>
           <ul class="exp-bullets">
             <li>
-              Delivered <b>ATA Law Firm</b> case management platform (Laravel,
-              Vue.js, AWS EC2/S3/RDS) — case tracking, document automation, and
-              client portal in active daily production use by firm staff and
-              clients.
+              Designed and shipped <b>ATA Law Firm's case management platform</b>
+              on AWS, now in daily production use by the firm: case tracking,
+              document automation, and a secure client portal.
             </li>
             <li>
-              Engineered <b>offline AI transcription tool</b> (Python,
-              CTranslate2, Whisper) — local speech-to-text with real-time
-              waveform feedback, zero cloud dependency for confidential
-              legal/medical audio.
+              Built <b>NEMSU Data Hub</b>, a multi-campus file and submissions
+              platform serving every NEMSU campus, with resumable uploads,
+              virus scanning, and cryptographically signed PDF documents.
             </li>
             <li>
-              Hardened <b>Dragonica Spidpex</b> private game server under
-              active attack — closed credential stuffing, cash-shop race
-              conditions, stored XSS, and rolled out Argon2id + Cloudflare
-              perimeter. Live and in daily use.
+              Engineered an <b>offline, on-device AI transcription tool</b> for
+              confidential legal and medical audio, with zero cloud dependency.
             </li>
             <li>
-              Built <b>NEMSU Data Hub</b> — multi-campus file + submissions
-              platform (Laravel, Vue.js, Go tus uploads, ClamAV scanning, Go
-              PDF signer, Google Workspace integration, S3 + local FS hybrid)
-              serving every NEMSU campus.
-            </li>
-            <li>
-              Shipped <b>10+ community Flyff gaming sites</b> (Laravel, MySQL,
-              Nginx) — player registration, item shops, and account systems each
-              sustaining independent active user bases.
+              Launched <b>10+ community gaming sites</b> with player accounts,
+              in-app economies, and independently active user bases.
             </li>
           </ul>
         </div>
@@ -538,39 +528,32 @@
         <div class="exp-item">
           <div class="exp-header">
             <span class="exp-role">Software Engineer</span>
-            <span class="exp-date">Jan 2021 — Dec 2023</span>
+            <span class="exp-date">Jan 2021 – Dec 2023</span>
           </div>
           <div class="exp-org">Province of Surigao del Sur</div>
           <ul class="exp-bullets">
             <li>
-              Built <b>E-PDS civil servant records platform</b> and
-              <b>tourism analytics dashboard</b> (Laravel, MySQL, Vue.js) —
-              digitized 500+ employee 201 files and tracked provincial visitor
-              data informing planning decisions.
+              Built the province's <b>E-PDS records platform and tourism
+              dashboard</b>, digitizing <b>500+ civil-servant files</b> and
+              giving planners live visitor data.
             </li>
             <li>
-              Delivered internal tooling suite —
-              <b>GSIS deduction processor</b>,
-              <b>BIR tax reporting integration</b>,
-              <b>SMS notification service</b>, and
-              <b>Android employee 201 mobile app</b> (Laravel, Java, SQL Server)
-              — cutting routine paperwork cycles from hours to minutes across
-              provincial offices.
+              Delivered an internal tooling suite (GSIS deductions, BIR tax
+              reporting, SMS notifications, an Android 201-files app) that cut
+              routine paperwork <b>from hours to minutes</b>.
             </li>
             <li>
-              Cut response times on high-traffic reporting views by ~60% —
-              profiling Eloquent queries, resolving N+1 bottlenecks, and adding
-              indexes on legacy applications.
+              Cut response times on high-traffic reporting views by
+              <b>~60%</b>, profiling queries, resolving N+1 bottlenecks, and
+              adding indexes on legacy applications.
             </li>
             <li>
-              <b>Introduced Git/GitHub workflow and modern dev tooling</b> to
-              the team standardized branching, code review, and deployment,
-              cutting integration friction across ongoing government projects.
+              <b>Introduced Git, code review, and modern deployment</b> to the
+              team, cutting integration friction across government projects.
             </li>
             <li>
-              Mentored 3 team members on Laravel, server environments, and live
-              release procedures — accelerating their independent feature
-              delivery.
+              Mentored <b>3 engineers</b> on Laravel, server environments, and
+              release procedures.
             </li>
           </ul>
         </div>
@@ -578,21 +561,16 @@
         <div class="exp-item">
           <div class="exp-header">
             <span class="exp-role">Intern Developer</span>
-            <span class="exp-date">Jul — Aug 2018</span>
+            <span class="exp-date">Jul – Aug 2018</span>
           </div>
           <div class="exp-org">N.E. Mindanao State University</div>
           <ul class="exp-bullets">
             <li>
-              Built
-              <b
-                >faculty evaluation web app with Python NLP sentiment
-                analysis</b
-              >
-              (Laravel, Python) — adopted by 3,000+ students and staff across
-              the university.
+              Built a <b>faculty-evaluation web app with Python NLP sentiment
+              analysis</b>, adopted by <b>3,000+ students and staff</b>.
             </li>
             <li>
-              Coached capstone students on system design and stack decisions,
+              Coached capstone teams through system design and stack decisions,
               turning academic requirements into shipping software.
             </li>
           </ul>
@@ -651,13 +629,13 @@
             <div class="proj-name-row">
               <span class="proj-name">ATA Law Firm</span>
               <span class="proj-url"
-                ><a href="https://atafirm.ph" target="_blank"
-                  >atafirm.ph</a
-                ></span
+                ><a href="case/ata-law-firm.html" target="_blank">case study</a>
+                &nbsp;·&nbsp;
+                <a href="https://atafirm.ph" target="_blank">atafirm.ph</a></span
               >
             </div>
             <div class="proj-desc">
-              Production case management system — case tracking, document
+              Production case management system, case tracking, document
               automation, client portal on AWS. Laravel, Vue.js.
             </div>
           </div>
@@ -665,42 +643,34 @@
             <div class="proj-name-row">
               <span class="proj-name">NEMSU Data Hub</span>
               <span class="proj-url"
-                ><a href="https://udh.nemsu.edu.ph" target="_blank"
-                  >udh.nemsu.edu.ph</a
-                ></span
+                ><a href="case/nemsu-data-hub.html" target="_blank">case study</a>
+                &nbsp;·&nbsp;
+                <a href="https://udh.nemsu.edu.ph" target="_blank">udh.nemsu.edu.ph</a></span
               >
             </div>
             <div class="proj-desc">
-              Multi-campus file + submissions platform — Google Drive style.
+              Multi-campus file + submissions platform, Google Drive style.
               Laravel + Vue + Go tus uploads + ClamAV + Google Workspace.
             </div>
           </div>
           <div class="proj-item">
             <div class="proj-name-row">
-              <span class="proj-name">Dragonica Spidpex</span>
+              <span class="proj-name">Offline AI Transcriber</span>
               <span class="proj-url"
-                ><a href="https://dragonicaspidpex.com" target="_blank"
-                  >dragonicaspidpex.com</a
-                ></span
+                ><a href="case/offline-transcriber.html" target="_blank">case study</a></span
               >
             </div>
             <div class="proj-desc">
-              Live private game server — security hardening engagement. Auth,
-              cash shop, perimeter. Laravel, Cloudflare.
-            </div>
-          </div>
-          <div class="proj-item">
-            <div class="proj-name-row">
-              <span class="proj-name">Offline AI Transcriber</span>
-            </div>
-            <div class="proj-desc">
-              Local speech-to-text with real-time waveform visualization — no
+              Local speech-to-text with real-time waveform visualization, no
               cloud, fully on-device. Python, CTranslate2, Whisper.
             </div>
           </div>
           <div class="proj-item">
             <div class="proj-name-row">
               <span class="proj-name">E-PDS &amp; Tourism Dashboard</span>
+              <span class="proj-url"
+                ><a href="case/e-pds.html" target="_blank">case study</a></span
+              >
             </div>
             <div class="proj-desc">
               Civil servant records platform + tourism analytics for Province
@@ -731,7 +701,7 @@
         <div class="section-title">Education</div>
         <div class="edu-header">
           <span class="edu-school">Surigao del Sur State University</span>
-          <span class="edu-date">2015 — 2019</span>
+          <span class="edu-date">2015 – 2019</span>
         </div>
         <div class="edu-degree">Bachelor of Science in Computer Science</div>
       </div>

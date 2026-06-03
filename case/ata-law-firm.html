@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ATA Law Firm — Case Management on AWS · Christopher Vistal</title>
+    <title>ATA Law Firm, Case Management on AWS · Christopher Vistal</title>
     <meta
       name="description"
-      content="How I designed and shipped a single-tenant case management platform for a Philippine law firm on AWS — document automation, client portal, and an access model built around attorney-client privilege."
+      content="How I designed and shipped a single-tenant case management platform for a Philippine law firm on AWS, document automation, client portal, and an access model built around attorney-client privilege."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="ATA Law Firm — Case Management on AWS" />
+    <meta property="og:title" content="ATA Law Firm, Case Management on AWS" />
     <meta
       property="og:description"
       content="Single-tenant Laravel + Vue case management built around attorney-client privilege. Document automation, secure portal, and AWS architecture."
@@ -22,15 +22,18 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=45" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default', themeVariables: { fontFamily: 'Geist, sans-serif' } });</script>
   </head>
   <body data-density="comfortable">
+    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
     <main class="case-wrap">
       <a href="../index.html" class="case-back">back to portfolio</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">// Case Study 01 &nbsp;·&nbsp; case management on AWS</span>
-        <h1 class="case-h1">ATA Law Firm — taking a firm off spreadsheets</h1>
+        <span class="case-eyebrow">Case Study 01 &nbsp;·&nbsp; case management on AWS</span>
+        <h1 class="case-h1">ATA Law Firm, taking a firm off spreadsheets</h1>
         <p class="case-deck">
           A single-tenant case management platform for a Philippine law firm.
           Active daily production use by attorneys, paralegals, and clients.
@@ -39,12 +42,14 @@
           permission system without leaking a single row across cases?
         </p>
         <dl class="case-meta">
-          <dt>Role</dt><dd>Sole engineer — architecture, build, deployment</dd>
+          <dt>Role</dt><dd>Sole engineer, architecture, build, deployment</dd>
           <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Tailwind CSS, AWS (EC2, RDS, S3)</dd>
           <dt>Duration</dt><dd>~4 months initial build, ongoing maintenance</dd>
-          <dt>Status</dt><dd><a href="https://atafirm.ph" target="_blank" rel="noopener">atafirm.ph</a> — live, in daily use</dd>
+          <dt>Status</dt><dd><a href="https://atafirm.ph" target="_blank" rel="noopener">atafirm.ph</a>, live, in daily use</dd>
         </dl>
       </header>
+      <div class="case-hero"><img src="../assets/imagesv2/ata_firm.png" alt="" loading="eager" /></div>
+
 
       <article class="case-prose">
         <h2>The starting line</h2>
@@ -81,7 +86,7 @@
           </li>
           <li>
             <b>Solo build.</b> No team, no on-call rotation. Anything I shipped
-            had to be operable by one person — and recoverable by them.
+            had to be operable by one person, and recoverable by them.
           </li>
           <li>
             <b>Daily use from day one of rollout.</b> No staging-only periods.
@@ -91,29 +96,28 @@
 
         <h2>Architecture in one picture</h2>
         <div class="case-diagram">
-<pre>
-                ┌─────────────────────────────────────────┐
-                │              Cloudflare DNS            │
-                └────────────────────┬───────────────────┘
-                                     │
-                            ┌────────▼────────┐
-                            │   Nginx (EC2)   │   TLS, gzip, rate limits
-                            └────────┬────────┘
-                                     │
-                  ┌──────────────────▼──────────────────┐
-                  │        Laravel monolith (PHP-FPM)   │
-                  │  - Inertia.js → Vue SPA pages       │
-                  │  - Policy-driven authorization      │
-                  │  - Document automation pipeline     │
-                  │  - Queue worker (database driver)   │
-                  └──┬──────────────┬──────────────┬────┘
-                     │              │              │
-              ┌──────▼─────┐  ┌─────▼─────┐  ┌─────▼─────┐
-              │  MySQL RDS │  │   S3      │  │ SES (mail)│
-              │  (private) │  │ documents │  │           │
-              └────────────┘  └───────────┘  └───────────┘
-</pre>
-          <div class="case-diagram-caption">// single-tenant AWS layout</div>
+        <pre class="mermaid">
+flowchart TB
+    cf["Cloudflare DNS"]
+    nginx["Nginx (EC2)\nTLS, gzip, rate limits"]
+    laravel["Laravel monolith (PHP-FPM)\nInertia.js → Vue SPA pages\nPolicy-driven authorization\nDocument automation pipeline\nQueue worker (database driver)"]
+    mysql["MySQL RDS\n(private)"]
+    s3["S3\ndocuments"]
+    ses["SES\n(mail)"]
+
+    cf --> nginx --> laravel
+    laravel --> mysql
+    laravel --> s3
+    laravel --> ses
+
+    style cf fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style nginx fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style laravel fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style mysql fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style s3 fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style ses fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+        </pre>
+          <div class="case-diagram-caption">single-tenant AWS layout</div>
         </div>
         <p>
           Single VPC, two subnets, one Nginx-fronted EC2 running PHP-FPM, one
@@ -133,13 +137,13 @@
           The core idea is simple: documents are <b>templates with named
           placeholders</b>, rendered against a <b>case context</b>. The
           surface area is small, but the failure modes are nasty in legal
-          work — a wrong court address on a pleading is not just embarrassing.
+          work, a wrong court address on a pleading is not just embarrassing.
         </p>
         <h3>Templates as data, not as files</h3>
         <p>
           Templates live in the database with their placeholder map, version,
           and an immutable hash. When an attorney creates a new template,
-          we don't overwrite the old one — we add a new version row. Every
+          we don't overwrite the old one, we add a new version row. Every
           generated document records the exact template version it was
           rendered from. If we ever need to ask <i>"what did we send last
           June?"</i>, the answer is reproducible.
@@ -177,7 +181,7 @@ protected function compile(string $body, array $context): string
 
         <h2>Access control under attorney-client privilege</h2>
         <p>
-          The interesting problem on this build wasn't the documents — it was
+          The interesting problem on this build wasn't the documents, it was
           the access model. The naïve approach in Laravel is to put a
           <code>user_id</code> column on everything and call it a day. That
           model is wrong for a law firm.
@@ -195,7 +199,7 @@ protected function compile(string $body, array $context): string
           I built it around a <code>case_members</code> pivot table with a
           role enum. Every read query that touches case-scoped data joins
           through it. The Laravel policy layer enforces the same rule at the
-          record level. The two enforcement points back each other up — if
+          record level. The two enforcement points back each other up, if
           one is bypassed, the other still holds the line.
         </p>
         <pre><code>// app/Models/Concerns/ScopedByCaseMembership.php
@@ -212,13 +216,13 @@ public function view(User $user, CaseDocument $doc): bool
         <p>
           Every search endpoint, every list endpoint, every report endpoint
           passes through <code>visibleTo($user)</code>. There is no global
-          scope on the model — global scopes are easy to forget when writing
+          scope on the model, global scopes are easy to forget when writing
           a raw query during a hot fix. An explicit scope on every read is
           ugly and safe. I chose ugly and safe.
         </p>
 
         <div class="case-callout">
-          <span class="case-callout-label">// Lesson</span>
+          <span class="case-callout-label">Lesson</span>
           Defense in depth on authorization is not paranoia in legal
           software. It is the floor. The cost of a single cross-case leak is
           larger than the cost of writing the scope twice.
@@ -226,7 +230,7 @@ public function view(User $user, CaseDocument $doc): bool
 
         <h3>Client portal as a different surface</h3>
         <p>
-          The client portal isn't a smaller version of the attorney UI — it
+          The client portal isn't a smaller version of the attorney UI, it
           is a different surface that happens to read from the same
           database. Clients authenticate against a separate guard. The
           policies on every model return a strict <code>false</code> by
@@ -288,7 +292,7 @@ public function view(User $user, CaseDocument $doc): bool
           <code>{{ client.name }}</code> tokens. Renders looked correct
           until they didn't. The fix was a template-authoring UI that
           inserts placeholders as visual chips, not as raw text. Templates
-          had become software — they needed an authoring environment, not a
+          had become software, they needed an authoring environment, not a
           text box.
         </p>
         <h3>Mobile portal usage was double what I assumed</h3>
@@ -297,7 +301,7 @@ public function view(User $user, CaseDocument $doc): bool
           portal was responsive but designed for the desktop case detail
           first. After the first month I rebuilt the mobile portal around a
           short single-column flow with case status, latest documents, and a
-          message-attorney button — three taps from the home screen to
+          message-attorney button, three taps from the home screen to
           anything that mattered.
         </p>
         <h3>Document download spikes</h3>
@@ -313,11 +317,11 @@ public function view(User $user, CaseDocument $doc): bool
 
         <h2>What it does today</h2>
         <ul>
-          <li>Active daily use across the firm — attorneys, paralegals, and the firm's clients.</li>
+          <li>Active daily use across the firm, attorneys, paralegals, and the firm's clients.</li>
           <li>Case tracking with status, deadlines, and a per-case timeline.</li>
           <li>Document automation generating standard pleadings, contracts, and client correspondence from versioned templates.</li>
           <li>Client portal with case status, document downloads, and direct messaging to the assigned attorney.</li>
-          <li>Audit trail of who viewed, edited, or downloaded what — visible to firm administrators.</li>
+          <li>Audit trail of who viewed, edited, or downloaded what, visible to firm administrators.</li>
         </ul>
         <p>
           The spreadsheet workflow is retired. The firm has not asked to go
@@ -371,10 +375,23 @@ public function view(User $user, CaseDocument $doc): bool
         </div>
 
         <div class="case-nextprev">
-          <a href="./e-pds.html">// next: E-PDS — civic tech for a province →</a>
-          <a href="./offline-transcriber.html">// also: Offline AI Transcriber →</a>
+          <a href="./e-pds.html">E-PDS →</a>
+          <a href="./offline-transcriber.html">Offline AI Transcriber →</a>
         </div>
       </article>
     </main>
+      <script>
+      (() => {
+        const bar = document.getElementById("readProgress");
+        const upd = () => {
+          const d = document.documentElement;
+          const p = d.scrollTop / (d.scrollHeight - d.clientHeight || 1);
+          bar.style.width = Math.min(100, p * 100) + "%";
+        };
+        addEventListener("scroll", upd, { passive: true });
+        addEventListener("resize", upd);
+        upd();
+      })();
+    </script>
   </body>
 </html>
