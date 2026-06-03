@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Roboto+Slab:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/site.css?v=45" />
+    <link rel="stylesheet" href="assets/css/site.css?v=47" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -62,7 +62,7 @@
       <!-- Lead -->
       <section class="lead" id="top">
         <h1 class="lead-head">Let's build something.</h1>
-        <p class="lead-sub">Full-stack engineer shipping Laravel + Vue platforms with Go where it matters. Open to full-time remote roles.</p>
+        <p class="lead-sub">I take products from first commit to production. Open to full-time remote roles.</p>
         <div class="lead-links">
           <a href="mailto:vistalchris@gmail.com">Email</a><span class="sep">·</span>
           <a href="https://github.com/christophervistal25" target="_blank" rel="noopener">GitHub</a><span class="sep">·</span>
@@ -360,6 +360,14 @@
         { threshold: 0.08 }
       );
       document.querySelectorAll(".fade-in").forEach((el) => obs.observe(el));
+    </script>
+    <script>
+      (() => {
+        const tb = document.querySelector('.topbar');
+        if (!tb) return;
+        const on = () => tb.classList.toggle('scrolled', window.scrollY > 8);
+        addEventListener('scroll', on, { passive: true }); on();
+      })();
     </script>
   </body>
 </html>
