@@ -1,0 +1,42 @@
+# Christopher Vistal
+
+> Full-stack engineer shipping production Laravel + Vue platforms with Go where it matters. 5+ years, open to full-time remote roles.
+
+## About
+
+Christopher Vistal is a full-stack software engineer based in Surigao del Sur, Philippines. Primary backend stack is PHP and Laravel, with Vue.js (Inertia.js) on the frontend, Go for performance-critical services, and AWS for production infrastructure. Production systems include case management for a law firm, a multi-campus university file platform, and a province-wide civil servant records + tourism analytics system. He also ships in Python (on-device ML), TypeScript, Java (Android), and Bash/Linux operations.
+
+Open to full-time remote engineering roles. Available for select freelance contracts.
+
+## Primary Skills
+
+- PHP, Laravel, Laravel queue workers, Eloquent, Spatie packages, PHPUnit / Pest
+- Vue.js, Inertia.js, TypeScript, Tailwind CSS
+- Go (services, CLIs, Bubbletea TUIs, GTK3)
+- MySQL, SQL Server, schema design, query optimization, indexing
+- AWS (EC2, RDS, S3, SES, SSM Parameter Store, CloudWatch)
+- Nginx, Cloudflare, Linux server administration, Docker
+- REST API design, authentication, role-based access control, policy-driven authorization
+- Production architecture: monoliths, queue pipelines, background jobs, pre-signed URLs, S3 lifecycle, RDS backups
+- Security: attorney-client privilege modeling, per-case scoped access, S3 bucket policies, audit trails
+- Python (CTranslate2, Whisper, on-device ML), Java (Android, SQLite)
+
+## Selected Work
+
+- [ATA Law Firm, Case Management](https://chris-dev.netlify.app/case/ata-law-firm.html): Single-tenant Laravel + Vue case management on AWS. Document automation from versioned templates, client portal, and a permission system modeled on attorney-client privilege. Live in daily use at atafirm.ph.
+- [NEMSU Data Hub, Google Drive for Universities](https://chris-dev.netlify.app/case/nemsu-data-hub.html): Laravel + Vue + Go platform federating file storage across multiple campuses. Resumable tus uploads (Go service), ClamAV scanning, S3 storage, signed documents. Live at udh.nemsu.edu.ph.
+- [E-PDS, Provincial Records & Tourism](https://chris-dev.netlify.app/case/e-pds.html): Laravel + Vue civic-tech platform replacing paper 201 files and Excel for the Province of Surigao del Sur. 500+ civil servants digitized, tourism analytics dashboard. In production across the province.
+- [Offline AI Transcriber](https://chris-dev.netlify.app/case/offline-transcriber.html): Local-first speech-to-text in Python with CTranslate2 and Whisper. Zero cloud dependency for sensitive audio.
+- [BatchPhotos Online](https://chris-dev.netlify.app/case/batchphotos.html): Bulk image framing and watermarking tool, JavaScript + Canvas API, TUS resumable uploads.
+
+## Other Pages
+
+- [About / Experience / Skills](https://chris-dev.netlify.app/aboutme.html): Full experience history, skills matrix, and references.
+- [Resume (HTML)](https://chris-dev.netlify.app/resume.html): Printable resume.
+- [Resume (PDF)](https://drive.google.com/file/d/1jvaDjvo8qTKh5IHt14ZiXpNj9H-TjnF_/view?usp=sharing): Downloadable CV.
+
+## Contact
+
+- Email: vistalchris@gmail.com
+- GitHub: https://github.com/christophervistal25
+- LinkedIn: https://www.linkedin.com/in/christophervistal25/

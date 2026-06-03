@@ -6,12 +6,27 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://chris-dev.netlify.app/aboutme.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://chris-dev.netlify.app/resume.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://chris-dev.netlify.app/llms.txt</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://chris-dev.netlify.app/case/ata-law-firm.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chris-dev.netlify.app/case/nemsu-data-hub.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -26,8 +41,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://chris-dev.netlify.app/case/nemsu-data-hub.html</loc>
+    <loc>https://chris-dev.netlify.app/case/batchphotos.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>
