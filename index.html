@@ -6,7 +6,7 @@
     <title>Christopher Vistal, Full-Stack Engineer</title>
     <meta
       name="description"
-      content="Christopher Vistal, full-stack engineer specializing in Laravel and Vue.js with Go services. Five years shipping production web platforms end-to-end on AWS. Open to full-time remote roles."
+      content="Christopher Vistal, full-stack engineer specializing in Laravel and Vue.js with Go services. 5+ years shipping production web platforms end-to-end on AWS. Open to full-time remote roles."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://chris-dev.netlify.app/" />
@@ -35,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Roboto+Slab:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/site.css?v=47" />
+    <link rel="stylesheet" href="assets/css/site.css?v=48" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -46,7 +46,6 @@
         "jobTitle": "Full-Stack Software Engineer (Laravel, Vue.js, Go)",
         "description": "Full-stack engineer with 5+ years shipping production web platforms in PHP, Laravel, Vue.js, Go, and AWS. Backend-leaning: case management, document automation, role-based access control, queue pipelines, and AWS architecture. Open to full-time remote roles.",
         "email": "mailto:vistalchris@gmail.com",
-        "telephone": "+63-XXX-XXX-XXXX",
         "address": { "@type": "PostalAddress", "addressLocality": "Tandag", "addressRegion": "Surigao del Sur", "addressCountry": "PH" },
         "workLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "PH" } },
         "sameAs": [
@@ -138,8 +137,7 @@
           { "@type": "ListItem", "position": 1, "url": "https://chris-dev.netlify.app/case/ata-law-firm.html", "name": "ATA Law Firm, Case Management" },
           { "@type": "ListItem", "position": 2, "url": "https://chris-dev.netlify.app/case/nemsu-data-hub.html", "name": "NEMSU Data Hub" },
           { "@type": "ListItem", "position": 3, "url": "https://chris-dev.netlify.app/case/e-pds.html", "name": "E-PDS, Provincial Records & Tourism" },
-          { "@type": "ListItem", "position": 4, "url": "https://chris-dev.netlify.app/case/offline-transcriber.html", "name": "Offline AI Transcriber" },
-          { "@type": "ListItem", "position": 5, "url": "https://chris-dev.netlify.app/case/batchphotos.html", "name": "BatchPhotos Online" }
+          { "@type": "ListItem", "position": 4, "url": "https://chris-dev.netlify.app/case/offline-transcriber.html", "name": "Offline AI Transcriber" }
         ]
       }
     </script>
@@ -159,6 +157,10 @@
 
       <!-- Lead -->
       <section class="lead" id="top">
+        <div class="lead-id">
+          <img class="lead-avatar" src="assets/images/avatar.jpg" alt="Christopher Vistal" width="56" height="56" />
+          <span class="lead-cred">Software Engineer · 5+ years · production platforms across legal, government, and education.</span>
+        </div>
         <h1 class="lead-head">Let's build something.</h1>
         <p class="lead-sub">I take products from first commit to production.<br>Open to full-time remote roles.</p>
         <div class="lead-links">
@@ -190,7 +192,7 @@
               <span class="row-cat">University platform · Laravel + Go</span>
               <h3 class="row-title">NEMSU Data Hub</h3>
               <p class="row-desc">A Google Drive for every NEMSU campus, resumable uploads, virus scanning, and signed documents.</p>
-              <span class="row-impact"><b>Impact</b> &nbsp;Centralized records and files across faculty and students.</span>
+              <span class="row-impact"><b>Impact</b> &nbsp;Built to centralize records and files across faculty and students.</span>
               <span class="row-meta">Laravel · Vue · Go · ClamAV · S3</span>
             </div>
             <div class="row-media"><img src="assets/imagesv2/nemsu.png" alt="NEMSU Data Hub" loading="lazy" /></div>
@@ -217,17 +219,6 @@
             </div>
             <div class="row-media"><img src="assets/imagesv2/transcriber.png" alt="Offline AI Transcriber" loading="lazy" /></div>
           </a>
-
-          <a class="row" href="case/batchphotos.html">
-            <div class="row-text">
-              <span class="row-cat">Batch image tool · Product</span>
-              <h3 class="row-title">BatchPhotos Online</h3>
-              <p class="row-desc">Bulk photo framing and watermarking, apply overlays to dozens of images at once, export as PNGs or a ZIP.</p>
-              <span class="row-impact"><b>Impact</b> &nbsp;Replaced manual one-by-one editing for creators and government offices.</span>
-              <span class="row-meta">JavaScript · Canvas API · TUS</span>
-            </div>
-            <div class="row-media"><img src="assets/imagesv2/batchphotos.png" alt="BatchPhotos Online" loading="lazy" /></div>
-          </a>
         </div>
       </section>
 
@@ -235,16 +226,6 @@
       <section class="section" id="builds">
         <div class="section-label">Side Builds</div>
         <div class="rows fade-in">
-          <div class="row" data-drawer-target="claude-usage-meter" role="button" tabindex="0" aria-label="Open Claude Usage Meter details">
-            <div class="row-text">
-              <span class="row-cat">Open Source</span>
-              <h3 class="row-title">Claude Usage Meter</h3>
-              <p class="row-desc">Desktop system tray app for Claude Code usage limits. Real-time, no hardware required.</p>
-              <span class="row-meta">JavaScript · Electron · System Tray</span>
-            </div>
-            <div class="row-media"><img src="assets/imagesv2/claude_usage.png" alt="Claude Usage Meter" loading="lazy" /></div>
-          </div>
-
           <div class="row" data-drawer-target="repository-cleaner" role="button" tabindex="0" aria-label="Open Repository Cleaner details">
             <div class="row-text">
               <span class="row-cat">Open Source</span>
@@ -274,16 +255,6 @@
             </div>
             <div class="row-media"><img src="assets/imagesv2/juna.png" alt="Uptime Juna" loading="lazy" /></div>
           </div>
-
-          <div class="row" data-drawer-target="bicycle-rent-timer" role="button" tabindex="0" aria-label="Open Bicycle Rent Timer details">
-            <div class="row-text">
-              <span class="row-cat">Android App</span>
-              <h3 class="row-title">Bicycle Rent Timer</h3>
-              <p class="row-desc">Android rental timer with sales tracking, live on Google Play. Tap to start, tap to stop.</p>
-              <span class="row-meta">Java · Android · SQLite</span>
-            </div>
-            <div class="row-media"><img src="assets/imagesv2/bicycle_rent_timer.png" alt="Bicycle Rent Timer" loading="lazy" /></div>
-          </div>
         </div>
       </section>
 
@@ -303,27 +274,6 @@
     </div>
 
     <!-- Drawer templates -->
-    <template id="drawer-claude-usage-meter">
-      <h2 class="drawer-title">Claude Usage Meter</h2>
-      <p class="drawer-meta">OPEN SOURCE · Electron + JavaScript</p>
-      <div class="drawer-section-label">Why I built it</div>
-      <div class="drawer-prose">
-        <p>A desktop version of <b>ClawdMeter</b>. I only saw the ESP32 hardware version going around, and made a desktop variant for everyone who doesn't have the board on their desk.</p>
-        <p>It lives in the <b>system tray</b> and lets you check your Claude Code usage at a glance, with an animated pixel Clawd that reacts to how much of your limit you've burned through.</p>
-        <p>Built it with Claude in about <b>10-15 minutes</b>, end to end. Open-sourced for anyone who lives in their terminal and forgets to check.</p>
-      </div>
-      <div class="drawer-section-label">Stack</div>
-      <div class="drawer-tags"><span class="drawer-tag">Electron</span><span class="drawer-tag">JavaScript</span><span class="drawer-tag">System Tray API</span></div>
-      <div class="drawer-section-label">Credits</div>
-      <div class="drawer-prose"><p><b>ClawdMeter</b>, original ESP32 desk dashboard by Hermann Bjorgvin. <b>claudepix</b>, pixel-art sprites by amaanbuilds.</p></div>
-      <div class="drawer-section-label">Repository</div>
-      <div class="drawer-prose"><p><a href="https://github.com/christophervistal25/claude-usage-meter" target="_blank" rel="noopener" style="color:var(--accent)">github.com/christophervistal25/claude-usage-meter ↗</a></p></div>
-      <div class="drawer-section-label">Showcase</div>
-      <div class="drawer-images">
-        <video src="assets/images/claude-meter/claude_meter_showcase.mp4" poster="assets/images/claude-meter/thumbnail.png" autoplay muted loop playsinline controls preload="auto"></video>
-      </div>
-    </template>
-
     <template id="drawer-repository-cleaner">
       <h2 class="drawer-title">Repository Cleaner</h2>
       <p class="drawer-meta">OPEN SOURCE · Go + Bubbletea TUI</p>
@@ -376,26 +326,6 @@
       </div>
     </template>
 
-    <template id="drawer-bicycle-rent-timer">
-      <h2 class="drawer-title">Bicycle Rent Timer</h2>
-      <p class="drawer-meta">ANDROID APP · Java + Google Play</p>
-      <div class="drawer-section-label">Why I built it</div>
-      <div class="drawer-prose">
-        <p>A day at the park with my wife and daughter. Renting a bike, I noticed the operator tracking everything in a <b>paper notebook</b>, bike number, start/end time, price, scribbled and corrected with arrows.</p>
-        <p>So I built a small Android app to do the boring part. <b>Tap to start a bike, tap to stop, the timer and price compute themselves.</b> A second screen tallies daily sales.</p>
-        <p>Shipped to <b>Google Play</b> so any rental stand with a phone can use it.</p>
-      </div>
-      <div class="drawer-section-label">Stack</div>
-      <div class="drawer-tags"><span class="drawer-tag">Java</span><span class="drawer-tag">Android SDK</span><span class="drawer-tag">SQLite</span><span class="drawer-tag">Google Play</span></div>
-      <div class="drawer-section-label">Listing</div>
-      <div class="drawer-prose"><p><a href="https://play.google.com/store/apps/details?id=com.bikerent" target="_blank" rel="noopener" style="color:var(--accent)">play.google.com / com.bikerent ↗</a></p></div>
-      <div class="drawer-section-label">Screenshots</div>
-      <div class="drawer-images">
-        <img src="assets/images/bicycle-rent/shot-1.png" alt="Bicycle Rent Timer, active rentals" loading="lazy" />
-        <img src="assets/images/bicycle-rent/shot-2.png" alt="Bicycle Rent Timer, rental detail" loading="lazy" />
-        <img src="assets/images/bicycle-rent/shot-3.png" alt="Bicycle Rent Timer, daily sales" loading="lazy" />
-      </div>
-    </template>
 
     <script>
       // App Store-style detail expand with View Transitions API

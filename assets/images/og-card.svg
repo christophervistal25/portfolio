@@ -2,7 +2,7 @@
   <defs>
     <style>
       .bg { fill: oklch(0.98 0.004 50); }
-      .accent { fill: oklch(0.65 0.14 85); }
+      .accent { fill: oklch(0.15 0.006 50); }
       .text-1 { fill: oklch(0.15 0.006 50); font-family: 'Inter', system-ui, sans-serif; }
       .text-2 { fill: oklch(0.35 0.007 50); font-family: 'Inter', system-ui, sans-serif; }
       .text-3 { fill: oklch(0.55 0.007 50); font-family: 'JetBrains Mono', ui-monospace, monospace; }

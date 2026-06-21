@@ -71,7 +71,7 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=47" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=48" />
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({ startOnLoad: true, theme: 'default', themeVariables: { fontFamily: 'Geist, sans-serif' } });</script>
   </head>
@@ -93,7 +93,7 @@
         <dl class="case-meta">
           <dt>Role</dt><dd>Engineer, build + ongoing maintenance</dd>
           <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), ClamAV, S3 + local FS, Google Workspace (Sheets, Docs, OAuth Sign-In), Tailwind CSS</dd>
-          <dt>Status</dt><dd><a href="https://udh.nemsu.edu.ph" target="_blank" rel="noopener">udh.nemsu.edu.ph</a>, live, in daily use</dd>
+          <dt>Status</dt><dd>Built; in deployment to udh.nemsu.edu.ph across campuses</dd>
         </dl>
       </header>
       <div class="case-hero"><img src="../assets/imagesv2/nemsu.png" alt="" loading="eager" /></div>
@@ -496,7 +496,7 @@ public function openEditor(User $user, File $file): string
           <li>Google Sheets and Docs edited in place, with platform-controlled access synced to Google Workspace.</li>
           <li>Google Sign-In as primary auth path for <code>@nemsu.edu.ph</code> accounts.</li>
           <li>Audit trail of file views, downloads, and submission activity.</li>
-          <li>Live in production on the university's own infrastructure.</li>
+          <li>Deploys onto the university's own on-prem infrastructure.</li>
         </ul>
 
         <h2>What I'd do differently next time</h2>

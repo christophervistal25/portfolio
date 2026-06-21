@@ -16,9 +16,10 @@
         "@type": "Person",
         "name": "Christopher Vistal",
         "url": "https://chris-dev.netlify.app/resume.html",
-        "jobTitle": "Full-Stack Software Engineer (Laravel, Vue.js, Go)",
+        "jobTitle": "Backend-leaning Software Engineer (Laravel, Vue.js, Go, AWS)",
         "description": "Full-stack engineer with 5+ years shipping production PHP, Laravel, Vue.js, Go, and AWS platforms. Backend-leaning, with experience in role-based access control, queue pipelines, and document automation.",
         "email": "mailto:vistalchris@gmail.com",
+        "telephone": "+639270323277",
         "knowsAbout": ["PHP", "Laravel", "Vue.js", "Inertia.js", "TypeScript", "Go", "MySQL", "SQL Server", "AWS", "Docker", "Nginx", "Cloudflare", "ClamAV", "PHPUnit", "Pest", "Python", "CTranslate2", "Whisper", "Linux"],
         "sameAs": [
           "https://github.com/christophervistal25",
@@ -52,7 +53,7 @@
 
       body {
         font-family: "Geist", "Inter", system-ui, sans-serif;
-        font-size: 9.75pt;
+        font-size: 10pt;
         color: var(--text);
         background: var(--bg);
         line-height: 1.55;
@@ -129,12 +130,12 @@
         margin-bottom: 14px;
       }
 
-      /* Contact strip, 3-column grid, 2 rows */
+      /* Contact strip, linear flex flow (ATS-safe extraction order) */
       .resume-contact {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 7px 0;
-        font-size: 8pt;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        font-size: 9pt;
         color: var(--muted);
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
@@ -172,10 +173,10 @@
       }
 
       .section-title {
-        font-size: 7.5pt;
+        font-size: 8.5pt;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 1.4px;
+        letter-spacing: 1px;
         color: var(--light);
         margin-bottom: 12px;
         padding-bottom: 6px;
@@ -233,45 +234,43 @@
         color: var(--text);
       }
 
-      /* ── Skills ── */
-      .skills-table {
-        width: 100%;
-        border-collapse: collapse;
+      /* ── Skills (single-column label/value, ATS-safe, no <table>) ── */
+      .skills-list {
+        display: flex;
+        flex-direction: column;
       }
-      .skills-table tr {
+      .skill-line {
+        display: flex;
+        gap: 14px;
+        padding: 5px 0;
+        line-height: 1.5;
         border-bottom: 1px solid var(--border);
       }
-      .skills-table tr:last-child {
+      .skill-line:last-child {
         border-bottom: none;
       }
-      .skills-table td {
-        padding: 6px 0;
-        vertical-align: middle;
-        line-height: 1.5;
-      }
-      .skills-table td:first-child {
+      .skill-k {
         font-weight: 600;
-        font-size: 8.5pt;
-        width: 120px;
+        font-size: 9pt;
+        flex: 0 0 116px;
         color: var(--text);
-        padding-right: 16px;
       }
-      .skills-table td:last-child {
+      .skill-v {
+        font-size: 9pt;
         color: var(--muted);
-        font-size: 8.5pt;
       }
-      .skills-table tr.featured td:first-child {
+      .skill-line.featured .skill-k {
         color: var(--accent);
       }
-      .skills-table tr.featured td:last-child {
+      .skill-line.featured .skill-v {
         color: var(--text);
       }
 
       /* ── Projects ── */
       .proj-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
       }
       .proj-name-row {
         display: flex;
@@ -368,7 +367,7 @@
         }
         @page {
           margin: 0;
-          size: 740px 1850px;
+          size: 740px 1580px;
         }
       }
 
@@ -401,7 +400,7 @@
         <div class="resume-header-left">
           <div class="resume-name">Christopher <span>Vistal</span></div>
           <div class="resume-title">
-            Full-Stack Software Engineer &nbsp;·&nbsp; Laravel · Vue.js · AWS
+            Backend-leaning Software Engineer &nbsp;·&nbsp; Laravel · Vue.js · AWS
             &nbsp;·&nbsp; Open to remote roles + contracts
           </div>
           <div class="resume-contact">
@@ -421,6 +420,21 @@
                 <path d="M3 7l9 6 9-6" />
               </svg>
               <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+            </span>
+            <span class="contact-item">
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <a href="tel:+639270323277">+63 927 032 3277</a>
             </span>
             <span class="contact-item">
               <svg
@@ -507,10 +521,11 @@
       <div class="section">
         <div class="section-title">Summary</div>
         <p class="summary-text">
-          Full-Stack Software Engineer with <b>5+ years</b> shipping production
-          web platforms <b>end-to-end</b>, from architecture and database design
-          through deployment and security hardening. Domain experience across
-          legal, government, university, and on-device AI systems.
+          Backend-leaning Software Engineer with <b>5+ years</b> shipping
+          production web platforms <b>end-to-end</b>, from system design and
+          database modeling through REST APIs, deployment, and security
+          hardening. Domain experience across legal, government, university,
+          and on-device AI systems.
           <b>Open to full-time remote roles and select contracts.</b>
         </p>
       </div>
@@ -528,21 +543,21 @@
           <ul class="exp-bullets">
             <li>
               Designed and shipped <b>ATA Law Firm's case management platform</b>
-              on AWS, now in daily production use by the firm: case tracking,
-              document automation, and a secure client portal.
+              on AWS, in <b>daily production use for over a year by up to 10
+              attorneys and support staff</b> at a leading Surigao del Sur law firm:
+              case tracking, document automation, REST APIs, and a secure client
+              portal with <b>role-based access control</b> modeled on
+              attorney-client privilege.
             </li>
             <li>
               Built <b>NEMSU Data Hub</b>, a multi-campus file and submissions
-              platform serving every NEMSU campus, with resumable uploads,
-              virus scanning, and cryptographically signed PDF documents.
+              platform across <b>NEMSU's 4 campuses</b>, currently in deployment,
+              with resumable uploads, queue-backed virus scanning, and
+              cryptographically signed PDF documents.
             </li>
             <li>
               Engineered an <b>offline, on-device AI transcription tool</b> for
               confidential legal and medical audio, with zero cloud dependency.
-            </li>
-            <li>
-              Launched <b>10+ community gaming sites</b> with player accounts,
-              in-app economies, and independently active user bases.
             </li>
           </ul>
         </div>
@@ -570,7 +585,7 @@
               adding indexes on legacy applications.
             </li>
             <li>
-              <b>Introduced Git, code review, and modern deployment</b> to the
+              <b>Introduced Git, code review, and CI/CD deployment</b> to the
               team, cutting integration friction across government projects.
             </li>
             <li>
@@ -579,68 +594,33 @@
             </li>
           </ul>
         </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Intern Developer</span>
-            <span class="exp-date">Jul – Aug 2018</span>
-          </div>
-          <div class="exp-org">N.E. Mindanao State University</div>
-          <ul class="exp-bullets">
-            <li>
-              Built a <b>faculty-evaluation web app with Python NLP sentiment
-              analysis</b>, adopted by <b>3,000+ students and staff</b>.
-            </li>
-            <li>
-              Coached capstone teams through system design and stack decisions,
-              turning academic requirements into shipping software.
-            </li>
-          </ul>
-        </div>
       </div>
 
       <!-- Skills -->
       <div class="section">
         <div class="section-title">Skills</div>
-        <table class="skills-table">
-          <tr>
-            <td>Backend</td>
-            <td>
-              PHP / Laravel &nbsp;·&nbsp; Spatie packages &nbsp;·&nbsp; Node.js
-              / Express &nbsp;·&nbsp; MySQL / SQL Server &nbsp;·&nbsp; RESTful
-              APIs &nbsp;·&nbsp; Socket.io
-            </td>
-          </tr>
-          <tr>
-            <td>Frontend</td>
-            <td>
-              Vue.js &nbsp;·&nbsp; TypeScript &nbsp;·&nbsp; Tailwind CSS
-              &nbsp;·&nbsp; Inertia.js &nbsp;·&nbsp; HTML / CSS / JS
-            </td>
-          </tr>
-          <tr class="featured">
-            <td>AI &amp; ML</td>
-            <td>
-              Python &nbsp;·&nbsp; CTranslate2 &nbsp;·&nbsp; Whisper
-              &nbsp;·&nbsp; NLP &nbsp;·&nbsp; Speech-to-Text
-            </td>
-          </tr>
-          <tr>
-            <td>DevOps &amp; Security</td>
-            <td>
-              Git / GitHub &nbsp;·&nbsp; AWS (EC2, S3, RDS) &nbsp;·&nbsp; Docker
-              &nbsp;·&nbsp; Nginx &nbsp;·&nbsp; Cloudflare &nbsp;·&nbsp; ClamAV
-              &nbsp;·&nbsp; PHPUnit / Pest &nbsp;·&nbsp; Linux
-            </td>
-          </tr>
-          <tr>
-            <td>Go &amp; Other</td>
-            <td>
-              Go (tus, Bubbletea, PDF signing) &nbsp;·&nbsp; Java (Android)
-              &nbsp;·&nbsp; C# (.NET)
-            </td>
-          </tr>
-        </table>
+        <div class="skills-list">
+          <div class="skill-line">
+            <span class="skill-k">Backend</span>
+            <span class="skill-v">PHP / Laravel · Spatie packages · Node.js / Express · MySQL / SQL Server · REST APIs · queue pipelines · Socket.io</span>
+          </div>
+          <div class="skill-line">
+            <span class="skill-k">Frontend</span>
+            <span class="skill-v">Vue.js · TypeScript · Tailwind CSS · Inertia.js · HTML / CSS / JS</span>
+          </div>
+          <div class="skill-line featured">
+            <span class="skill-k">AI &amp; ML</span>
+            <span class="skill-v">Python · CTranslate2 · Whisper · NLP · Speech-to-Text · on-device inference · Claude / Claude Code (AI-assisted development)</span>
+          </div>
+          <div class="skill-line">
+            <span class="skill-k">DevOps &amp; Security</span>
+            <span class="skill-v">Git / GitHub · CI/CD · AWS (EC2, S3, RDS) · Docker · Nginx · Cloudflare · ClamAV · role-based access control · PHPUnit / Pest · Linux</span>
+          </div>
+          <div class="skill-line">
+            <span class="skill-k">Go &amp; Other</span>
+            <span class="skill-v">Go (tus, Bubbletea, PDF signing) · system design · Java (Android) · C# (.NET)</span>
+          </div>
+        </div>
       </div>
 
       <!-- Selected Projects -->
@@ -666,13 +646,12 @@
               <span class="proj-name">NEMSU Data Hub</span>
               <span class="proj-url"
                 ><a href="case/nemsu-data-hub.html" target="_blank">case study</a>
-                &nbsp;·&nbsp;
-                <a href="https://udh.nemsu.edu.ph" target="_blank">udh.nemsu.edu.ph</a></span
+                &nbsp;·&nbsp; in deployment</span
               >
             </div>
             <div class="proj-desc">
-              Multi-campus file + submissions platform, Google Drive style.
-              Laravel + Vue + Go tus uploads + ClamAV + Google Workspace.
+              File + submissions platform for NEMSU's 4 campuses, Google Drive
+              style. Laravel + Vue + Go tus uploads + ClamAV + Google Workspace.
             </div>
           </div>
           <div class="proj-item">
@@ -697,22 +676,6 @@
             <div class="proj-desc">
               Civil servant records platform + tourism analytics for Province
               of Surigao del Sur. Laravel, Vue.js, MySQL, SQL Server.
-            </div>
-          </div>
-          <div class="proj-item">
-            <div class="proj-name-row">
-              <span class="proj-name">Repository Cleaner</span>
-              <span class="proj-url"
-                ><a
-                  href="https://github.com/christophervistal25/repository-cleaner"
-                  target="_blank"
-                  >github</a
-                ></span
-              >
-            </div>
-            <div class="proj-desc">
-              Terminal UI for bulk-managing GitHub repos. Go, Bubbletea,
-              Lipgloss, GitHub API.
             </div>
           </div>
         </div>
