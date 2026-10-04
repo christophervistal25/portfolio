@@ -27,82 +27,57 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;family=Geist+Mono:wght@400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
 <style>
-:root{--ink:#000000;--paper:#FFFFFF;--accent:#0040FF;--sans:'Schibsted Grotesk',system-ui,'Helvetica Neue',Arial,sans-serif;--mono:'Geist Mono','Courier New',monospace}
+:root{
+  --ink:#000000;--muted:#333333;--accent:#004F90;--paper:#FFFFFF;
+  --fs:11pt;--lh:1.38;--small:10pt;--name:28pt;--h2:14pt;
+  --section:14pt;--entry:10pt;--bullet:2.5pt;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:10pt;line-height:1.45}
-a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
-a:hover{color:var(--accent)}
-h1,h2,h3,p,ul,dl,dd{margin:0}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',Arial,sans-serif;font-size:var(--fs);line-height:var(--lh)}
+h1,h2,p,ul,dl,dd{margin:0}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
 
-.bar{max-width:8.5in;margin:0 auto;padding:24px 0.6in 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
-.bar a{display:inline-flex;align-items:center;min-height:44px}
+.bar{max-width:8.5in;margin:0 auto;padding:16px 0.6in 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.bar a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);text-decoration:underline}
+.page{max-width:8.5in;margin:0 auto;padding:0.4in 0.6in 0.6in}
 
-.page{max-width:8.5in;margin:0 auto;padding:0.5in 0.6in 0.6in;display:flex;flex-direction:column;gap:18pt}
+header{text-align:center}
+h1{font-size:var(--name);font-weight:700;color:var(--accent);line-height:1.1}
+.contact{font-size:var(--small);color:var(--muted);margin-top:4pt}
+.summary{margin-top:6pt}
 
-.mono{font-size:8pt;line-height:1.5}
-.date{font-family:var(--mono);font-size:8pt;line-height:1.5;white-space:nowrap}
-.label{font-size:8pt;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4pt}
-.rule-top{border-top:0.75pt solid var(--ink)}
-.rule-bottom{border-bottom:0.75pt solid var(--ink)}
+h2{display:flex;align-items:center;gap:8pt;font-size:var(--h2);font-weight:700;color:var(--accent);margin:var(--section) 0 5pt}
+h2::after{content:"";flex:1;border-top:0.8pt solid var(--accent)}
 
-header{display:flex;flex-direction:column;gap:6pt}
-.head-row{display:flex;justify-content:space-between;align-items:baseline;gap:4pt 12pt;flex-wrap:wrap}
-h1{font-size:22pt;font-weight:600;letter-spacing:-0.02em;line-height:1.15}
-.status{display:inline-flex;align-items:center;gap:6pt}
-.dot{width:6pt;height:6pt;border-radius:50%;background:var(--accent)}
-.pitch{font-size:11.5pt;font-weight:500;line-height:1.4;text-wrap:pretty}
-.contact{overflow-wrap:anywhere}
-.contact .email{color:var(--accent);font-weight:600}
+.entry + .entry{margin-top:var(--entry)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:4pt 12pt}
+.row > :last-child{white-space:nowrap}
+.role{font-weight:700}
+.org{font-style:italic}
+.tech{font-size:var(--small);color:var(--muted);margin-top:1pt}
+.project{margin-top:5pt}
+.project .stack{font-size:var(--small);color:var(--muted)}
+.project .sep{color:#999999}
+.project a,.links a{color:var(--accent)}
+ul{padding-left:15pt;margin-top:2pt}
+li + li{margin-top:var(--bullet)}
 
-.job{display:flex;flex-direction:column;gap:6pt;padding:9pt 0}
-.job-head{display:flex;justify-content:space-between;align-items:baseline;gap:2pt 12pt;flex-wrap:wrap}
-h3{font-size:11pt;font-weight:600}
-.project{display:flex;flex-direction:column;gap:3pt}
-.project-name{font-weight:500}
-.bul{padding-left:11pt;display:flex;flex-direction:column;gap:2pt}
-.bul li::marker{content:"– "}
-
-.side{display:grid;grid-template-columns:1fr 1fr;gap:0 18pt}
-.side > div{display:flex;flex-direction:column;gap:2pt;padding:8pt 0}
-.side h3{font-size:10pt}
-.oneline{padding:6pt 0}
-.oneline .mono{white-space:nowrap}
-
-.skills > div{display:grid;grid-template-columns:1in 1fr;gap:12pt;padding:4pt 0}
-.skills dt{font-weight:600}
-
-.edu{display:flex;justify-content:space-between;align-items:baseline;gap:2pt 12pt;flex-wrap:wrap;padding:8pt 0}
-
-article,.side > div,.skills > div{break-inside:avoid}
-.label{break-after:avoid}
-.keep{break-inside:avoid}
+.skills > div + div{margin-top:var(--bullet)}
+.skills dt{display:inline;font-weight:700}
+.skills dd{display:inline}
 
 @media screen and (max-width:700px){
   .bar,.page{padding-left:16px;padding-right:16px}
-  .side{grid-template-columns:1fr}
-  .skills > div{grid-template-columns:1fr;gap:0}
+  .row{flex-wrap:wrap}
 }
 @media print{
-  @page{size:Letter;margin:0.45in 0.6in}
+  @page{size:Letter;margin:0.5in 0.6in}
   .bar{display:none}
-  .page{max-width:none;padding:0;gap:11pt}
-  body{font-size:10.5pt;line-height:1.38}
-  header{gap:5pt}
-  .contact + .contact{margin-top:-3pt}
-  h1{font-size:24pt}
-  h3{font-size:11.5pt}
-  .pitch{font-size:11.5pt;line-height:1.4;text-wrap:wrap}
-  .mono,.date{font-size:9pt}
-  .label{margin-bottom:3pt}
-  .job{gap:5pt;padding:7pt 0}
-  .project{gap:3pt}
-  .bul{gap:2.5pt}
-  .skills > div{padding:3.5pt 0}
-  .edu{padding:6pt 0}
-  a{color:var(--ink)}
-  .contact .email{color:var(--accent)}
+  .page{max-width:none;padding:0}
 }
 </style>
 </head>
@@ -115,82 +90,73 @@ article,.side > div,.skills > div{break-inside:avoid}
 <main class="page">
 
 <header>
-<div class="head-row">
 <h1>Christopher Vistal</h1>
-<span class="status mono"><span class="dot"></span>Open to remote roles &amp; contracts</span>
-</div>
-<p class="pitch">Software engineer. I build production platforms end to end, from system design and data modeling to APIs, deployment and security.</p>
-<p class="mono contact">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years · <a class="email" href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a> · <a href="tel:+639270323277">+63 927 032 3277</a></p>
-<p class="mono contact"><a href="https://chris-dev.netlify.app/">chris-dev.netlify.app</a> · <a href="https://github.com/christophervistal25">github.com/christophervistal25</a> · <a href="https://www.linkedin.com/in/christophervistal25/">linkedin.com/in/christophervistal25</a></p>
+<p class="contact">Tandag, Surigao del Sur, PH (UTC+8) · <a href="tel:+639270323277">+63 927 032 3277</a> · <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a> · <a href="https://chris-dev.netlify.app/">chris-dev.netlify.app</a> · <a href="https://github.com/christophervistal25">github.com/christophervistal25</a> · <a href="https://www.linkedin.com/in/christophervistal25/">linkedin.com/in/christophervistal25</a></p>
 </header>
+<p class="summary">Software engineer with 5+ years building production platforms end to end, from system design and data modeling to APIs, deployment and security. Open to remote roles and contracts.</p>
 
 <section>
-<h2 class="label">Experience</h2>
+<h2>Experience</h2>
 
-<article class="job rule-top">
-<div class="job-head">
-<h3>Freelance Software Engineer</h3>
-<span class="date">2024 – Present</span>
-</div>
+<div class="entry">
+<div class="row"><span class="role">Freelance Software Engineer</span><span>2024 – Present</span></div>
+<div class="row"><span class="org">Independent contractor</span><span>Surigao del Sur, PH</span></div>
+
 <div class="project">
-<p class="project-name">Case management platform · law firm</p>
-<ul class="bul">
+<div class="row"><span><b>Case management platform for a law firm</b> <span class="sep">|</span> <span class="stack">Laravel, Vue, Inertia, MySQL, AWS (EC2, RDS, S3, SES)</span></span><a href="https://chris-dev.netlify.app/case/ata-law-firm.html">Case study</a></div>
+<ul>
 <li>Designed and shipped the platform solo in about 4 months; up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.</li>
 <li>Built billing, document templates, SES email alerts, and a client portal with messaging and an audit trail.</li>
 </ul>
-<p class="mono">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="https://chris-dev.netlify.app/case/ata-law-firm">Case study</a></p>
 </div>
+
 <div class="project">
-<p class="project-name">Multi-campus data hub · state university</p>
-<ul class="bul">
+<div class="row"><span><b>Multi-campus data hub for a state university</b> <span class="sep">|</span> <span class="stack">Laravel, Go, Vue, MySQL, S3, ClamAV, ONLYOFFICE</span></span><a href="https://chris-dev.netlify.app/case/nemsu-data-hub.html">Case study</a></div>
+<ul>
 <li>Built a Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration, now live for faculty across all 4 campuses.</li>
 <li>Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on flaky campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.</li>
 </ul>
-<p class="mono">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/">udh.nemsu.edu.ph</a> · <a href="https://chris-dev.netlify.app/case/nemsu-data-hub">Case study</a></p>
 </div>
-</article>
+</div>
 
-<article class="job rule-top">
-<div class="job-head">
-<h3>Software Engineer, Province of Surigao del Sur</h3>
-<span class="date">2021 – 2024</span>
-</div>
-<ul class="bul">
+<div class="entry">
+<div class="row"><span class="role">Software Engineer</span><span>2021 – 2024</span></div>
+<div class="row"><span class="org">Province of Surigao del Sur</span><span>Tandag, PH</span></div>
+<p class="tech">Laravel, Vue, MySQL, SQL Server, Python, Android</p>
+<ul>
 <li>Built a records platform for 500+ civil-servant files and a tourism dashboard, replacing paper and Excel.</li>
 <li>Cut reporting response times by ~60% through query optimization.</li>
 <li>Built an offline AI transcriber for the provincial board, so confidential audio never leaves the machine.</li>
 <li>Automated payroll deductions, tax reporting and SMS alerts, turning half-day tasks into one click.</li>
 <li>Introduced Git, code review and CI/CD; mentored 3 engineers.</li>
 </ul>
-<p class="mono">Laravel · Vue · MySQL · SQL Server · Python · Android · Live: <a href="https://epds.surigaodelsur.gov.ph/">Records</a>, <a href="https://ars.surigaodelsur.gov.ph/login">Tourism</a> · Case studies: <a href="https://chris-dev.netlify.app/case/e-pds">Records</a>, <a href="https://chris-dev.netlify.app/case/offline-transcriber">Transcriber</a></p>
-</article>
-
-<article class="job rule-top rule-bottom">
-<div class="job-head">
-<h3>Intern Developer, NEMSU</h3>
-<span class="date">Jul – Aug 2018</span>
+<p class="tech links">Case studies: <a href="https://chris-dev.netlify.app/case/e-pds.html">records platform</a>, <a href="https://chris-dev.netlify.app/case/offline-transcriber.html">offline transcriber</a></p>
 </div>
-<ul class="bul">
+
+<div class="entry">
+<div class="row"><span class="role">Intern Developer</span><span>Jul – Aug 2018</span></div>
+<div class="row"><span class="org">North Eastern Mindanao State University (NEMSU)</span><span>Tandag, PH</span></div>
+<ul>
 <li>Built a faculty evaluation app used by 3,000+ students, with Python sentiment analysis on written feedback.</li>
 </ul>
-</article>
+</div>
 </section>
 
-<section class="keep">
-<h2 class="label">Skills</h2>
-<dl class="skills rule-top">
-<div class="rule-bottom"><dt>Languages</dt><dd>PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#</dd></div>
-<div class="rule-bottom"><dt>Frameworks</dt><dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest</dd></div>
-<div class="rule-bottom"><dt>Infra &amp; data</dt><dd>AWS (EC2, S3, RDS, SES), MySQL, SQL Server, Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD</dd></div>
-<div class="rule-bottom"><dt>AI / ML</dt><dd>Whisper, CTranslate2, on-device inference, NLP</dd></div>
+<section>
+<h2>Skills</h2>
+<dl class="skills">
+<div><dt>Languages:</dt> <dd>PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#</dd></div>
+<div><dt>Frameworks:</dt> <dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest</dd></div>
+<div><dt>Infra &amp; data:</dt> <dd>AWS (EC2, S3, RDS, SES), MySQL, SQL Server, Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD</dd></div>
+<div><dt>AI / ML:</dt> <dd>Whisper, CTranslate2, on-device inference, NLP</dd></div>
 </dl>
 </section>
 
-<section class="keep">
-<h2 class="label">Education</h2>
-<div class="edu rule-top rule-bottom">
-<span><strong>BS Computer Science</strong>, Surigao del Sur State University (now NEMSU)</span>
-<span class="date">2015 – 2019</span>
+<section>
+<h2>Education</h2>
+<div class="entry">
+<div class="row"><span class="role">Surigao del Sur State University (now NEMSU)</span><span>2015 – 2019</span></div>
+<div class="row"><span class="org">BS Computer Science</span><span>Tandag, PH</span></div>
 </div>
 </section>
 
