@@ -1,41 +1,68 @@
 # Christopher Vistal
 
-> Full-stack software engineer, 5+ years shipping production web platforms end-to-end. Backend-leaning: PHP/Laravel, Vue.js, Go, AWS. Open to full-time remote roles.
+> Software engineer in the Philippines (UTC+8) with 5+ years building and running production web platforms end to end: system design, data modeling, APIs, deployment and security. Core stack: PHP/Laravel, Vue.js, Go, MySQL and AWS. Open to full-time remote roles and contracts.
 
-## About
+## Summary
 
-Christopher Vistal is a full-stack software engineer based in Surigao del Sur, Philippines. Primary backend stack is PHP and Laravel, with Vue.js (Inertia.js) on the frontend, Go for performance-critical services, and AWS for production infrastructure. Production systems include case management for a law firm, a multi-campus university file platform, and a province-wide civil servant records + tourism analytics system. He also ships in Python (on-device ML), TypeScript, Java (Android), and Bash/Linux operations.
+- Title: Software Engineer
+- Experience: 5+ years in production software
+- Location: Tandag, Surigao del Sur, Philippines (UTC+8); available for remote work
+- Availability: open to full-time remote roles and contracts
+- Contact: vistalchris@gmail.com
+- Core stack: PHP, Laravel, Vue.js, Inertia.js, Go, MySQL, SQL Server, AWS (EC2, S3, RDS, SES), Nginx, Docker
 
-Open to full-time remote engineering roles. Available for select freelance contracts.
+## Experience
 
-## Primary Skills
+### Freelance Software Engineer (2024 – Present)
 
-- PHP, Laravel, Laravel queue workers, Eloquent, Spatie packages, PHPUnit / Pest
-- Vue.js, Inertia.js, TypeScript, Tailwind CSS
-- Go (services, CLIs, Bubbletea TUIs, GTK3)
-- MySQL, SQL Server, schema design, query optimization, indexing
-- AWS (EC2, RDS, S3, SES, SSM Parameter Store, CloudWatch)
-- Nginx, Cloudflare, Linux server administration, Docker
-- REST API design, authentication, role-based access control, policy-driven authorization
-- Production architecture: monoliths, queue pipelines, background jobs, pre-signed URLs, S3 lifecycle, RDS backups
-- Security: attorney-client privilege modeling, per-case scoped access, S3 bucket policies, audit trails
-- Python (CTranslate2, Whisper, on-device ML), Java (Android, SQLite)
+Case management platform for a law firm (Laravel, Vue.js, Inertia.js, MySQL, AWS):
+- Designed and shipped the platform solo in about 4 months; up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.
+- Built billing, document automation from versioned templates, and email notifications via AWS SES.
+- Added a client portal with attorney messaging and an audit trail of every view, edit and download.
 
-## Selected Work
+University Data Hub for North Eastern Mindanao State University (Laravel, Go, Vue.js, MySQL, S3, ClamAV, ONLYOFFICE), live at https://udh.nemsu.edu.ph/:
+- Built a Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration, live for faculty across all 4 campuses.
+- Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on unreliable campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.
 
-- [ATA Law Firm, Case Management](https://chris-dev.netlify.app/case/ata-law-firm.html): Single-tenant Laravel + Vue case management on AWS. Document automation from versioned templates, client portal, and a permission system modeled on attorney-client privilege. Live in daily use at atafirm.ph.
-- [NEMSU Data Hub, Google Drive for Universities](https://chris-dev.netlify.app/case/nemsu-data-hub.html): Laravel + Vue + Go platform federating file storage across NEMSU's 4 campuses. Resumable tus uploads (Go service), ClamAV scanning, S3 storage, signed documents. In deployment at udh.nemsu.edu.ph.
-- [E-PDS, Provincial Records & Tourism](https://chris-dev.netlify.app/case/e-pds.html): Laravel + Vue civic-tech platform replacing paper 201 files and Excel for the Province of Surigao del Sur. 500+ civil servants digitized, tourism analytics dashboard. In production across the province.
-- [Offline AI Transcriber](https://chris-dev.netlify.app/case/offline-transcriber.html): Local-first speech-to-text in Python with CTranslate2 and Whisper. Zero cloud dependency for sensitive audio.
+### Software Engineer, Province of Surigao del Sur (2021 – 2024)
 
-## Other Pages
+Laravel, Vue.js, MySQL, SQL Server, Python, Android:
+- Built a records platform for 500+ civil-servant files (https://epds.surigaodelsur.gov.ph/) and a tourism analytics dashboard (https://ars.surigaodelsur.gov.ph/), replacing paper and Excel.
+- Cut reporting response times by ~60% through query optimization.
+- Built an offline AI speech-to-text tool (Python, Whisper, CTranslate2) for the Office of the Secretary to the Sangguniang Panlalawigan (provincial board), so confidential audio never leaves the machine.
+- Automated payroll deductions, tax reporting and SMS alerts, and built an Android employee app and a self-hosted uptime monitor, turning half-day tasks into one click.
+- Introduced Git, code review and CI/CD to the team; mentored 3 engineers.
 
-- [About / Experience / Skills](https://chris-dev.netlify.app/aboutme.html): Full experience history, skills matrix, and references.
-- [Resume (HTML)](https://chris-dev.netlify.app/resume.html): Printable resume.
-- [Resume (PDF)](https://drive.google.com/file/d/1jvaDjvo8qTKh5IHt14ZiXpNj9H-TjnF_/view?usp=sharing): Downloadable CV.
+### Intern Developer, North Eastern Mindanao State University (Jul – Aug 2018)
 
-## Contact
+- Built a faculty evaluation web app where students rate their instructors' teaching; used by 3,000+ students.
+- Added Python sentiment analysis on written feedback, giving administrators data for strategic planning and decision-making.
 
-- Email: vistalchris@gmail.com
-- GitHub: https://github.com/christophervistal25
-- LinkedIn: https://www.linkedin.com/in/christophervistal25/
+## Personal projects
+
+- Chriscast: Raycast-style file launcher for Linux; indexes 200K+ files in ~5s with sub-millisecond search (Go, GTK3, fsnotify; open source).
+- Repository Cleaner: terminal GitHub manager to search, multi-select and bulk-delete repositories with vim-style keys (Go, Bubbletea, GitHub API; open source).
+
+## Skills
+
+- Languages: PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#
+- Frameworks: Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs
+- Data: MySQL, SQL Server, S3, queues
+- Infrastructure: AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD, RBAC
+- Testing: PHPUnit, Pest
+- AI / ML: Whisper, CTranslate2, on-device inference, NLP
+
+## Education
+
+- BS Computer Science, Surigao del Sur State University, now North Eastern Mindanao State University (2015 – 2019)
+
+## Links
+
+- [Portfolio](https://chris-dev.netlify.app/)
+- [Résumé (PDF)](https://chris-dev.netlify.app/resume.pdf)
+- [GitHub](https://github.com/christophervistal25)
+- [LinkedIn](https://www.linkedin.com/in/christophervistal25/)
+- [Case study: case management platform](https://chris-dev.netlify.app/case/ata-law-firm)
+- [Case study: university data hub](https://chris-dev.netlify.app/case/nemsu-data-hub)
+- [Case study: provincial records platform](https://chris-dev.netlify.app/case/e-pds)
+- [Case study: offline AI transcriber](https://chris-dev.netlify.app/case/offline-transcriber)

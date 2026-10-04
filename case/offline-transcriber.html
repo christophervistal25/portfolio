@@ -6,13 +6,13 @@
     <title>Offline AI Transcriber, On-Device Speech-to-Text · Christopher Vistal</title>
     <meta
       name="description"
-      content="A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, designed for sensitive legal and medical audio."
+      content="A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, built for the provincial board's confidential session recordings."
     />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Offline AI Transcriber, On-Device Speech-to-Text" />
     <meta
       property="og:description"
-      content="Local speech-to-text with CTranslate2 + Whisper. No audio ever leaves the machine. Built for sensitive legal/medical contexts."
+      content="Local speech-to-text with CTranslate2 + Whisper. No audio ever leaves the machine. Built for the provincial board's confidential session recordings."
     />
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -27,7 +27,7 @@
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "Offline AI Transcriber, On-Device Speech-to-Text",
-        "description": "A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, designed for sensitive legal and medical audio.",
+        "description": "A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, built for the provincial board's confidential session recordings.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "datePublished": "2024-01-01",
@@ -83,7 +83,7 @@
         <dl class="case-meta">
           <dt>Role</dt><dd>Sole engineer, research, build, packaging</dd>
           <dt>Stack</dt><dd>Python, CTranslate2, faster-whisper, PyQt, NumPy</dd>
-          <dt>Status</dt><dd>Working tool, used in private engagements</dd>
+          <dt>Status</dt><dd>In use at the Sangguniang Panlalawigan (provincial board) secretariat, Surigao del Sur</dd>
         </dl>
       </header>
       <div class="case-hero"><img src="../assets/imagesv2/transcriber.png" alt="" loading="eager" /></div>
@@ -93,10 +93,11 @@
         <h2>Why offline</h2>
         <p>
           Cloud speech-to-text is a solved problem if you can send the
-          audio. The interesting work is when you cannot. A legal interview
-          covered by privilege. A medical session. Internal recordings
-          you would prefer not to hand to a third party for transcription,
-          let alone for the third party's training data.
+          audio. The interesting work is when you cannot. The provincial
+          board's session recordings are that case: the secretariat has to
+          turn them into text, but they are not recordings you hand to a
+          third party for transcription, let alone for the third party's
+          training data.
         </p>
         <p>
           The market for on-device speech is real and has been narrow on
@@ -208,8 +209,8 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
             tool from a transcription tool into a meeting tool.
           </li>
           <li>
-            <b>Vocabulary biasing.</b> Domain-specific names, case
-            numbers, medical terms, proper nouns, are where on-device
+            <b>Vocabulary biasing.</b> Domain-specific names,
+            reference numbers, proper nouns, are where on-device
             transcription still fumbles. A user-managed glossary that
             reweights the decoder would close most of that gap.
           </li>

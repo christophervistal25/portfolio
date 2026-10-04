@@ -1,695 +1,210 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Christopher Vistal, Resume</title>
-    <meta name="description" content="Resume of Christopher Vistal, full-stack engineer (Laravel, Vue.js, Go, AWS). Production PHP backend, MySQL, AWS infrastructure, and case studies." />
-    <meta name="author" content="Christopher Vistal" />
-    <meta name="keywords" content="Christopher Vistal, resume, CV, full-stack engineer, PHP developer, Laravel developer, Vue.js, Go, AWS, MySQL, SQL Server, backend engineer, Philippines, remote" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-    <link rel="canonical" href="https://chris-dev.netlify.app/resume.html" />
-    <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="LLM-readable site summary" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Christopher Vistal",
-        "url": "https://chris-dev.netlify.app/resume.html",
-        "jobTitle": "Backend-leaning Software Engineer (Laravel, Vue.js, Go, AWS)",
-        "description": "Full-stack engineer with 5+ years shipping production PHP, Laravel, Vue.js, Go, and AWS platforms. Backend-leaning, with experience in role-based access control, queue pipelines, and document automation.",
-        "email": "mailto:vistalchris@gmail.com",
-        "telephone": "+639270323277",
-        "knowsAbout": ["PHP", "Laravel", "Vue.js", "Inertia.js", "TypeScript", "Go", "MySQL", "SQL Server", "AWS", "Docker", "Nginx", "Cloudflare", "ClamAV", "PHPUnit", "Pest", "Python", "CTranslate2", "Whisper", "Linux"],
-        "sameAs": [
-          "https://github.com/christophervistal25",
-          "https://www.linkedin.com/in/christophervistal25/"
-        ]
-      }
-    </script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap");
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christopher Vistal — Résumé</title>
+<meta name="description" content="Résumé of Christopher Vistal, software engineer with 5+ years building production platforms in Laravel, Vue and Go on AWS. Open to remote roles and contracts.">
+<meta name="author" content="Christopher Vistal">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://chris-dev.netlify.app/resume.html">
+<link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="Plain-text profile for AI assistants">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Christopher Vistal",
+  "jobTitle": "Software Engineer",
+  "description": "Software engineer with 5+ years building and running production web platforms end to end in Laravel, Vue.js and Go on AWS. Open to full-time remote roles and contracts.",
+  "url": "https://chris-dev.netlify.app/",
+  "email": "mailto:vistalchris@gmail.com",
+  "telephone": "+639270323277",
+  "sameAs": [
+    "https://github.com/christophervistal25",
+    "https://www.linkedin.com/in/christophervistal25/"
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;family=Geist+Mono:wght@400&amp;display=swap">
+<style>
+:root{--ink:#000000;--paper:#FFFFFF;--accent:#0040FF;--sans:'Schibsted Grotesk',system-ui,'Helvetica Neue',Arial,sans-serif;--mono:'Geist Mono','Courier New',monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:10pt;line-height:1.45}
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--accent)}
+h1,h2,h3,p,ul,dl,dd{margin:0}
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+.bar{max-width:8.5in;margin:0 auto;padding:24px 0.6in 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:12px}
+.bar a{display:inline-flex;align-items:center;min-height:44px}
 
-      :root {
-        --text: #1a1a17;
-        --muted: #6c6c65;
-        --light: #9a9a92;
-        --border: rgba(20, 18, 12, 0.12);
-        --bg: #f1f0ea;
-        --paper: #fcfcfb;
-        --accent: #1a1a17;
-        --accent2: #000;
-        --serif: "Roboto Slab", Georgia, serif;
-        --page: 740px;
-      }
+.page{max-width:8.5in;margin:0 auto;padding:0.5in 0.6in 0.6in;display:flex;flex-direction:column;gap:18pt}
 
-      body {
-        font-family: "Geist", "Inter", system-ui, sans-serif;
-        font-size: 10pt;
-        color: var(--text);
-        background: var(--bg);
-        line-height: 1.55;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-        font-feature-settings: "ss01", "cv11";
-      }
+.mono{font-size:8pt;line-height:1.5}
+.date{font-family:var(--mono);font-size:8pt;line-height:1.5;white-space:nowrap}
+.label{font-size:8pt;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4pt}
+.rule-top{border-top:0.75pt solid var(--ink)}
+.rule-bottom{border-bottom:0.75pt solid var(--ink)}
 
-      /* ── Print bar ── */
-      .print-bar {
-        max-width: var(--page);
-        margin: 0 auto 12px;
-        display: flex;
-        justify-content: flex-end;
-      }
-      .print-btn {
-        background: var(--accent);
-        color: #fff;
-        border: none;
-        padding: 8px 18px;
-        border-radius: 6px;
-        font-size: 13px;
-        font-family: "Geist", "Inter", system-ui, sans-serif;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        letter-spacing: 0.01em;
-      }
-      .print-btn:hover {
-        background: var(--accent2);
-      }
+header{display:flex;flex-direction:column;gap:6pt}
+.head-row{display:flex;justify-content:space-between;align-items:baseline;gap:4pt 12pt;flex-wrap:wrap}
+h1{font-size:22pt;font-weight:600;letter-spacing:-0.02em;line-height:1.15}
+.status{display:inline-flex;align-items:center;gap:6pt}
+.dot{width:6pt;height:6pt;border-radius:50%;background:var(--accent)}
+.pitch{font-size:11.5pt;font-weight:500;line-height:1.4;text-wrap:pretty}
+.contact{display:flex;flex-wrap:wrap;gap:2pt 14pt}
+.contact .email{color:var(--accent);font-weight:600}
 
-      /* ── Page ── */
-      .page {
-        background: var(--paper);
-        max-width: var(--page);
-        margin: 0 auto 48px;
-        padding: 48px 56px 44px;
-        box-shadow:
-          0 1px 2px oklch(0.18 0.012 254 / 0.04),
-          0 12px 32px oklch(0.18 0.012 254 / 0.08);
-        border-top: 2px solid var(--text);
-        border-radius: 2px;
-      }
+.job{display:flex;flex-direction:column;gap:6pt;padding:9pt 0}
+.job-head{display:flex;justify-content:space-between;align-items:baseline;gap:2pt 12pt;flex-wrap:wrap}
+h3{font-size:11pt;font-weight:600}
+.project{display:flex;flex-direction:column;gap:3pt}
+.project-name{font-weight:500}
+.bul{padding-left:11pt;display:flex;flex-direction:column;gap:2pt}
+.bul li::marker{content:"– "}
 
-      /* ── Header ── */
-      .resume-header {
-        margin-bottom: 22px;
-      }
-      .resume-header-left {
-        display: block;
-      }
+.side{display:grid;grid-template-columns:1fr 1fr;gap:0 18pt}
+.side > div{display:flex;flex-direction:column;gap:2pt;padding:8pt 0}
+.side h3{font-size:10pt}
 
-      .resume-name {
-        font-family: var(--serif);
-        font-size: 26pt;
-        font-weight: 700;
-        letter-spacing: -0.4px;
-        line-height: 1.05;
-        color: var(--text);
-        margin-bottom: 6px;
-      }
-      .resume-name span {
-        color: var(--text);
-      }
+.skills > div{display:grid;grid-template-columns:1in 1fr;gap:12pt;padding:4pt 0}
+.skills dt{font-weight:600}
 
-      .resume-title {
-        font-size: 10.5pt;
-        color: var(--muted);
-        font-weight: 500;
-        letter-spacing: 0.1px;
-        margin-bottom: 14px;
-      }
+.edu{display:flex;justify-content:space-between;align-items:baseline;gap:2pt 12pt;flex-wrap:wrap;padding:8pt 0}
 
-      /* Contact strip, linear flex flow (ATS-safe extraction order) */
-      .resume-contact {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px 18px;
-        font-size: 9pt;
-        color: var(--muted);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        padding: 9px 0;
-        line-height: 1.4;
-      }
-      .resume-contact a {
-        color: var(--text);
-        text-decoration: none;
-        border-bottom: 1px solid var(--border);
-      }
-      .resume-contact a:hover {
-        border-color: var(--text);
-      }
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        white-space: nowrap;
-      }
-      .contact-item svg {
-        color: var(--accent);
-        flex-shrink: 0;
-      }
-      .contact-sep {
-        display: none;
-      }
+article,.side > div,.skills > div{break-inside:avoid}
+.label{break-after:avoid}
+.keep{break-inside:avoid}
 
-      /* ── Section: vary rhythm for hierarchy ── */
-      .section {
-        margin-top: 22px;
-      }
-      .section + .section {
-        margin-top: 20px;
-      }
+@media screen and (max-width:700px){
+  .bar,.page{padding-left:16px;padding-right:16px}
+  .side{grid-template-columns:1fr}
+  .skills > div{grid-template-columns:1fr;gap:0}
+}
+@media print{
+  @page{size:Letter;margin:0.5in 0.6in}
+  .bar{display:none}
+  .page{max-width:none;padding:0}
+  a{color:var(--ink)}
+  .contact .email{color:var(--accent)}
+}
+</style>
+</head>
+<body>
+<nav class="bar" aria-label="Résumé actions">
+<a href="index.html">← Portfolio</a>
+<a href="resume.pdf" download>Download PDF</a>
+</nav>
 
-      .section-title {
-        font-size: 8.5pt;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: var(--light);
-        margin-bottom: 12px;
-        padding-bottom: 6px;
-        border-bottom: 1px solid var(--border);
-      }
+<main class="page">
 
-      /* ── Experience ── */
-      .exp-item {
-        margin-bottom: 13px;
-      }
-      .exp-item:last-child {
-        margin-bottom: 0;
-      }
+<header>
+<div class="head-row">
+<h1>Christopher Vistal</h1>
+<span class="status mono"><span class="dot"></span>Open to remote roles &amp; contracts</span>
+</div>
+<p class="pitch">Software engineer. I build production platforms end to end, from system design and data modeling to APIs, deployment and security.</p>
+<p class="mono">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years</p>
+<p class="mono contact">
+<a class="email" href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+<a href="tel:+639270323277">+63 927 032 3277</a>
+<a href="https://chris-dev.netlify.app/">chris-dev.netlify.app</a>
+<a href="https://github.com/christophervistal25">github.com/christophervistal25</a>
+<a href="https://www.linkedin.com/in/christophervistal25/">linkedin.com/in/christophervistal25</a>
+</p>
+</header>
 
-      .exp-header {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: baseline;
-        gap: 8px;
-        margin-bottom: 2px;
-      }
-      .exp-role {
-        font-weight: 700;
-        font-size: 9.5pt;
-        color: var(--text);
-        letter-spacing: -0.1px;
-      }
-      .exp-date {
-        font-size: 8pt;
-        color: var(--light);
-        white-space: nowrap;
-        font-variant-numeric: tabular-nums;
-      }
-      .exp-org {
-        font-size: 8.5pt;
-        color: var(--muted);
-        font-weight: 500;
-        margin-bottom: 6px;
-      }
-      .exp-bullets {
-        padding-left: 18px;
-      }
-      .exp-bullets li {
-        margin-bottom: 5px;
-        color: var(--muted);
-        list-style-type: disc;
-        line-height: 1.55;
-        padding-left: 2px;
-      }
-      .exp-bullets li:last-child {
-        margin-bottom: 0;
-      }
-      .exp-bullets li b {
-        font-weight: 600;
-        color: var(--text);
-      }
+<section>
+<h2 class="label">Experience</h2>
 
-      /* ── Skills (single-column label/value, ATS-safe, no <table>) ── */
-      .skills-list {
-        display: flex;
-        flex-direction: column;
-      }
-      .skill-line {
-        display: flex;
-        gap: 14px;
-        padding: 5px 0;
-        line-height: 1.5;
-        border-bottom: 1px solid var(--border);
-      }
-      .skill-line:last-child {
-        border-bottom: none;
-      }
-      .skill-k {
-        font-weight: 600;
-        font-size: 9pt;
-        flex: 0 0 116px;
-        color: var(--text);
-      }
-      .skill-v {
-        font-size: 9pt;
-        color: var(--muted);
-      }
-      .skill-line.featured .skill-k {
-        color: var(--accent);
-      }
-      .skill-line.featured .skill-v {
-        color: var(--text);
-      }
+<article class="job rule-top">
+<div class="job-head">
+<h3>Freelance Software Engineer</h3>
+<span class="date">2024 – Present</span>
+</div>
+<div class="project">
+<p class="project-name">Case management platform · law firm</p>
+<ul class="bul">
+<li>Designed and shipped the platform solo in about 4 months; up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.</li>
+<li>Built billing, document automation from versioned templates, and email notifications via AWS SES.</li>
+<li>Added a client portal with attorney messaging and an audit trail of every view, edit and download.</li>
+</ul>
+<p class="mono">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="https://chris-dev.netlify.app/case/ata-law-firm">Case study</a></p>
+</div>
+<div class="project">
+<p class="project-name">Multi-campus data hub · state university</p>
+<ul class="bul">
+<li>Built a Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration, now live for faculty across all 4 campuses.</li>
+<li>Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on flaky campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.</li>
+</ul>
+<p class="mono">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/">udh.nemsu.edu.ph</a> · <a href="https://chris-dev.netlify.app/case/nemsu-data-hub">Case study</a></p>
+</div>
+</article>
 
-      /* ── Projects ── */
-      .proj-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-      }
-      .proj-name-row {
-        display: flex;
-        align-items: baseline;
-        gap: 6px;
-        margin-bottom: 2px;
-      }
-      .proj-name {
-        font-weight: 600;
-        font-size: 9pt;
-        color: var(--text);
-        letter-spacing: -0.1px;
-      }
-      .proj-url {
-        font-size: 7.5pt;
-        color: var(--muted);
-      }
-      .proj-url a {
-        color: var(--text);
-        text-decoration: none;
-        border-bottom: 1px solid var(--border);
-        font-weight: 500;
-      }
-      .proj-url a:hover {
-        border-color: var(--text);
-      }
-      .proj-desc {
-        font-size: 8.25pt;
-        color: var(--muted);
-        line-height: 1.5;
-      }
+<article class="job rule-top">
+<div class="job-head">
+<h3>Software Engineer, Province of Surigao del Sur</h3>
+<span class="date">2021 – 2024</span>
+</div>
+<ul class="bul">
+<li>Built a records platform for 500+ civil-servant files and a tourism analytics dashboard, replacing paper and Excel.</li>
+<li>Cut reporting response times by ~60% through query optimization.</li>
+<li>Built an offline AI transcriber for the provincial board, so confidential audio never leaves the machine.</li>
+<li>Automated payroll deductions, tax reporting and SMS alerts, and built an Android app and uptime monitor, turning half-day tasks into one click.</li>
+<li>Introduced Git, code review and CI/CD; mentored 3 engineers.</li>
+</ul>
+<p class="mono">Laravel · Vue · MySQL · SQL Server · Python · Android · <a href="https://epds.surigaodelsur.gov.ph/">epds.surigaodelsur.gov.ph</a> · <a href="https://ars.surigaodelsur.gov.ph/login">ars.surigaodelsur.gov.ph</a> · <a href="https://chris-dev.netlify.app/case/e-pds">Records case study</a> · <a href="https://chris-dev.netlify.app/case/offline-transcriber">Transcriber case study</a></p>
+</article>
 
-      /* ── References ── */
-      .ref-item {
-        padding: 2px 0;
-      }
-      .ref-quote {
-        font-size: 8.5pt;
-        color: var(--muted);
-        font-style: italic;
-      }
+<article class="job rule-top rule-bottom">
+<div class="job-head">
+<h3>Intern Developer, NEMSU</h3>
+<span class="date">Jul – Aug 2018</span>
+</div>
+<ul class="bul">
+<li>Built a faculty evaluation web app where students rate their instructors&#39; teaching; used by 3,000+ students.</li>
+<li>Added Python sentiment analysis on written feedback, giving administrators data for strategic planning and decision-making.</li>
+</ul>
+</article>
+</section>
 
-      /* ── Education ── */
-      .edu-header {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: baseline;
-        gap: 8px;
-      }
-      .edu-school {
-        font-weight: 700;
-        font-size: 9.75pt;
-        color: var(--text);
-        letter-spacing: -0.1px;
-      }
-      .edu-date {
-        font-size: 8pt;
-        color: var(--light);
-        white-space: nowrap;
-        font-variant-numeric: tabular-nums;
-      }
-      .edu-degree {
-        font-size: 8.75pt;
-        color: var(--muted);
-        font-style: italic;
-        margin-top: 2px;
-      }
+<section class="keep">
+<h2 class="label">After hours</h2>
+<div class="side rule-top rule-bottom">
+<div>
+<h3>Chriscast</h3>
+<p>Raycast-style file launcher for Linux. Indexes 200K+ files in ~5s with sub-millisecond search.</p>
+<p class="mono">Go · GTK3 · fsnotify · open source</p>
+</div>
+<div>
+<h3>Repository Cleaner</h3>
+<p>Terminal GitHub manager: search, multi-select and bulk-delete repos with vim-style keys.</p>
+<p class="mono">Go · Bubbletea · GitHub API · open source</p>
+</div>
+</div>
+</section>
 
-      /* ── Summary ── */
-      .summary-text {
-        font-size: 9.5pt;
-        color: var(--muted);
-        line-height: 1.6;
-        max-width: 100%;
-      }
-      .summary-text b {
-        color: var(--text);
-        font-weight: 600;
-      }
+<section class="keep">
+<h2 class="label">Skills</h2>
+<dl class="skills rule-top">
+<div class="rule-bottom"><dt>Languages</dt><dd>PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#</dd></div>
+<div class="rule-bottom"><dt>Frameworks</dt><dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs</dd></div>
+<div class="rule-bottom"><dt>Data</dt><dd>MySQL, SQL Server, S3, queues</dd></div>
+<div class="rule-bottom"><dt>Infra</dt><dd>AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD, RBAC</dd></div>
+<div class="rule-bottom"><dt>Testing</dt><dd>PHPUnit, Pest</dd></div>
+<div class="rule-bottom"><dt>AI / ML</dt><dd>Whisper, CTranslate2, on-device inference, NLP</dd></div>
+</dl>
+</section>
 
-      /* ── Print: mirror .page screen size, zero browser margins ── */
-      @media print {
-        body {
-          background: var(--paper);
-        }
-        .page {
-          margin: 0;
-          box-shadow: none;
-          max-width: 100%;
-          border-radius: 0;
-        }
-        a {
-          color: inherit !important;
-        }
-        @page {
-          margin: 0;
-          size: 740px 1580px;
-        }
-      }
+<section class="keep">
+<h2 class="label">Education</h2>
+<div class="edu rule-top rule-bottom">
+<span><strong>BS Computer Science</strong>, Surigao del Sur State University (now NEMSU)</span>
+<span class="date">2015 – 2019</span>
+</div>
+</section>
 
-      @media screen and (max-width: 800px) {
-        .page {
-          padding: 24px 20px;
-        }
-        .print-bar {
-          padding: 12px 20px 0;
-        }
-        .proj-grid {
-          grid-template-columns: 1fr;
-        }
-        .resume-contact {
-          flex-wrap: wrap;
-        }
-        .contact-sep {
-          display: none;
-        }
-        .contact-item {
-          flex: 1 0 45%;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <!-- Header -->
-      <div class="resume-header">
-        <div class="resume-header-left">
-          <div class="resume-name">Christopher <span>Vistal</span></div>
-          <div class="resume-title">
-            Backend-leaning Software Engineer &nbsp;·&nbsp; Laravel · Vue.js · AWS
-            &nbsp;·&nbsp; Open to remote roles + contracts
-          </div>
-          <div class="resume-contact">
-            <!-- Row 1 -->
-            <span class="contact-item">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="5" width="18" height="14" rx="2" />
-                <path d="M3 7l9 6 9-6" />
-              </svg>
-              <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
-            </span>
-            <span class="contact-item">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <a href="tel:+639270323277">+63 927 032 3277</a>
-            </span>
-            <span class="contact-item">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Tandag, Surigao del Sur, PH
-            </span>
-            <span class="contact-item">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5a3 3 0 0 0-.8-2.2c2.8-.3 5.7-1.4 5.7-6.1A4.7 4.7 0 0 0 18.6 7a4.4 4.4 0 0 0-.1-3.3s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C6.6 3.4 5.5 3.7 5.5 3.7A4.4 4.4 0 0 0 5.4 7 4.7 4.7 0 0 0 4 10.2c0 4.7 2.9 5.8 5.7 6.1a3 3 0 0 0-.8 2.2V22"
-                />
-              </svg>
-              <a href="https://github.com/christophervistal25" target="_blank"
-                >github.com/christophervistal25</a
-              >
-            </span>
-            <!-- Row 2 -->
-            <span class="contact-item">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3M12 11v5" />
-              </svg>
-              <a
-                href="https://www.linkedin.com/in/christophervistal25/"
-                target="_blank"
-                >linkedin.com/in/christophervistal25</a
-              >
-            </span>
-            <span class="contact-item">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path
-                  d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"
-                />
-              </svg>
-              <a href="https://chris-dev.netlify.app" target="_blank"
-                >chris-dev.netlify.app</a
-              >
-            </span>
-          </div>
-        </div>
-        <!-- end resume-header-left -->
-      </div>
-
-      <!-- Summary -->
-      <div class="section">
-        <div class="section-title">Summary</div>
-        <p class="summary-text">
-          Backend-leaning Software Engineer with <b>5+ years</b> shipping
-          production web platforms <b>end-to-end</b>, from system design and
-          database modeling through REST APIs, deployment, and security
-          hardening. Domain experience across legal, government, university,
-          and on-device AI systems.
-          <b>Open to full-time remote roles and select contracts.</b>
-        </p>
-      </div>
-
-      <!-- Experience -->
-      <div class="section">
-        <div class="section-title">Experience</div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Freelance Software Engineer</span>
-            <span class="exp-date">2023 – Present</span>
-          </div>
-          <div class="exp-org">Independent Contractor</div>
-          <ul class="exp-bullets">
-            <li>
-              Designed and shipped <b>ATA Law Firm's case management platform</b>
-              on AWS, in <b>daily production use for over a year by up to 10
-              attorneys and support staff</b> at a leading Surigao del Sur law firm:
-              case tracking, document automation, REST APIs, and a secure client
-              portal with <b>role-based access control</b> modeled on
-              attorney-client privilege.
-            </li>
-            <li>
-              Built <b>NEMSU Data Hub</b>, a multi-campus file and submissions
-              platform across <b>NEMSU's 4 campuses</b>, currently in deployment,
-              with resumable uploads, queue-backed virus scanning, and
-              cryptographically signed PDF documents.
-            </li>
-            <li>
-              Engineered an <b>offline, on-device AI transcription tool</b> for
-              confidential legal and medical audio, with zero cloud dependency.
-            </li>
-          </ul>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Software Engineer</span>
-            <span class="exp-date">Jan 2021 – Dec 2023</span>
-          </div>
-          <div class="exp-org">Province of Surigao del Sur</div>
-          <ul class="exp-bullets">
-            <li>
-              Built the province's <b>E-PDS records platform and tourism
-              dashboard</b>, digitizing <b>500+ civil-servant files</b> and
-              giving planners live visitor data.
-            </li>
-            <li>
-              Delivered an internal tooling suite (GSIS deductions, BIR tax
-              reporting, SMS notifications, an Android 201-files app) that cut
-              routine paperwork <b>from hours to minutes</b>.
-            </li>
-            <li>
-              Cut response times on high-traffic reporting views by
-              <b>~60%</b>, profiling queries, resolving N+1 bottlenecks, and
-              adding indexes on legacy applications.
-            </li>
-            <li>
-              <b>Introduced Git, code review, and CI/CD deployment</b> to the
-              team, cutting integration friction across government projects.
-            </li>
-            <li>
-              Mentored <b>3 engineers</b> on Laravel, server environments, and
-              release procedures.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Skills -->
-      <div class="section">
-        <div class="section-title">Skills</div>
-        <div class="skills-list">
-          <div class="skill-line">
-            <span class="skill-k">Backend</span>
-            <span class="skill-v">PHP / Laravel · Spatie packages · Node.js / Express · MySQL / SQL Server · REST APIs · queue pipelines · Socket.io</span>
-          </div>
-          <div class="skill-line">
-            <span class="skill-k">Frontend</span>
-            <span class="skill-v">Vue.js · TypeScript · Tailwind CSS · Inertia.js · HTML / CSS / JS</span>
-          </div>
-          <div class="skill-line featured">
-            <span class="skill-k">AI &amp; ML</span>
-            <span class="skill-v">Python · CTranslate2 · Whisper · NLP · Speech-to-Text · on-device inference · Claude / Claude Code (AI-assisted development)</span>
-          </div>
-          <div class="skill-line">
-            <span class="skill-k">DevOps &amp; Security</span>
-            <span class="skill-v">Git / GitHub · CI/CD · AWS (EC2, S3, RDS) · Docker · Nginx · Cloudflare · ClamAV · role-based access control · PHPUnit / Pest · Linux</span>
-          </div>
-          <div class="skill-line">
-            <span class="skill-k">Go &amp; Other</span>
-            <span class="skill-v">Go (tus, Bubbletea, PDF signing) · system design · Java (Android) · C# (.NET)</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Selected Projects -->
-      <div class="section">
-        <div class="section-title">Selected Projects</div>
-        <div class="proj-grid">
-          <div class="proj-item">
-            <div class="proj-name-row">
-              <span class="proj-name">ATA Law Firm</span>
-              <span class="proj-url"
-                ><a href="case/ata-law-firm.html" target="_blank">case study</a>
-                &nbsp;·&nbsp;
-                <a href="https://atafirm.ph" target="_blank">atafirm.ph</a></span
-              >
-            </div>
-            <div class="proj-desc">
-              Production case management system, case tracking, document
-              automation, client portal on AWS. Laravel, Vue.js.
-            </div>
-          </div>
-          <div class="proj-item">
-            <div class="proj-name-row">
-              <span class="proj-name">NEMSU Data Hub</span>
-              <span class="proj-url"
-                ><a href="case/nemsu-data-hub.html" target="_blank">case study</a>
-                &nbsp;·&nbsp; in deployment</span
-              >
-            </div>
-            <div class="proj-desc">
-              File + submissions platform for NEMSU's 4 campuses, Google Drive
-              style. Laravel + Vue + Go tus uploads + ClamAV + Google Workspace.
-            </div>
-          </div>
-          <div class="proj-item">
-            <div class="proj-name-row">
-              <span class="proj-name">Offline AI Transcriber</span>
-              <span class="proj-url"
-                ><a href="case/offline-transcriber.html" target="_blank">case study</a></span
-              >
-            </div>
-            <div class="proj-desc">
-              Local speech-to-text with real-time waveform visualization, no
-              cloud, fully on-device. Python, CTranslate2, Whisper.
-            </div>
-          </div>
-          <div class="proj-item">
-            <div class="proj-name-row">
-              <span class="proj-name">Provincial Records &amp; Tourism Platform</span>
-              <span class="proj-url"
-                ><a href="case/e-pds.html" target="_blank">case study</a></span
-              >
-            </div>
-            <div class="proj-desc">
-              Civil servant records platform + tourism analytics for Province
-              of Surigao del Sur. Laravel, Vue.js, MySQL, SQL Server.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Education -->
-      <div class="section">
-        <div class="section-title">Education</div>
-        <div class="edu-header">
-          <span class="edu-school">Surigao del Sur State University</span>
-          <span class="edu-date">2015 – 2019</span>
-        </div>
-        <div class="edu-degree">Bachelor of Science in Computer Science</div>
-      </div>
-    </div>
-  </body>
+</main>
+</body>
 </html>

@@ -17,7 +17,7 @@
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="author" content="Christopher Vistal" />
-    <meta name="keywords" content="NEMSU Data Hub, university platform, Laravel, Vue.js, Inertia.js, Go, tus uploads, ClamAV, S3, Google Workspace, MySQL, file federation, multi-tenant, PHP, Go service, case study, Christopher Vistal" />
+    <meta name="keywords" content="NEMSU Data Hub, university platform, Laravel, Vue.js, Inertia.js, Go, tus uploads, ClamAV, S3, ONLYOFFICE, Google Sign-In, MySQL, file federation, multi-tenant, PHP, Go service, case study, Christopher Vistal" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://chris-dev.netlify.app/case/nemsu-data-hub.html" />
     <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="LLM-readable site summary" />
@@ -34,7 +34,7 @@
         "dateModified": "2026-06-04",
         "inLanguage": "en",
         "mainEntityOfPage": "https://chris-dev.netlify.app/case/nemsu-data-hub.html",
-        "keywords": "Laravel, Vue.js, Inertia.js, Go, MySQL, tus, ClamAV, S3, Google Workspace, multi-campus, file platform, university, PHP",
+        "keywords": "Laravel, Vue.js, Inertia.js, Go, MySQL, tus, ClamAV, S3, ONLYOFFICE, Google Sign-In, multi-campus, file platform, university, PHP",
         "about": [
           { "@type": "SoftwareApplication", "name": "NEMSU Data Hub", "applicationCategory": "EducationalApplication", "operatingSystem": "Linux" }
         ],
@@ -47,8 +47,7 @@
           { "@type": "SoftwareApplication", "name": "ClamAV" },
           { "@type": "SoftwareApplication", "name": "Tailwind CSS" },
           { "@type": "Service", "name": "Amazon S3" },
-          { "@type": "Service", "name": "Google Sheets API" },
-          { "@type": "Service", "name": "Google Docs API" },
+          { "@type": "Service", "name": "ONLYOFFICE" },
           { "@type": "Service", "name": "Google OAuth" }
         ]
       }
@@ -92,8 +91,8 @@
         </p>
         <dl class="case-meta">
           <dt>Role</dt><dd>Engineer, build + ongoing maintenance</dd>
-          <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), ClamAV, S3 + local FS, Google Workspace (Sheets, Docs, OAuth Sign-In), Tailwind CSS</dd>
-          <dt>Status</dt><dd>Built; in deployment to udh.nemsu.edu.ph across campuses</dd>
+          <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), ClamAV, S3 + local FS, ONLYOFFICE, Google Sign-In (OAuth), Tailwind CSS</dd>
+          <dt>Status</dt><dd>Live at <a href="https://udh.nemsu.edu.ph/">udh.nemsu.edu.ph</a> across all 4 campuses</dd>
         </dl>
       </header>
       <div class="case-hero"><img src="../assets/imagesv2/nemsu.png" alt="" loading="eager" /></div>
@@ -164,7 +163,8 @@ flowchart TB
     subgraph services["Sidecars"]
         clamav["ClamAV scanner\n(quarantine bad)"]
         signer["Go PDF signer\n(X.509 signature)"]
-        gws["Google Workspace\n(Sheets, Docs,\nOAuth Sign-In)"]
+        office["ONLYOFFICE\n(in-browser editing)"]
+        gsi["Google Sign-In\n(OAuth)"]
     end
 
     subgraph storage["Storage Layer"]
@@ -178,7 +178,8 @@ flowchart TB
     laravel <-->|"signed handoff"| tus
     tus --> clamav
     laravel --> signer
-    laravel --> gws
+    laravel <--> office
+    laravel --> gsi
     laravel --> mysql
     laravel --> s3
     laravel --> local
@@ -189,7 +190,8 @@ flowchart TB
     style tus fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
     style clamav fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
     style signer fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style gws fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style office fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style gsi fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
     style mysql fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
     style s3 fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
     style local fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
@@ -418,40 +420,24 @@ $document-&gt;storeSigned($signed);</code></pre>
           that didn't.
         </div>
 
-        <h2>Editing Google Sheets and Docs in place</h2>
+        <h2>Editing documents in the browser with ONLYOFFICE</h2>
         <p>
           A lot of the university's living documents, class lists,
-          grading rubrics, departmental rosters, committee minutes ,
-          already lived in Google Sheets and Google Docs. The first version
-          of the platform let users upload a static export, which everyone
-          hated. Faculty wanted to keep editing the real spreadsheet, not
-          re-upload it after every change.
+          grading rubrics, departmental rosters, committee minutes, are
+          office files that change every week. The first version of the
+          platform only let users upload and download them, which
+          everyone hated. Faculty wanted to keep editing the real file,
+          not download it, edit locally, and re-upload after every change.
         </p>
         <p>
-          So I integrated the platform directly with <b>Google Workspace</b>.
-          A user signs in once with <b>Google OAuth</b>, the platform stores
-          a long-lived refresh token, and from then on the user can
-          <b>create, view, and edit Google Sheets and Docs from inside the
-          Data Hub</b>. The file in the platform is a first-class record;
-          the Google file is the source of truth for content.
-        </p>
-        <pre><code>// app/Services/GoogleWorkspace.php
-public function openEditor(User $user, File $file): string
-{
-    $client = $this-&gt;clientFor($user); // refreshes token if needed
-
-    return match ($file-&gt;google_type) {
-        'sheet' =&gt; "https://docs.google.com/spreadsheets/d/{$file-&gt;google_id}/edit",
-        'doc'   =&gt; "https://docs.google.com/document/d/{$file-&gt;google_id}/edit",
-    };
-}</code></pre>
-        <p>
-          Permissions on the Google side are synced from the platform:
-          when a user gets added to a department, their Workspace
-          account is automatically granted edit access to that
-          department's shared Sheets and Docs. Removing them from the
-          department revokes it. <b>One source of truth for access,
-          two surfaces.</b>
+          So the platform embeds <b>ONLYOFFICE</b>. Opening a document or
+          spreadsheet in the Data Hub launches the ONLYOFFICE editor
+          <b>in the browser, against the file the platform already
+          stores</b>. When an editing session ends, ONLYOFFICE hands the
+          saved file back to the platform, which stores it as the file's
+          new content. The file in the Data Hub stays the single source
+          of truth, and the platform's access rules decide who can open
+          the editor at all.
         </p>
         <p>
           Google Sign-In doubles as the platform's primary auth path.
@@ -493,7 +479,7 @@ public function openEditor(User $user, File $file): string
           <li>Every upload scanned by ClamAV before becoming visible.</li>
           <li>Official documents signed in Go with embedded X.509 signatures, verifiable in any standard PDF reader.</li>
           <li>Two-tier storage: hot local FS, cold and shared Amazon S3.</li>
-          <li>Google Sheets and Docs edited in place, with platform-controlled access synced to Google Workspace.</li>
+          <li>Documents and spreadsheets edited in the browser with ONLYOFFICE, saved back to the platform.</li>
           <li>Google Sign-In as primary auth path for <code>@nemsu.edu.ph</code> accounts.</li>
           <li>Audit trail of file views, downloads, and submission activity.</li>
           <li>Deploys onto the university's own on-prem infrastructure.</li>
