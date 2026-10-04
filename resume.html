@@ -27,16 +27,16 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&amp;display=swap">
 <style>
 :root{
   --ink:#000000;--muted:#1A1A1A;--accent:#004F90;--paper:#FFFFFF;
-  --fs:11pt;--lh:1.42;--small:10.5pt;--name:28pt;--h2:14pt;
-  --section:14pt;--entry:10pt;--bullet:2.5pt;
+  --fs:12pt;--lh:1.5;--small:11pt;--name:30pt;--h2:15pt;
+  --section:16pt;--entry:12pt;--bullet:3.5pt;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',Arial,sans-serif;font-size:var(--fs);line-height:var(--lh)}
+body{background:var(--paper);color:var(--ink);font-family:Calibri,Carlito,Arial,sans-serif;font-variant-ligatures:none;font-size:var(--fs);line-height:var(--lh)}
 h1,h2,p,ul,dl,dd{margin:0}
 a{color:inherit;text-decoration:none}
 a:hover{text-decoration:underline}
@@ -75,7 +75,7 @@ li + li{margin-top:var(--bullet)}
   .row{flex-wrap:wrap}
 }
 @media print{
-  @page{size:Letter;margin:0.5in 0.6in}
+  @page{size:Letter;margin:0.5in 0.85in}
   .bar{display:none}
   .page{max-width:none;padding:0}
 }
@@ -93,7 +93,7 @@ li + li{margin-top:var(--bullet)}
 <h1>Christopher Vistal</h1>
 <p class="contact">Tandag, Surigao del Sur, PH (UTC+8) · <a href="tel:+639270323277">+63 927 032 3277</a> · <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a> · <a href="https://chris-dev.netlify.app/">chris-dev.netlify.app</a> · <a href="https://github.com/christophervistal25">github.com/christophervistal25</a> · <a href="https://www.linkedin.com/in/christophervistal25/">linkedin.com/in/christophervistal25</a></p>
 </header>
-<p class="summary">Software engineer with 5+ years of production work in Laravel, Vue, Go and AWS for a law firm, a four-campus university and a provincial government, often as the sole engineer. Open to remote roles and contracts.</p>
+<p class="summary">Software engineer, 5+ years in Laravel, Vue, Go and AWS. Open to remote roles and contracts.</p>
 
 <section>
 <h2>Experience</h2>
@@ -103,18 +103,18 @@ li + li{margin-top:var(--bullet)}
 <div class="row"><span class="org">Independent contractor</span><span>Surigao del Sur, PH</span></div>
 
 <div class="project">
-<div class="row"><span><b>Case management platform for a law firm</b> <span class="sep">|</span> <span class="stack">Laravel, Vue, Inertia, MySQL, AWS (EC2, RDS, S3, SES)</span></span><a href="https://chris-dev.netlify.app/case/ata-law-firm.html">Case study</a></div>
+<div class="row"><span><b>Case management platform for a law firm</b> <span class="sep">|</span> <span class="stack">Laravel, Vue, Inertia, MySQL, AWS</span></span><a href="https://chris-dev.netlify.app/case/ata-law-firm.html">Case study</a></div>
 <ul>
-<li>Built it solo in about 4 months; up to 10 attorneys and staff now use it daily instead of shared spreadsheets.</li>
-<li>Billing, document templates, role-based access, and a client portal with messaging and an audit trail.</li>
+<li>Built it solo in 4 months; up to 10 attorneys and staff use it daily instead of spreadsheets.</li>
+<li>Billing, document templates, role-based access, and a client portal with an audit trail.</li>
 </ul>
 </div>
 
 <div class="project">
-<div class="row"><span><b>Multi-campus data hub for a state university</b> <span class="sep">|</span> <span class="stack">Laravel, Go, Vue, MySQL, S3, ClamAV, ONLYOFFICE</span></span><a href="https://chris-dev.netlify.app/case/nemsu-data-hub.html">Case study</a></div>
+<div class="row"><span><b>Multi-campus data hub for a state university</b> <span class="sep">|</span> <span class="stack">Laravel, Go, Vue, MySQL, ONLYOFFICE</span></span><a href="https://chris-dev.netlify.app/case/nemsu-data-hub.html">Case study</a></div>
 <ul>
-<li>Built a Drive-style file and submissions platform, live on all 4 campuses, with ONLYOFFICE in-browser editing.</li>
-<li>Wrote the Go services around it: resumable uploads (tus) for slow campus connections and exam-week spikes, ClamAV scanning with quarantine, and X.509 signing for official PDFs.</li>
+<li>Drive-style file and submissions platform, live on all 4 campuses, with ONLYOFFICE editing.</li>
+<li>Wrote Go services for resumable uploads, ClamAV virus scanning and X.509 PDF signing.</li>
 </ul>
 </div>
 </div>
@@ -122,22 +122,19 @@ li + li{margin-top:var(--bullet)}
 <div class="entry">
 <div class="row"><span class="role">Software Engineer</span><span>2021 – 2024</span></div>
 <div class="row"><span class="org">Province of Surigao del Sur</span><span>Tandag, PH</span></div>
-<p class="tech">Laravel, Vue, MySQL, SQL Server, Python, Android</p>
 <ul>
-<li>Built the E-PDS records platform (500+ civil-servant files) and a tourism dashboard, replacing paper and Excel.</li>
+<li>Built E-PDS (500+ civil-servant records) and a tourism dashboard, replacing paper and Excel.</li>
 <li>Cut report load times by about 60% by fixing N+1 queries and adding indexes.</li>
-<li>Wrote an offline Whisper speech-to-text tool the provincial board still uses for confidential session recordings.</li>
-<li>Half-day payroll tasks became one click: automated GSIS deductions, BIR tax reports and SMS notifications.</li>
+<li>Wrote an offline Whisper transcriber the provincial board still uses for confidential sessions.</li>
+<li>Half-day payroll tasks became one click: GSIS deductions, BIR tax reports, SMS notices.</li>
 <li>Brought in Git, code review and CI/CD, and mentored 3 engineers.</li>
 </ul>
-<p class="tech links">Case studies: <a href="https://chris-dev.netlify.app/case/e-pds.html">records platform</a>, <a href="https://chris-dev.netlify.app/case/offline-transcriber.html">offline transcriber</a></p>
 </div>
 
 <div class="entry">
-<div class="row"><span class="role">Intern Developer</span><span>Jul – Aug 2018</span></div>
-<div class="row"><span class="org">North Eastern Mindanao State University (NEMSU)</span><span>Tandag, PH</span></div>
+<div class="row"><span><span class="role">Intern Developer</span>, <span class="org">North Eastern Mindanao State University</span></span><span>Jul – Aug 2018</span></div>
 <ul>
-<li>Developed a faculty evaluation app used by 3,000+ students, with Python sentiment analysis on comments.</li>
+<li>Developed a faculty evaluation app used by 3,000+ students, with Python sentiment analysis.</li>
 </ul>
 </div>
 </section>
@@ -147,16 +144,14 @@ li + li{margin-top:var(--bullet)}
 <dl class="skills">
 <div><dt>Languages:</dt> <dd>PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#</dd></div>
 <div><dt>Frameworks:</dt> <dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest</dd></div>
-<div><dt>Infra &amp; data:</dt> <dd>AWS (EC2, S3, RDS, SES), MySQL, SQL Server, Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD</dd></div>
-<div><dt>AI / ML:</dt> <dd>Whisper, CTranslate2, on-device inference, NLP</dd></div>
+<div><dt>Infra &amp; data:</dt> <dd>AWS (EC2, S3, RDS, SES), MySQL, SQL Server, Docker, Nginx, Cloudflare, Linux, CI/CD</dd></div>
 </dl>
 </section>
 
 <section>
 <h2>Education</h2>
 <div class="entry">
-<div class="row"><span class="role">Surigao del Sur State University (now NEMSU)</span><span>2015 – 2019</span></div>
-<div class="row"><span class="org">BS Computer Science</span><span>Tandag, PH</span></div>
+<div class="row"><span><span class="role">BS Computer Science</span>, <span class="org">Surigao del Sur State University (now NEMSU)</span></span><span>2015 – 2019</span></div>
 </div>
 </section>
 
