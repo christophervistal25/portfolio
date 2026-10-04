@@ -83,9 +83,22 @@ article,.side > div,.skills > div{break-inside:avoid}
   .skills > div{grid-template-columns:1fr;gap:0}
 }
 @media print{
-  @page{size:Letter;margin:0.5in 0.6in}
+  @page{size:Letter;margin:0.4in 0.45in}
   .bar{display:none}
-  .page{max-width:none;padding:0}
+  .page{max-width:none;padding:0;gap:6pt}
+  body{font-size:9.5pt;line-height:1.32}
+  header{gap:4pt}
+  h1{font-size:20pt}
+  .pitch{font-size:10pt;line-height:1.35;text-wrap:wrap}
+  .edu{padding:4pt 0}
+  .label{margin-bottom:2pt}
+  .job{gap:3.5pt;padding:5pt 0}
+  h3{font-size:10.5pt}
+  .project{gap:2pt}
+  .bul{gap:1pt}
+  .side > div{padding:5pt 0;gap:1pt}
+  .skills > div{padding:2pt 0}
+  .edu{padding:5pt 0}
   a{color:var(--ink)}
   .contact .email{color:var(--accent)}
 }
@@ -154,7 +167,7 @@ article,.side > div,.skills > div{break-inside:avoid}
 <li>Automated payroll deductions, tax reporting and SMS alerts, and built an Android app and uptime monitor, turning half-day tasks into one click.</li>
 <li>Introduced Git, code review and CI/CD; mentored 3 engineers.</li>
 </ul>
-<p class="mono">Laravel · Vue · MySQL · SQL Server · Python · Android · <a href="https://epds.surigaodelsur.gov.ph/">epds.surigaodelsur.gov.ph</a> · <a href="https://ars.surigaodelsur.gov.ph/login">ars.surigaodelsur.gov.ph</a> · <a href="https://chris-dev.netlify.app/case/e-pds">Records case study</a> · <a href="https://chris-dev.netlify.app/case/offline-transcriber">Transcriber case study</a></p>
+<p class="mono">Laravel · Vue · MySQL · SQL Server · Python · Android · <a href="https://epds.surigaodelsur.gov.ph/">epds.surigaodelsur.gov.ph</a> · <a href="https://ars.surigaodelsur.gov.ph/login">ars.surigaodelsur.gov.ph</a> · Case studies: <a href="https://chris-dev.netlify.app/case/e-pds">Records</a>, <a href="https://chris-dev.netlify.app/case/offline-transcriber">Transcriber</a></p>
 </article>
 
 <article class="job rule-top rule-bottom">
