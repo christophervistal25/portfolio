@@ -31,7 +31,7 @@ Case management platforms, citizen records systems, and AI-powered tools that sh
 
 **DevOps** &nbsp;·&nbsp; AWS (EC2, S3, RDS) · Docker · Linux · CI/CD
 
-**Other** &nbsp;·&nbsp; Java (Android) · Go · C# (.NET)
+**Other** &nbsp;·&nbsp; Go · Java (Android employee app)
 
 ---
 

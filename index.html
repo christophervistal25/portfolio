@@ -4,19 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Christopher Vistal — Software Engineer</title>
-<meta name="description" content="Christopher Vistal, software engineer with 5+ years building production platforms in Laravel, Vue and Go on AWS. Open to remote roles and contracts.">
+<meta name="description" content="Christopher Vistal builds production systems for government, law, and enterprise. Case management, citizen records, and on-device AI. Laravel, Vue, Go, AWS.">
 <link rel="canonical" href="https://chris-dev.netlify.app/">
 <meta property="og:title" content="Christopher Vistal — Software Engineer">
-<meta property="og:description" content="5+ years building production platforms end to end in Laravel, Vue and Go on AWS. Open to remote roles.">
+<meta property="og:description" content="Production systems for government, law, and enterprise. Case management, citizen records, and on-device AI. Laravel, Vue, Go, AWS.">
 <meta property="og:url" content="https://chris-dev.netlify.app/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Christopher Vistal, software engineer. Production systems for government, law, and enterprise.">
 <meta name="author" content="Christopher Vistal">
 <meta name="keywords" content="Christopher Vistal, software engineer, Laravel developer, PHP developer, Vue.js, Inertia.js, Go developer, full-stack, REST API, AWS, MySQL, SQL Server, remote software engineer, Philippines">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta property="og:site_name" content="Christopher Vistal">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Christopher Vistal — Software Engineer">
-<meta name="twitter:description" content="5+ years building production platforms end to end in Laravel, Vue and Go on AWS. Open to remote roles.">
+<meta name="twitter:description" content="Production systems for government, law, and enterprise. Case management, citizen records, and on-device AI. Laravel, Vue, Go, AWS.">
+<meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png">
+<meta name="twitter:image:alt" content="Christopher Vistal, software engineer. Production systems for government, law, and enterprise.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="me" href="https://github.com/christophervistal25">
 <link rel="me" href="https://www.linkedin.com/in/christophervistal25/">
 <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="Plain-text profile for AI assistants">
@@ -26,11 +36,12 @@
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "url": "https://chris-dev.netlify.app/",
+  "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
   "mainEntity": {
     "@type": "Person",
     "name": "Christopher Vistal",
     "jobTitle": "Software Engineer",
-    "description": "Software engineer with 5+ years building and running production web platforms end to end in Laravel, Vue.js and Go on AWS. Open to full-time remote roles and contracts.",
+    "description": "Software engineer who builds production systems for government, law, and enterprise: case management, citizen records, and AI-powered tools that ship and stay shipped. Core stack is Laravel, Vue.js, and Go on AWS. Open to full-time remote roles and contracts.",
     "url": "https://chris-dev.netlify.app/",
     "email": "mailto:vistalchris@gmail.com",
     "image": "https://chris-dev.netlify.app/assets/images/avatar.jpg",
@@ -52,7 +63,7 @@
         "@type": "Country",
         "name": "Philippines"
       },
-      "skills": "PHP, Laravel, Vue.js, Inertia.js, Go, TypeScript, Python, MySQL, SQL Server, REST APIs, AWS, Docker, Nginx, CI/CD"
+      "skills": "PHP, Laravel, Vue.js, Inertia.js, Go, TypeScript, Python, MySQL, SQL Server, REST APIs, AWS, Docker, Nginx, CI/CD, PHPUnit, Pest"
     },
     "knowsAbout": [
       "Laravel",
@@ -74,7 +85,9 @@
       "CTranslate2",
       "Sentiment analysis",
       "Role-based access control",
-      "CI/CD"
+      "CI/CD",
+      "PHPUnit",
+      "Pest"
     ],
     "sameAs": [
       "https://github.com/christophervistal25",
@@ -85,140 +98,130 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&amp;family=Geist+Mono:wght@400&amp;display=swap">
-<style>
-body{margin:0;background:#FFFFFF}
-a{color:#000000;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-a:hover{color:#0040FF}
-.bul li::marker{content:"– "}
-.date{font-family:'Geist Mono','Courier New',monospace;font-size:13px}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist+Mono:wght@400&amp;display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-<div style="background: #FFFFFF; color: #000000; font-family: 'Schibsted Grotesk', system-ui, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.6; min-height: 100vh">
-<main style="max-width: 720px; margin: 0 auto; padding: 96px 24px 64px; display: flex; flex-direction: column; gap: 72px">
+<a class="skip" href="#content">Skip to content</a>
+<main id="content" class="page">
 
-<!-- HEADER -->
-<header style="display: flex; flex-direction: column; gap: 20px">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap">
-<h1 style="margin: 0; font-size: 32px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2">Christopher Vistal</h1>
-<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px">
-<span style="width: 8px; height: 8px; border-radius: 50%; background: #0040FF"></span>Open to remote roles &amp; contracts
-</span>
+<header class="mast">
+<div class="mast-top">
+<h1>Christopher Vistal</h1>
+<p class="status"><span class="dot" aria-hidden="true"></span>Open to remote roles &amp; contracts</p>
 </div>
-<p style="margin: 0; font-size: 20px; line-height: 1.5; font-weight: 500; text-wrap: pretty">Software engineer. I build production platforms end to end, from system design and data modeling to APIs, deployment and security.</p>
-<p style="margin: 0; font-size: 13px">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years</p>
-<nav style="display: flex; gap: 8px 24px; flex-wrap: wrap">
-<a href="mailto:vistalchris@gmail.com" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: #0040FF">vistalchris@gmail.com</a>
-<a href="https://github.com/christophervistal25" style="display: inline-flex; align-items: center; min-height: 44px">GitHub</a>
-<a href="https://www.linkedin.com/in/christophervistal25/" style="display: inline-flex; align-items: center; min-height: 44px">LinkedIn</a>
-<a href="resume.pdf" style="display: inline-flex; align-items: center; min-height: 44px">Résumé (PDF)</a>
+<p class="role">Software engineer · Laravel, Vue, Go, AWS</p>
+<p class="pitch">I build production systems for government, law, and enterprise — case management, citizen records, and AI-powered tools that ship and stay shipped.</p>
+<p class="meta">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years</p>
+<nav class="actions" aria-label="Contact">
+<a class="btn btn-primary" href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+<a class="btn" href="resume.pdf">Résumé (PDF)</a>
+<a href="https://github.com/christophervistal25">GitHub</a>
+<a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
 </nav>
 </header>
 
-<!-- EXPERIENCE -->
-<section id="experience" style="display: flex; flex-direction: column; gap: 0">
-<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em">Experience</h2>
+<section id="experience" aria-labelledby="experience-heading">
+<h2 id="experience-heading">Experience</h2>
 
-<article style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 1px solid #000000">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap">
-<h3 style="margin: 0; font-size: 18px; font-weight: 600">Freelance Software Engineer</h3>
+<article class="job">
+<div class="job-head">
+<h3>Freelance Software Engineer</h3>
 <span class="date">2024 – Present</span>
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 8px">
-<p style="margin: 0; font-weight: 500">Case management platform · law firm</p>
-<ul class="bul" style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 6px">
-<li>Designed and shipped the platform solo in about 4 months; up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.</li>
+<div class="project">
+<h4>Case management platform · law firm</h4>
+<ul class="bul">
+<li><strong>Solo, about 4 months.</strong> Up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.</li>
 <li>Built billing, document automation from versioned templates, and email notifications via AWS SES.</li>
 <li>Added a client portal with attorney messaging and an audit trail of every view, edit and download.</li>
 </ul>
-<p style="margin: 0; font-size: 13px">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="https://chris-dev.netlify.app/case/ata-law-firm" aria-label="Read more about the case management platform">Read more →</a></p>
+<p class="stack">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="case/ata-law-firm.html">Read more</a></p>
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 8px">
-<p style="margin: 0; font-weight: 500">Multi-campus data hub · state university</p>
-<ul class="bul" style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 6px">
-<li>Built a Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration, now live for faculty across all 4 campuses.</li>
+<div class="project">
+<h4>Multi-campus data hub · state university</h4>
+<ul class="bul">
+<li><strong>Live on all 4 campuses.</strong> Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration.</li>
 <li>Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on flaky campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.</li>
 </ul>
-<p style="margin: 0; font-size: 13px">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/" aria-label="University data hub, live site">Live site</a> · <a href="https://chris-dev.netlify.app/case/nemsu-data-hub" aria-label="Read more about the multi-campus data hub">Read more →</a></p>
+<p class="stack">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/">Live site</a> · <a href="case/nemsu-data-hub.html">Read more</a></p>
 </div>
 </article>
 
-<article style="display: flex; flex-direction: column; gap: 10px; padding: 24px 0; border-top: 1px solid #000000">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap">
-<h3 style="margin: 0; font-size: 18px; font-weight: 600">Software Engineer, Province of Surigao del Sur</h3>
+<article class="job">
+<div class="job-head">
+<h3>Software Engineer, Province of Surigao del Sur</h3>
 <span class="date">2021 – 2024</span>
 </div>
-<ul class="bul" style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 6px">
-<li>Built a records platform for 500+ civil-servant files and a tourism analytics dashboard, replacing paper and Excel.</li>
-<li>Cut reporting response times by ~60% through query optimization.</li>
+<ul class="bul">
+<li><strong>500+ civil-servant records</strong> and a tourism analytics dashboard, replacing paper and Excel.</li>
+<li><strong>~60% faster reporting</strong> by fixing N+1 queries and adding indexes.</li>
 <li>Built an offline AI transcriber for the provincial board, so confidential audio never leaves the machine.</li>
-<li>Automated payroll deductions, tax reporting and SMS alerts, and built an Android app and uptime monitor, turning half-day tasks into one click.</li>
+<li>Automated payroll deductions, tax reporting and SMS alerts, and built a Java Android app and an uptime monitor, turning half-day tasks into one click.</li>
 <li>Introduced Git, code review and CI/CD; mentored 3 engineers.</li>
 </ul>
-<p style="margin: 0; font-size: 13px">Laravel · Vue · MySQL · SQL Server · Python · Android</p>
-<p style="margin: 0; font-size: 13px"><a href="https://epds.surigaodelsur.gov.ph/" aria-label="E-PDS records platform, live site">Records (live)</a> · <a href="https://ars.surigaodelsur.gov.ph/login" aria-label="Tourism analytics dashboard, live site">Tourism (live)</a> · <a href="https://chris-dev.netlify.app/case/e-pds" aria-label="Read more about the provincial records platform">Read more →</a> · <a href="https://chris-dev.netlify.app/case/offline-transcriber" aria-label="Read more about the offline AI transcriber">Transcriber →</a></p>
+<p class="stack">Laravel · Vue · MySQL · SQL Server · Python · Java (Android)</p>
+<p class="stack"><a href="https://epds.surigaodelsur.gov.ph/">Records (live)</a> · <a href="https://ars.surigaodelsur.gov.ph/login">Tourism (live)</a> · <a href="case/e-pds.html">Read more</a> · <a href="case/offline-transcriber.html">Transcriber</a></p>
 </article>
 
-<article style="display: flex; flex-direction: column; gap: 10px; padding: 24px 0; border-top: 1px solid #000000; border-bottom: 1px solid #000000">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap">
-<h3 style="margin: 0; font-size: 18px; font-weight: 600">Intern Developer, NEMSU</h3>
+<article class="job">
+<div class="job-head">
+<h3>Intern Developer, NEMSU</h3>
 <span class="date">Jul – Aug 2018</span>
 </div>
-<ul class="bul" style="margin: 0; padding-left: 16px; display: flex; flex-direction: column; gap: 6px">
-<li>Built a faculty evaluation web app where students rate their instructors&#39; teaching; used by 3,000+ students.</li>
+<ul class="bul">
+<li><strong>3,000+ students.</strong> Faculty evaluation web app where students rate their instructors&#39; teaching.</li>
 <li>Added Python sentiment analysis on written feedback, giving administrators data for strategic planning and decision-making.</li>
 </ul>
 </article>
 </section>
 
-<!-- AFTER HOURS -->
-<section id="after-hours" style="display: flex; flex-direction: column; gap: 0">
-<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em">After hours</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); border-top: 1px solid #000000">
-<div style="display: flex; flex-direction: column; gap: 6px; padding: 20px 20px 20px 0; border-bottom: 1px solid #000000">
-<h3 style="margin: 0; font-size: 16px; font-weight: 600">Chriscast</h3>
-<p style="margin: 0">Raycast-style file launcher for Linux. Indexes 200K+ files in ~5s with sub-millisecond search.</p>
-<p style="margin: 0; font-size: 13px">Go · GTK3 · fsnotify · open source</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px; padding: 20px 20px 20px 0; border-bottom: 1px solid #000000">
-<h3 style="margin: 0; font-size: 16px; font-weight: 600">Repository Cleaner</h3>
-<p style="margin: 0">Terminal GitHub manager: search, multi-select and bulk-delete repos with vim-style keys.</p>
-<p style="margin: 0; font-size: 13px">Go · Bubbletea · GitHub API · open source</p>
-</div>
+<section id="after-hours" aria-labelledby="oss-heading">
+<h2 id="oss-heading">Open source</h2>
+<div class="builds">
+<article>
+<h3><a href="https://github.com/christophervistal25/christcast">Chriscast</a></h3>
+<p>Raycast-style file launcher for Linux. Indexes 200K+ files in ~5s with sub-millisecond search.</p>
+<p class="stack">Go · GTK3 · fsnotify · <a href="https://github.com/christophervistal25/christcast">GitHub</a></p>
+</article>
+<article>
+<h3><a href="https://github.com/christophervistal25/repository-cleaner">Repository Cleaner</a></h3>
+<p>Terminal GitHub manager: search, multi-select and bulk-delete repos with vim-style keys.</p>
+<p class="stack">Go · Bubbletea · GitHub API · <a href="https://github.com/christophervistal25/repository-cleaner">GitHub</a></p>
+</article>
 </div>
 </section>
 
-<!-- SKILLS -->
-<section style="display: flex; flex-direction: column; gap: 0">
-<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em">Skills</h2>
-<dl style="margin: 0; display: flex; flex-direction: column; border-top: 1px solid #000000">
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #000000"><dt style="font-weight: 600">Languages</dt><dd style="margin: 0">PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#</dd></div>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #000000"><dt style="font-weight: 600">Frameworks</dt><dd style="margin: 0">Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs</dd></div>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #000000"><dt style="font-weight: 600">Data</dt><dd style="margin: 0">MySQL, SQL Server, S3, queues</dd></div>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #000000"><dt style="font-weight: 600">Infra</dt><dd style="margin: 0">AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD, RBAC</dd></div>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #000000"><dt style="font-weight: 600">Testing</dt><dd style="margin: 0">PHPUnit, Pest</dd></div>
-<div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #000000"><dt style="font-weight: 600">AI / ML</dt><dd style="margin: 0">Whisper, CTranslate2, on-device inference, NLP</dd></div>
+<section id="skills" aria-labelledby="skills-heading">
+<h2 id="skills-heading">Skills</h2>
+<dl class="skills">
+<div><dt>Languages</dt><dd>PHP, Go, TypeScript, JavaScript, Python, SQL</dd></div>
+<div><dt>Frameworks</dt><dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest</dd></div>
+<div><dt>Data</dt><dd>MySQL, SQL Server, S3, queues</dd></div>
+<div><dt>Infra</dt><dd>AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD, RBAC</dd></div>
+<div><dt>AI / ML</dt><dd>Whisper, CTranslate2, on-device inference, NLP</dd></div>
 </dl>
 </section>
 
-<!-- EDUCATION -->
-<section style="display: flex; flex-direction: column; gap: 0">
-<h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em">Education</h2>
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; padding: 16px 0; border-top: 1px solid #000000; border-bottom: 1px solid #000000">
+<section id="education" aria-labelledby="education-heading">
+<h2 id="education-heading">Education</h2>
+<div class="edu-row">
 <span><span style="font-weight: 600">BS Computer Science</span>, Surigao del Sur State University (now NEMSU)</span>
 <span class="date">2015 – 2019</span>
 </div>
 </section>
 
-<footer style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px">
+<footer class="site-footer">
 <span>© 2026 Christopher Vistal</span>
+<nav aria-label="Footer">
+<a href="aboutme.html">About &amp; references</a>
 <a href="mailto:vistalchris@gmail.com">Get in touch</a>
+<a href="resume.pdf">Résumé (PDF)</a>
+</nav>
 </footer>
 
 </main>
-</div>
 </body>
 </html>
