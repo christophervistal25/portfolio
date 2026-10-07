@@ -129,24 +129,6 @@ h2 {
   letter-spacing: 0.06em;
 }
 
-/* ---------- Results ---------- */
-.metrics { border-top: 1px solid var(--ink); }
-.metrics div {
-  display: grid;
-  grid-template-columns: 8.5rem 1fr;
-  gap: 8px 16px;
-  align-items: baseline;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--ink);
-}
-.metrics dt {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-}
-.metrics dd { margin: 0; }
-
 /* ---------- Experience ---------- */
 .job {
   display: flex;
@@ -376,11 +358,9 @@ h4 { font-size: 16px; font-weight: 600; }
 }
 
 @media (max-width: 640px) {
-  .page { padding: 20px 20px 48px; gap: 32px; }
-  .mast { gap: 10px; }
+  .page { padding: 32px 20px 48px; gap: 40px; }
+  .mast { gap: 12px; }
   .pitch { font-size: 18px; }
-  .metrics div { grid-template-columns: 7.75rem 1fr; gap: 6px 12px; padding: 6px 0; }
-  .metrics dt { font-size: 20px; }
   .skills div { grid-template-columns: 1fr; gap: 2px; }
   .builds { grid-template-columns: 1fr; }
   .builds article + article { padding-left: 0; border-left: 0; }
