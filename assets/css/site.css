@@ -1,18 +1,31 @@
 /* Christopher Vistal — shared styles
-   Text-first, one column, black on white. Used by the homepage,
-   about page, and case studies. */
+   Text-first, one column. Used by the homepage, about page,
+   and case studies. Theme tokens live on :root. */
 
 :root {
-  --bg: #ffffff;
-  --ink: #000000;
-  --link: #0040ff;
+  --bg: #161614;
+  --ink: #f3f1ec;
+  --link: #8eb4ff;
+  --rule: #8a8882;
+  --code: #242422;
+  --track: #2e2e2b;
   --measure: 720px;
   --sans: Inter, system-ui, "Helvetica Neue", Arial, sans-serif;
   --mono: "Geist Mono", ui-monospace, "Courier New", monospace;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #ffffff;
+  --ink: #000000;
+  --link: #0040ff;
+  --rule: #000000;
+  --code: #f3f3f3;
+  --track: #e6e6e6;
+  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--bg); }
 body {
   margin: 0;
   background: var(--bg);
@@ -55,10 +68,34 @@ a:hover { color: var(--link); }
 .mast-top {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 8px 16px;
   flex-wrap: wrap;
 }
+.mast-side {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { color: var(--link); }
+.theme-toggle svg { display: block; }
+.theme-toggle .icon-moon { display: none; }
+[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 h1 {
   font-size: 32px;
   font-weight: 600;
@@ -78,7 +115,6 @@ h1 {
   background: var(--link);
   flex-shrink: 0;
 }
-.role { font-size: 15px; font-weight: 600; }
 .pitch {
   font-size: 20px;
   line-height: 1.45;
@@ -139,9 +175,9 @@ h2 {
   flex-direction: column;
   gap: 14px;
   padding: 24px 0;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--rule);
 }
-.job:last-child { border-bottom: 1px solid var(--ink); }
+.job:last-child { border-bottom: 1px solid var(--rule); }
 .job-head, .edu-row {
   display: flex;
   justify-content: space-between;
@@ -164,34 +200,34 @@ h4 { font-size: 16px; font-weight: 600; }
 .builds {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--rule);
 }
 .builds article {
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 20px 20px 20px 0;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
-.builds article + article { padding-left: 20px; border-left: 1px solid var(--ink); }
+.builds article + article { padding-left: 20px; border-left: 1px solid var(--rule); }
 .builds h3 { font-size: 16px; }
 .builds h3 a { text-decoration: underline; }
 
-.skills { border-top: 1px solid var(--ink); }
+.skills { border-top: 1px solid var(--rule); }
 .skills div {
   display: grid;
   grid-template-columns: 7.5rem 1fr;
   gap: 12px 16px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
 .skills dt { font-weight: 600; }
 .skills dd { margin: 0; }
 
 .edu-row {
   padding: 16px 0;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 
 .site-footer {
@@ -205,8 +241,8 @@ h4 { font-size: 16px; font-weight: 600; }
 .site-footer a { display: inline-flex; align-items: center; min-height: 44px; }
 
 /* ---------- References (about) ---------- */
-.quotes { display: flex; flex-direction: column; border-top: 1px solid var(--ink); }
-.quote { padding: 20px 0; border-bottom: 1px solid var(--ink); }
+.quotes { display: flex; flex-direction: column; border-top: 1px solid var(--rule); }
+.quote { padding: 20px 0; border-bottom: 1px solid var(--rule); }
 .quote blockquote { font-size: 16px; line-height: 1.5; text-wrap: pretty; }
 .quote figcaption { margin-top: 10px; font-size: 13px; }
 .quote .who { font-weight: 600; }
@@ -216,7 +252,7 @@ h4 { font-size: 16px; font-weight: 600; }
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: #e6e6e6;
+  background: var(--track);
   z-index: 5;
 }
 .read-progress-fill { display: block; height: 100%; width: 0; background: var(--ink); }
@@ -225,6 +261,12 @@ h4 { font-size: 16px; font-weight: 600; }
   max-width: var(--measure);
   margin: 0 auto;
   padding: 24px 24px 80px;
+}
+.case-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 .case-back {
   display: inline-flex;
@@ -236,7 +278,7 @@ h4 { font-size: 16px; font-weight: 600; }
 .case-frontmatter {
   margin: 8px 0 32px;
   padding-bottom: 28px;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
 .case-eyebrow {
   font-size: 13px;
@@ -272,7 +314,7 @@ h4 { font-size: 16px; font-weight: 600; }
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--rule);
   background: var(--bg);
 }
 
@@ -296,12 +338,12 @@ h4 { font-size: 16px; font-weight: 600; }
 .case-prose code {
   font-family: var(--mono);
   font-size: 0.86em;
-  background: #f3f3f3;
+  background: var(--code);
   padding: 0.1em 0.35em;
 }
 .case-prose pre {
-  background: #f3f3f3;
-  border: 1px solid var(--ink);
+  background: var(--code);
+  border: 1px solid var(--rule);
   padding: 16px;
   overflow-x: auto;
   margin: 0 0 16px;
@@ -309,10 +351,12 @@ h4 { font-size: 16px; font-weight: 600; }
 .case-prose pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.55; }
 
 .case-diagram {
-  border: 1px solid var(--ink);
+  border: 1px solid var(--rule);
   padding: 16px;
   margin: 0 0 16px;
   overflow-x: auto;
+  background: #ffffff;
+  color: #000000;
 }
 .case-diagram pre { background: none; border: none; padding: 0; margin: 0; }
 .case-diagram .mermaid { display: flex; justify-content: center; }
@@ -325,7 +369,7 @@ h4 { font-size: 16px; font-weight: 600; }
 }
 
 .case-callout {
-  border: 1px solid var(--ink);
+  border: 1px solid var(--rule);
   padding: 16px 18px;
   margin: 0 0 16px;
 }
@@ -341,7 +385,7 @@ h4 { font-size: 16px; font-weight: 600; }
 .case-cta {
   margin-top: 40px;
   padding-top: 24px;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--rule);
   display: flex;
   align-items: center;
   justify-content: space-between;
