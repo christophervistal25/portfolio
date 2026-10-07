@@ -14,8 +14,17 @@
       property="og:description"
       content="Multi-campus file federation, submissions, and team collaboration platform for NEMSU. Laravel + Vue.js + MySQL."
     />
-    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.svg" />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Christopher Vistal, software engineer. Production systems for government, law, and enterprise." />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
+    <meta name="twitter:image:alt" content="Christopher Vistal, software engineer. Production systems for government, law, and enterprise." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="author" content="Christopher Vistal" />
     <meta name="keywords" content="NEMSU Data Hub, university platform, Laravel, Vue.js, Inertia.js, Go, tus uploads, ClamAV, S3, ONLYOFFICE, Google Sign-In, MySQL, file federation, multi-tenant, PHP, Go service, case study, Christopher Vistal" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
@@ -31,7 +40,8 @@
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "datePublished": "2024-01-01",
-        "dateModified": "2026-06-04",
+        "dateModified": "2026-10-07",
+        "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
         "inLanguage": "en",
         "mainEntityOfPage": "https://chris-dev.netlify.app/case/nemsu-data-hub.html",
         "keywords": "Laravel, Vue.js, Inertia.js, Go, MySQL, tus, ClamAV, S3, ONLYOFFICE, Google Sign-In, multi-campus, file platform, university, PHP",
@@ -67,17 +77,17 @@
     </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/css/site.css?v=48" />
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true, theme: 'default', themeVariables: { fontFamily: 'Geist, sans-serif' } });</script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { fontFamily: 'Schibsted Grotesk, sans-serif', primaryColor: '#ffffff', primaryTextColor: '#000000', primaryBorderColor: '#000000', lineColor: '#000000', secondaryColor: '#ffffff', tertiaryColor: '#ffffff', background: '#ffffff' } });</script>
   </head>
   <body data-density="comfortable">
     <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
     <main class="case-wrap">
-      <a href="../index.html" class="case-back">back to portfolio</a>
+      <a href="../index.html" class="case-back">← Portfolio</a>
 
       <header class="case-frontmatter">
         <span class="case-eyebrow">Case Study 04 &nbsp;·&nbsp; university platform</span>
@@ -95,7 +105,7 @@
           <dt>Status</dt><dd>Live at <a href="https://udh.nemsu.edu.ph/">udh.nemsu.edu.ph</a> across all 4 campuses</dd>
         </dl>
       </header>
-      <div class="case-hero"><img src="../assets/imagesv2/nemsu.png" alt="" loading="eager" /></div>
+      <div class="case-hero"><img src="../assets/imagesv2/nemsu.png" alt="NEMSU Data Hub, the university file and submissions platform" loading="eager" /></div>
 
 
       <article class="case-prose">
@@ -184,17 +194,17 @@ flowchart TB
     laravel --> s3
     laravel --> local
 
-    style domain fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style nginx fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style laravel fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style tus fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style clamav fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style signer fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style office fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style gsi fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style mysql fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style s3 fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
-    style local fill:#ece9e2,stroke:#bdb5a6,color:#2b2b25
+    style domain fill:#ffffff,stroke:#000000,color:#000000
+    style nginx fill:#ffffff,stroke:#000000,color:#000000
+    style laravel fill:#ffffff,stroke:#000000,color:#000000
+    style tus fill:#ffffff,stroke:#000000,color:#000000
+    style clamav fill:#ffffff,stroke:#000000,color:#000000
+    style signer fill:#ffffff,stroke:#000000,color:#000000
+    style office fill:#ffffff,stroke:#000000,color:#000000
+    style gsi fill:#ffffff,stroke:#000000,color:#000000
+    style mysql fill:#ffffff,stroke:#000000,color:#000000
+    style s3 fill:#ffffff,stroke:#000000,color:#000000
+    style local fill:#ffffff,stroke:#000000,color:#000000
         </pre>
           <div class="case-diagram-caption">multi-campus platform with go upload + scan + sign sidecars</div>
         </div>

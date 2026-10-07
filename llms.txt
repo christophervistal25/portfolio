@@ -1,6 +1,6 @@
 # Christopher Vistal
 
-> Software engineer in the Philippines (UTC+8) with 5+ years building and running production web platforms end to end: system design, data modeling, APIs, deployment and security. Core stack: PHP/Laravel, Vue.js, Go, MySQL and AWS. Open to full-time remote roles and contracts.
+> Software engineer in the Philippines (UTC+8). I build production systems for government, law, and enterprise — case management, citizen records, and AI-powered tools that ship and stay shipped. Core stack: PHP/Laravel, Vue.js, Go, MySQL and AWS. 5+ years. Open to full-time remote roles and contracts.
 
 ## Summary
 
@@ -28,9 +28,9 @@ University Data Hub for North Eastern Mindanao State University (Laravel, Go, Vu
 
 Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 - Built a records platform for 500+ civil-servant files (https://epds.surigaodelsur.gov.ph/) and a tourism analytics dashboard (https://ars.surigaodelsur.gov.ph/), replacing paper and Excel.
-- Cut reporting response times by ~60% through query optimization.
+- Cut reporting response times by ~60% by fixing N+1 queries and adding indexes.
 - Built an offline AI speech-to-text tool (Python, Whisper, CTranslate2) for the Office of the Secretary to the Sangguniang Panlalawigan (provincial board), so confidential audio never leaves the machine.
-- Automated payroll deductions, tax reporting and SMS alerts, and built an Android employee app and a self-hosted uptime monitor, turning half-day tasks into one click.
+- Automated payroll deductions, tax reporting and SMS alerts, and built a Java Android employee app and a self-hosted uptime monitor, turning half-day tasks into one click.
 - Introduced Git, code review and CI/CD to the team; mentored 3 engineers.
 
 ### Intern Developer, North Eastern Mindanao State University (Jul – Aug 2018)
@@ -40,16 +40,15 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 
 ## Personal projects
 
-- Chriscast: Raycast-style file launcher for Linux; indexes 200K+ files in ~5s with sub-millisecond search (Go, GTK3, fsnotify; open source).
-- Repository Cleaner: terminal GitHub manager to search, multi-select and bulk-delete repositories with vim-style keys (Go, Bubbletea, GitHub API; open source).
+- Chriscast (https://github.com/christophervistal25/christcast): Raycast-style file launcher for Linux; indexes 200K+ files in ~5s with sub-millisecond search (Go, GTK3, fsnotify).
+- Repository Cleaner (https://github.com/christophervistal25/repository-cleaner): terminal GitHub manager to search, multi-select and bulk-delete repositories with vim-style keys (Go, Bubbletea, GitHub API).
 
 ## Skills
 
-- Languages: PHP, Go, TypeScript, JavaScript, Python, SQL, Java, C#
-- Frameworks: Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs
+- Languages: PHP, Go, TypeScript, JavaScript, Python, SQL. Java appears on the provincial Android employee app, not as a primary language.
+- Frameworks: Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest
 - Data: MySQL, SQL Server, S3, queues
 - Infrastructure: AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD, RBAC
-- Testing: PHPUnit, Pest
 - AI / ML: Whisper, CTranslate2, on-device inference, NLP
 
 ## Education
@@ -62,7 +61,11 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 - [Résumé (PDF)](https://chris-dev.netlify.app/resume.pdf)
 - [GitHub](https://github.com/christophervistal25)
 - [LinkedIn](https://www.linkedin.com/in/christophervistal25/)
-- [Case study: case management platform](https://chris-dev.netlify.app/case/ata-law-firm)
-- [Case study: university data hub](https://chris-dev.netlify.app/case/nemsu-data-hub)
-- [Case study: provincial records platform](https://chris-dev.netlify.app/case/e-pds)
-- [Case study: offline AI transcriber](https://chris-dev.netlify.app/case/offline-transcriber)
+- [About and references](https://chris-dev.netlify.app/aboutme.html)
+- [Résumé (HTML)](https://chris-dev.netlify.app/resume.html)
+- [Case study: case management platform](https://chris-dev.netlify.app/case/ata-law-firm.html)
+- [Case study: university data hub](https://chris-dev.netlify.app/case/nemsu-data-hub.html)
+- [Case study: provincial records platform](https://chris-dev.netlify.app/case/e-pds.html)
+- [Case study: offline AI transcriber](https://chris-dev.netlify.app/case/offline-transcriber.html)
+- [Chriscast source](https://github.com/christophervistal25/christcast)
+- [Repository Cleaner source](https://github.com/christophervistal25/repository-cleaner)
