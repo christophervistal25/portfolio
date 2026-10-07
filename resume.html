@@ -3,6 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var theme = stored === "light" || stored === "dark"
+      ? stored
+      : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (e) {}
+})();
+</script>
 <title>Christopher Vistal — Résumé</title>
 <meta name="description" content="Résumé of Christopher Vistal. I design, build, and maintain web platforms from start to finish. Open to remote roles and contracts.">
 <meta name="author" content="Christopher Vistal">
@@ -47,19 +58,41 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&amp;display=swap">
 <style>
 :root{
-  --ink:#000000;--muted:#1A1A1A;--accent:#004F90;--paper:#FFFFFF;
+  --ink:#000000;--muted:#1A1A1A;--accent:#004F90;--sep:#666666;--paper:#FFFFFF;
   --fs:12pt;--lh:1.5;--small:11pt;--name:30pt;--h2:15pt;
   --section:16pt;--entry:12pt;--bullet:3.5pt;
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --ink:#f3f1ec;--muted:#c8c6c0;--accent:#7eb0f0;--sep:#a3a199;--paper:#161614;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#f3f1ec;--muted:#c8c6c0;--accent:#7eb0f0;--sep:#a3a199;--paper:#161614;
+    color-scheme:dark;
+  }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon{display:none}
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun{display:block}
 }
 *{box-sizing:border-box}
 html,body{margin:0}
+html{background:var(--paper)}
 body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,Arial,sans-serif;font-variant-ligatures:none;font-size:var(--fs);line-height:var(--lh);letter-spacing:-0.011em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 h1,h2,p,ul,dl,dd{margin:0}
 a{color:inherit;text-decoration:none}
 a:hover{text-decoration:underline}
 
-.bar{max-width:8.5in;margin:0 auto;padding:16px 0.6in 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.bar{max-width:8.5in;margin:0 auto;padding:16px 0.6in 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px}
 .bar a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);text-decoration:underline}
+.bar-end{display:flex;align-items:center;gap:4px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;background:transparent;color:var(--ink);cursor:pointer;flex-shrink:0}
+.theme-toggle:hover{color:var(--accent)}
+.theme-toggle svg{display:block}
+.theme-toggle .icon-sun{display:none}
+[data-theme="dark"] .theme-toggle .icon-moon{display:none}
+[data-theme="dark"] .theme-toggle .icon-sun{display:block}
 .page{max-width:8.5in;margin:0 auto;padding:0.4in 0.6in 0.6in}
 
 header{text-align:center}
@@ -78,7 +111,7 @@ h2::after{content:"";flex:1;border-top:0.8pt solid var(--accent)}
 .tech{font-size:var(--small);color:var(--muted);margin-top:1pt}
 .project{margin-top:5pt}
 .project .stack{font-size:var(--small);color:var(--muted)}
-.project .sep{color:#666666}
+.project .sep{color:var(--sep)}
 .project a,.links a{color:var(--accent)}
 ul{padding-left:15pt;margin-top:2pt}
 li + li{margin-top:var(--bullet)}
@@ -100,6 +133,12 @@ li + li{margin-top:var(--bullet)}
 }
 @media print{
   @page{size:Letter;margin:0.5in 0.85in}
+  :root,
+  :root:not([data-theme="light"]),
+  [data-theme="dark"]{
+    --ink:#000000;--muted:#1A1A1A;--accent:#004F90;--sep:#666666;--paper:#FFFFFF;
+    color-scheme:light;
+  }
   .bar{display:none}
   .page{max-width:none;padding:0}
 }
@@ -108,7 +147,13 @@ li + li{margin-top:var(--bullet)}
 <body>
 <nav class="bar" aria-label="Résumé actions">
 <a href="index.html">← Portfolio</a>
+<div class="bar-end">
 <a href="resume.pdf" download>Download PDF</a>
+<button type="button" class="theme-toggle" aria-pressed="false" aria-label="Switch color theme">
+<svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+</button>
+</div>
 </nav>
 
 <main class="page">
@@ -180,5 +225,6 @@ li + li{margin-top:var(--bullet)}
 </section>
 
 </main>
+<script src="assets/js/theme.js"></script>
 </body>
 </html>
