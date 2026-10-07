@@ -1,6 +1,6 @@
 # Christopher Vistal
 
-> Software engineer in the Philippines (UTC+8). I build production systems for government, law, and enterprise — case management, citizen records, and AI-powered tools that ship and stay shipped. Core stack: PHP/Laravel, Vue.js, Go, MySQL and AWS. 5+ years. Open to full-time remote roles and contracts.
+> Software engineer in the Philippines (UTC+8). I design, build, and maintain web platforms from start to finish. Core stack: PHP/Laravel, Vue.js, Go, MySQL and AWS. 5+ years. Open to full-time remote roles and contracts.
 
 ## Summary
 

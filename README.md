@@ -1,8 +1,8 @@
 # Christopher Vistal
 
-**Full-Stack Software Engineer** — I build production systems for government agencies, law firms, and enterprise teams.
+**Full-Stack Software Engineer** — I design, build, and maintain web platforms from start to finish.
 
-Case management platforms, citizen records systems, and AI-powered tools that ship and stay shipped.
+Case management platforms, citizen records systems, and on-device tools.
 
 📍 Surigao del Sur, Philippines &nbsp;·&nbsp; 🌐 [chris-dev.netlify.app](https://chris-dev.netlify.app) &nbsp;·&nbsp; 📧 vistalchris@gmail.com
 
