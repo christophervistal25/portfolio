@@ -573,16 +573,6 @@ a:hover { text-decoration-thickness: 2px; }
   margin-top: auto;
   padding-top: 8px;
 }
-.icon-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  font-size: 14px;
-  text-decoration: none;
-}
-.icon-link:hover { text-decoration: underline; }
-
 /* Card actions surface on hover or keyboard focus. The row keeps its
    min-height while hidden so cards never jump, and opacity (not visibility)
    keeps the links in the tab order so :focus-within can reveal them.
@@ -668,21 +658,33 @@ a:hover { text-decoration-thickness: 2px; }
   font-size: 13px;
   color: var(--muted);
 }
+/* One outlined tile for every item: a monochrome logo, or a text wordmark
+   where no logo is used. Both inherit currentColor, so the theme flips them. */
 .tech-icon {
   display: grid;
   place-items: center;
   width: 64px;
   height: 64px;
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: transparent;
+  color: var(--ink);
   font-family: var(--display);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
-.tech-icon.is-round { border-radius: 50%; }
-.tech-icon.is-soft { background: var(--pill); color: var(--ink); }
+.tech-icon svg { display: block; width: 30px; height: 30px; }
+@media (hover: hover) {
+  .tech-row li:hover .tech-icon {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
+}
 
 /* ---------- Experience ---------- */
 .job {
@@ -712,31 +714,12 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .bul li::marker { content: "– "; color: var(--faint); }
 .stack { font-size: 13px; color: var(--muted); }
-.stack a, .builds h3 a, .case-meta a {
+.stack a, .case-meta a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
 }
 .stack a, .case-meta a { color: var(--ink); }
-
-.builds {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.builds article {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 28px;
-  border-radius: var(--radius);
-  background: var(--pill);
-}
-.builds h3 { font-size: 19px; }
-.builds h3 a { text-decoration: none; }
-.builds h3 a:hover { text-decoration: underline; }
-.builds p { color: var(--muted); font-size: 14px; }
-.builds .icon-link { margin-top: auto; font-weight: 600; }
 
 /* Skills in plain multi-column lists, each under a highlight label */
 .skills {
@@ -750,11 +733,6 @@ a:hover { text-decoration-thickness: 2px; }
 .skills dd { margin: 0; }
 .skills ul { margin: 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.5; }
 .skills li + li { margin-top: 6px; }
-
-/* Centered three-line stack: title / place / date */
-.edu-stack { display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; }
-.edu-stack strong { font-size: 16px; }
-.edu-stack .date { margin-top: 2px; }
 
 .edu-row {
   padding: 18px 0;
@@ -1136,7 +1114,7 @@ a:hover { text-decoration-thickness: 2px; }
   .topbar { padding: 14px 16px 4px; }
   .footer-inner { padding: 14px 16px; }
   .footer-meta { align-items: flex-start; margin-left: 0; text-align: left; }
-  .areas, .builds, .decisions { grid-template-columns: 1fr; }
+  .areas, .decisions { grid-template-columns: 1fr; }
   .work-toolbar { grid-template-columns: 1fr; }
   .carousel-nav { grid-column: 1; justify-self: end; }
   .work-track { gap: 16px; }
@@ -1160,7 +1138,7 @@ a:hover { text-decoration-thickness: 2px; }
   .case-nextprev .next, .case-nextprev .all { justify-self: start; text-align: left; }
 }
 @media (max-width: 400px) {
-  .tech-icon { width: 56px; height: 56px; font-size: 15px; }
+  .tech-icon { width: 56px; height: 56px; font-size: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1173,7 +1151,8 @@ a:hover { text-decoration-thickness: 2px; }
   .work-card:hover .work-shot img,
   .work-card:focus-within .work-shot img,
   .work-card:hover .work-shot,
-  .work-card .card-actions { transform: none; }
+  .work-card .card-actions,
+  .tech-row li:hover .tech-icon { transform: none; }
   .work-card .card-actions { transition: none; }
 }
 
