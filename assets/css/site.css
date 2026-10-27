@@ -1091,6 +1091,18 @@ html { scroll-padding-top: 90px; }
   .areas a { white-space: normal; }
   .work-toolbar { grid-template-columns: 1fr; margin-bottom: 24px; }
   .carousel-nav { grid-column: 1; justify-self: end; }
+  /* One swipeable row of chips that bleeds to the screen edges */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 -16px;
+    padding: 2px 16px;
+    scroll-padding-inline: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters > li { flex: 0 0 auto; }
   .work-track { gap: 16px; }
   /* One card plus a ~0.2 peek of the next */
   .work-slide { flex-basis: calc((100% - 16px) / 1.2); }
