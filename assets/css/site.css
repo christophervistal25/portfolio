@@ -609,6 +609,7 @@ html { scroll-padding-top: 90px; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 8px 20px;
   min-height: 52px;       /* same row height with or without a live-site link */
   margin-top: auto;
