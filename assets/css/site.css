@@ -149,10 +149,8 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .skip:focus { top: 12px; color: var(--btn-ink); }
 
-.muted, .meta, .date { color: var(--muted); }
-.meta, .date { font-size: 13px; }
-.date, code, pre { letter-spacing: 0; }
-.date { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+code, pre { letter-spacing: 0; }
 
 /* Signature device: a black bar that hugs the words, white bold text inside */
 .hl {
@@ -191,7 +189,13 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 /* ---------- Top bar: monogram, centered links, icon buttons ---------- */
+/* The bar is sticky, so in-page anchors stop below it instead of under it */
+html { scroll-padding-top: 90px; }
+/* Sticky under the case-study reading bar (.read-progress, z-index 15) */
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   max-width: var(--wide);
   margin: 0 auto;
   padding: 28px 24px;
@@ -199,18 +203,56 @@ a:hover { text-decoration-thickness: 2px; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 8px 16px;
+  transition: padding 0.2s ease, margin 0.2s ease;
 }
+/* Full-bleed background: the bar stays centered at --wide, its backdrop
+   reaches both viewport edges (html clips the overflow) */
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(50% - 50vw);
+  z-index: -1;
+  background: var(--bg);
+  box-shadow: 0 1px 0 transparent;
+  transition: box-shadow 0.2s ease;
+}
+/* Scrolled state, toggled by theme.js. The margin gives back exactly the
+   padding taken away, so the content below never shifts while the bar shrinks. */
+.topbar.is-stuck { padding-top: 14px; padding-bottom: 14px; margin-bottom: 28px; }
+.topbar.is-stuck::before { box-shadow: 0 1px 0 var(--line); }
+/* Logo: a single cursive "C" drawn inline with fill="currentColor", so it
+   takes the ink colour and flips with dark mode on its own. Hover and focus
+   give it a small tilt. */
 .brand {
   justify-self: start;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-family: var(--display);
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.075em;
+  color: var(--ink);
   text-decoration: none;
+}
+/* Cursive C from Alex Brush (SIL Open Font License) */
+.brand-c {
+  display: block;
+  height: 46px;
+  width: auto;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+  backface-visibility: hidden;
+  transition: transform 0.25s ease;
+}
+/* Stroke in viewBox units thickens the sub-pixel hairlines so they render solid */
+.brand-c path {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.1px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  paint-order: stroke fill;
+}
+.brand:hover .brand-c,
+.brand:focus-visible .brand-c {
+  transform: rotate(-6deg);
 }
 .mainnav ul {
   display: flex;
@@ -394,7 +436,6 @@ a:hover { text-decoration-thickness: 2px; }
   color: var(--muted);
   text-wrap: pretty;
 }
-.hero .meta { margin-top: -8px; }
 .hero .actions { justify-content: flex-start; margin-top: 8px; }
 .hero .actions .btn { min-width: 168px; min-height: 52px; }
 .hero-links {
@@ -615,28 +656,6 @@ a:hover { text-decoration-thickness: 2px; }
   align-items: center;
   min-height: 44px;
 }
-
-/* ---------- Two-column feature blocks (services, design notes) ---------- */
-.feature {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 48px;
-}
-.feature + .feature { margin-top: 72px; }
-.feature:nth-of-type(even) .feature-media { order: -1; }
-.feature-body { display: flex; flex-direction: column; gap: 14px; }
-.feature-body h3 { font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -0.02em; }
-.feature-body p { color: var(--muted); }
-.feature-body ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: 15px; }
-.feature-body li + li { margin-top: 4px; }
-.feature-media img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--radius);
-  background: var(--surface);
-}
 .tags { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; }
 .tags li { font-size: 12px; font-weight: 500; color: var(--muted); }
 
@@ -687,39 +706,76 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 /* ---------- Experience ---------- */
+/* Home page only (resume.html uses its own r-* classes). Each job stacks on
+   small screens; from 900px it becomes a two-column row: date label and
+   organization on the left, role, projects and bullets on the right. */
 .job {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 32px 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding: 40px 0;
   border-top: 1px solid var(--line);
 }
 .job:last-child { border-bottom: 1px solid var(--line); }
-.job-head, .edu-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 4px 16px;
-  flex-wrap: wrap;
+@media (min-width: 900px) {
+  .job { grid-template-columns: 220px minmax(0, 1fr); gap: 0 40px; }
 }
-.job h3 { font-size: 20px; }
-.project { display: flex; flex-direction: column; gap: 8px; }
-.job > .project + .project { margin-top: 10px; }
+.job-meta { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.job-meta .hl-label { font-variant-numeric: tabular-nums; }
+.job-org { font-size: 14px; line-height: 1.4; color: var(--muted); }
+.job-body { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.job-body h3 { font-size: 22px; }
+.project { display: flex; flex-direction: column; gap: 10px; }
+.project + .project { margin-top: 16px; }
+.project h4 { font-family: var(--display); font-size: 17px; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
+.project-client { font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+/* Compact bullets with a small black square. Body text sits a shade softer
+   than --ink so the bold lead-in results read first. */
 .bul {
-  margin: 0;
-  padding-left: 1.15rem;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  max-width: 70ch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--ink) 82%, var(--bg));
 }
-.bul li::marker { content: "– "; color: var(--faint); }
-.stack { font-size: 13px; color: var(--muted); }
-.stack a, .case-meta a {
+.bul li { position: relative; padding-left: 18px; }
+.bul li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: calc(0.775em - 3px);   /* centred on the first line */
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+}
+.bul strong { font-weight: 700; color: var(--ink); }
+/* Footer row: outlined tech chips, then the links on their own line */
+.job-foot { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.stack-chips,
+.job-links { display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; }
+.stack-chips { gap: 6px; }
+.stack-chips li {
+  padding: 2px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.job-links { gap: 0 20px; font-size: 14px; font-weight: 600; }
+.job-links a { display: inline-flex; align-items: center; gap: 0.3em; min-height: 44px; }
+.case-meta a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  color: var(--ink);
 }
-.stack a, .case-meta a { color: var(--ink); }
 
 /* Skills in plain multi-column lists, each under a highlight label */
 .skills {
@@ -735,55 +791,15 @@ a:hover { text-decoration-thickness: 2px; }
 .skills li + li { margin-top: 6px; }
 
 .edu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  flex-wrap: wrap;
   padding: 18px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-
-/* ---------- Testimonials ---------- */
-.testimonials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-.testimonial {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 28px;
-  border-radius: var(--radius);
-  background: var(--pill);
-}
-.testimonial blockquote { font-size: 16px; line-height: 1.6; text-wrap: pretty; }
-.testimonial blockquote::before {
-  content: "\201C";
-  display: block;
-  height: 36px;
-  font-family: var(--display);
-  font-size: 64px;
-  line-height: 1;
-  color: var(--ink);
-}
-.testimonial figcaption { display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
-.t-name { font-weight: 600; font-size: 14px; }
-.t-role { color: var(--muted); }
-.t-link { display: inline-flex; align-items: center; min-height: 44px; }
-.testimonial.is-featured {
-  max-width: 860px;
-  margin-inline: auto;
-  padding: 48px clamp(24px, 6vw, 72px);
-  text-align: center;
-}
-.testimonial.is-featured blockquote {
-  font-family: var(--display);
-  font-size: clamp(21px, 2.6vw, 28px);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-}
-.testimonial.is-featured blockquote::before { margin: 0 auto 8px; }
-.testimonial.is-featured figcaption { align-items: center; }
 
 /* ---------- Writing list ---------- */
 .writing-list { margin: 0 auto; padding: 0; list-style: none; border-top: 1px solid var(--line); }
@@ -840,43 +856,7 @@ a:hover { text-decoration-thickness: 2px; }
 .talk-link svg { transition: transform 0.2s ease; }
 .talk-link:hover svg { transform: translateX(3px); }
 
-/* ---------- About ---------- */
-.about-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
-  align-items: center;
-  gap: 56px;
-}
-.about-intro .hero-photo {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: 50% 30%;
-  -webkit-mask-image: radial-gradient(ellipse 62% 66% at 50% 44%, #000 58%, transparent 100%);
-  mask-image: radial-gradient(ellipse 62% 66% at 50% 44%, #000 58%, transparent 100%);
-}
-[data-theme="dark"] .about-intro .hero-photo { filter: brightness(0.9); }
-.about-intro h1 { margin-bottom: 18px; }
-.about-intro p + p { margin-top: 14px; }
-.about-intro .actions { justify-content: flex-start; margin-top: 24px; }
-.principles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.principles li { padding: 24px; border-radius: var(--radius); background: var(--pill); }
-.principles h3 { font-size: 17px; margin-bottom: 8px; }
-.principles p { color: var(--muted); font-size: 15px; }
-.engagements { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.engagements > div { padding: 24px; border-radius: var(--radius); border: 1px solid var(--line); }
-.engagements dt { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 8px; }
-.engagements dd { margin: 0; color: var(--muted); font-size: 15px; }
-.note { margin-top: 32px; text-align: center; color: var(--muted); }
-
-/* ---------- Footer: light grey strip, credit on the right ---------- */
+/* ---------- Footer: light grey strip with nav links ---------- */
 .site-footer {
   background: var(--pill);
   font-size: 13px;
@@ -887,23 +867,11 @@ a:hover { text-decoration-thickness: 2px; }
   margin: 0 auto;
   padding: 18px 24px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 4px 24px;
-  flex-wrap: wrap;
 }
 .site-footer nav { display: flex; flex-wrap: wrap; gap: 0 18px; }
 .site-footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
-.footer-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-  margin-left: auto;
-  text-align: right;
-}
-.credit b { color: var(--ink); }
 
 /* ---------- Case studies ---------- */
 .read-progress {
@@ -1092,16 +1060,13 @@ a:hover { text-decoration-thickness: 2px; }
   .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
+  html { scroll-padding-top: 120px; }
   .topbar { grid-template-columns: 1fr auto; padding: 18px 24px 8px; }
+  .topbar.is-stuck { padding-top: 8px; padding-bottom: 4px; margin-bottom: 14px; }
   .mainnav { grid-column: 1 / -1; grid-row: 2; overflow-x: auto; }
   .mainnav ul { width: max-content; min-width: 100%; justify-content: center; gap: 0 22px; }
   .work-track { gap: 24px; }
   .work-slide { flex-basis: calc((100% - 24px) / 2); }
-  .feature, .about-intro { grid-template-columns: 1fr; gap: 28px; }
-  .feature:nth-of-type(even) .feature-media { order: 0; }
-  .feature-media img { aspect-ratio: 3 / 2; }
-  .about-intro .hero-photo { max-width: 280px; margin-inline: auto; }
-  .engagements { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; gap: 72px; padding-top: 48px; }
@@ -1112,8 +1077,8 @@ a:hover { text-decoration-thickness: 2px; }
 @media (max-width: 640px) {
   .page { padding: 16px 16px 72px; gap: 96px; }
   .topbar { padding: 14px 16px 4px; }
+  .topbar.is-stuck { padding-top: 8px; padding-bottom: 2px; margin-bottom: 8px; }
   .footer-inner { padding: 14px 16px; }
-  .footer-meta { align-items: flex-start; margin-left: 0; text-align: left; }
   .areas, .decisions { grid-template-columns: 1fr; }
   .work-toolbar { grid-template-columns: 1fr; }
   .carousel-nav { grid-column: 1; justify-self: end; }
@@ -1124,7 +1089,6 @@ a:hover { text-decoration-thickness: 2px; }
   .section-lede br { display: none; }
   .hero .actions { width: 100%; }
   .hero .actions .btn { flex: 1 1 140px; min-width: 0; padding: 0 16px; }
-  .testimonial { padding: 22px; }
   .writing-list > li { grid-template-columns: 1fr; }
   .writing-list p,
   .writing-list .card-tags,
@@ -1152,8 +1116,13 @@ a:hover { text-decoration-thickness: 2px; }
   .work-card:focus-within .work-shot img,
   .work-card:hover .work-shot,
   .work-card .card-actions,
-  .tech-row li:hover .tech-icon { transform: none; }
-  .work-card .card-actions { transition: none; }
+  .tech-row li:hover .tech-icon,
+  .brand:hover .brand-c,
+  .brand:focus-visible .brand-c { transform: none; }
+  .work-card .card-actions,
+  .brand-c,
+  .topbar,
+  .topbar::before { transition: none; }
 }
 
 @media print {

@@ -113,19 +113,18 @@ if (location.hash === "#blog" || location.hash === "#writing") location.replace(
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&amp;family=Instrument+Sans:wght@400..600&amp;display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=72">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&amp;family=Instrument+Sans:wght@400..600&amp;display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=81">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
 
 <header class="topbar">
-  <a class="brand" href="index.html" aria-current="page">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+  <a class="brand" href="index.html" aria-current="page"><svg class="brand-c" width="44" height="41" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.0 45.11"><path fill="currentColor" d="M15.43 42.84Q9.13 42.84 5.7 39.49Q2.27 36.14 2.27 30.81Q2.27 25.93 4.68 21.28Q7.09 16.62 10.78 12.71Q13.79 9.53 17.67 7.21Q21.56 4.88 25.84 3.57Q30.13 2.27 34.21 2.27Q37.45 2.27 40.06 3.15Q42.67 4.03 44.2 5.9Q45.73 7.77 45.73 10.78Q45.73 13.45 44.45 15.74Q43.18 18.04 41.05 19.74Q38.92 21.45 36.37 22.41Q33.82 23.38 31.21 23.38Q27.8 23.38 25.48 21.82Q23.15 20.26 23.15 17.87Q23.15 14.81 27.06 11.86Q27.74 11.35 28.14 11.35Q28.43 11.35 28.43 11.57Q28.43 12.14 27.52 12.48Q24.34 15.04 24.34 17.65Q24.34 19.52 26.04 20.79Q27.74 22.07 30.3 22.07Q32.57 22.07 34.87 21.11Q37.16 20.14 39.09 18.5Q41.02 16.85 42.18 14.78Q43.35 12.71 43.35 10.44Q43.35 6.75 40.85 5.05Q38.35 3.35 34.5 3.35Q30.13 3.35 25.84 4.99Q21.56 6.64 17.82 9.53Q14.07 12.43 11.12 16.17Q5.22 23.6 5.22 30.13Q5.22 33.59 6.81 36Q8.4 38.41 11.21 39.66Q14.01 40.91 17.65 40.91Q23.04 40.91 28.09 38.55Q33.13 36.2 36.71 32.23Q37.67 31.21 38.13 31.21Q38.47 31.21 38.47 31.72Q38.47 32.4 37.84 33.02Q35.91 35.06 33.25 36.82Q30.58 38.58 27.55 39.94Q24.51 41.3 21.39 42.07Q18.27 42.84 15.43 42.84Z"/></svg><span class="sr-only">Christopher Vistal, home</span></a>
   <nav class="mainnav" aria-label="Main">
     <ul>
       <li><a href="#work">Work</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="aboutme.html">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -148,7 +147,6 @@ if (location.hash === "#blog" || location.hash === "#writing") location.replace(
 <div class="hero-body">
 <h1 id="hero-heading">Hi, I’m Christopher and I’m a <span class="hl">Software Engineer.</span></h1>
 <p class="hero-sub">I design, build, and maintain web platforms from start to finish. Core stack: Laravel, Vue.js and Go on AWS.</p>
-<p class="meta">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years · Open to remote roles &amp; contracts</p>
 <div class="actions">
 <a class="btn btn-primary" href="#contact">Get in touch</a>
 <a class="btn" href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">View résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
@@ -275,7 +273,7 @@ if (location.hash === "#blog" || location.hash === "#writing") location.replace(
 <span class="num">04 · Business</span>
 <h3>Client engagements</h3>
 <p>Freelance builds since 2024 with ongoing maintenance, and a provincial IT team moved from FTP deploys to Git, code review and CI/CD, with 3 engineers mentored.</p>
-<a href="aboutme.html#services">See services and engagement types</a>
+<a href="#contact">Get in touch</a>
 </li>
 </ul>
 </section>
@@ -284,56 +282,105 @@ if (location.hash === "#blog" || location.hash === "#writing") location.replace(
 <h2 id="experience-heading" class="section-title">Experience</h2>
 
 <article class="job">
-<div class="job-head">
-<h3>Freelance Software Engineer</h3>
-<span class="date">2024 – Present</span>
+<div class="job-meta">
+<span class="hl-label">2024 – Present</span>
+<p class="job-org">Self-employed</p>
 </div>
+<div class="job-body">
+<h3>Freelance Software Engineer</h3>
 
 <div class="project">
-<h4>Case management platform · law firm</h4>
+<h4>Case management platform <span class="project-client">· Law firm</span></h4>
 <ul class="bul">
 <li><strong>Solo, about 4 months.</strong> Up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.</li>
 <li>Built billing, document automation from versioned templates, and email notifications via AWS SES.</li>
 <li>Added a client portal with attorney messaging and an audit trail of every view, edit and download.</li>
 </ul>
-<p class="stack">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="case/ata-law-firm.html">Read the law-firm post</a></p>
+<div class="job-foot">
+<ul class="stack-chips" aria-label="Tech stack">
+<li>Laravel</li>
+<li>Vue</li>
+<li>Inertia</li>
+<li>MySQL</li>
+<li>AWS (EC2, RDS, S3, SES)</li>
+</ul>
+<ul class="job-links">
+<li><a href="case/ata-law-firm.html">Read the post<span class="sr-only"> about the law-firm platform</span><span aria-hidden="true">→</span></a></li>
+</ul>
+</div>
 </div>
 
 <div class="project">
-<h4>Multi-campus data hub · state university</h4>
+<h4>Multi-campus data hub <span class="project-client">· State university</span></h4>
 <ul class="bul">
 <li><strong>Live on all 4 campuses.</strong> Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration.</li>
 <li>Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on flaky campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.</li>
 </ul>
-<p class="stack">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/">NEMSU Data Hub (live)</a> · <a href="case/nemsu-data-hub.html">Read the data hub post</a></p>
+<div class="job-foot">
+<ul class="stack-chips" aria-label="Tech stack">
+<li>Laravel</li>
+<li>Go</li>
+<li>Vue</li>
+<li>MySQL</li>
+<li>S3</li>
+<li>ClamAV</li>
+<li>ONLYOFFICE</li>
+</ul>
+<ul class="job-links">
+<li><a href="https://udh.nemsu.edu.ph/" target="_blank" rel="noopener noreferrer">NEMSU Data Hub (live)<span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+<li><a href="case/nemsu-data-hub.html">Read the post<span class="sr-only"> about the data hub</span><span aria-hidden="true">→</span></a></li>
+</ul>
+</div>
+</div>
 </div>
 </article>
 
 <article class="job">
-<div class="job-head">
-<h3>Software Engineer, Province of Surigao del Sur</h3>
-<span class="date">2021 – 2024</span>
+<div class="job-meta">
+<span class="hl-label">2021 – 2024</span>
+<p class="job-org">Province of Surigao del Sur</p>
 </div>
+<div class="job-body">
+<h3>Software Engineer</h3>
 <ul class="bul">
 <li><strong>500+ civil-servant records</strong> and a tourism analytics dashboard, replacing paper and Excel.</li>
 <li><strong>~60% faster reporting</strong> by fixing N+1 queries and adding indexes.</li>
 <li>Built an offline AI transcriber for the provincial board, so confidential audio never leaves the machine.</li>
-<li>Automated payroll deductions, tax reporting and SMS alerts, and built a Java Android app and an uptime monitor, turning half-day tasks into one click.</li>
+<li>Automated payroll deductions, tax reporting and SMS alerts, turning half-day tasks into one click.</li>
+<li>Built a Java Android app and an uptime monitor.</li>
 <li>Introduced Git, code review and CI/CD; mentored 3 engineers.</li>
 </ul>
-<p class="stack">Laravel · Vue · MySQL · SQL Server · Python · Java (Android)</p>
-<p class="stack"><a href="https://epds.surigaodelsur.gov.ph/">E-PDS records platform (live)</a> · <a href="https://ars.surigaodelsur.gov.ph/login">Tourism dashboard (live)</a> · <a href="case/e-pds.html">Read the E-PDS post</a> · <a href="case/offline-transcriber.html">Read the offline transcriber post</a></p>
+<div class="job-foot">
+<ul class="stack-chips" aria-label="Tech stack">
+<li>Laravel</li>
+<li>Vue</li>
+<li>MySQL</li>
+<li>SQL Server</li>
+<li>Python</li>
+<li>Java (Android)</li>
+</ul>
+<ul class="job-links">
+<li><a href="https://epds.surigaodelsur.gov.ph/" target="_blank" rel="noopener noreferrer">E-PDS records platform (live)<span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+<li><a href="https://ars.surigaodelsur.gov.ph/login" target="_blank" rel="noopener noreferrer">Tourism dashboard (live)<span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+<li><a href="case/e-pds.html">Read the E-PDS post<span aria-hidden="true">→</span></a></li>
+<li><a href="case/offline-transcriber.html">Read the offline transcriber post<span aria-hidden="true">→</span></a></li>
+</ul>
+</div>
+</div>
 </article>
 
 <article class="job">
-<div class="job-head">
-<h3>Intern Developer, NEMSU</h3>
-<span class="date">Jul – Aug 2018</span>
+<div class="job-meta">
+<span class="hl-label">Jul – Aug 2018</span>
+<p class="job-org">NEMSU</p>
 </div>
+<div class="job-body">
+<h3>Intern Developer</h3>
 <ul class="bul">
 <li><strong>3,000+ students.</strong> Faculty evaluation web app where students rate their instructors&#39; teaching.</li>
 <li>Added Python sentiment analysis on written feedback, giving administrators data for strategic planning and decision-making.</li>
 </ul>
+</div>
 </article>
 </section>
 
@@ -363,7 +410,6 @@ if (location.hash === "#blog" || location.hash === "#writing") location.replace(
 <div class="contact-block">
 <span class="hl-label">Let’s talk.</span>
 <a class="talk-link" href="mailto:vistalchris@gmail.com">vistalchris@gmail.com<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-<p class="meta">Tandag, Surigao del Sur, PH · UTC+8</p>
 </div>
 </section>
 
@@ -372,21 +418,16 @@ if (location.hash === "#blog" || location.hash === "#writing") location.replace(
 <footer class="site-footer">
   <div class="footer-inner">
     <nav aria-label="Footer">
-      <a href="aboutme.html">About</a>
       <a href="https://github.com/christophervistal25" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
       <a href="https://www.linkedin.com/in/christophervistal25/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
       <a href="https://www.youtube.com/@tophertips3387" target="_blank" rel="noopener noreferrer">YouTube<span class="sr-only"> (opens in a new tab)</span></a>
       <a href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">Résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
       <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
     </nav>
-    <div class="footer-meta">
-      <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
-      <span class="credit">Website by <b>Christopher Vistal</b></span>
-    </div>
   </div>
 </footer>
 
-<script src="assets/js/theme.js"></script>
+<script src="assets/js/theme.js?v=81"></script>
 <script src="assets/js/work-filter.js"></script>
 <script src="assets/js/work-carousel.js"></script>
 </body>

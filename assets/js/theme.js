@@ -49,3 +49,16 @@
 
   sync();
 })();
+
+// Compact the sticky top bar and show its hairline once the page has scrolled.
+(function () {
+  var bar = document.querySelector(".topbar");
+  if (!bar) return;
+
+  function update() {
+    bar.classList.toggle("is-stuck", window.scrollY > 8);
+  }
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();
