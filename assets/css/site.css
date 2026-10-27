@@ -856,20 +856,20 @@ html { scroll-padding-top: 90px; }
 .talk-link svg { transition: transform 0.2s ease; }
 .talk-link:hover svg { transform: translateX(3px); }
 
-/* ---------- Footer: light grey strip with nav links ---------- */
+/* ---------- Footer: hairline top border, centred link row ---------- */
 .site-footer {
-  background: var(--pill);
-  font-size: 13px;
-  color: var(--muted);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
 }
 .footer-inner {
   max-width: var(--wide);
   margin: 0 auto;
-  padding: 18px 24px;
+  padding: 28px 24px;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
-.site-footer nav { display: flex; flex-wrap: wrap; gap: 0 18px; }
+.site-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 24px; }
 .site-footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
 
@@ -990,13 +990,7 @@ html { scroll-padding-top: 90px; }
 .case-diagram summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; font-weight: 600; }
 .case-diagram details ul { margin: 4px 0 0; padding-left: 1.2rem; }
 
-.case-callout {
-  margin: 0 0 20px;
-  padding: 18px 20px;
-  border-left: 3px solid var(--ink);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  background: var(--pill);
-}
+.case-callout { margin: 28px 0 16px; }
 .case-callout-label {
   display: block;
   margin-bottom: 6px;
@@ -1007,21 +1001,13 @@ html { scroll-padding-top: 90px; }
   color: var(--ink);
 }
 
-.decisions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+.case-prose .decisions {
   margin: 0 0 20px;
   padding: 0;
   list-style: none;
 }
-.case-prose .decisions li {
-  display: block;
-  margin: 0;
-  padding: 20px;
-  border-radius: var(--radius-sm);
-  background: var(--pill);
-}
+.case-prose .decisions li { display: block; margin: 0 0 20px; }
+.case-prose .decisions li:last-child { margin-bottom: 0; }
 .case-prose .decisions h3 { margin: 0 0 6px; font-size: 16px; }
 .case-prose .decisions p { margin: 0; font-size: 15px; color: var(--muted); }
 
@@ -1078,8 +1064,8 @@ html { scroll-padding-top: 90px; }
   .page { padding: 16px 16px 72px; gap: 96px; }
   .topbar { padding: 14px 16px 4px; }
   .topbar.is-stuck { padding-top: 8px; padding-bottom: 2px; margin-bottom: 8px; }
-  .footer-inner { padding: 14px 16px; }
-  .areas, .decisions { grid-template-columns: 1fr; }
+  .footer-inner { padding: 20px 16px; }
+  .areas { grid-template-columns: 1fr; }
   .work-toolbar { grid-template-columns: 1fr; }
   .carousel-nav { grid-column: 1; justify-self: end; }
   .work-track { gap: 16px; }
