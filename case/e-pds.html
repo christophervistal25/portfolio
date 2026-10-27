@@ -13,14 +13,14 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>Digitizing paper personnel records and moving a government IT team onto Git · Christopher Vistal</title>
+    <title>How to Digitize Paper Personnel Records with Laravel and Move a Team from FTP to Git · Christopher Vistal</title>
     <meta
       name="description"
-      content="Replacing paper personnel files and spreadsheet trackers with a version-tracked records platform and a small analytics dashboard for a provincial government office, and moving its IT team from FTP deploys to Git and code review."
+      content="Learn how to turn a long paper personnel form into a version-tracked Laravel records platform, fix slow reporting with eager loading and indexes, and move a government IT team from FTP deploys to Git and code review."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Digitizing paper personnel records and moving a government IT team onto Git" />
-    <meta property="og:description" content="Version-tracked personnel records, a glanceable analytics dashboard, and a Git workflow for a provincial government office. Laravel, MySQL, Vue.js, on-prem." />
+    <meta property="og:title" content="How to Digitize Paper Personnel Records with Laravel and Move a Team from FTP to Git" />
+    <meta property="og:description" content="Modeling a long paper form, keeping every change as history, fixing N+1 queries, and replacing FTP deploys with Git and code review. Laravel, MySQL, Vue.js, on-prem." />
     <meta property="og:url" content="https://chris-dev.netlify.app/case/e-pds.html" />
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/e_pds.png" />
     <meta property="og:image:type" content="image/png" />
@@ -45,7 +45,7 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Digitizing paper personnel records and moving a government IT team onto Git",
+        "headline": "How to Digitize Paper Personnel Records with Laravel and Move a Team from FTP to Git",
         "description": "A version-tracked personnel records platform and a small analytics dashboard replacing paper files and spreadsheets in a provincial government office, plus moving its IT team from FTP deploys to Git and code review.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
@@ -74,7 +74,7 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=84" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=86" />
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
@@ -104,7 +104,7 @@
 
       <header class="case-frontmatter">
         <span class="case-eyebrow">Blog &nbsp;·&nbsp; civic tech</span>
-        <h1 class="case-h1">Digitizing paper personnel records and moving a government IT team onto Git</h1>
+        <h1 class="case-h1">How to Digitize Paper Personnel Records with Laravel and Move a Team from FTP to Git</h1>
         <p class="case-deck">
           A provincial government office ran its personnel records on
           filing cabinets and Excel sheets. I built the platform that
@@ -125,7 +125,23 @@
       </figure>
 
       <article class="case-prose">
-        <h2>The starting line</h2>
+        <p>
+          A provincial government office kept its personnel records in paper
+          files and Excel sheets, built its oversight reports by hand every
+          cycle, and deployed code by uploading files over FTP. I was on the
+          in-house IT team that replaced all three.
+        </p>
+        <p>
+          Paper records are hard to audit, spreadsheets drift, and FTP
+          deploys let one bug fix overwrite a colleague's change. This post
+          shows how to turn a long paper form into a clean data model, keep
+          every change as history instead of overwriting it, fix the database
+          problems that make reporting slow, and move a team onto Git and
+          code review while the work keeps going.
+        </p>
+
+        <h2>Background</h2>
+        <h3>Where the office started</h3>
         <p>
           HR managed civil servants the way many local governments do,
           paper personnel files in cabinets, plus Excel sheets tracking
@@ -140,7 +156,7 @@
           meeting.
         </p>
 
-        <h2>Constraints</h2>
+        <h3>Constraints</h3>
         <ul>
           <li>
             <b>On-premise hosting.</b> Government data, no cloud. Everything
@@ -163,7 +179,25 @@
           </li>
         </ul>
 
-        <h2>The platform</h2>
+        <h3>Three ideas this post relies on</h3>
+        <ul>
+          <li>
+            <b>Append-only history.</b> Instead of overwriting a value, each
+            change adds a new entry and the previous one stays readable.
+            That is what turns a digital form into an auditable record.
+          </li>
+          <li>
+            <b>N+1 queries.</b> Code that loads a list with one query, then
+            runs one more query per row to fetch something related. Invisible
+            with ten rows, painful with the whole office hitting it.
+          </li>
+          <li>
+            <b>Indexes.</b> Without an index on the columns a query filters
+            or joins on, the database reads the whole table every time.
+          </li>
+        </ul>
+
+        <h2>Building the records platform</h2>
         <h3>Digitizing the personnel file</h3>
         <p>
           The first deliverable was a digital personal data sheet. The
@@ -223,7 +257,7 @@
           </li>
         </ul>
 
-        <h2>The performance work</h2>
+        <h2>Fixing slow reporting endpoints</h2>
         <p>
           The reporting views on the legacy applications had a familiar
           smell: response times measured in tens of seconds for endpoints
@@ -239,7 +273,7 @@
           because nobody is paid to revisit them.
         </p>
 
-        <h2>The workflow upgrade nobody asked for</h2>
+        <h2>Moving the team from FTP to Git</h2>
         <p>
           The most durable contribution from this stretch was not a system.
           It was the change to how the team shipped software.
@@ -290,7 +324,150 @@
           </li>
         </ul>
 
-        <h2>What I would do differently</h2>
+        <h2>Practical examples</h2>
+        <p>
+          Simplified example. The snippets below are generic Laravel and shell
+          code showing the techniques from this post, with neutral names.
+          They are not the production code or schema.
+        </p>
+
+        <h3>1. Split a long form into a core record and related sections</h3>
+        <pre><code>use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Employee extends Model
+{
+    // One core record, one related table per repeating section of the form.
+    public function workHistory(): HasMany
+    {
+        return $this-&gt;hasMany(WorkHistoryEntry::class);
+    }
+
+    public function trainings(): HasMany
+    {
+        return $this-&gt;hasMany(Training::class);
+    }
+
+    public function versions(): HasMany
+    {
+        return $this-&gt;hasMany(EmployeeVersion::class);
+    }
+}</code></pre>
+
+        <h3>2. Keep every change as history</h3>
+        <pre><code>class Employee extends Model
+{
+    protected static function booted(): void
+    {
+        // Before any update, store a snapshot of the values being replaced.
+        static::updating(function (Employee $employee) {
+            $employee-&gt;versions()-&gt;create([
+                'data' =&gt; $employee-&gt;getRawOriginal(),
+                'changed_by' =&gt; auth()-&gt;id(),
+            ]);
+        });
+    }
+}
+
+class EmployeeVersion extends Model
+{
+    protected $fillable = ['data', 'changed_by'];
+
+    protected $casts = ['data' =&gt; 'array'];
+}
+
+// Usage
+$employee-&gt;update(['last_name' =&gt; 'Smith']);
+
+$employee-&gt;versions()-&gt;latest()-&gt;first()-&gt;data['last_name'];</code></pre>
+        <p>
+          Expected output: <code>"Doe"</code>, the value before the edit. The
+          current record says Smith, and the history still says Doe.
+        </p>
+
+        <h3>3. Find and fix N+1 queries</h3>
+        <pre><code>// N+1: one query for the employees, then one more per employee.
+foreach (Employee::all() as $employee) {
+    echo $employee-&gt;department-&gt;name;
+}
+
+// Eager loading: two queries, however many employees there are.
+foreach (Employee::with('department')-&gt;get() as $employee) {
+    echo $employee-&gt;department-&gt;name;
+}
+
+// AppServiceProvider::boot(): throw on lazy loading outside production.
+Model::preventLazyLoading(! app()-&gt;isProduction());
+
+// Migration: index the columns a hot report filters on.
+Schema::table('time_entries', function (Blueprint $table) {
+    $table-&gt;index(['employee_id', 'recorded_on']);
+});</code></pre>
+        <p>
+          Expected result: with 200 employees, the first loop runs 201
+          queries and the second runs 2. (Illustrative numbers, not a
+          measurement from this project.)
+        </p>
+
+        <h3>4. A minimal Git-based deploy script</h3>
+        <pre><code>#!/usr/bin/env bash
+set -euo pipefail   # stop at the first failing command
+
+cd /var/www/app
+git pull --ff-only origin main
+composer install --no-dev --optimize-autoloader
+php artisan migrate --force
+php artisan config:cache</code></pre>
+        <p>
+          A rollback is the same steps against the previous commit or tag,
+          plus a migration rollback if the failed release changed the
+          schema.
+        </p>
+
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>Modeling a long form as one giant table, with repeating sections stored as numbered columns.</li>
+          <li>Updating records in place, so the previous value is gone for good.</li>
+          <li>Mass updates through the query builder, such as <code>Employee::where(...)-&gt;update(...)</code>. They skip model events, so they also skip the history snapshot.</li>
+          <li>Lazy loading relations inside report loops.</li>
+          <li>Adding indexes by guesswork instead of from the slow queries you actually profiled.</li>
+          <li>Editing files directly on the production server, or deploying over FTP where one upload can overwrite another.</li>
+        </ul>
+
+        <h3>Best practices</h3>
+        <ul>
+          <li>Profile first, then fix N+1s, add missing indexes on high-traffic queries, and batch report loops.</li>
+          <li>Keep dashboards small: a few views, a few filters, a CSV export.</li>
+          <li>Send every change through a pull request with review, and deploy only from <code>main</code>.</li>
+          <li>Teach the workflow by pairing on real changes, not tutorial code.</li>
+          <li>Keep seed data and a few HTTP integration tests on the core CRUD paths.</li>
+          <li>Plan to land on one database engine instead of querying across two.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          Digitizing paper records is mostly a modeling and trust problem.
+          Split the form into a core record plus its repeating sections, and
+          keep every change as history, so people trust the system enough to
+          retire the cabinet. Slow legacy reporting is usually fixed with
+          ordinary database hygiene, not exotic tuning.
+        </p>
+        <p>
+          The takeaway: the workflow change can outlast the software. If your
+          team still deploys by copying files, start with Git, pull requests
+          and a one-command deploy script before anything else.
+        </p>
+
+        <h3>What it does today</h3>
+        <p>
+          The records platform, the dashboard, and the internal tools are
+          still in production use across the organization's offices. The workflow
+          changes, Git, pull requests, code review, outlived my time on
+          the team. That second outcome matters more in the long run than
+          any one feature I shipped.
+        </p>
+
+        <h3>What I would do differently</h3>
         <ul>
           <li>
             <b>Standardize on one database earlier.</b> The cross-engine
@@ -313,14 +490,21 @@
           </li>
         </ul>
 
-        <h2>What it does today</h2>
-        <p>
-          The records platform, the dashboard, and the internal tools are
-          still in production use across the organization's offices. The workflow
-          changes, Git, pull requests, code review, outlived my time on
-          the team. That second outcome matters more in the long run than
-          any one feature I shipped.
-        </p>
+        <h2>References and further reading</h2>
+        <ul>
+          <li><a href="https://laravel.com/docs/eloquent-relationships" target="_blank" rel="noopener noreferrer">Laravel documentation: Eloquent relationships and eager loading</a></li>
+          <li><a href="https://laravel.com/docs/eloquent#events" target="_blank" rel="noopener noreferrer">Laravel documentation: Eloquent model events</a></li>
+          <li><a href="https://laravel.com/docs/migrations" target="_blank" rel="noopener noreferrer">Laravel documentation: Migrations and indexes</a></li>
+          <li><a href="https://laravel.com/docs/deployment" target="_blank" rel="noopener noreferrer">Laravel documentation: Deployment</a></li>
+          <li><a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener noreferrer">Vue.js guide</a></li>
+          <li><a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer">MySQL documentation</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/sql/sql-server/" target="_blank" rel="noopener noreferrer">SQL Server documentation</a></li>
+          <li><a href="https://nginx.org/en/docs/" target="_blank" rel="noopener noreferrer">nginx documentation</a></li>
+          <li><a href="https://git-scm.com/doc" target="_blank" rel="noopener noreferrer">Git documentation</a></li>
+          <li><a href="https://docs.github.com/en/pull-requests" target="_blank" rel="noopener noreferrer">GitHub Docs: Pull requests</a></li>
+          <li>Related on this site: <a href="./ata-law-firm.html">How to enforce attorney-client privilege in a Laravel case management app</a></li>
+          <li>Related on this site: <a href="./offline-transcriber.html">How to transcribe confidential audio offline with Whisper and CTranslate2</a></li>
+        </ul>
 
         <div class="case-cta">
           <div class="case-cta-text">
@@ -332,9 +516,9 @@
         </div>
 
         <nav class="case-nextprev" aria-label="Blog posts">
-          <a class="prev" href="./ata-law-firm.html">← Previous post: Privileged-access case management</a>
+          <a class="prev" href="./ata-law-firm.html">← Previous post: How to enforce attorney-client privilege in Laravel</a>
           <a class="all" href="../blog.html">Back to blog</a>
-          <a class="next" href="./offline-transcriber.html">Next post: Transcribing confidential recordings on-device →</a>
+          <a class="next" href="./offline-transcriber.html">Next post: How to transcribe confidential audio offline →</a>
         </nav>
       </article>
     </main>

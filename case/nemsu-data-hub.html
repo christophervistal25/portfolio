@@ -13,16 +13,16 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>Building a multi-campus file and submissions platform for a university · Christopher Vistal</title>
+    <title>How to Build a Secure Multi-Campus File Platform with Laravel and Go · Christopher Vistal</title>
     <meta
       name="description"
-      content="Designing a file and submissions platform shared across the campuses of a state university: an ownership model for visibility, resumable uploads in Go, malware scanning on upload, signed PDFs and tiered storage."
+      content="Learn how to build a secure file and submissions platform shared across university campuses: an ownership model for visibility in Laravel, resumable tus uploads in Go, malware scanning on upload, signed PDFs and tiered storage."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Building a multi-campus file and submissions platform for a university" />
+    <meta property="og:title" content="How to Build a Secure Multi-Campus File Platform with Laravel and Go" />
     <meta
       property="og:description"
-      content="Multi-campus file sharing, submissions, and team collaboration for a state university. Laravel + Vue.js + MySQL, with Go services for uploads and PDF signing."
+      content="Owner-based visibility in Laravel, resumable tus uploads and PDF signing in Go, ClamAV scanning on every upload, and hot/cold storage, with code examples."
     />
     <meta property="og:url" content="https://chris-dev.netlify.app/case/nemsu-data-hub.html" />
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/nemsu.png" />
@@ -48,7 +48,7 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Building a multi-campus file and submissions platform for a university",
+        "headline": "How to Build a Secure Multi-Campus File Platform with Laravel and Go",
         "description": "A file, submissions, and team collaboration platform shared across the campuses of a state university. Laravel + Vue.js monolith with Go services for resumable uploads and signed documents, plus malware scanning on every upload.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
@@ -78,7 +78,7 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=84" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=86" />
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
@@ -108,7 +108,7 @@
 
       <header class="case-frontmatter">
         <span class="case-eyebrow">Blog &nbsp;·&nbsp; university platform</span>
-        <h1 class="case-h1">Building a multi-campus file and submissions platform for a university</h1>
+        <h1 class="case-h1">How to Build a Secure Multi-Campus File Platform with Laravel and Go</h1>
         <p class="case-deck">
           A <b>Google Drive-style platform for a multi-campus state
           university</b>. The brief in one sentence: stop scattering files
@@ -128,7 +128,24 @@
       </figure>
 
       <article class="case-prose">
-        <h2>The starting line</h2>
+        <p>
+          A multi-campus state university moved its files around by email
+          attachment and USB stick. It wanted one place where every file
+          lives, with the right people able to see it, and student
+          submissions that stop bouncing through inboxes.
+        </p>
+        <p>
+          A shared file platform for a whole institution has to get four
+          things right: who can see what, uploads that survive bad networks
+          and exam-week traffic, files from untrusted accounts, and documents
+          that must be provably authentic. This post shows how I modeled
+          ownership and visibility in Laravel, and why resumable uploads and
+          PDF signing went to small Go services, with generic examples you
+          can adapt.
+        </p>
+
+        <h2>Background</h2>
+        <h3>Where the university started</h3>
         <p>
           The university runs across <b>multiple campuses</b>. Each one has
           its own admin office, its own faculty, and its own way of moving
@@ -150,7 +167,7 @@
           departments, faculty, and student teams.
         </p>
 
-        <h2>Constraints</h2>
+        <h3>Constraints</h3>
         <ul>
           <li>
             <b>Multi-campus by design.</b> A file owned by a satellite
@@ -166,13 +183,27 @@
           </li>
           <li>
             <b>Two audiences, two surfaces.</b> Faculty and admin need a
-            full workspace UI. Students need a focused, narrow surface
-           , submit assignments, view feedback, see grades. Same
+            full workspace UI. Students need a focused, narrow surface:
+            submit assignments, view feedback, see grades. Same
             backend, different fronts.
           </li>
           <li>
             <b>Run on the university's own infrastructure.</b> Education
             data, in-country servers.
+          </li>
+        </ul>
+
+        <h3>Two terms used below</h3>
+        <ul>
+          <li>
+            <b>Sidecar service.</b> A small, separate process that does one
+            job for the main application, such as receiving uploads, while
+            the main app keeps ownership of users, permissions and data.
+          </li>
+          <li>
+            <b>tus.</b> An open HTTP protocol for resumable uploads. The
+            client sends a file in pieces and, after a dropped connection,
+            asks the server how much arrived and continues from there.
           </li>
         </ul>
 
@@ -244,7 +275,7 @@
 
         <h2>Resumable uploads: Go + tus, not PHP</h2>
         <p>
-          The first upload pipeline ran through PHP. It worked ,
+          The first upload pipeline ran through PHP. It worked,
           until exam week. Hundreds of students submitting on the same
           afternoon, dozens of faculty syncing folders in the background,
           and PHP-FPM spent more time juggling long-lived multipart
@@ -295,7 +326,7 @@
 
         <h2>PDF signing in Go: digital signatures on official documents</h2>
         <p>
-          Universities generate official documents constantly ,
+          Universities generate official documents constantly:
           certificates, transcripts, memos, signed approvals. A PDF
           downloaded from the platform needs to be <b>verifiable as
           authentic</b>, not just visually convincing. That means
@@ -427,7 +458,203 @@
           </li>
         </ul>
 
-        <h2>What it does today</h2>
+        <h2>Practical examples</h2>
+        <p>
+          Simplified example. The snippets below are generic Laravel and Go
+          code showing the techniques from this post, with neutral names.
+          They are not the production code or schema.
+        </p>
+
+        <h3>1. Decide access from the owner type</h3>
+        <pre><code>class DocumentPolicy
+{
+    public function view(User $user, Document $document): bool
+    {
+        // Explicit shares always grant access.
+        if ($document-&gt;shares()-&gt;where('user_id', $user-&gt;getKey())-&gt;exists()) {
+            return true;
+        }
+
+        // Otherwise: one question per owner type.
+        return match ($document-&gt;owner_type) {
+            'campus'     =&gt; $user-&gt;campus_id === $document-&gt;owner_id,
+            'department' =&gt; $user-&gt;departments()-&gt;whereKey($document-&gt;owner_id)-&gt;exists(),
+            'team'       =&gt; $user-&gt;teams()-&gt;whereKey($document-&gt;owner_id)-&gt;exists(),
+            'person'     =&gt; $user-&gt;getKey() === $document-&gt;owner_id,
+            default      =&gt; false,
+        };
+    }
+}</code></pre>
+
+        <h3>2. Accept resumable uploads in Go with tusd</h3>
+        <pre><code>package main
+
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+	"log"
+	"net/http"
+	"os"
+
+	"github.com/tus/tusd/v2/pkg/filestore"
+	tusd "github.com/tus/tusd/v2/pkg/handler"
+)
+
+var secret = []byte(os.Getenv("UPLOAD_TOKEN_SECRET"))
+
+// validToken checks an HMAC-SHA256 signature issued by the main app.
+func validToken(payload, signature string) bool {
+	mac := hmac.New(sha256.New, secret)
+	mac.Write([]byte(payload))
+	expected := hex.EncodeToString(mac.Sum(nil))
+	return hmac.Equal([]byte(expected), []byte(signature))
+}
+
+func main() {
+	store := filestore.New("./uploads")
+	composer := tusd.NewStoreComposer()
+	store.UseIn(composer)
+
+	handler, err := tusd.NewHandler(tusd.Config{
+		BasePath:              "/files/",
+		StoreComposer:         composer,
+		NotifyCompleteUploads: true,
+		// Reject the upload unless the main app signed the token.
+		PreUploadCreateCallback: func(hook tusd.HookEvent) (tusd.HTTPResponse, tusd.FileInfoChanges, error) {
+			payload := hook.HTTPRequest.Header.Get("Upload-Token")
+			signature := hook.HTTPRequest.Header.Get("Upload-Signature")
+			if !validToken(payload, signature) {
+				return tusd.HTTPResponse{}, tusd.FileInfoChanges{},
+					tusd.NewError("ERR_INVALID_TOKEN", "invalid upload token", http.StatusUnauthorized)
+			}
+			return tusd.HTTPResponse{}, tusd.FileInfoChanges{}, nil
+		},
+	})
+	if err != nil {
+		log.Fatalf("unable to create handler: %s", err)
+	}
+
+	// Each finished upload is reported here; tell the main app to queue a scan.
+	go func() {
+		for event := range handler.CompleteUploads {
+			log.Printf("upload %s finished (%d bytes)", event.Upload.ID, event.Upload.Size)
+		}
+	}()
+
+	http.Handle("/files/", http.StripPrefix("/files/", handler))
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}</code></pre>
+        <p>
+          Expected behaviour: a client whose connection drops sends a
+          <code>HEAD</code> request, reads the <code>Upload-Offset</code>
+          header, and continues from that byte instead of starting over.
+          The Go HTTP server handles each request on its own goroutine, so
+          hundreds of slow uploads do not block each other.
+        </p>
+
+        <h3>3. Scan every upload before it becomes visible</h3>
+        <pre><code>use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Process;
+use Illuminate\Support\Facades\Storage;
+
+class ScanUpload implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public function __construct(public Document $document) {}
+
+    public function handle(): void
+    {
+        $path = Storage::disk('local')-&gt;path($this-&gt;document-&gt;path);
+
+        // clamdscan exit codes: 0 = clean, 1 = virus found, 2 = error.
+        $result = Process::run(['clamdscan', '--no-summary', '--fdpass', $path]);
+
+        match ($result-&gt;exitCode()) {
+            0 =&gt; $this-&gt;document-&gt;update(['status' =&gt; 'clean']),
+            1 =&gt; $this-&gt;quarantine(),
+            default =&gt; throw new RuntimeException('Scan failed: '.$result-&gt;errorOutput()),
+        };
+    }
+
+    private function quarantine(): void
+    {
+        $target = 'quarantine/'.basename($this-&gt;document-&gt;path);
+
+        Storage::disk('local')-&gt;move($this-&gt;document-&gt;path, $target);
+        $this-&gt;document-&gt;update(['status' =&gt; 'quarantined', 'path' =&gt; $target]);
+
+        event(new UploadQuarantined($this-&gt;document));
+    }
+}
+
+// Every listing only shows scanned, clean files.
+Document::where('status', 'clean')-&gt;latest()-&gt;paginate(50);</code></pre>
+        <p>Expected output when testing with the standard EICAR test file:</p>
+        <pre><code>$ clamdscan --no-summary /tmp/eicar.com.txt
+/tmp/eicar.com.txt: Win.Test.EICAR_HDB-1 FOUND
+$ echo $?
+1</code></pre>
+
+        <h3>4. Read from hot storage, fall back to S3</h3>
+        <pre><code>public function stream(Document $document)
+{
+    Gate::authorize('view', $document);
+
+    $local = Storage::disk('local');
+
+    // Cold file: copy it back from S3 so the next read is fast.
+    if (! $local-&gt;exists($document-&gt;path)) {
+        $local-&gt;writeStream($document-&gt;path, Storage::disk('s3')-&gt;readStream($document-&gt;path));
+    }
+
+    return $local-&gt;response($document-&gt;path);
+}</code></pre>
+
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>Treating campus or department as a tag instead of a first-class owner in the schema.</li>
+          <li>Assuming each user has exactly one department.</li>
+          <li>Pushing hundreds of long-lived streaming uploads through PHP-FPM.</li>
+          <li>Making a file visible before its malware scan has finished.</li>
+          <li>Letting the web application hold the PDF signing key.</li>
+          <li>Treating a watermark as proof that a document is authentic.</li>
+          <li>Making users download, edit and re-upload documents that change every week.</li>
+        </ul>
+
+        <h3>Best practices</h3>
+        <ul>
+          <li>Keep authorization and metadata in the main app; give sidecars a short-lived signed token that carries the destination and quota.</li>
+          <li>Scan every upload, with no exceptions. Hide it until it is clean; quarantine and alert when it is not.</li>
+          <li>Isolate the private signing key in one small service that only signs.</li>
+          <li>Keep recent files on local disk, move older ones to object storage, and warm the local cache on reads.</li>
+          <li>If users already have institutional accounts, use single sign-on instead of a second password.</li>
+          <li>Treat search as a main path from day one.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          Universities are sprawling. The temptation is always to
+          rebuild Google Drive. The actual work is figuring out which
+          of the university's own concepts, campus, department,
+          team, submission, deserve to be first-class in the
+          schema. The platform is only as useful as the model
+          underneath it.
+        </p>
+        <p>
+          The takeaway: model your organization's real owners first, keep
+          the main app in charge of authorization, and hand each long-lived
+          or security-sensitive job to a tool that is good at it. A good
+          next step is to list the owner types in your own domain and write
+          down the single access question each one answers.
+        </p>
+
+        <h3>What it does today</h3>
         <ul>
           <li>One platform shared across all of the university's campuses.</li>
           <li>Files, folders, and submissions with per-owner visibility rules.</li>
@@ -442,7 +669,7 @@
           <li>Deploys onto the university's own on-prem infrastructure.</li>
         </ul>
 
-        <h2>What I'd do differently next time</h2>
+        <h3>What I'd do differently next time</h3>
         <ul>
           <li>
             <b>Search as a real subsystem.</b> The current path leans on
@@ -458,15 +685,27 @@
           </li>
         </ul>
 
-        <h2>What I take away</h2>
-        <p>
-          Universities are sprawling. The temptation is always to
-          rebuild Google Drive. The actual work is figuring out which
-          of the university's own concepts, campus, department,
-          team, submission, deserve to be first-class in the
-          schema. The platform is only as useful as the model
-          underneath it.
-        </p>
+        <h2>References and further reading</h2>
+        <ul>
+          <li><a href="https://tus.io/" target="_blank" rel="noopener noreferrer">tus: resumable upload protocol</a></li>
+          <li><a href="https://github.com/tus/tusd" target="_blank" rel="noopener noreferrer">tusd, the reference tus server in Go (GitHub)</a></li>
+          <li><a href="https://go.dev/doc/" target="_blank" rel="noopener noreferrer">Go documentation</a></li>
+          <li><a href="https://pkg.go.dev/crypto/x509" target="_blank" rel="noopener noreferrer">Go standard library: crypto/x509</a></li>
+          <li><a href="https://docs.clamav.net/" target="_blank" rel="noopener noreferrer">ClamAV documentation</a></li>
+          <li><a href="https://laravel.com/docs/authorization" target="_blank" rel="noopener noreferrer">Laravel documentation: Authorization</a></li>
+          <li><a href="https://laravel.com/docs/queues" target="_blank" rel="noopener noreferrer">Laravel documentation: Queues</a></li>
+          <li><a href="https://laravel.com/docs/processes" target="_blank" rel="noopener noreferrer">Laravel documentation: Processes</a></li>
+          <li><a href="https://laravel.com/docs/filesystem" target="_blank" rel="noopener noreferrer">Laravel documentation: File storage</a></li>
+          <li><a href="https://inertiajs.com/" target="_blank" rel="noopener noreferrer">Inertia.js documentation</a></li>
+          <li><a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener noreferrer">Vue.js guide</a></li>
+          <li><a href="https://api.onlyoffice.com/" target="_blank" rel="noopener noreferrer">ONLYOFFICE API documentation</a></li>
+          <li><a href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">Amazon S3 documentation</a></li>
+          <li><a href="https://oauth.net/2/" target="_blank" rel="noopener noreferrer">OAuth 2.0</a></li>
+          <li><a href="https://www.meilisearch.com/docs" target="_blank" rel="noopener noreferrer">Meilisearch documentation</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP File Upload Cheat Sheet</a></li>
+          <li>Related on this site: <a href="./ata-law-firm.html">How to enforce attorney-client privilege in a Laravel case management app</a></li>
+          <li>Related on this site: <a href="./e-pds.html">How to digitize paper personnel records with Laravel and move a team from FTP to Git</a></li>
+        </ul>
 
         <div class="case-cta">
           <div class="case-cta-text">
@@ -477,7 +716,7 @@
         </div>
 
         <nav class="case-nextprev" aria-label="Blog posts">
-          <a class="prev" href="./offline-transcriber.html">← Previous post: Transcribing confidential recordings on-device</a>
+          <a class="prev" href="./offline-transcriber.html">← Previous post: How to transcribe confidential audio offline</a>
           <a class="all" href="../blog.html">Back to blog</a>
           <span></span>
         </nav>

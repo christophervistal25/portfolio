@@ -13,16 +13,16 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>Building privileged-access case management for a law firm · Christopher Vistal</title>
+    <title>How to Enforce Attorney-Client Privilege in a Laravel Case Management App · Christopher Vistal</title>
     <meta
       name="description"
-      content="How I designed and shipped a single-tenant case management platform for a law firm on AWS: document automation, a client portal, and an access model built around attorney-client privilege."
+      content="Learn how to enforce attorney-client privilege in a Laravel and Vue case management app: case membership checked by query scopes and policies, a deny-by-default client portal, versioned document templates and a simple AWS setup."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Building privileged-access case management for a law firm" />
+    <meta property="og:title" content="How to Enforce Attorney-Client Privilege in a Laravel Case Management App" />
     <meta
       property="og:description"
-      content="Single-tenant Laravel + Vue case management built around attorney-client privilege. Document automation, a client portal, and a deliberately boring AWS architecture."
+      content="Membership-based access enforced twice, a deny-by-default client portal, loud-failing document templates and a deliberately boring AWS architecture, with Laravel examples."
     />
     <meta property="og:url" content="https://chris-dev.netlify.app/case/ata-law-firm.html" />
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/ata_firm.png" />
@@ -48,7 +48,7 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Building privileged-access case management for a law firm",
+        "headline": "How to Enforce Attorney-Client Privilege in a Laravel Case Management App",
         "description": "A single-tenant case management platform for a law firm, in daily production use by attorneys, staff, and clients. Built around an access model that respects attorney-client privilege.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
@@ -79,7 +79,7 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:ital,wght@0,400..600;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=84" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=86" />
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
@@ -109,7 +109,7 @@
 
       <header class="case-frontmatter">
         <span class="case-eyebrow">Blog &nbsp;·&nbsp; case management</span>
-        <h1 class="case-h1">Building privileged-access case management for a law firm</h1>
+        <h1 class="case-h1">How to Enforce Attorney-Client Privilege in a Laravel Case Management App</h1>
         <p class="case-deck">
           A single-tenant case management platform for a law firm, in daily
           production use by attorneys, staff, and clients. The build forced a
@@ -130,7 +130,26 @@
       </figure>
 
       <article class="case-prose">
-        <h2>The starting line</h2>
+        <p>
+          A law firm asked me to move its practice off shared spreadsheets,
+          Word templates and email attachments and onto a real case
+          management system. Tracking cases was the easy part. The hard part
+          was making sure two cases in the same firm, even on opposing sides
+          of a matter, never leak a single row into each other:
+          <b>attorney-client privilege</b>, enforced in a relational schema
+          and a permission system.
+        </p>
+        <p>
+          In legal software, one cross-case leak costs more than every other
+          bug combined. This post walks through how I built it as the sole
+          engineer: access based on case membership and enforced twice, a
+          deny-by-default client portal, document automation from versioned
+          templates, and a deliberately boring AWS setup. You get the model,
+          the reasoning, and small Laravel examples you can adapt.
+        </p>
+
+        <h2>Background</h2>
+        <h3>Where the firm started</h3>
         <p>
           When the firm called me in, the entire practice ran on three things:
           shared spreadsheets in a cloud drive, a forest of Word templates
@@ -146,7 +165,7 @@
           anything during the rollout.
         </p>
 
-        <h2>Constraints that shaped every decision</h2>
+        <h3>Constraints that shaped every decision</h3>
         <p>
           The non-negotiables drove the design more than the feature list did.
         </p>
@@ -171,6 +190,21 @@
             The firm needed to keep practicing law while we migrated.
           </li>
         </ul>
+
+        <h3>Ownership versus membership</h3>
+        <p>
+          Most web apps answer "who can see this row?" with an owner: one
+          user column on the record. That works when one person owns one
+          thing. In a law firm, several people are legitimately attached to
+          every case, each in a different role, so access has to follow
+          <b>membership in the case</b>, not ownership of a row.
+        </p>
+        <p>
+          Laravel gives you two places to enforce that. A <b>query scope</b>
+          limits which rows a query can return at all. A <b>policy</b>
+          answers yes or no for one specific record. This build uses both,
+          on purpose.
+        </p>
 
         <h2>A deliberately boring architecture</h2>
         <p>
@@ -385,7 +419,144 @@ public function view(User $user, Document $document): bool
           </li>
         </ul>
 
-        <h2>What it does today</h2>
+        <h2>Practical examples</h2>
+        <p>
+          Simplified example. The snippets below are generic Laravel code
+          showing the techniques from this post, with neutral names. They are
+          not the production code or schema. <code>case</code> is a reserved
+          word in PHP, so a legal case is called a <code>Matter</code> here.
+        </p>
+
+        <h3>1. Model membership and scope every read</h3>
+        <pre><code>use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+class Matter extends Model
+{
+    // People attached to the matter, each with a role on the pivot.
+    public function members(): BelongsToMany
+    {
+        return $this-&gt;belongsToMany(User::class)-&gt;withPivot('role');
+    }
+}
+
+class Document extends Model
+{
+    public function matter(): BelongsTo
+    {
+        return $this-&gt;belongsTo(Matter::class);
+    }
+
+    // Only documents from matters the user is a member of.
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return $query-&gt;whereHas(
+            'matter.members',
+            fn (Builder $members) =&gt; $members-&gt;whereKey($user-&gt;getKey())
+        );
+    }
+}</code></pre>
+
+        <h3>2. Check the same rule again with a policy</h3>
+        <pre><code>class DocumentPolicy
+{
+    public function view(User $user, Document $document): bool
+    {
+        return $document-&gt;matter-&gt;members()-&gt;whereKey($user-&gt;getKey())-&gt;exists();
+    }
+}
+
+// In a controller
+public function index(Request $request)
+{
+    return Inertia::render('Documents/Index', [
+        'documents' =&gt; Document::visibleTo($request-&gt;user())-&gt;latest()-&gt;paginate(20),
+    ]);
+}
+
+public function show(Document $document)
+{
+    Gate::authorize('view', $document);
+
+    return Inertia::render('Documents/Show', ['document' =&gt; $document]);
+}</code></pre>
+        <p>
+          Expected result: a user who is not a member of the matter never
+          sees the document in the list, and opening it directly returns
+          <code>403 Forbidden</code>.
+        </p>
+
+        <h3>3. Make the client portal deny-by-default</h3>
+        <pre><code>// Migration: nothing is client-visible until someone says so.
+$table-&gt;boolean('client_visible')-&gt;default(false);
+
+// Document model
+public function scopeClientVisible(Builder $query): Builder
+{
+    return $query-&gt;where('client_visible', true);
+}
+
+// Client portal query: membership AND explicit visibility.
+$documents = Document::visibleTo($client)-&gt;clientVisible()-&gt;latest()-&gt;get();</code></pre>
+
+        <h3>4. Let missing template fields fail loudly</h3>
+        <pre><code>$body = 'Dear {{ client.name }}, your hearing is set for {{ hearing.date }}.';
+
+echo renderTemplate($body, ['client' =&gt; ['name' =&gt; 'Jane Doe']]);</code></pre>
+        <p>Expected output, using the <code>renderTemplate()</code> function shown earlier:</p>
+        <pre><code>Dear Jane Doe, your hearing is set for «missing:hearing.date».</code></pre>
+
+        <h3>5. Authorize first, then hand off the download</h3>
+        <pre><code>public function download(Document $document)
+{
+    Gate::authorize('view', $document);
+
+    return redirect()-&gt;away(
+        Storage::disk('s3')-&gt;temporaryUrl($document-&gt;path, now()-&gt;addMinutes(5))
+    );
+}</code></pre>
+
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>Stamping an owner on every row and calling that the access model.</li>
+          <li>Relying only on a global scope. A raw query written during a hot fix skips it without any warning.</li>
+          <li>Checking access on the detail page but forgetting search, "recently viewed" lists, exports and reports.</li>
+          <li>Hiding things from clients one by one instead of exposing only what is explicitly marked client-visible.</li>
+          <li>Rendering a missing template field as an empty string.</li>
+          <li>Editing templates in place, so you can no longer reproduce a document that was already sent.</li>
+          <li>Streaming large downloads through the app server instead of letting object storage serve them.</li>
+        </ul>
+
+        <h3>Best practices</h3>
+        <ul>
+          <li>Enforce access twice: an explicit membership scope on every read, and a policy on every record.</li>
+          <li>Make anything client-facing deny-by-default.</li>
+          <li>Version templates and store which version each document was rendered from.</li>
+          <li>Issue short-lived signed download URLs only after the membership check.</li>
+          <li>Keep secrets out of config files and the repository; load them from a managed secret store at deploy time.</li>
+          <li>Prefer the boring architecture you can run alone over the impressive one you can't.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          The hardest parts of this build were not the parts I could anticipate
+          from a feature list. They were the access model, the template
+          authoring problem, and the small infrastructure choices that decide
+          whether a platform stays operable by one person. Those problems were
+          worth more on this build than any framework choice.
+        </p>
+        <p>
+          The takeaway: when software holds privileged data, model access
+          around <b>membership</b>, enforce it <b>twice</b>, make the client
+          side <b>deny-by-default</b>, and let document failures be
+          <b>loud</b>. A good next step is to list every search, list and
+          report query in your own app and confirm each one applies an
+          explicit access scope.
+        </p>
+
+        <h3>What it does today</h3>
         <ul>
           <li>Active daily use across the firm, attorneys, paralegals, and the firm's clients.</li>
           <li>Case tracking with status, deadlines, and a per-case timeline.</li>
@@ -398,7 +569,7 @@ public function view(User $user, Document $document): bool
           back.
         </p>
 
-        <h2>What I'd do differently next time</h2>
+        <h3>What I'd do differently next time</h3>
         <ul>
           <li>
             <b>Filament admin from day one.</b> I built the internal admin
@@ -424,14 +595,23 @@ public function view(User $user, Document $document): bool
           </li>
         </ul>
 
-        <h2>What I take away</h2>
-        <p>
-          The hardest parts of this build were not the parts I could anticipate
-          from a feature list. They were the access model, the template
-          authoring problem, and the small infrastructure choices that decide
-          whether a platform stays operable by one person. Those problems are
-          worth more on this build than any framework choice was.
-        </p>
+        <h2>References and further reading</h2>
+        <ul>
+          <li><a href="https://laravel.com/docs/authorization" target="_blank" rel="noopener noreferrer">Laravel documentation: Authorization (gates and policies)</a></li>
+          <li><a href="https://laravel.com/docs/eloquent#query-scopes" target="_blank" rel="noopener noreferrer">Laravel documentation: Eloquent query scopes</a></li>
+          <li><a href="https://laravel.com/docs/eloquent-relationships" target="_blank" rel="noopener noreferrer">Laravel documentation: Eloquent relationships</a></li>
+          <li><a href="https://laravel.com/docs/filesystem" target="_blank" rel="noopener noreferrer">Laravel documentation: File storage and temporary URLs</a></li>
+          <li><a href="https://laravel.com/docs/queues" target="_blank" rel="noopener noreferrer">Laravel documentation: Queues</a></li>
+          <li><a href="https://laravel.com/docs/horizon" target="_blank" rel="noopener noreferrer">Laravel documentation: Horizon</a></li>
+          <li><a href="https://filamentphp.com/docs" target="_blank" rel="noopener noreferrer">Filament documentation</a></li>
+          <li><a href="https://inertiajs.com/" target="_blank" rel="noopener noreferrer">Inertia.js documentation</a></li>
+          <li><a href="https://vuejs.org/guide/introduction.html" target="_blank" rel="noopener noreferrer">Vue.js guide</a></li>
+          <li><a href="https://docs.aws.amazon.com/s3/" target="_blank" rel="noopener noreferrer">Amazon S3 documentation</a></li>
+          <li><a href="https://docs.aws.amazon.com/rds/" target="_blank" rel="noopener noreferrer">Amazon RDS documentation</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP Authorization Cheat Sheet</a></li>
+          <li>Related on this site: <a href="./nemsu-data-hub.html">How to build a secure multi-campus file platform with Laravel and Go</a></li>
+          <li>Related on this site: <a href="./e-pds.html">How to digitize paper personnel records with Laravel and move a team from FTP to Git</a></li>
+        </ul>
 
         <div class="case-cta">
           <div class="case-cta-text">
@@ -445,7 +625,7 @@ public function view(User $user, Document $document): bool
         <nav class="case-nextprev" aria-label="Blog posts">
           <span></span>
           <a class="all" href="../blog.html">Back to blog</a>
-          <a class="next" href="./e-pds.html">Next post: Digitizing paper personnel records →</a>
+          <a class="next" href="./e-pds.html">Next post: How to digitize paper personnel records with Laravel →</a>
         </nav>
       </article>
     </main>

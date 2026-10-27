@@ -13,16 +13,16 @@
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>Transcribing confidential recordings entirely on-device · Christopher Vistal</title>
+    <title>How to Transcribe Confidential Audio Offline with Whisper and CTranslate2 · Christopher Vistal</title>
     <meta
       name="description"
-      content="A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, built for confidential session recordings that cannot leave the machine."
+      content="Learn how to transcribe confidential recordings entirely on-device: Whisper via CTranslate2 and faster-whisper at int8 on CPU, a waveform-first review interface, and an offline promise you can verify, with Python examples."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Transcribing confidential recordings entirely on-device" />
+    <meta property="og:title" content="How to Transcribe Confidential Audio Offline with Whisper and CTranslate2" />
     <meta
       property="og:description"
-      content="Local speech-to-text with CTranslate2 + Whisper. No audio ever leaves the machine. Built for confidential session recordings."
+      content="Local speech-to-text with faster-whisper and CTranslate2 on CPU. No audio ever leaves the machine. With Python examples."
     />
     <meta property="og:url" content="https://chris-dev.netlify.app/case/offline-transcriber.html" />
     <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/transcriber.png" />
@@ -48,7 +48,7 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Transcribing confidential recordings entirely on-device",
+        "headline": "How to Transcribe Confidential Audio Offline with Whisper and CTranslate2",
         "description": "A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, built for confidential session recordings that cannot leave the machine.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
@@ -73,7 +73,7 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=84" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=86" />
   </head>
   <body>
     <a class="skip" href="#content">Skip to content</a>
@@ -103,7 +103,7 @@
 
       <header class="case-frontmatter">
         <span class="case-eyebrow">Blog &nbsp;·&nbsp; on-device AI</span>
-        <h1 class="case-h1">Transcribing confidential recordings entirely on-device</h1>
+        <h1 class="case-h1">How to Transcribe Confidential Audio Offline with Whisper and CTranslate2</h1>
         <p class="case-deck">
           A local-first speech-to-text tool built on Whisper via CTranslate2.
           <b>Zero cloud dependency.</b> Real-time waveform feedback, fast
@@ -124,7 +124,23 @@
       </figure>
 
       <article class="case-prose">
-        <h2>Why offline</h2>
+        <p>
+          Some recordings must never leave the machine they were made on.
+          A government secretariat needed its confidential session
+          recordings turned into text, without handing the audio to a cloud
+          speech-to-text service. So I built a tool that transcribes
+          entirely on-device, with zero cloud dependency.
+        </p>
+        <p>
+          This post shows how to run Whisper fast enough on an ordinary CPU
+          using CTranslate2, how to design an interface that makes reviewing
+          a transcript quick, and how to package an "offline" promise you can
+          actually verify. Small Python examples at the end show the core
+          pieces.
+        </p>
+
+        <h2>Background</h2>
+        <h3>Why offline</h3>
         <p>
           Cloud speech-to-text is a solved problem if you can send the
           audio. The interesting work is when you cannot. Confidential
@@ -142,8 +158,17 @@
           comes out, nothing crosses the boundary in either direction.
         </p>
 
-        <h2>The technical choices</h2>
-        <h3>Whisper via CTranslate2</h3>
+        <h3>Whisper, CTranslate2 and faster-whisper</h3>
+        <p>
+          Whisper is OpenAI's open-source family of speech recognition
+          models; its reference implementation runs on PyTorch. CTranslate2
+          is an inference engine for transformer models written in C++, with
+          support for quantization, such as storing weights as 8-bit integers
+          (int8) instead of floating-point numbers. faster-whisper is a Python
+          library that runs Whisper models on CTranslate2.
+        </p>
+
+        <h2>Running Whisper fast on a CPU</h2>
         <p>
           OpenAI's Whisper models are the obvious starting point. The
           obvious deployment, the reference PyTorch model, is also slow
@@ -160,6 +185,7 @@
           the float16 baseline.
         </p>
 
+        <h2>Building an interface for the reviewer</h2>
         <h3>Real-time waveform feedback</h3>
         <p>
           The thing that made the tool feel professional instead of
@@ -176,7 +202,7 @@
           rather than a black-box-with-a-progress-bar feel.
         </p>
         <pre><code># waveform.py, buffer-driven peaks
-def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
+def compute_peaks(samples: np.ndarray, target_buckets: int) -&gt; np.ndarray:
     chunk = max(1, len(samples) // target_buckets)
     chunks = np.array_split(samples[: chunk * target_buckets], target_buckets)
     return np.array([np.abs(c).max() for c in chunks], dtype=np.float32)</code></pre>
@@ -219,9 +245,8 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
         <h3>CPU was enough</h3>
         <p>
           I designed the architecture assuming I would eventually need to
-          ship a GPU path. For the audiences this tool serves ,
-          attorneys with modern laptops, clinicians with workstations ,
-          the CPU path is already faster than real-time on the
+          ship a GPU path. For the audiences this tool serves, attorneys
+          with modern laptops and clinicians with workstations, the CPU path is already faster than real-time on the
           medium-quality model. The GPU path is a future-me problem, not
           a today-me problem.
         </p>
@@ -259,7 +284,118 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
           </li>
         </ul>
 
-        <h2>What I would do next</h2>
+        <h2>Practical examples</h2>
+        <p>
+          Simplified example. The snippets below are generic Python showing
+          the techniques from this post. They are not the production code.
+        </p>
+
+        <h3>1. Transcribe a file on CPU with faster-whisper</h3>
+        <pre><code>from faster_whisper import WhisperModel
+
+model = WhisperModel("medium", device="cpu", compute_type="int8")
+segments, info = model.transcribe("recording.wav", beam_size=5)
+
+print(f"Detected language: {info.language} ({info.language_probability:.2f})")
+
+for segment in segments:  # transcription runs as you iterate
+    print(f"[{segment.start:6.2f} -&gt; {segment.end:6.2f}] {segment.text.strip()}")</code></pre>
+        <p>Expected output (illustrative):</p>
+        <pre><code>Detected language: en (0.98)
+[  0.00 -&gt;   4.20] Good morning, everyone.
+[  4.20 -&gt;   9.86] Let's start with the first item on the agenda.</code></pre>
+
+        <h3>2. Download the model once, then load it only from disk</h3>
+        <pre><code># One-time step, triggered explicitly from the UI (needs the network once).
+from faster_whisper import download_model
+
+download_model("medium", output_dir="models/whisper-medium")</code></pre>
+        <pre><code># Every run after that: offline only.
+import os
+
+os.environ["HF_HUB_OFFLINE"] = "1"  # set before importing faster_whisper
+
+from faster_whisper import WhisperModel
+
+model = WhisperModel("models/whisper-medium", device="cpu", compute_type="int8")</code></pre>
+        <p>
+          Loading from a local folder never needs the network, and
+          <code>HF_HUB_OFFLINE</code> makes any accidental model-hub lookup
+          fail instead of quietly going online.
+        </p>
+
+        <h3>3. Turn audio samples into waveform peaks</h3>
+        <pre><code>import numpy as np
+
+samples = np.array([0.0, 0.1, -0.8, 0.2, 0.05, -0.02, 0.6, -0.3])
+compute_peaks(samples, target_buckets=4)</code></pre>
+        <p>Expected output, using the <code>compute_peaks()</code> function shown earlier:</p>
+        <pre><code>array([0.1 , 0.8 , 0.05, 0.6 ], dtype=float32)</code></pre>
+        <p>
+          The eight samples are split into four buckets of two. Each bar of
+          the waveform is the loudest absolute value in its bucket.
+        </p>
+
+        <h3>4. Make tests fail if anything touches the network</h3>
+        <pre><code>import socket
+
+import pytest
+from faster_whisper import WhisperModel
+
+
+@pytest.fixture
+def no_network(monkeypatch):
+    def refuse(*args, **kwargs):
+        raise RuntimeError("network access attempted")
+
+    monkeypatch.setattr(socket.socket, "connect", refuse)
+
+
+def test_transcribes_offline(no_network):
+    model = WhisperModel("models/whisper-medium", device="cpu", compute_type="int8")
+    segments, _ = model.transcribe("tests/fixtures/short.wav")
+    assert list(segments)</code></pre>
+        <p>
+          This is a cheap check that can run on every build. It complements,
+          rather than replaces, testing with the network adapter switched off.
+        </p>
+
+        <h3>Common mistakes</h3>
+        <ul>
+          <li>Benchmarking the reference PyTorch model on CPU and concluding local transcription is too slow.</li>
+          <li>Requesting <code>float16</code> on a CPU. It is meant for GPUs; use <code>int8</code> on CPU.</li>
+          <li>Treating <code>segments</code> as a list. It is a generator: nothing is transcribed until you iterate, and you can iterate only once.</li>
+          <li>Letting the first run download a model silently, so the "offline" app goes online without telling anyone.</li>
+          <li>Adding telemetry, analytics or an update check "just for now".</li>
+          <li>Showing the transcript as one wall of text and throwing away the segment timestamps.</li>
+        </ul>
+
+        <h3>Best practices</h3>
+        <ul>
+          <li>Run Whisper through faster-whisper with int8 on CPU, and compare against the float16 baseline on your own audio.</li>
+          <li>Make the model download an explicit, one-time step into a known local directory.</li>
+          <li>Prove the offline claim by disabling the network during integration tests.</li>
+          <li>Keep Whisper's segment boundaries in the UI: one clickable line per segment that seeks the audio.</li>
+          <li>Once accuracy plateaus, spend the effort on review tools: keyboard navigation, undo, segment playback and export.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          On-device transcription is practical. Whisper through CTranslate2
+          at int8 is already faster than real-time on the medium-quality
+          model on a modern CPU, and the quality drop is small enough that
+          a human reviewer rarely notices. Once accuracy plateaued, most of
+          the value moved into the reviewer's tools: the waveform, the
+          segment list and the keyboard.
+        </p>
+        <p>
+          The takeaway: when the data cannot leave the machine, make the
+          offline promise something users can see and you can test. An
+          explicit model download, no network calls after it, and a test
+          that fails if anything tries.
+        </p>
+
+        <h3>What I would do next</h3>
         <ul>
           <li>
             <b>Speaker diarization.</b> Whisper doesn't separate
@@ -279,6 +415,20 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
           </li>
         </ul>
 
+        <h2>References and further reading</h2>
+        <ul>
+          <li><a href="https://github.com/openai/whisper" target="_blank" rel="noopener noreferrer">OpenAI Whisper (GitHub)</a></li>
+          <li><a href="https://github.com/OpenNMT/CTranslate2" target="_blank" rel="noopener noreferrer">CTranslate2 (GitHub)</a></li>
+          <li><a href="https://opennmt.net/CTranslate2/" target="_blank" rel="noopener noreferrer">CTranslate2 documentation, including quantization</a></li>
+          <li><a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener noreferrer">faster-whisper (GitHub)</a></li>
+          <li><a href="https://huggingface.co/docs/huggingface_hub" target="_blank" rel="noopener noreferrer">Hugging Face Hub client documentation (offline mode and environment variables)</a></li>
+          <li><a href="https://numpy.org/doc/stable/" target="_blank" rel="noopener noreferrer">NumPy documentation</a></li>
+          <li><a href="https://www.riverbankcomputing.com/software/pyqt/" target="_blank" rel="noopener noreferrer">PyQt</a></li>
+          <li><a href="https://docs.pytest.org/" target="_blank" rel="noopener noreferrer">pytest documentation</a></li>
+          <li>Related on this site: <a href="./ata-law-firm.html">How to enforce attorney-client privilege in a Laravel case management app</a></li>
+          <li>Related on this site: <a href="./nemsu-data-hub.html">How to build a secure multi-campus file platform with Laravel and Go</a></li>
+        </ul>
+
         <div class="case-cta">
           <div class="case-cta-text">
             <b>Need on-device AI integration?</b> I take on offline /
@@ -288,9 +438,9 @@ def compute_peaks(samples: np.ndarray, target_buckets: int) -> np.ndarray:
         </div>
 
         <nav class="case-nextprev" aria-label="Blog posts">
-          <a class="prev" href="./e-pds.html">← Previous post: Digitizing paper personnel records</a>
+          <a class="prev" href="./e-pds.html">← Previous post: How to digitize paper personnel records with Laravel</a>
           <a class="all" href="../blog.html">Back to blog</a>
-          <a class="next" href="./nemsu-data-hub.html">Next post: A multi-campus university file platform →</a>
+          <a class="next" href="./nemsu-data-hub.html">Next post: How to build a secure multi-campus file platform →</a>
         </nav>
       </article>
     </main>

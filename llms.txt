@@ -53,10 +53,10 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 ## Blog
 
 - Blog index (all posts and the YouTube channel): https://chris-dev.netlify.app/blog.html
-- Blog post: Building privileged-access case management for a law firm (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/ata-law-firm.html
-- Blog post: Digitizing paper personnel records and moving a government IT team onto Git (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/e-pds.html
-- Blog post: Transcribing confidential recordings entirely on-device (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/offline-transcriber.html
-- Blog post: Building a multi-campus file and submissions platform for a university (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/nemsu-data-hub.html
+- Blog post: How to Enforce Attorney-Client Privilege in a Laravel Case Management App (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/ata-law-firm.html
+- Blog post: How to Digitize Paper Personnel Records with Laravel and Move a Team from FTP to Git (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/e-pds.html
+- Blog post: How to Transcribe Confidential Audio Offline with Whisper and CTranslate2 (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/offline-transcriber.html
+- Blog post: How to Build a Secure Multi-Campus File Platform with Laravel and Go (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/nemsu-data-hub.html
 - YouTube channel: https://www.youtube.com/@tophertips3387
 
 ## Skills
