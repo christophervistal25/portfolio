@@ -5,38 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          document.documentElement.setAttribute("data-theme", stored === "light" || stored === "dark" ? stored : "dark");
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
+        var theme = null;
+        try { theme = localStorage.getItem("theme"); } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
+        document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>NEMSU Data Hub, Google Drive for Universities · Christopher Vistal</title>
+    <title>Building a multi-campus file and submissions platform for a university · Christopher Vistal</title>
     <meta
       name="description"
-      content="Building a unified file + submissions platform connecting all campuses of NEMSU. Team workspaces, shared records, and the file-sharing layer the university actually needed."
+      content="Designing a file and submissions platform shared across the campuses of a state university: an ownership model for visibility, resumable uploads in Go, malware scanning on upload, signed PDFs and tiered storage."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="NEMSU Data Hub, Google Drive for Universities" />
+    <meta property="og:title" content="Building a multi-campus file and submissions platform for a university" />
     <meta
       property="og:description"
-      content="Multi-campus file federation, submissions, and team collaboration platform for NEMSU. Laravel + Vue.js + MySQL."
+      content="Multi-campus file sharing, submissions, and team collaboration for a state university. Laravel + Vue.js + MySQL, with Go services for uploads and PDF signing."
     />
-    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
+    <meta property="og:url" content="https://chris-dev.netlify.app/case/nemsu-data-hub.html" />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/nemsu.png" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish." />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Illustration of a cloud, a shield with a check mark, a stack of signed documents, a row of folders and an upload button on a stone base." />
+    <meta property="article:published_time" content="2026-05-16T01:16:27+08:00" />
+    <meta property="article:modified_time" content="2026-10-27" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
-    <meta name="twitter:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish." />
+    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/imagesv2/nemsu.png" />
+    <meta name="twitter:image:alt" content="Illustration of a cloud, a shield with a check mark, a stack of signed documents, a row of folders and an upload button on a stone base." />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="author" content="Christopher Vistal" />
-    <meta name="keywords" content="NEMSU Data Hub, university platform, Laravel, Vue.js, Inertia.js, Go, tus uploads, ClamAV, S3, ONLYOFFICE, Google Sign-In, MySQL, file federation, multi-tenant, PHP, Go service, case study, Christopher Vistal" />
+    <meta name="keywords" content="university platform, multi-campus, Laravel, Vue.js, Inertia.js, Go, tus uploads, malware scanning, PDF signing, S3, ONLYOFFICE, single sign-on, MySQL, file sharing, PHP, Go service, blog post, Christopher Vistal" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://chris-dev.netlify.app/case/nemsu-data-hub.html" />
     <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="LLM-readable site summary" />
@@ -44,19 +47,19 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "NEMSU Data Hub, one drive across every campus",
-        "description": "Multi-campus file federation, submissions, and team collaboration platform for NEMSU. Laravel + Vue.js monolith with Go services for resumable uploads, virus scanning, and signed documents.",
+        "@type": "BlogPosting",
+        "headline": "Building a multi-campus file and submissions platform for a university",
+        "description": "A file, submissions, and team collaboration platform shared across the campuses of a state university. Laravel + Vue.js monolith with Go services for resumable uploads and signed documents, plus malware scanning on every upload.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
-        "datePublished": "2024-01-01",
-        "dateModified": "2026-10-07",
-        "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
+        "datePublished": "2026-05-16T01:16:27+08:00",
+        "dateModified": "2026-10-27",
+        "image": "https://chris-dev.netlify.app/assets/imagesv2/nemsu.png",
         "inLanguage": "en",
         "mainEntityOfPage": "https://chris-dev.netlify.app/case/nemsu-data-hub.html",
-        "keywords": "Laravel, Vue.js, Inertia.js, Go, MySQL, tus, ClamAV, S3, ONLYOFFICE, Google Sign-In, multi-campus, file platform, university, PHP",
+        "keywords": "Laravel, Vue.js, Inertia.js, Go, MySQL, tus, malware scanning, PDF signing, S3, ONLYOFFICE, single sign-on, multi-campus, file platform, university, PHP",
         "about": [
-          { "@type": "SoftwareApplication", "name": "NEMSU Data Hub", "applicationCategory": "EducationalApplication", "operatingSystem": "Linux" }
+          { "@type": "SoftwareApplication", "name": "Multi-campus university file and submissions platform", "applicationCategory": "EducationalApplication" }
         ],
         "mentions": [
           { "@type": "SoftwareApplication", "name": "Laravel" },
@@ -64,73 +67,79 @@
           { "@type": "SoftwareApplication", "name": "Inertia.js" },
           { "@type": "SoftwareApplication", "name": "MySQL" },
           { "@type": "SoftwareApplication", "name": "Go" },
-          { "@type": "SoftwareApplication", "name": "ClamAV" },
           { "@type": "SoftwareApplication", "name": "Tailwind CSS" },
           { "@type": "Service", "name": "Amazon S3" },
-          { "@type": "Service", "name": "ONLYOFFICE" },
-          { "@type": "Service", "name": "Google OAuth" }
+          { "@type": "Service", "name": "ONLYOFFICE" }
         ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        "name": "NEMSU Data Hub",
-        "description": "Multi-campus file + submissions platform for the North Eastern Mindanao State University. Laravel monolith with Go services for tus resumable uploads, virus scanning, and PDF signing.",
-        "codeRepository": "https://github.com/christophervistal25",
-        "programmingLanguage": ["PHP", "JavaScript", "Vue", "Go", "SQL"],
-        "runtimePlatform": ["Linux", "Nginx", "PHP-FPM"],
-        "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
-        "url": "https://chris-dev.netlify.app/case/nemsu-data-hub.html"
       }
     </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=Instrument+Sans:wght@400..600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=50" />
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { fontFamily: 'Inter, sans-serif', primaryColor: '#ffffff', primaryTextColor: '#000000', primaryBorderColor: '#000000', lineColor: '#000000', secondaryColor: '#ffffff', tertiaryColor: '#ffffff', background: '#ffffff' } });</script>
+    <link rel="stylesheet" href="../assets/css/site.css?v=71" />
   </head>
-  <body data-density="comfortable">
-    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
-    <main class="case-wrap">
-      <div class="case-bar">
-        <a href="../index.html" class="case-back">← Portfolio</a>
-        <button type="button" class="theme-toggle" aria-pressed="true" aria-label="Switch to light theme">
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="read-progress" aria-hidden="true"><span class="read-progress-fill" id="readProgress"></span></div>
+
+    <header class="topbar">
+      <a class="brand" href="../index.html">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+      <nav class="mainnav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../blog.html" class="is-active">Blog</a></li>
+          <li><a href="../aboutme.html">About</a></li>
+          <li><a href="../resume.html">Résumé</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="topbar-end">
+        <a class="icon-btn" href="https://github.com/christophervistal25"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span class="sr-only">GitHub</span></a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/christophervistal25/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6m0 2.5a2.5 2.5 0 0 1 5 0v3.5"/></svg><span class="sr-only">LinkedIn</span></a>
+        <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
         </button>
       </div>
+    </header>
+
+    <main id="content" class="case-wrap">
+      <a href="../blog.html" class="case-back">← Back to blog</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">Case Study 04 &nbsp;·&nbsp; university platform</span>
-        <h1 class="case-h1">NEMSU Data Hub, one drive across every campus</h1>
+        <span class="case-eyebrow">Blog &nbsp;·&nbsp; university platform</span>
+        <h1 class="case-h1">Building a multi-campus file and submissions platform for a university</h1>
         <p class="case-deck">
-          A <b>Google Drive-style platform for NEMSU</b>, the
-          North Eastern Mindanao State University system. The brief in one
-          sentence: stop scattering files across campuses, inboxes, and
-          USB sticks, and give every department and student team a single
-          place to work together.
+          A <b>Google Drive-style platform for a multi-campus state
+          university</b>. The brief in one sentence: stop scattering files
+          across campuses, inboxes, and USB sticks, and give every
+          department and student team a single place to work together.
         </p>
         <dl class="case-meta">
           <dt>Role</dt><dd>Engineer, build + ongoing maintenance</dd>
-          <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), ClamAV, S3 + local FS, ONLYOFFICE, Google Sign-In (OAuth), Tailwind CSS</dd>
-          <dt>Status</dt><dd>Live at <a href="https://udh.nemsu.edu.ph/">udh.nemsu.edu.ph</a> across all 4 campuses</dd>
+          <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Go (tus upload service + PDF signer), malware scanning, S3 + local FS, ONLYOFFICE, OAuth single sign-on, Tailwind CSS</dd>
+          <dt>Status</dt><dd>In production across the university's campuses</dd>
         </dl>
+        <p class="case-dates">Published <time datetime="2026-05-16">2026-05-16</time> · Updated <time datetime="2026-10-27">2026-10-27</time></p>
       </header>
-      <div class="case-hero"><img src="../assets/imagesv2/nemsu.png" alt="NEMSU Data Hub, the university file and submissions platform" loading="eager" /></div>
+      <figure class="case-hero">
+        <img src="../assets/imagesv2/nemsu.png" alt="Illustration of a cloud, a shield with a check mark, a stack of signed documents, a row of folders and an upload button on a stone base." width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption>Illustration of the platform's jobs: shared storage, scanned uploads, signed documents and folders.</figcaption>
+      </figure>
+      <!-- TODO(owner): this hero is an illustration, not a product screenshot.
+           If the university allows it, add a real screenshot of the platform
+           (for example the folder view or a student's submission dashboard),
+           with names, branding and personal data blurred. -->
 
 
       <article class="case-prose">
         <h2>The starting line</h2>
         <p>
-          NEMSU runs across <b>multiple campuses</b>. Cantilan, Tagbina,
-          Bislig, the main campus, each one has its own admin
-          office, its own faculty, and its own way of moving paperwork
-          around. The shared layer between them was, in practice, email
+          The university runs across <b>multiple campuses</b>. Each one has
+          its own admin office, its own faculty, and its own way of moving
+          paperwork around. The shared layer between them was, in practice, email
           attachments and the occasional USB stick brought to a meeting.
         </p>
         <p>
@@ -151,7 +160,7 @@
         <h2>Constraints</h2>
         <ul>
           <li>
-            <b>Multi-campus by design.</b> A file owned by the Cantilan
+            <b>Multi-campus by design.</b> A file owned by a satellite
             campus has different default visibility than a file owned by
             the main campus. The system has to know about campus as a
             first-class concept, not as a tag.
@@ -174,62 +183,19 @@
           </li>
         </ul>
 
-        <h2>Architecture in one picture</h2>
-        <div class="case-diagram">
-        <pre class="mermaid">
-flowchart TB
-    domain["udh.nemsu.edu.ph"]
-    nginx["Nginx\nTLS, routing"]
-
-    subgraph app["Application Layer"]
-        laravel["Laravel + Inertia\nAuth + AuthZ\nFile metadata\nSubmissions\nAudit log"]
-        tus["Go upload service\ntus protocol\nresumable chunks\nhigh concurrency"]
-    end
-
-    subgraph services["Sidecars"]
-        clamav["ClamAV scanner\n(quarantine bad)"]
-        signer["Go PDF signer\n(X.509 signature)"]
-        office["ONLYOFFICE\n(in-browser editing)"]
-        gsi["Google Sign-In\n(OAuth)"]
-    end
-
-    subgraph storage["Storage Layer"]
-        mysql["MySQL\n(records)"]
-        s3["Amazon S3\n(cold + shared)"]
-        local["Local FS\n(hot + recent)"]
-    end
-
-    domain --> nginx --> laravel
-    nginx --> tus
-    laravel <-->|"signed handoff"| tus
-    tus --> clamav
-    laravel --> signer
-    laravel <--> office
-    laravel --> gsi
-    laravel --> mysql
-    laravel --> s3
-    laravel --> local
-
-    style domain fill:#ffffff,stroke:#000000,color:#000000
-    style nginx fill:#ffffff,stroke:#000000,color:#000000
-    style laravel fill:#ffffff,stroke:#000000,color:#000000
-    style tus fill:#ffffff,stroke:#000000,color:#000000
-    style clamav fill:#ffffff,stroke:#000000,color:#000000
-    style signer fill:#ffffff,stroke:#000000,color:#000000
-    style office fill:#ffffff,stroke:#000000,color:#000000
-    style gsi fill:#ffffff,stroke:#000000,color:#000000
-    style mysql fill:#ffffff,stroke:#000000,color:#000000
-    style s3 fill:#ffffff,stroke:#000000,color:#000000
-    style local fill:#ffffff,stroke:#000000,color:#000000
-        </pre>
-          <div class="case-diagram-caption">multi-campus platform with go upload + scan + sign sidecars</div>
-        </div>
+        <h2>The shape of the system</h2>
         <p>
-          The headline picture is a Laravel monolith. The honest picture
-          has <b>three sidecars</b>: a Go upload service, a ClamAV
-          scanner, and a Go PDF signer. Each one exists because PHP was
-          the wrong tool for a specific job and pretending otherwise
-          would have hurt the platform.
+          The headline picture is a Laravel + Inertia monolith that owns
+          authentication, authorization, file metadata, submissions, and the
+          audit log. The honest picture has <b>three sidecars</b>: a Go
+          upload service, a malware scanner, and a Go PDF signer. Each one
+          exists because PHP was the wrong tool for a specific job and
+          pretending otherwise would have hurt the platform.
+        </p>
+        <p>
+          Records live in MySQL. File contents live in two tiers, local disk
+          for hot data and object storage for cold and shared data, covered
+          further down.
         </p>
 
         <h2>Modelling a university as a graph</h2>
@@ -245,19 +211,11 @@ flowchart TB
           teams (a research group, a class section, an admin committee).
           When a file is uploaded, the upload chooses an owner. The
           owner decides the file's default visibility, and the visibility
-          decides who can find it in search.
+          decides who can find it in search. Checking access becomes one
+          question per owner type: is this user part of the campus, the
+          department, the team, or are they the person (or someone the file
+          was shared with)?
         </p>
-        <pre><code>// app/Policies/FilePolicy.php
-public function view(User $user, File $file): bool
-{
-    return match ($file-&gt;owner_type) {
-        OwnerType::CAMPUS     =&gt; $user-&gt;campus_id === $file-&gt;owner_id,
-        OwnerType::DEPARTMENT =&gt; $user-&gt;belongsToDepartment($file-&gt;owner_id),
-        OwnerType::TEAM       =&gt; $user-&gt;belongsToTeam($file-&gt;owner_id),
-        OwnerType::PERSON     =&gt; $user-&gt;id === $file-&gt;owner_id
-                                  || $file-&gt;sharedWith($user),
-    };
-}</code></pre>
         <p>
           Sharing layers on top. A file with a personal owner can be
           explicitly shared with a team. A team file can be promoted to
@@ -305,72 +263,41 @@ public function view(User $user, File $file): bool
           So I broke uploads off into a <b>Go service speaking the tus
           protocol</b>, the open standard for resumable file
           uploads. The Laravel app still owns authorization and
-          metadata. When a user wants to upload, Laravel hands the
-          client a <b>signed tus URL with an expiry</b>. The client
-          uploads to the Go service in chunks. If the connection drops
-          at chunk 7 of 12, the next request resumes at chunk 8 instead
-          of starting over.
+          metadata. When a user wants to upload, Laravel checks that they
+          may write to the target folder, then hands the client a
+          <b>short-lived signed upload token</b> that carries the
+          destination and the user's remaining quota. The client uploads
+          to the Go service in chunks. If the connection drops at chunk 7
+          of 12, the next request resumes at chunk 8 instead of starting
+          over.
         </p>
-        <pre><code>// Laravel hands off to Go upload service
-public function authorizeUpload(Request $r)
-{
-    $this-&gt;authorize('uploadTo', [File::class, $r-&gt;input('folder_id')]);
-
-    $token = JWT::encode([
-        'sub'        =&gt; $r-&gt;user()-&gt;id,
-        'folder_id'  =&gt; $r-&gt;input('folder_id'),
-        'max_bytes'  =&gt; $r-&gt;user()-&gt;quotaRemaining(),
-        'exp'        =&gt; now()-&gt;addMinutes(15)-&gt;timestamp,
-    ], config('tus.secret'));
-
-    return [
-        'endpoint' =&gt; config('tus.endpoint'),  // Go service
-        'token'    =&gt; $token,
-    ];
-}</code></pre>
         <p>
           The Go service runs <b>one goroutine per active upload</b>,
           eats hundreds of concurrent streams comfortably on the same
-          VPS, and never blocks the PHP workers. After exam week
+          server, and never blocks the PHP workers. After exam week
           stopped feeling like exam week, the architecture earned its
           place.
         </p>
 
-        <h2>Antivirus: every upload through ClamAV</h2>
+        <h2>Malware scanning on every upload</h2>
         <p>
-          The platform accepts files from thousands of student accounts.
-          Treating them as trusted by default is a bad plan. I wired
-          <b>ClamAV</b> into the post-upload pipeline so every file
-          gets scanned before it becomes visible in the system.
+          The platform accepts files from a large population of student
+          accounts. Treating them as trusted by default is a bad plan. I
+          wired <b>malware scanning</b> into the post-upload pipeline so
+          every file gets scanned before it becomes visible in the system.
         </p>
         <p>
           When the Go upload service finishes assembling a file, it
-          notifies Laravel. Laravel queues a scan job. The worker
-          streams the file to a <b>clamd</b> daemon over a Unix socket
-          and waits for the verdict. Clean files flip to
-          <code>status: ready</code>. Infected files flip to
-          <code>status: quarantined</code>, the blob is moved out of
-          the user-visible path, and an alert lands in the admin
-          channel with the signature name.
+          notifies Laravel, which queues a scan job. A file stays hidden
+          until the scan comes back. Clean files become visible. Infected
+          files are quarantined, moved out of the user-visible path, and
+          administrators are alerted.
         </p>
-        <pre><code>// app/Jobs/ScanUpload.php
-public function handle(ClamAvClient $clam): void
-{
-    $verdict = $clam-&gt;scanStream($this-&gt;file-&gt;readStream());
-
-    if ($verdict-&gt;infected) {
-        $this-&gt;file-&gt;quarantine($verdict-&gt;signature);
-        AdminAlert::dispatch("ClamAV: {$verdict-&gt;signature} on {$this-&gt;file-&gt;id}");
-        return;
-    }
-
-    $this-&gt;file-&gt;markReady();
-}</code></pre>
         <p>
           One scan per upload, no exceptions. False positives are rare
-          and easy to release manually from the admin surface. The cost
-          of running clamd is small compared to the cost of an
-          institution-wide platform serving its first piece of malware.
+          and easy for an administrator to release. The cost of running a
+          scanner is small compared to the cost of an institution-wide
+          platform serving its first piece of malware.
         </p>
 
         <h2>PDF signing in Go: digital signatures on official documents</h2>
@@ -385,22 +312,12 @@ public function handle(ClamAvClient $clam): void
         <p>
           PHP's PDF signing story is workable but slow and fiddly. Go's
           ecosystem here is cleaner. I wrote a small <b>Go signer
-          service</b> that holds the institutional signing key, accepts
-          a PDF and a context payload, embeds an X.509 signature using
-          the PKCS#7 detached profile, and returns the signed bytes.
-          The Go service is the only process that touches the private
-          key, Laravel never sees it.
+          service</b> that accepts a PDF and a context payload, embeds an
+          X.509 signature using the PKCS#7 detached profile, and returns
+          the signed bytes. When a document is finalized, Laravel sends it
+          to the signer and stores what comes back. The Go service is the
+          only process that touches the private key, Laravel never sees it.
         </p>
-        <pre><code>// Laravel calls Go signer when a document is finalized
-$signed = Http::withToken(config('signer.token'))
-    -&gt;attach('pdf', $unsignedPdf, 'document.pdf')
-    -&gt;post(config('signer.endpoint'), [
-        'subject' =&gt; $document-&gt;title,
-        'signed_by_id' =&gt; $approver-&gt;id,
-        'reason' =&gt; 'NEMSU official document',
-    ])-&gt;body();
-
-$document-&gt;storeSigned($signed);</code></pre>
         <p>
           Validators in Adobe Reader and the OS-level PDF viewers
           confirm the signature against the institution's certificate
@@ -457,22 +374,20 @@ $document-&gt;storeSigned($signed);</code></pre>
         </p>
         <p>
           So the platform embeds <b>ONLYOFFICE</b>. Opening a document or
-          spreadsheet in the Data Hub launches the ONLYOFFICE editor
+          spreadsheet in the platform launches the ONLYOFFICE editor
           <b>in the browser, against the file the platform already
           stores</b>. When an editing session ends, ONLYOFFICE hands the
           saved file back to the platform, which stores it as the file's
-          new content. The file in the Data Hub stays the single source
+          new content. The file in the platform stays the single source
           of truth, and the platform's access rules decide who can open
           the editor at all.
         </p>
         <p>
-          Google Sign-In doubles as the platform's primary auth path.
-          Most users already had an
-          <code>@nemsu.edu.ph</code> Workspace account, making them
+          Single sign-on doubles as the platform's primary auth path.
+          Most users already had an institutional account, making them
           create a second password was friction nobody asked for. The
-          platform accepts Google identities, maps them to local user
-          records, and falls back to email + password only for accounts
-          that don't have a Workspace identity.
+          platform accepts those identities over OAuth and maps them to
+          local user records.
         </p>
 
         <h2>What broke, or surprised me</h2>
@@ -480,8 +395,7 @@ $document-&gt;storeSigned($signed);</code></pre>
         <p>
           The first version assumed each department had one clear
           parent. Reality: cross-listed departments, joint programs,
-          and one campus where a single instructor was attached to
-          three departments at once. I rewrote the membership model
+          and instructors attached to several departments at once. I rewrote the membership model
           from "user has one department" to "user has many department
           memberships, each with a role." Slight schema change, much
           less hand-editing.
@@ -496,17 +410,45 @@ $document-&gt;storeSigned($signed);</code></pre>
           feel second-class.
         </p>
 
+        <h2 id="design-decisions">Design decisions</h2>
+        <p>
+          The interface follows the model: who you are decides which surface
+          you get and what you can find.
+        </p>
+        <ul class="decisions">
+          <li>
+            <h3>Two audiences, two surfaces</h3>
+            <p>Faculty and admin get the full workspace. Students get a narrow one: submit assignments, view feedback, see grades. Same backend, different fronts.</p>
+          </li>
+          <li>
+            <h3>Submissions you can see coming</h3>
+            <p>Students see each submission slot with a countdown, whether classmates have submitted (never what they submitted), and the instructor's verdict on the same screen.</p>
+          </li>
+          <li>
+            <h3>Search treated as a main path</h3>
+            <p>Long-time users stopped browsing folders and typed names, so search covers filename, owner and document content instead of feeling second-class.</p>
+          </li>
+          <li>
+            <h3>Fewer steps to the real file</h3>
+            <p>ONLYOFFICE opens documents in the browser against the stored file, and single sign-on means no second password for anyone with an institutional account.</p>
+          </li>
+        </ul>
+        <!-- TODO(owner): a before/after would help here: (1) the old flow, a
+             student emailing an attachment to an instructor, next to (2) the
+             student dashboard with a submission slot, countdown and feedback.
+             Use a real screenshot of the platform with names and branding blurred. -->
+
         <h2>What it does today</h2>
         <ul>
-          <li>One platform shared across every NEMSU campus.</li>
+          <li>One platform shared across all of the university's campuses.</li>
           <li>Files, folders, and submissions with per-owner visibility rules.</li>
           <li>Team workspaces for departments, research groups, class sections, and admin committees.</li>
           <li>Resumable uploads via a Go tus service that survives flaky campus networks and exam-week traffic.</li>
-          <li>Every upload scanned by ClamAV before becoming visible.</li>
+          <li>Every upload scanned for malware before becoming visible.</li>
           <li>Official documents signed in Go with embedded X.509 signatures, verifiable in any standard PDF reader.</li>
           <li>Two-tier storage: hot local FS, cold and shared Amazon S3.</li>
           <li>Documents and spreadsheets edited in the browser with ONLYOFFICE, saved back to the platform.</li>
-          <li>Google Sign-In as primary auth path for <code>@nemsu.edu.ph</code> accounts.</li>
+          <li>Single sign-on with institutional accounts as the primary auth path.</li>
           <li>Audit trail of file views, downloads, and submission activity.</li>
           <li>Deploys onto the university's own on-prem infrastructure.</li>
         </ul>
@@ -545,13 +487,32 @@ $document-&gt;storeSigned($signed);</code></pre>
           <a href="mailto:vistalchris@gmail.com?subject=Platform inquiry" class="btn btn-primary">Start a conversation</a>
         </div>
 
-        <div class="case-nextprev">
-          <a href="./ata-law-firm.html">← ATA Law Firm</a>
-          <a href="./e-pds.html">E-PDS →</a>
-        </div>
+        <nav class="case-nextprev" aria-label="Blog posts">
+          <a class="prev" href="./offline-transcriber.html">← Previous post: Transcribing confidential recordings on-device</a>
+          <a class="all" href="../blog.html">Back to blog</a>
+          <span></span>
+        </nav>
       </article>
     </main>
-      <script>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <nav aria-label="Footer">
+          <a href="../index.html">Portfolio</a>
+          <a href="../aboutme.html">About</a>
+          <a href="https://github.com/christophervistal25">GitHub</a>
+          <a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+          <a href="https://www.youtube.com/@tophertips3387">YouTube</a>
+          <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+        </nav>
+        <div class="footer-meta">
+          <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
+          <span class="credit">Website by <b>Christopher Vistal</b></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
       (() => {
         const bar = document.getElementById("readProgress");
         const upd = () => {

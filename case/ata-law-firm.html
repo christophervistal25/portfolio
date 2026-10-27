@@ -5,38 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          document.documentElement.setAttribute("data-theme", stored === "light" || stored === "dark" ? stored : "dark");
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
+        var theme = null;
+        try { theme = localStorage.getItem("theme"); } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
+        document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>ATA Law Firm, Case Management · Christopher Vistal</title>
+    <title>Building privileged-access case management for a law firm · Christopher Vistal</title>
     <meta
       name="description"
-      content="How I designed and shipped a single-tenant case management platform for a Philippine law firm on AWS, document automation, client portal, and an access model built around attorney-client privilege."
+      content="How I designed and shipped a single-tenant case management platform for a law firm on AWS: document automation, a client portal, and an access model built around attorney-client privilege."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="ATA Law Firm, Case Management" />
+    <meta property="og:title" content="Building privileged-access case management for a law firm" />
     <meta
       property="og:description"
-      content="Single-tenant Laravel + Vue case management built around attorney-client privilege. Document automation, secure portal, and AWS architecture."
+      content="Single-tenant Laravel + Vue case management built around attorney-client privilege. Document automation, a client portal, and a deliberately boring AWS architecture."
     />
-    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
+    <meta property="og:url" content="https://chris-dev.netlify.app/case/ata-law-firm.html" />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/ata_firm.png" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish." />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Illustration of a laptop running a case list, surrounded by a filing box, cloud database, padlock shield, courthouse, signed documents and a gavel." />
+    <meta property="article:published_time" content="2026-05-16T01:16:27+08:00" />
+    <meta property="article:modified_time" content="2026-10-27" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
-    <meta name="twitter:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish." />
+    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/imagesv2/ata_firm.png" />
+    <meta name="twitter:image:alt" content="Illustration of a laptop running a case list, surrounded by a filing box, cloud database, padlock shield, courthouse, signed documents and a gavel." />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="author" content="Christopher Vistal" />
-    <meta name="keywords" content="ATA Law Firm, case management, Laravel, Vue.js, Inertia.js, MySQL, AWS, EC2, RDS, S3, document automation, attorney-client privilege, role-based access control, policy-driven authorization, PHP, case study, Christopher Vistal" />
+    <meta name="keywords" content="case management, law firm software, Laravel, Vue.js, Inertia.js, MySQL, AWS, EC2, RDS, S3, document automation, attorney-client privilege, role-based access control, policy-driven authorization, PHP, blog post, Christopher Vistal" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://chris-dev.netlify.app/case/ata-law-firm.html" />
     <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="LLM-readable site summary" />
@@ -44,19 +47,19 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "ATA Law Firm, taking a firm off spreadsheets",
-        "description": "A single-tenant case management platform for a Philippine law firm. Active daily production use by attorneys, paralegals, and clients. Built around an access model that respects attorney-client privilege.",
+        "@type": "BlogPosting",
+        "headline": "Building privileged-access case management for a law firm",
+        "description": "A single-tenant case management platform for a law firm, in daily production use by attorneys, staff, and clients. Built around an access model that respects attorney-client privilege.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
-        "datePublished": "2024-01-01",
-        "dateModified": "2026-10-07",
-        "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
+        "datePublished": "2026-05-16T01:16:27+08:00",
+        "dateModified": "2026-10-27",
+        "image": "https://chris-dev.netlify.app/assets/imagesv2/ata_firm.png",
         "inLanguage": "en",
         "mainEntityOfPage": "https://chris-dev.netlify.app/case/ata-law-firm.html",
         "keywords": "Laravel, Vue.js, Inertia.js, MySQL, AWS, EC2, RDS, S3, PHP, document automation, RBAC, attorney-client privilege, case management",
         "about": [
-          { "@type": "SoftwareApplication", "name": "ATA Law Firm Case Management Platform", "applicationCategory": "BusinessApplication", "operatingSystem": "Linux" }
+          { "@type": "SoftwareApplication", "name": "Case management platform for a law firm", "applicationCategory": "BusinessApplication" }
         ],
         "mentions": [
           { "@type": "SoftwareApplication", "name": "Laravel" },
@@ -67,63 +70,69 @@
           { "@type": "Service", "name": "Amazon EC2" },
           { "@type": "Service", "name": "Amazon RDS" },
           { "@type": "Service", "name": "Amazon S3" },
-          { "@type": "Service", "name": "Amazon SES" },
-          { "@type": "Service", "name": "Cloudflare" },
-          { "@type": "Service", "name": "Nginx" }
+          { "@type": "Service", "name": "Amazon SES" }
         ]
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        "name": "ATA Law Firm Case Management",
-        "description": "Single-tenant Laravel + Vue case management platform for a Philippine law firm. Document automation, role-based access control, AWS deployment.",
-        "codeRepository": "https://github.com/christophervistal25",
-        "programmingLanguage": ["PHP", "JavaScript", "Vue", "SQL"],
-        "runtimePlatform": ["Linux", "Nginx", "PHP-FPM", "AWS EC2"],
-        "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
-        "url": "https://chris-dev.netlify.app/case/ata-law-firm.html"
       }
     </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=Instrument+Sans:ital,wght@0,400..600;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=50" />
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { fontFamily: 'Inter, sans-serif', primaryColor: '#ffffff', primaryTextColor: '#000000', primaryBorderColor: '#000000', lineColor: '#000000', secondaryColor: '#ffffff', tertiaryColor: '#ffffff', background: '#ffffff' } });</script>
+    <link rel="stylesheet" href="../assets/css/site.css?v=71" />
   </head>
-  <body data-density="comfortable">
-    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
-    <main class="case-wrap">
-      <div class="case-bar">
-        <a href="../index.html" class="case-back">← Portfolio</a>
-        <button type="button" class="theme-toggle" aria-pressed="true" aria-label="Switch to light theme">
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="read-progress" aria-hidden="true"><span class="read-progress-fill" id="readProgress"></span></div>
+
+    <header class="topbar">
+      <a class="brand" href="../index.html">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+      <nav class="mainnav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../blog.html" class="is-active">Blog</a></li>
+          <li><a href="../aboutme.html">About</a></li>
+          <li><a href="../resume.html">Résumé</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="topbar-end">
+        <a class="icon-btn" href="https://github.com/christophervistal25"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span class="sr-only">GitHub</span></a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/christophervistal25/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6m0 2.5a2.5 2.5 0 0 1 5 0v3.5"/></svg><span class="sr-only">LinkedIn</span></a>
+        <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
         </button>
       </div>
+    </header>
+
+    <main id="content" class="case-wrap">
+      <a href="../blog.html" class="case-back">← Back to blog</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">Case Study 01 &nbsp;·&nbsp; case management</span>
-        <h1 class="case-h1">ATA Law Firm, taking a firm off spreadsheets</h1>
+        <span class="case-eyebrow">Blog &nbsp;·&nbsp; case management</span>
+        <h1 class="case-h1">Building privileged-access case management for a law firm</h1>
         <p class="case-deck">
-          A single-tenant case management platform for a Philippine law firm.
-          Active daily production use by attorneys, paralegals, and clients.
-          The build forced a real design decision on every page: how do you
-          model <b>attorney-client privilege</b> in a relational schema and a
+          A single-tenant case management platform for a law firm, in daily
+          production use by attorneys, staff, and clients. The build forced a
+          real design decision on every page: how do you model
+          <b>attorney-client privilege</b> in a relational schema and a
           permission system without leaking a single row across cases?
         </p>
         <dl class="case-meta">
           <dt>Role</dt><dd>Sole engineer, architecture, build, deployment</dd>
           <dt>Stack</dt><dd>Laravel, Vue.js (Inertia.js), MySQL, Tailwind CSS, AWS (EC2, RDS, S3)</dd>
-          <dt>Duration</dt><dd>~4 months initial build, ongoing maintenance</dd>
-          <dt>Status</dt><dd><a href="https://atafirm.ph" target="_blank" rel="noopener">atafirm.ph</a>, live, in daily use</dd>
+          <dt>Status</dt><dd>In daily production use, with ongoing maintenance</dd>
         </dl>
+        <p class="case-dates">Published <time datetime="2026-05-16">2026-05-16</time> · Updated <time datetime="2026-10-27">2026-10-27</time></p>
       </header>
-      <div class="case-hero"><img src="../assets/imagesv2/ata_firm.png" alt="ATA Law Firm case management platform" loading="eager" /></div>
+      <figure class="case-hero">
+        <img src="../assets/imagesv2/ata_firm.png" alt="Illustration of a laptop running a case list, surrounded by a filing box, cloud database, padlock shield, courthouse, signed documents and a gavel." width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption>Illustration of the platform's scope: cases, documents, storage and access control in one system.</figcaption>
+      </figure>
+      <!-- TODO(owner): this hero is an illustration, not a product screenshot.
+           If the firm allows it, add a real (anonymized) screenshot of the case
+           detail page with its per-case timeline, with client names blurred. -->
 
 
       <article class="case-prose">
@@ -169,37 +178,17 @@
           </li>
         </ul>
 
-        <h2>Architecture in one picture</h2>
-        <div class="case-diagram">
-        <pre class="mermaid">
-flowchart TB
-    cf["Cloudflare DNS"]
-    nginx["Nginx (EC2)\nTLS, gzip, rate limits"]
-    laravel["Laravel monolith (PHP-FPM)\nInertia.js → Vue SPA pages\nPolicy-driven authorization\nDocument automation pipeline\nQueue worker (database driver)"]
-    mysql["MySQL RDS\n(private)"]
-    s3["S3\ndocuments"]
-    ses["SES\n(mail)"]
-
-    cf --> nginx --> laravel
-    laravel --> mysql
-    laravel --> s3
-    laravel --> ses
-
-    style cf fill:#ffffff,stroke:#000000,color:#000000
-    style nginx fill:#ffffff,stroke:#000000,color:#000000
-    style laravel fill:#ffffff,stroke:#000000,color:#000000
-    style mysql fill:#ffffff,stroke:#000000,color:#000000
-    style s3 fill:#ffffff,stroke:#000000,color:#000000
-    style ses fill:#ffffff,stroke:#000000,color:#000000
-        </pre>
-          <div class="case-diagram-caption">single-tenant AWS layout</div>
-        </div>
+        <h2>A deliberately boring architecture</h2>
         <p>
-          Single VPC, two subnets, one Nginx-fronted EC2 running PHP-FPM, one
-          RDS instance in the private subnet, S3 for documents with
-          server-side encryption, SES for transactional email. No
-          microservices, no Kubernetes, no Redis cluster. A monolith was the
-          right answer for a sole engineer running a firm-sized workload.
+          One Laravel monolith serving Vue pages through Inertia.js, with a
+          queue worker for document generation. A managed MySQL database that
+          is not reachable from the public internet. Object storage for
+          documents, encrypted at rest. A transactional email service. All of
+          it on AWS, all of it single-tenant.
+        </p>
+        <p>
+          No microservices, no Kubernetes, no Redis cluster. A monolith was
+          the right answer for a sole engineer running a firm-sized workload.
         </p>
 
         <h2>The document automation engine</h2>
@@ -216,26 +205,18 @@ flowchart TB
         </p>
         <h3>Templates as data, not as files</h3>
         <p>
-          Templates live in the database with their placeholder map, version,
-          and an immutable hash. When an attorney creates a new template,
-          we don't overwrite the old one, we add a new version row. Every
-          generated document records the exact template version it was
-          rendered from. If we ever need to ask <i>"what did we send last
-          June?"</i>, the answer is reproducible.
+          Templates are stored as versioned records. When an attorney edits a
+          template, the old version is not overwritten, a new version is
+          added. Every generated document records the exact template version
+          it was rendered from. If we ever need to ask <i>"what did we send
+          last June?"</i>, the answer is reproducible.
         </p>
-        <pre><code>// app/Models/DocumentTemplate.php
-public function renderFor(Case $case, array $overrides = []): string
-{
-    $context = array_merge($case->toTemplateContext(), $overrides);
-
-    return $this->compile($this->body, $context);
-}
-
-protected function compile(string $body, array $context): string
+        <pre><code>// Illustrative sketch, names simplified
+function renderTemplate(string $body, array $context): string
 {
     return preg_replace_callback(
         '/\{\{\s*([a-z0-9_.]+)\s*\}\}/i',
-        fn ($m) => Arr::get($context, $m[1], '«missing:'.$m[1].'»'),
+        fn ($m) =&gt; Arr::get($context, $m[1], '«missing:'.$m[1].'»'),
         $body
     );
 }</code></pre>
@@ -248,18 +229,17 @@ protected function compile(string $body, array $context): string
         <h3>Generation pipeline</h3>
         <p>
           When a document is requested, the request is queued, rendered to
-          DOCX, then archived to S3 with a content-addressed key. The case
-          record holds a foreign key to the generated artifact, not the
-          artifact itself. Documents become first-class entities with their
-          own ACL, audit trail, and download history.
+          DOCX, then archived to object storage. The case references the
+          generated artifact rather than embedding it. Documents become
+          first-class entities with their own access rules, audit trail, and
+          download history.
         </p>
 
         <h2>Access control under attorney-client privilege</h2>
         <p>
           The interesting problem on this build wasn't the documents, it was
-          the access model. The naïve approach in Laravel is to put a
-          <code>user_id</code> column on everything and call it a day. That
-          model is wrong for a law firm.
+          the access model. The naïve approach is to stamp an owner on every
+          row and call it a day. That model is wrong for a law firm.
         </p>
         <p>
           A case has multiple people legitimately attached to it: a lead
@@ -271,29 +251,30 @@ protected function compile(string $body, array $context): string
         </p>
         <h3>Membership over ownership</h3>
         <p>
-          I built it around a <code>case_members</code> pivot table with a
-          role enum. Every read query that touches case-scoped data joins
-          through it. The Laravel policy layer enforces the same rule at the
-          record level. The two enforcement points back each other up, if
-          one is bypassed, the other still holds the line.
+          I built it around case membership: people are attached to a case
+          with a role, and every read query that touches case-scoped data is
+          constrained by that membership. The authorization policy layer
+          enforces the same rule again at the record level. The two
+          enforcement points back each other up, if one is bypassed, the
+          other still holds the line.
         </p>
-        <pre><code>// app/Models/Concerns/ScopedByCaseMembership.php
-public function scopeVisibleTo(Builder $q, User $user): Builder
+        <pre><code>// Illustrative sketch, identifiers renamed
+// 1. Query level: only rows from matters the user belongs to.
+public function scopeAccessibleBy(Builder $query, User $user): Builder
 {
-    return $q->whereHas('case.members', fn ($m) => $m->where('user_id', $user->id));
+    return $query-&gt;whereHas('matter.participants', fn ($p) =&gt; $p-&gt;whereKey($user-&gt;getKey()));
 }
 
-// app/Policies/CaseDocumentPolicy.php
-public function view(User $user, CaseDocument $doc): bool
+// 2. Record level: the same rule, checked again.
+public function view(User $user, Document $document): bool
 {
-    return $doc-&gt;case-&gt;members-&gt;contains('user_id', $user-&gt;id);
+    return $document-&gt;matter-&gt;participants-&gt;contains($user);
 }</code></pre>
         <p>
-          Every search endpoint, every list endpoint, every report endpoint
-          passes through <code>visibleTo($user)</code>. There is no global
-          scope on the model, global scopes are easy to forget when writing
-          a raw query during a hot fix. An explicit scope on every read is
-          ugly and safe. I chose ugly and safe.
+          Every search, list, and report path applies the membership scope
+          explicitly. There is no global scope on the model, global scopes are
+          easy to forget when writing a raw query during a hot fix. An explicit
+          scope on every read is ugly and safe. I chose ugly and safe.
         </p>
 
         <div class="case-callout">
@@ -307,10 +288,9 @@ public function view(User $user, CaseDocument $doc): bool
         <p>
           The client portal isn't a smaller version of the attorney UI, it
           is a different surface that happens to read from the same
-          database. Clients authenticate against a separate guard. The
-          policies on every model return a strict <code>false</code> by
-          default for the <code>client</code> guard unless the model is
-          explicitly flagged as client-visible.
+          database. Clients sign in through a separate authentication path,
+          and their access is deny-by-default: a record is visible to a
+          client only if it has been explicitly marked as client-visible.
         </p>
         <p>
           Whitelisting visibility, not blacklisting it, was the design
@@ -319,7 +299,7 @@ public function view(User $user, CaseDocument $doc): bool
         </p>
 
         <h2>AWS infrastructure decisions</h2>
-        <h3>Why a monolith on one EC2 instance</h3>
+        <h3>Why a monolith on a single server</h3>
         <p>
           Tempting alternative architectures for a 2026 portfolio piece:
           ECS Fargate, Lambda for document generation, ElastiCache, a queue
@@ -327,34 +307,32 @@ public function view(User $user, CaseDocument $doc): bool
           None of them were the right call here.
         </p>
         <p>
-          The firm's workload is dominated by maybe a dozen concurrent users
-          and a handful of background document generations per day. A
-          single appropriately-sized EC2 instance handles it with headroom.
-          ECS would have added control-plane operations I did not want to
-          run alone. Lambda would have added cold-start variance on document
-          generation that the firm would feel. The monolith is boring; the
-          monolith ships.
+          The firm's workload is a small number of concurrent users and a
+          modest volume of background document generation. A single
+          appropriately-sized server handles it with headroom. ECS would have
+          added control-plane operations I did not want to run alone. Lambda
+          would have added cold-start variance on document generation that
+          the firm would feel. The monolith is boring; the monolith ships.
         </p>
         <h3>What I did invest in</h3>
         <ul>
           <li>
-            <b>RDS automated backups</b> with point-in-time recovery
-            enabled. The cost is small. The peace of mind is large.
+            <b>Automated database backups</b> with point-in-time recovery.
+            The cost is small. The peace of mind is large.
           </li>
           <li>
-            <b>S3 versioning</b> on the documents bucket. A deleted document
-            is recoverable for ninety days. An overwritten document is
-            recoverable.
+            <b>Versioned document storage.</b> A deleted or overwritten
+            document is recoverable.
           </li>
           <li>
-            <b>SSM Parameter Store for secrets.</b> Nothing sensitive lives
-            in the <code>.env</code> on disk. The deploy script pulls
-            secrets at boot.
+            <b>Secrets off the disk.</b> Nothing sensitive lives in a config
+            file on the server or in the repository. Secrets come from a
+            managed secret store at deploy time.
           </li>
           <li>
-            <b>Per-case S3 prefix</b> with bucket policies that scope object
-            keys to case-membership claims in pre-signed URLs. A pre-signed
-            URL leak still cannot grant access to another case's documents.
+            <b>Download links scoped to one case.</b> Signed download links
+            are issued only after the membership check and only cover that
+            case's documents. A leaked link still cannot reach another case.
           </li>
         </ul>
 
@@ -363,32 +341,60 @@ public function view(User $user, CaseDocument $doc): bool
         <p>
           I shipped the first version of templates editable as freeform
           rich text. Attorneys promptly added handcrafted placeholder syntax
-          like <code>[CLIENT NAME]</code> alongside the real
-          <code>{{ client.name }}</code> tokens. Renders looked correct
-          until they didn't. The fix was a template-authoring UI that
-          inserts placeholders as visual chips, not as raw text. Templates
-          had become software, they needed an authoring environment, not a
-          text box.
+          like <code>[CLIENT NAME]</code> alongside the real placeholder
+          tokens. Renders looked correct until they didn't. The fix was a
+          template-authoring UI that inserts placeholders as visual chips, not
+          as raw text. Templates had become software, they needed an
+          authoring environment, not a text box.
         </p>
-        <h3>Mobile portal usage was double what I assumed</h3>
+        <h3>Mobile portal usage was far higher than I assumed</h3>
         <p>
           The client-side traffic skewed heavily toward phones. The original
           portal was responsive but designed for the desktop case detail
-          first. After the first month I rebuilt the mobile portal around a
+          first. Early after launch I rebuilt the mobile portal around a
           short single-column flow with case status, latest documents, and a
           message-attorney button, three taps from the home screen to
           anything that mattered.
         </p>
         <h3>Document download spikes</h3>
         <p>
-          The firm occasionally ran end-of-month exports that pulled a
-          burst of large documents from S3. The first version streamed them
-          through the Laravel app. After watching the EC2 instance sweat,
-          I moved downloads to <b>pre-signed S3 URLs</b> with short TTLs
-          scoped to the requesting user's case membership. The app issues
-          the URL, S3 serves the bytes. The app's job is authorization, not
-          file delivery.
+          Periodic bulk exports pulled a burst of large documents at once.
+          The first version streamed them through the Laravel app. After
+          watching the app server sweat, I moved downloads to
+          <b>short-lived signed storage URLs</b>, issued only after the
+          requesting user's case membership is checked. The app issues the
+          URL, object storage serves the bytes. The app's job is
+          authorization, not file delivery.
         </p>
+
+        <h2 id="design-decisions">Design decisions</h2>
+        <p>
+          The interface choices on this build came straight out of the
+          constraints and the surprises above.
+        </p>
+        <ul class="decisions">
+          <li>
+            <h3>The portal is its own surface</h3>
+            <p>Clients get a separate sign-in and a separate UI, not a trimmed attorney screen. Nothing is visible to them unless a record is explicitly marked client-visible.</p>
+          </li>
+          <li>
+            <h3>Phone first for clients</h3>
+            <p>Once usage showed clients mostly on phones, the portal became one short column: case status, latest documents, and a message-attorney button, three taps from home.</p>
+          </li>
+          <li>
+            <h3>Placeholders as chips</h3>
+            <p>Attorneys typed their own <code>[CLIENT NAME]</code> markers into rich text. The template editor now inserts placeholders as visual chips, so a template cannot hold a token the engine does not know.</p>
+          </li>
+          <li>
+            <h3>Loud failures on documents</h3>
+            <p>A missing field renders as <code>«missing»</code> instead of a blank. A broken-looking document gets caught in review; a quietly empty one gets filed.</p>
+          </li>
+        </ul>
+        <!-- TODO(owner): a before/after pair would help here, if the firm allows it:
+             (1) the original desktop-first portal case detail on a phone, next to
+             (2) the rebuilt single-column portal (status, latest documents,
+             message-attorney button). Optionally (3) the template editor showing
+             placeholder chips. Blur client names and case numbers. -->
 
         <h2>What it does today</h2>
         <ul>
@@ -412,22 +418,20 @@ public function view(User $user, CaseDocument $doc): bool
             tables without me. Cheap leverage I left on the table.
           </li>
           <li>
-            <b>Horizon for the queue.</b> The database queue driver is fine
-            at this scale, but I would not bet on it scaling with the firm.
+            <b>Horizon for the queue.</b> The simple queue setup is fine at
+            this scale, but I would not bet on it scaling with the firm.
             Redis plus Horizon gives me visibility and back-pressure I
             currently squint at logs to find.
           </li>
           <li>
             <b>Tenant-ready data model on day one.</b> The schema is
-            single-tenant by design. If a sister firm ever wants the same
-            platform, I would re-derive the <code>case_members</code> model
-            with a <code>tenant_id</code> seam up front rather than retrofit
-            it.
+            single-tenant by design. If another firm ever wants the same
+            platform, I would re-derive the membership model with a tenant
+            boundary up front rather than retrofit it.
           </li>
           <li>
-            <b>An export endpoint, properly.</b> The end-of-month export
-            story still feels like a feature waiting for a real
-            specification.
+            <b>An export feature, properly.</b> The bulk export story still
+            feels like a feature waiting for a real specification.
           </li>
         </ul>
 
@@ -449,13 +453,32 @@ public function view(User $user, CaseDocument $doc): bool
           <a href="mailto:vistalchris@gmail.com?subject=Project inquiry" class="btn btn-primary">Start a conversation</a>
         </div>
 
-        <div class="case-nextprev">
-          <a href="./e-pds.html">E-PDS →</a>
-          <a href="./offline-transcriber.html">Offline AI Transcriber →</a>
-        </div>
+        <nav class="case-nextprev" aria-label="Blog posts">
+          <span></span>
+          <a class="all" href="../blog.html">Back to blog</a>
+          <a class="next" href="./e-pds.html">Next post: Digitizing paper personnel records →</a>
+        </nav>
       </article>
     </main>
-      <script>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <nav aria-label="Footer">
+          <a href="../index.html">Portfolio</a>
+          <a href="../aboutme.html">About</a>
+          <a href="https://github.com/christophervistal25">GitHub</a>
+          <a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+          <a href="https://www.youtube.com/@tophertips3387">YouTube</a>
+          <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+        </nav>
+        <div class="footer-meta">
+          <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
+          <span class="credit">Website by <b>Christopher Vistal</b></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
       (() => {
         const bar = document.getElementById("readProgress");
         const upd = () => {

@@ -5,35 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          document.documentElement.setAttribute("data-theme", stored === "light" || stored === "dark" ? stored : "dark");
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
+        var theme = null;
+        try { theme = localStorage.getItem("theme"); } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
+        document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
-    <title>E-PDS, Civic Tech for a Province · Christopher Vistal</title>
+    <title>Digitizing paper personnel records and moving a government IT team onto Git · Christopher Vistal</title>
     <meta
       name="description"
-      content="Building the Province of Surigao del Sur's civil servant records platform and tourism analytics dashboard, digitizing 500+ employee 201 files and modernizing the team's dev workflow along the way."
+      content="Replacing paper personnel files and spreadsheet trackers with a version-tracked records platform and a small analytics dashboard for a provincial government office, and moving its IT team from FTP deploys to Git and code review."
     />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="E-PDS, Civic Tech for a Province" />
-    <meta property="og:description" content="Records platform + tourism dashboard for the Province of Surigao del Sur. Laravel, MySQL, Vue.js, on-prem." />
-    <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
+    <meta property="og:title" content="Digitizing paper personnel records and moving a government IT team onto Git" />
+    <meta property="og:description" content="Version-tracked personnel records, a glanceable analytics dashboard, and a Git workflow for a provincial government office. Laravel, MySQL, Vue.js, on-prem." />
+    <meta property="og:url" content="https://chris-dev.netlify.app/case/e-pds.html" />
+    <meta property="og:image" content="https://chris-dev.netlify.app/assets/imagesv2/e_pds.png" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish." />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Illustration of a filing cabinet, staff figures, binders and a records form connected to a regional map, charts, a branching version-control icon and a laptop dashboard." />
+    <meta property="article:published_time" content="2026-05-16T01:16:27+08:00" />
+    <meta property="article:modified_time" content="2026-10-27" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png" />
-    <meta name="twitter:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish." />
+    <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/imagesv2/e_pds.png" />
+    <meta name="twitter:image:alt" content="Illustration of a filing cabinet, staff figures, binders and a records form connected to a regional map, charts, a branching version-control icon and a laptop dashboard." />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="author" content="Christopher Vistal" />
-    <meta name="keywords" content="E-PDS, civic tech, provincial records, tourism analytics, Laravel, Vue.js, MySQL, SQL Server, on-premise, Philippines, LGU, civil servant 201 files, PHP, case study, Christopher Vistal" />
+    <meta name="keywords" content="civic tech, government records, personnel records, analytics dashboard, Laravel, Vue.js, MySQL, SQL Server, on-premise, version-tracked records, Git workflow, PHP, blog post, Christopher Vistal" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
     <link rel="canonical" href="https://chris-dev.netlify.app/case/e-pds.html" />
     <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="LLM-readable site summary" />
@@ -41,19 +44,19 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "E-PDS, civil servant records, and a workflow upgrade",
-        "description": "Records platform + tourism analytics dashboard for the Province of Surigao del Sur. Digitized 500+ civil servant 201 files and modernized the team's dev workflow along the way.",
+        "@type": "BlogPosting",
+        "headline": "Digitizing paper personnel records and moving a government IT team onto Git",
+        "description": "A version-tracked personnel records platform and a small analytics dashboard replacing paper files and spreadsheets in a provincial government office, plus moving its IT team from FTP deploys to Git and code review.",
         "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
         "publisher": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
-        "datePublished": "2024-01-01",
-        "dateModified": "2026-10-07",
-        "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
+        "datePublished": "2026-05-16T01:16:27+08:00",
+        "dateModified": "2026-10-27",
+        "image": "https://chris-dev.netlify.app/assets/imagesv2/e_pds.png",
         "inLanguage": "en",
         "mainEntityOfPage": "https://chris-dev.netlify.app/case/e-pds.html",
-        "keywords": "Laravel, Vue.js, MySQL, SQL Server, civic tech, LGU, civil servant records, tourism analytics, on-premise, PHP, government",
+        "keywords": "Laravel, Vue.js, MySQL, SQL Server, civic tech, government records, personnel records, analytics dashboard, on-premise, PHP, Git workflow",
         "about": [
-          { "@type": "SoftwareApplication", "name": "E-PDS Records and Tourism Platform", "applicationCategory": "GovernmentApplication", "operatingSystem": "Linux" }
+          { "@type": "SoftwareApplication", "name": "Government personnel records platform", "applicationCategory": "GovernmentApplication" }
         ],
         "mentions": [
           { "@type": "SoftwareApplication", "name": "Laravel" },
@@ -66,78 +69,88 @@
         ]
       }
     </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        "name": "E-PDS Provincial Records Platform",
-        "description": "Civil servant records platform and tourism analytics dashboard for the Province of Surigao del Sur, Philippines. Laravel + Vue.js on on-prem infrastructure.",
-        "codeRepository": "https://github.com/christophervistal25",
-        "programmingLanguage": ["PHP", "JavaScript", "Vue", "SQL", "Java"],
-        "runtimePlatform": ["Linux", "Nginx", "PHP-FPM"],
-        "author": { "@type": "Person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
-        "url": "https://chris-dev.netlify.app/case/e-pds.html"
-      }
-    </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&family=Instrument+Sans:wght@400..600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../assets/css/site.css?v=50" />
+    <link rel="stylesheet" href="../assets/css/site.css?v=71" />
   </head>
-  <body data-density="comfortable">
-    <div class="read-progress"><span class="read-progress-fill" id="readProgress"></span></div>
-    <main class="case-wrap">
-      <div class="case-bar">
-        <a href="../index.html" class="case-back">← Portfolio</a>
-        <button type="button" class="theme-toggle" aria-pressed="true" aria-label="Switch to light theme">
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="read-progress" aria-hidden="true"><span class="read-progress-fill" id="readProgress"></span></div>
+
+    <header class="topbar">
+      <a class="brand" href="../index.html">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+      <nav class="mainnav" aria-label="Main">
+        <ul>
+          <li><a href="../index.html#work">Work</a></li>
+          <li><a href="../blog.html" class="is-active">Blog</a></li>
+          <li><a href="../aboutme.html">About</a></li>
+          <li><a href="../resume.html">Résumé</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="topbar-end">
+        <a class="icon-btn" href="https://github.com/christophervistal25"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span class="sr-only">GitHub</span></a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/christophervistal25/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6m0 2.5a2.5 2.5 0 0 1 5 0v3.5"/></svg><span class="sr-only">LinkedIn</span></a>
+        <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
         </button>
       </div>
+    </header>
+
+    <main id="content" class="case-wrap">
+      <a href="../blog.html" class="case-back">← Back to blog</a>
 
       <header class="case-frontmatter">
-        <span class="case-eyebrow">Case Study 02 &nbsp;·&nbsp; civic tech</span>
-        <h1 class="case-h1">E-PDS, civil servant records, and a workflow upgrade</h1>
+        <span class="case-eyebrow">Blog &nbsp;·&nbsp; civic tech</span>
+        <h1 class="case-h1">Digitizing paper personnel records and moving a government IT team onto Git</h1>
         <p class="case-deck">
-          The Province of Surigao del Sur ran on filing cabinets and Excel
-          sheets. Over three years I built the platform that replaced them
-          and, along the way, brought the IT team onto <b>Git, code
-          review, and modern deployment</b>. The systems and the workflow
-          are both still running.
+          A provincial government office ran its personnel records on
+          filing cabinets and Excel sheets. I built the platform that
+          replaced them and, along the way, brought the IT team onto
+          <b>Git, code review, and modern deployment</b>. The systems and
+          the workflow are both still running.
         </p>
         <dl class="case-meta">
-          <dt>Role</dt><dd>Software engineer, Province of Surigao del Sur</dd>
+          <dt>Role</dt><dd>Software engineer on the in-house IT team</dd>
           <dt>Stack</dt><dd>Laravel, Vue.js, MySQL / SQL Server, Java (Android), Nginx</dd>
-          <dt>Duration</dt><dd>2021 – 2024</dd>
-          <dt>Scope</dt><dd>500+ civil servant 201 files digitized, ongoing tourism analytics</dd>
+          <dt>Scope</dt><dd>Personnel records platform, visitor analytics dashboard, internal tools</dd>
         </dl>
+        <p class="case-dates">Published <time datetime="2026-05-16">2026-05-16</time> · Updated <time datetime="2026-10-27">2026-10-27</time></p>
       </header>
-      <div class="case-hero"><img src="../assets/imagesv2/e_pds.png" alt="E-PDS provincial civil-servant records platform" loading="eager" /></div>
+      <figure class="case-hero">
+        <img src="../assets/imagesv2/e_pds.png" alt="Illustration of a filing cabinet, staff figures, binders and a records form connected to a regional map, charts, a branching version-control icon and a laptop dashboard." width="1536" height="1024" loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption>Illustration of the move from cabinets and binders to digital records, analytics charts and version control.</figcaption>
+      </figure>
+      <!-- TODO(owner): this hero is an illustration, not a product screenshot.
+           Add a real screenshot of the analytics dashboard (one of its three
+           views) or a record page, with personal data blurred. -->
 
 
       <article class="case-prose">
         <h2>The starting line</h2>
         <p>
-          Provincial HR managed civil servants the way most LGUs in the
-          Philippines do, paper 201 files in cabinets, plus Excel sheets
-          tracking deductions, leaves, and assignments. Reports for the
-          Civil Service Commission and the Commission on Audit were
-          handcrafted every cycle. Tourism data came in as
-          field-officer-typed forms and was summarized by counting rows.
+          HR managed civil servants the way many local governments do,
+          paper personnel files in cabinets, plus Excel sheets tracking
+          deductions, leaves, and assignments. Reports for oversight
+          agencies were handcrafted every cycle. Visitor-arrival data came
+          in as forms typed up by field officers and was summarized by
+          counting rows.
         </p>
         <p>
-          The brief from the office: get the records and the reports
-          off paper, and make tourism numbers something the planning
-          office could look at without a meeting.
+          The brief: get the records and the reports off paper, and make
+          visitor numbers something planners could look at without a
+          meeting.
         </p>
 
         <h2>Constraints</h2>
         <ul>
           <li>
             <b>On-premise hosting.</b> Government data, no cloud. Everything
-            ran on provincial servers under the IT office.
+            ran on the organization's own servers.
           </li>
           <li>
             <b>Mixed database reality.</b> Existing legacy applications
@@ -146,8 +159,8 @@
           </li>
           <li>
             <b>Mixed audience.</b> HR staff who had never used a CRUD app.
-            Tourism officers in the field with patchy connectivity. Planning
-            officers who wanted clean charts.
+            Field officers with patchy connectivity. Planners who wanted
+            clean charts.
           </li>
           <li>
             <b>A team learning as we built.</b> Most of my colleagues had
@@ -157,14 +170,14 @@
         </ul>
 
         <h2>The platform</h2>
-        <h3>E-PDS, digitizing the 201 file</h3>
+        <h3>Digitizing the personnel file</h3>
         <p>
-          The first deliverable was a digital Personal Data Sheet. The
-          paper PDS is a multi-page CSC form with around 200 fields, family
-          composition, work history, eligibility, training. I modeled it
-          carefully, not as one giant table, but as a personal-record
-          aggregate with relations for family members, employment, civil
-          service eligibilities, learning and development, and references.
+          The first deliverable was a digital personal data sheet. The
+          paper version is a long, multi-page form with a couple of hundred
+          fields, many of them repeating sections like family, work history
+          and training. I modeled it carefully, not as one giant table, but
+          as a core personal record with separate related records for each
+          repeating section of the form.
         </p>
         <p>
           Critically, every change to a record was version-tracked. A
@@ -173,19 +186,18 @@
           made the data trustworthy enough for HR to retire the cabinet.
         </p>
 
-        <h3>Tourism analytics dashboard</h3>
+        <h3>Visitor analytics dashboard</h3>
         <p>
-          Tourism officers collected visitor arrivals at municipal entry
-          points. The old workflow ended in a spreadsheet attached to an
-          email. The new workflow ended in a Vue.js dashboard pulling
-          aggregates straight from the database, sliced by municipality,
-          month, country of origin, and purpose of visit.
+          Field officers collected visitor arrivals at entry points. The
+          old workflow ended in a spreadsheet attached to an email. The new
+          workflow ended in a Vue.js dashboard pulling aggregates straight
+          from the database, sliced by area, month, origin, and purpose of
+          visit.
         </p>
         <p>
           The dashboard was deliberately small. Three views, no filters
-          beyond date range and municipality, and a CSV export. Planning
-          officers wanted a thing they could glance at, not a BI tool to
-          learn.
+          beyond date range and area, and a CSV export. Planners wanted a
+          thing they could glance at, not a BI tool to learn.
         </p>
 
         <h3>Internal tooling suite</h3>
@@ -195,15 +207,14 @@
         </p>
         <ul>
           <li>
-            <b>GSIS deduction processor</b>, generated the monthly
-            insurance deduction file the GSIS office consumed. The old
-            workflow took half a day. The new one is a button.
+            <b>Insurance deduction file generator</b>, produced the
+            monthly deduction file a government insurance agency consumes.
+            The old workflow took half a day. The new one is a button.
           </li>
           <li>
-            <b>BIR tax reporting integration</b>, produced the report
-            files required by the Bureau of Internal Revenue in their
-            exact expected format. The fragile part was always the format,
-            not the math.
+            <b>Tax reporting export</b>, produced the report files the
+            national tax authority requires, in their exact expected
+            format. The fragile part was always the format, not the math.
           </li>
           <li>
             <b>SMS notification service</b>, small Laravel service that
@@ -211,7 +222,7 @@
             channel field officers actually read.
           </li>
           <li>
-            <b>Android employee app for 201 files</b>, Java app letting
+            <b>Android employee app for personnel files</b>, Java app letting
             employees view their own record, request edits, and see leave
             balances. Built specifically so employees did not have to walk
             to the HR office for everything.
@@ -241,7 +252,7 @@
         </p>
         <p>
           When I joined, the production deployment story was: copy files
-          via FileZilla, hope nothing on the server changed. There was no
+          over FTP, hope nothing on the server changed. There was no
           version control of substance. A bug fix could overwrite a
           colleague's in-flight change.
         </p>
@@ -253,12 +264,40 @@
           Boring. Transformational.
         </div>
         <p>
-          I paired with three of my colleagues through real changes, not
+          I paired with colleagues through real changes, not
           tutorial code, until they were comfortable opening pull
           requests and rolling back failed deployments. By the time I left
           for full-time freelance work, the team was operating their own
           workflow without me in the loop.
         </p>
+
+        <h2 id="design-decisions">Design decisions</h2>
+        <p>
+          Three audiences, three different needs: HR staff new to web apps,
+          field officers on patchy connections, and planners who wanted
+          clean charts.
+        </p>
+        <ul class="decisions">
+          <li>
+            <h3>The form became a record, not a table</h3>
+            <p>The long paper form was split into a core personal record with a related record for each repeating section, instead of one giant table.</p>
+          </li>
+          <li>
+            <h3>Changes append, never overwrite</h3>
+            <p>Every edit is version-tracked. That visible history is what made HR trust the system enough to retire the cabinet.</p>
+          </li>
+          <li>
+            <h3>A dashboard to glance at</h3>
+            <p>Three views, filters only for date range and area, and a CSV export. Planners wanted a glance, not a BI tool to learn.</p>
+          </li>
+          <li>
+            <h3>Meet people on their channel</h3>
+            <p>SMS for payroll and leave notices because field officers read SMS, and an Android app so employees could check their own personnel file without walking to HR.</p>
+          </li>
+        </ul>
+        <!-- TODO(owner): a before/after pair would help here: (1) a photo of a
+             blank paper form or the old Excel tracker, next to (2) the same
+             record in the new platform. Blur any personal data. -->
 
         <h2>What I would do differently</h2>
         <ul>
@@ -286,7 +325,7 @@
         <h2>What it does today</h2>
         <p>
           The records platform, the dashboard, and the internal tools are
-          still in production use across provincial offices. The workflow
+          still in production use across the organization's offices. The workflow
           changes, Git, pull requests, code review, outlived my time on
           the team. That second outcome matters more in the long run than
           any one feature I shipped.
@@ -301,13 +340,32 @@
           <a href="mailto:vistalchris@gmail.com?subject=Civic-tech project" class="btn btn-primary">Start a conversation</a>
         </div>
 
-        <div class="case-nextprev">
-          <a href="./ata-law-firm.html">← ATA Law Firm</a>
-          <a href="./offline-transcriber.html">Offline AI Transcriber →</a>
-        </div>
+        <nav class="case-nextprev" aria-label="Blog posts">
+          <a class="prev" href="./ata-law-firm.html">← Previous post: Privileged-access case management</a>
+          <a class="all" href="../blog.html">Back to blog</a>
+          <a class="next" href="./offline-transcriber.html">Next post: Transcribing confidential recordings on-device →</a>
+        </nav>
       </article>
     </main>
-      <script>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <nav aria-label="Footer">
+          <a href="../index.html">Portfolio</a>
+          <a href="../aboutme.html">About</a>
+          <a href="https://github.com/christophervistal25">GitHub</a>
+          <a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+          <a href="https://www.youtube.com/@tophertips3387">YouTube</a>
+          <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+        </nav>
+        <div class="footer-meta">
+          <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
+          <span class="credit">Website by <b>Christopher Vistal</b></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
       (() => {
         const bar = document.getElementById("readProgress");
         const upd = () => {

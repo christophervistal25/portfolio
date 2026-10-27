@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var theme = null;
+  try { theme = localStorage.getItem("theme"); } catch (e) {}
+  if (theme !== "light" && theme !== "dark") {
+    theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  document.documentElement.setAttribute("data-theme", theme);
+})();
+</script>
+<title>Blog, Christopher Vistal</title>
+<meta name="description" content="Posts by software engineer Christopher Vistal on how each system was designed, what broke, and what I would change. Laravel, Vue.js, Go and on-device AI.">
+<meta name="author" content="Christopher Vistal">
+<meta name="keywords" content="Christopher Vistal, blog, software engineering blog, Laravel, PHP, Vue.js, Inertia.js, Go, AWS, MySQL, SQL Server, Whisper, CTranslate2, case management, records platform, on-device AI, university platform">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://chris-dev.netlify.app/blog.html">
+<link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="LLM-readable site summary">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Christopher Vistal">
+<meta property="og:title" content="Blog, Christopher Vistal">
+<meta property="og:description" content="How each system was designed, what broke, and what I would change, plus video on YouTube.">
+<meta property="og:url" content="https://chris-dev.netlify.app/blog.html">
+<meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog, Christopher Vistal">
+<meta name="twitter:description" content="How each system was designed, what broke, and what I would change, plus video on YouTube.">
+<meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png">
+<meta name="twitter:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://chris-dev.netlify.app/blog.html#blog",
+  "url": "https://chris-dev.netlify.app/blog.html",
+  "name": "Blog, Christopher Vistal",
+  "description": "Posts on how each system was designed, what broke, and what I would change, plus video on YouTube.",
+  "inLanguage": "en",
+  "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
+  "author": { "@type": "Person", "@id": "https://chris-dev.netlify.app/#person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
+  "publisher": { "@type": "Person", "@id": "https://chris-dev.netlify.app/#person", "name": "Christopher Vistal", "url": "https://chris-dev.netlify.app/" },
+  "sameAs": ["https://www.youtube.com/@tophertips3387"],
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Building privileged-access case management for a law firm",
+      "description": "A single-tenant case management platform for a law firm, in daily production use by attorneys, staff, and clients. Built around an access model that respects attorney-client privilege.",
+      "url": "https://chris-dev.netlify.app/case/ata-law-firm.html",
+      "mainEntityOfPage": "https://chris-dev.netlify.app/case/ata-law-firm.html",
+      "image": "https://chris-dev.netlify.app/assets/imagesv2/ata_firm.png",
+      "datePublished": "2026-05-16T01:16:27+08:00",
+      "dateModified": "2026-10-27",
+      "inLanguage": "en",
+      "author": { "@type": "Person", "@id": "https://chris-dev.netlify.app/#person", "name": "Christopher Vistal" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Digitizing paper personnel records and moving a government IT team onto Git",
+      "description": "A version-tracked personnel records platform and a small analytics dashboard replacing paper files and spreadsheets in a provincial government office, plus moving its IT team from FTP deploys to Git and code review.",
+      "url": "https://chris-dev.netlify.app/case/e-pds.html",
+      "mainEntityOfPage": "https://chris-dev.netlify.app/case/e-pds.html",
+      "image": "https://chris-dev.netlify.app/assets/imagesv2/e_pds.png",
+      "datePublished": "2026-05-16T01:16:27+08:00",
+      "dateModified": "2026-10-27",
+      "inLanguage": "en",
+      "author": { "@type": "Person", "@id": "https://chris-dev.netlify.app/#person", "name": "Christopher Vistal" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Transcribing confidential recordings entirely on-device",
+      "description": "A local-first speech-to-text tool built with CTranslate2 and Whisper. Zero cloud dependency, real-time waveform feedback, built for confidential session recordings that cannot leave the machine.",
+      "url": "https://chris-dev.netlify.app/case/offline-transcriber.html",
+      "mainEntityOfPage": "https://chris-dev.netlify.app/case/offline-transcriber.html",
+      "image": "https://chris-dev.netlify.app/assets/imagesv2/transcriber.png",
+      "datePublished": "2026-05-16T01:16:27+08:00",
+      "dateModified": "2026-10-27",
+      "inLanguage": "en",
+      "author": { "@type": "Person", "@id": "https://chris-dev.netlify.app/#person", "name": "Christopher Vistal" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Building a multi-campus file and submissions platform for a university",
+      "description": "A file, submissions, and team collaboration platform shared across the campuses of a state university. Laravel + Vue.js monolith with Go services for resumable uploads and signed documents, plus malware scanning on every upload.",
+      "url": "https://chris-dev.netlify.app/case/nemsu-data-hub.html",
+      "mainEntityOfPage": "https://chris-dev.netlify.app/case/nemsu-data-hub.html",
+      "image": "https://chris-dev.netlify.app/assets/imagesv2/nemsu.png",
+      "datePublished": "2026-05-16T01:16:27+08:00",
+      "dateModified": "2026-10-27",
+      "inLanguage": "en",
+      "author": { "@type": "Person", "@id": "https://chris-dev.netlify.app/#person", "name": "Christopher Vistal" }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&amp;family=Instrument+Sans:wght@400..600&amp;display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=73">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="topbar">
+  <a class="brand" href="index.html">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+  <nav class="mainnav" aria-label="Main">
+    <ul>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="blog.html" aria-current="page">Blog</a></li>
+      <li><a href="aboutme.html">About</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="topbar-end">
+    <a class="icon-btn" href="https://github.com/christophervistal25"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span class="sr-only">GitHub</span></a>
+    <a class="icon-btn" href="https://www.linkedin.com/in/christophervistal25/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6m0 2.5a2.5 2.5 0 0 1 5 0v3.5"/></svg><span class="sr-only">LinkedIn</span></a>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="content" class="page">
+
+<section id="blog" aria-labelledby="blog-heading">
+<h1 id="blog-heading" class="section-title">Blog</h1>
+<p class="section-lede">Posts on how each system was designed, what broke, and what I would change, plus video on YouTube.</p>
+<ul class="writing-list measure">
+<li>
+<span class="kind">Blog post</span>
+<h2><a href="case/ata-law-firm.html">Building privileged-access case management for a law firm</a></h2>
+<p>Modeling attorney-client privilege in a schema and a permission system. <time datetime="2026-05-16">Published 2026-05-16</time></p>
+<ul class="card-tags" aria-label="Stack">
+<li>Laravel</li><li>Vue.js</li><li>AWS</li><li>MySQL</li><li>Inertia.js</li><li>Tailwind CSS</li>
+</ul>
+<a class="text-link" href="case/ata-law-firm.html">Read the post<span class="sr-only">: building privileged-access case management for a law firm</span></a>
+</li>
+<li>
+<span class="kind">Blog post</span>
+<h2><a href="case/e-pds.html">Digitizing paper personnel records and moving a government IT team onto Git</a></h2>
+<p>Replacing filing cabinets and Excel, and bringing a government IT team onto Git and code review. <time datetime="2026-05-16">Published 2026-05-16</time></p>
+<ul class="card-tags" aria-label="Stack">
+<li>Laravel</li><li>Vue.js</li><li>SQL Server</li><li>MySQL</li><li>Java</li><li>Nginx</li>
+</ul>
+<a class="text-link" href="case/e-pds.html">Read the post<span class="sr-only">: digitizing paper personnel records and moving a government IT team onto Git</span></a>
+</li>
+<li>
+<span class="kind">Blog post</span>
+<h2><a href="case/offline-transcriber.html">Transcribing confidential recordings entirely on-device</a></h2>
+<p>Whisper via CTranslate2, a waveform-first editor, and an offline promise you can verify. <time datetime="2026-05-16">Published 2026-05-16</time></p>
+<ul class="card-tags" aria-label="Stack">
+<li>Python</li><li>Whisper</li><li>CTranslate2</li><li>PyQt</li><li>NumPy</li>
+</ul>
+<a class="text-link" href="case/offline-transcriber.html">Read the post<span class="sr-only">: transcribing confidential recordings entirely on-device</span></a>
+</li>
+<li>
+<span class="kind">Blog post</span>
+<h2><a href="case/nemsu-data-hub.html">Building a multi-campus file and submissions platform for a university</a></h2>
+<p>Modeling a university as a graph, with Go sidecars for uploads and PDF signing, and malware scanning on every upload. <time datetime="2026-05-16">Published 2026-05-16</time></p>
+<ul class="card-tags" aria-label="Stack">
+<li>Laravel</li><li>Go</li><li>Vue.js</li><li>MySQL</li><li>Inertia.js</li><li>Tailwind CSS</li><li>ONLYOFFICE</li>
+</ul>
+<a class="text-link" href="case/nemsu-data-hub.html">Read the post<span class="sr-only">: building a multi-campus file and submissions platform for a university</span></a>
+</li>
+<li>
+<span class="kind">Video</span>
+<h2><a href="https://www.youtube.com/@tophertips3387">YouTube channel @tophertips3387</a></h2>
+<p>Videos on YouTube.</p>
+</li>
+</ul>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav aria-label="Footer">
+      <a href="index.html">Portfolio</a>
+      <a href="aboutme.html">About</a>
+      <a href="https://github.com/christophervistal25">GitHub</a>
+      <a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+      <a href="https://www.youtube.com/@tophertips3387">YouTube</a>
+      <a href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">Résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
+      <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
+      <span class="credit">Website by <b>Christopher Vistal</b></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/theme.js"></script>
+</body>
+</html>

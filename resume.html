@@ -5,31 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
 (function () {
-  try {
-    var stored = localStorage.getItem("theme");
-    document.documentElement.setAttribute("data-theme", stored === "light" || stored === "dark" ? stored : "dark");
-  } catch (e) {
-    document.documentElement.setAttribute("data-theme", "dark");
+  var theme = null;
+  try { theme = localStorage.getItem("theme"); } catch (e) {}
+  if (theme !== "light" && theme !== "dark") {
+    theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
+  document.documentElement.setAttribute("data-theme", theme);
 })();
 </script>
-<title>Christopher Vistal — Résumé</title>
-<meta name="description" content="Résumé of Christopher Vistal. I design, build, and maintain web platforms from start to finish. Open to remote roles and contracts.">
+<title>Christopher Vistal Résumé — Full-Stack Laravel &amp; Go Engineer</title>
+<meta name="description" content="Résumé of Christopher Vistal, full-stack software engineer in the Philippines (UTC+8). 5+ years in PHP/Laravel, Vue.js, Go and AWS. Open to remote roles.">
 <meta name="author" content="Christopher Vistal">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://chris-dev.netlify.app/resume.html">
-<meta property="og:title" content="Christopher Vistal — Résumé">
-<meta property="og:description" content="I design, build, and maintain web platforms from start to finish. Open to remote roles and contracts.">
+<meta property="og:title" content="Christopher Vistal Résumé — Full-Stack Laravel &amp; Go Engineer">
+<meta property="og:description" content="Résumé of Christopher Vistal, full-stack software engineer in the Philippines (UTC+8). 5+ years in PHP/Laravel, Vue.js, Go and AWS. Open to remote roles.">
 <meta property="og:url" content="https://chris-dev.netlify.app/resume.html">
+<meta property="og:site_name" content="Christopher Vistal">
+<meta property="og:locale" content="en_US">
 <meta property="og:type" content="profile">
+<meta property="profile:first_name" content="Christopher">
+<meta property="profile:last_name" content="Vistal">
 <meta property="og:image" content="https://chris-dev.netlify.app/assets/images/og-card.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Christopher Vistal — Résumé">
-<meta name="twitter:description" content="I design, build, and maintain web platforms from start to finish. Open to remote roles and contracts.">
+<meta name="twitter:title" content="Christopher Vistal Résumé — Full-Stack Laravel &amp; Go Engineer">
+<meta name="twitter:description" content="Résumé of Christopher Vistal, full-stack software engineer in the Philippines (UTC+8). 5+ years in PHP/Laravel, Vue.js, Go and AWS. Open to remote roles.">
 <meta name="twitter:image" content="https://chris-dev.netlify.app/assets/images/og-card.png">
 <meta name="twitter:image:alt" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -39,183 +43,233 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Christopher Vistal",
-  "jobTitle": "Software Engineer",
-  "description": "Software engineer. I design, build, and maintain web platforms from start to finish. Laravel, Vue.js, and Go on AWS. Open to full-time remote roles and contracts.",
-  "url": "https://chris-dev.netlify.app/",
-  "email": "mailto:vistalchris@gmail.com",
-  "telephone": "+639270323277",
-  "sameAs": [
-    "https://github.com/christophervistal25",
-    "https://www.linkedin.com/in/christophervistal25/"
-  ]
+  "@type": "ProfilePage",
+  "url": "https://chris-dev.netlify.app/resume.html",
+  "name": "Christopher Vistal — Résumé",
+  "dateModified": "2026-10-27",
+  "inLanguage": "en",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://chris-dev.netlify.app/#person",
+    "name": "Christopher Vistal",
+    "jobTitle": "Full-Stack Software Engineer",
+    "url": "https://chris-dev.netlify.app/",
+    "image": "https://chris-dev.netlify.app/assets/images/avatar.jpg",
+    "email": "mailto:vistalchris@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Tandag", "addressRegion": "Surigao del Sur", "addressCountry": "PH" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Surigao del Sur State University", "alternateName": "North Eastern Mindanao State University" },
+    "worksFor": { "@type": "Organization", "name": "Self-employed" },
+    "knowsAbout": ["PHP", "Laravel", "Vue.js", "Inertia.js", "Go", "AWS", "MySQL", "Docker", "Full-stack web development"],
+    "sameAs": ["https://github.com/christophervistal25", "https://www.linkedin.com/in/christophervistal25/", "https://www.youtube.com/@tophertips3387"]
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400&amp;display=swap"></noscript>
+<link rel="stylesheet" href="assets/css/site.css?v=71">
 <style>
-:root{
-  --ink:#f3f1ec;--muted:#c8c6c0;--accent:#7eb0f0;--sep:#a3a199;--paper:#161614;
-  --fs:12pt;--lh:1.5;--small:11pt;--name:30pt;--h2:15pt;
-  --section:16pt;--entry:12pt;--bullet:3.5pt;
-  color-scheme:dark;
+/* Résumé document. Screen colours come from the shared theme tokens in
+   site.css; print forces plain black-on-white Letter pages (the source of
+   resume.pdf). One column throughout so ATS parsers read it top to bottom. */
+.resume{
+  --fs:12pt;--lh:1.5;--small:11pt;--name:28pt;--h2:12pt;
+  --section:18pt;--entry:12pt;--bullet:3pt;
+  max-width:8.5in;margin:0 auto 64px;padding:0.55in 0.6in 0.6in;
+  background:var(--surface);border-radius:var(--radius);
+  font-size:var(--fs);line-height:var(--lh);font-variant-ligatures:none;letter-spacing:0
 }
-[data-theme="light"]{
-  --ink:#000000;--muted:#1A1A1A;--accent:#004F90;--sep:#666666;--paper:#FFFFFF;
-  color-scheme:light;
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-html{background:var(--paper)}
-body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,Arial,sans-serif;font-variant-ligatures:none;font-size:var(--fs);line-height:var(--lh);letter-spacing:-0.011em}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-h1,h2,p,ul,dl,dd{margin:0}
-a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline}
+.resume a{color:inherit;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:2px}
+.resume a:hover{text-decoration-color:currentColor}
+.resume h1{font-size:var(--name);line-height:1.05;letter-spacing:-0.03em}
+.resume .headline{margin-top:4pt;font-weight:600}
+.resume .contact{margin-top:6pt;font-size:var(--small);color:var(--muted)}
+.resume .contact a{color:var(--ink)}
+.resume .sep{color:var(--faint)}
+/* Section label: the site's black highlight bar, followed by a hairline */
+.resume h2{display:flex;align-items:center;gap:8pt;margin:var(--section) 0 6pt;font-size:var(--h2);line-height:1.3;letter-spacing:-0.01em}
+.resume h2::after{content:"";flex:1;border-top:1px solid var(--line-strong)}
+.resume h2 span{padding:1pt 5pt;background:var(--ink);color:var(--bg)}
+.resume .entry + .entry{margin-top:var(--entry)}
+.resume .row{display:flex;justify-content:space-between;align-items:baseline;gap:2pt 12pt}
+.resume .row > .r-date{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+.resume h3{display:inline;font:inherit;letter-spacing:inherit;text-wrap:inherit;margin:0;font-weight:700}
+.resume .org{font-weight:400}
+.resume .r-project{margin-top:6pt}
+.resume .r-project b{font-weight:600}
+.resume .r-stack{font-size:var(--small);color:var(--muted)}
+.resume ul{padding-left:14pt;margin-top:2pt}
+.resume li + li{margin-top:var(--bullet)}
+.resume .r-skills > div + div{margin-top:var(--bullet)}
+.resume .r-skills dt{display:inline;font-weight:700}
+.resume .r-skills dd{display:inline}
 
-.bar{max-width:8.5in;margin:0 auto;padding:16px 0.6in 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px}
-.bar a{display:inline-flex;align-items:center;min-height:44px;color:var(--accent);text-decoration:underline}
-.bar-end{display:flex;align-items:center;gap:4px}
-.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin:0;padding:0;border:0;background:transparent;color:var(--ink);cursor:pointer;flex-shrink:0}
-.theme-toggle:hover{color:var(--accent)}
-.theme-toggle svg{display:block}
-.theme-toggle .icon-moon{display:none}
-[data-theme="light"] .theme-toggle .icon-moon{display:block}
-[data-theme="light"] .theme-toggle .icon-sun{display:none}
-.page{max-width:8.5in;margin:0 auto;padding:0.4in 0.6in 0.6in}
-
-header{text-align:center}
-h1{font-size:var(--name);font-weight:700;color:var(--accent);line-height:1.1;letter-spacing:-0.022em}
-.contact{font-size:var(--small);color:var(--muted);margin-top:4pt}
-.summary{margin-top:6pt}
-
-h2{display:flex;align-items:center;gap:8pt;font-size:var(--h2);font-weight:700;color:var(--accent);letter-spacing:-0.014em;margin:var(--section) 0 5pt}
-h2::after{content:"";flex:1;border-top:0.8pt solid var(--accent)}
-
-.entry + .entry{margin-top:var(--entry)}
-.row{display:flex;justify-content:space-between;align-items:baseline;gap:4pt 12pt}
-.row > :last-child{white-space:nowrap}
-.role{font-weight:700}
-.org{font-style:italic}
-.tech{font-size:var(--small);color:var(--muted);margin-top:1pt}
-.project{margin-top:5pt}
-.project .stack{font-size:var(--small);color:var(--muted)}
-.project .sep{color:var(--sep)}
-.project a,.links a{color:var(--accent)}
-ul{padding-left:15pt;margin-top:2pt}
-li + li{margin-top:var(--bullet)}
-
-.skills > div + div{margin-top:var(--bullet)}
-.skills dt{display:inline;font-weight:700}
-.skills dd{display:inline}
+/* Screen-only action bar: sticky on wide screens, a plain top row on phones */
+.resume-bar{position:sticky;top:0;z-index:5;margin:0 0 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+.resume-bar-inner{max-width:8.5in;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.resume-bar .btn{min-height:44px;padding:0 18px;font-size:14px}
+.resume-bar .bar-links{display:flex;gap:0 16px;margin-left:auto;font-size:14px}
+.resume-bar .bar-links a{display:inline-flex;align-items:center;min-height:44px}
 
 @media screen and (max-width:700px){
-  .bar,.page{padding-left:16px;padding-right:16px}
-  .row{flex-wrap:wrap}
+  .resume{--name:26pt;--section:16pt;padding:24px 18px 28px;margin-bottom:40px;border-radius:var(--radius-sm)}
+  .resume .row{flex-wrap:wrap}
+  .resume-bar{position:static}
+  .resume-bar-inner{padding:8px 16px}
+  .resume-bar .btn{flex:1 1 140px}
+  .resume-bar .bar-links{margin-left:0}
 }
-@media screen {
-  .contact a, .project a {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-  }
+@media screen{
+  /* 44px tap targets for the links recruiters tap on a phone */
+  .resume .contact a,.resume .r-project a{display:inline-flex;align-items:center;min-height:44px}
+  .resume .contact{line-height:1.3}
 }
 @media print{
-  @page{size:Letter;margin:0.5in 0.85in}
+  @page{size:Letter;margin:0.55in 0.6in}
   :root,
   [data-theme="light"],
   [data-theme="dark"]{
-    --ink:#000000;--muted:#1A1A1A;--accent:#004F90;--sep:#666666;--paper:#FFFFFF;
+    --ink:#000000;--muted:#222222;--faint:#777777;--line-strong:#000000;--bg:#FFFFFF;--surface:#FFFFFF;
     color-scheme:light;
   }
-  .bar{display:none}
-  .page{max-width:none;padding:0}
+  html,body{background:#FFFFFF}
+  .resume-bar,.site-footer{display:none}
+  .resume{--fs:10.5pt;--lh:1.4;--small:10pt;--name:22pt;--h2:11pt;--section:11pt;--entry:8pt;--bullet:1.5pt;
+    max-width:none;margin:0;padding:0;border-radius:0;background:none}
+  .resume a{text-decoration:none}
+  /* Plain, high-contrast section headings: no filled bar in the PDF */
+  .resume h2 span{padding:0;background:none;color:#000000}
+  .resume h2::after{border-top-width:0.75pt}
+  .resume .r-project,.resume li{break-inside:avoid}
 }
 </style>
 </head>
 <body>
-<nav class="bar" aria-label="Résumé actions">
-<a href="index.html">← Portfolio</a>
-<div class="bar-end">
-<a href="resume.pdf" download>Download PDF</a>
-<button type="button" class="theme-toggle" aria-pressed="true" aria-label="Switch to light theme">
-<svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
-</button>
-</div>
-</nav>
+<a class="skip" href="#content">Skip to content</a>
 
-<main class="page">
+<header class="topbar">
+  <a class="brand" href="index.html">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+  <nav class="mainnav" aria-label="Main">
+    <ul>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="aboutme.html">About</a></li>
+      <li><a href="resume.html" aria-current="page">Résumé</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="topbar-end">
+    <a class="icon-btn" href="https://github.com/christophervistal25"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span class="sr-only">GitHub</span></a>
+    <a class="icon-btn" href="https://www.linkedin.com/in/christophervistal25/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6m0 2.5a2.5 2.5 0 0 1 5 0v3.5"/></svg><span class="sr-only">LinkedIn</span></a>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="resume-bar">
+<div class="resume-bar-inner">
+<a class="btn btn-primary" href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">View résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
+<a class="btn" href="mailto:vistalchris@gmail.com">Email me</a>
+<span class="bar-links">
+<a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+<a href="https://github.com/christophervistal25">GitHub</a>
+</span>
+</div>
+</div>
+
+<main id="content" class="resume">
 
 <header>
 <h1>Christopher Vistal</h1>
-<p class="contact">Tandag, Surigao del Sur, PH (UTC+8) · <a href="tel:+639270323277">+63 927 032 3277</a> · <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a> · <a href="https://chris-dev.netlify.app/">chris-dev.netlify.app</a> · <a href="https://github.com/christophervistal25">github.com/christophervistal25</a> · <a href="https://www.linkedin.com/in/christophervistal25/">linkedin.com/in/christophervistal25</a></p>
+<p class="headline">Full-Stack Software Engineer</p>
+<p class="contact">Tandag, Surigao del Sur, Philippines (UTC+8) <span class="sep">·</span> Remote <span class="sep">·</span> <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a> <span class="sep">·</span> <a href="https://chris-dev.netlify.app/">chris-dev.netlify.app</a> <span class="sep">·</span> <a href="https://www.linkedin.com/in/christophervistal25/">linkedin.com/in/christophervistal25</a> <span class="sep">·</span> <a href="https://github.com/christophervistal25">github.com/christophervistal25</a></p>
 </header>
-<p class="summary">Software engineer, 5+ years. I design, build, and maintain web platforms from start to finish. Open to remote roles and contracts.</p>
 
 <section>
-<h2>Experience</h2>
+<h2><span>Summary</span></h2>
+<p>Full-stack software engineer, 5+ years in PHP/Laravel, Vue.js, Go and AWS. Designs, builds and maintains web platforms end to end, from solo builds in daily production use to a government team moved onto Git and CI/CD. Based in the Philippines (UTC+8), open to remote roles and contracts.</p>
+</section>
+
+<section>
+<h2><span>Experience</span></h2>
 
 <div class="entry">
-<div class="row"><span class="role">Freelance Software Engineer</span><span>2024 – Present</span></div>
-<div class="row"><span class="org">Independent contractor</span><span>Surigao del Sur, PH</span></div>
+<div class="row"><div><h3>Freelance Software Engineer</h3>, <span class="org">Self-employed</span></div><span class="r-date">2024 – Present</span></div>
 
-<div class="project">
-<div class="row"><span><b>Case management platform for a law firm</b> <span class="sep">|</span> <span class="stack">Laravel, Vue, Inertia, MySQL, AWS</span></span><a href="https://chris-dev.netlify.app/case/ata-law-firm.html">Case study</a></div>
+<div class="r-project">
+<p><b>Case management platform for a law firm</b> <span class="r-stack"><span class="sep">|</span> Laravel, Vue.js, Inertia.js, MySQL, AWS <span class="sep">|</span> <a href="https://chris-dev.netlify.app/case/ata-law-firm.html">Blog post</a></span></p>
 <ul>
-<li>Built it solo in 4 months; up to 10 attorneys and staff use it daily instead of spreadsheets.</li>
-<li>Billing, document templates, role-based access, and a client portal with an audit trail.</li>
+<li>Own it solo; shipped in ~4 months, used daily by up to 10 attorneys and staff instead of spreadsheets.</li>
+<li>Automate documents from versioned templates, plus billing, role-based access and email notifications.</li>
+<li>Run a client portal with attorney messaging and an audit trail of every view, edit and download.</li>
 </ul>
 </div>
 
-<div class="project">
-<div class="row"><span><b>Multi-campus data hub for a state university</b> <span class="sep">|</span> <span class="stack">Laravel, Go, Vue, MySQL, ONLYOFFICE</span></span><a href="https://chris-dev.netlify.app/case/nemsu-data-hub.html">Case study</a></div>
+<div class="r-project">
+<p><b>File and submissions platform for a university</b> <span class="r-stack"><span class="sep">|</span> Laravel, Go, Vue.js, MySQL, ONLYOFFICE <span class="sep">|</span> <a href="https://chris-dev.netlify.app/case/nemsu-data-hub.html">Blog post</a></span></p>
 <ul>
-<li>Drive-style file and submissions platform, live on all 4 campuses, with ONLYOFFICE editing.</li>
-<li>Wrote Go services for resumable uploads, ClamAV virus scanning and X.509 PDF signing.</li>
+<li>Build and maintain a Drive-style platform live on all 4 campuses, with in-browser editing via ONLYOFFICE.</li>
+<li>Write Go services for exam-week-proof resumable uploads and PDF signing; malware-scan every upload.</li>
 </ul>
 </div>
 </div>
 
 <div class="entry">
-<div class="row"><span class="role">Software Engineer</span><span>2021 – 2024</span></div>
-<div class="row"><span class="org">Province of Surigao del Sur</span><span>Tandag, PH</span></div>
+<div class="row"><div><h3>Software Engineer</h3>, <span class="org">Province of Surigao del Sur</span></div><span class="r-date">2021 – 2024</span></div>
 <ul>
-<li>Built E-PDS (500+ civil-servant records) and a tourism dashboard, replacing paper and Excel.</li>
-<li>Cut report load times by ~60% by fixing N+1 queries and adding indexes.</li>
-<li>Wrote an offline Whisper transcriber the provincial board still uses for confidential sessions.</li>
-<li>Half-day payroll tasks became one click: GSIS deductions, BIR tax reports, SMS notices, and a Java Android app for 201 files.</li>
-<li>Brought in Git, code review and CI/CD, and mentored 3 engineers.</li>
+<li>Built the <a href="https://chris-dev.netlify.app/case/e-pds.html">E-PDS</a> records platform (500+ civil servants) and a tourism dashboard, replacing paper and Excel.</li>
+<li>Cut reporting response times by ~60% by fixing N+1 queries and adding database indexes.</li>
+<li>Built an <a href="https://chris-dev.netlify.app/case/offline-transcriber.html">offline AI transcriber</a> (Python, Whisper) the provincial board still uses for confidential sessions.</li>
+<li>Automated GSIS deductions, BIR tax reports and SMS notices, turning half-day payroll tasks into one click; built a Java Android app for employee 201 files and a self-hosted uptime monitor.</li>
+<li>Introduced Git, code review and CI/CD to replace FTP deploys; mentored 3 engineers to run it on their own.</li>
 </ul>
 </div>
 
 <div class="entry">
-<div class="row"><span><span class="role">Intern Developer</span>, <span class="org">North Eastern Mindanao State University</span></span><span>Jul – Aug 2018</span></div>
+<div class="row"><div><h3>Intern Developer</h3>, <span class="org">North Eastern Mindanao State University</span></div><span class="r-date">Jul 2018 – Aug 2018</span></div>
 <ul>
-<li>Developed a faculty evaluation app used by 3,000+ students, with Python sentiment analysis.</li>
+<li>Built a faculty evaluation web app used by 3,000+ students to rate their instructors’ teaching.</li>
+<li>Added Python sentiment analysis of written feedback, giving administrators data for planning decisions.</li>
 </ul>
 </div>
 </section>
 
 <section>
-<h2>Skills</h2>
-<dl class="skills">
+<h2><span>Skills</span></h2>
+<dl class="r-skills">
 <div><dt>Languages:</dt> <dd>PHP, Go, TypeScript, JavaScript, Python, SQL</dd></div>
-<div><dt>Frameworks:</dt> <dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest</dd></div>
-<div><dt>Infra &amp; data:</dt> <dd>AWS (EC2, S3, RDS, SES), MySQL, SQL Server, Docker, Nginx, Cloudflare, Linux, CI/CD</dd></div>
+<div><dt>Frameworks:</dt> <dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs</dd></div>
+<div><dt>Cloud &amp; DevOps:</dt> <dd>AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, Linux, CI/CD</dd></div>
+<div><dt>Databases:</dt> <dd>MySQL, SQL Server</dd></div>
+<div><dt>Tools:</dt> <dd>Git, PHPUnit, Pest, ONLYOFFICE, Whisper, CTranslate2</dd></div>
 </dl>
 </section>
 
 <section>
-<h2>Education</h2>
-<div class="entry">
-<div class="row"><span><span class="role">BS Computer Science</span>, <span class="org">Surigao del Sur State University (now NEMSU)</span></span><span>2015 – 2019</span></div>
-</div>
+<h2><span>Education</span></h2>
+<div class="row"><div><h3>BS Computer Science</h3>, <span class="org">Surigao del Sur State University (now NEMSU)</span></div><span class="r-date">2015 – 2019</span></div>
 </section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav aria-label="Footer">
+      <a href="index.html">Portfolio</a>
+      <a href="aboutme.html">About</a>
+      <a href="https://www.youtube.com/@tophertips3387">YouTube</a>
+      <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
+      <span class="credit">Website by <b>Christopher Vistal</b></span>
+    </div>
+  </div>
+</footer>
+
 <script src="assets/js/theme.js"></script>
 </body>
 </html>

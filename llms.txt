@@ -16,20 +16,20 @@
 ### Freelance Software Engineer (2024 – Present)
 
 Case management platform for a law firm (Laravel, Vue.js, Inertia.js, MySQL, AWS):
-- Designed and shipped the platform solo in about 4 months; up to 10 attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.
+- Designed and shipped the platform solo; attorneys and staff use it daily with role-based access control, and the firm's spreadsheet workflow is retired.
 - Built billing, document automation from versioned templates, and email notifications via AWS SES.
 - Added a client portal with attorney messaging and an audit trail of every view, edit and download.
 
-University Data Hub for North Eastern Mindanao State University (Laravel, Go, Vue.js, MySQL, S3, ClamAV, ONLYOFFICE), live at https://udh.nemsu.edu.ph/:
-- Built a Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration, live for faculty across all 4 campuses.
-- Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on unreliable campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.
+Multi-campus file and submissions platform for a state university (Laravel, Go, Vue.js, MySQL, S3, ONLYOFFICE):
+- Built a Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration, live across the university's campuses.
+- Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on unreliable campus networks, malware scanning with quarantine, and X.509 PDF signing.
 
 ### Software Engineer, Province of Surigao del Sur (2021 – 2024)
 
 Laravel, Vue.js, MySQL, SQL Server, Python, Android:
-- Built a records platform for 500+ civil-servant files (https://epds.surigaodelsur.gov.ph/) and a tourism analytics dashboard (https://ars.surigaodelsur.gov.ph/), replacing paper and Excel.
+- Built a civil-servant records platform and a visitor analytics dashboard, replacing paper and Excel.
 - Cut reporting response times by ~60% by fixing N+1 queries and adding indexes.
-- Built an offline AI speech-to-text tool (Python, Whisper, CTranslate2) for the Office of the Secretary to the Sangguniang Panlalawigan (provincial board), so confidential audio never leaves the machine.
+- Built an offline AI speech-to-text tool (Python, Whisper, CTranslate2) for confidential session recordings, so the audio never leaves the machine.
 - Automated payroll deductions, tax reporting and SMS alerts, and built a Java Android employee app and a self-hosted uptime monitor, turning half-day tasks into one click.
 - Introduced Git, code review and CI/CD to the team; mentored 3 engineers.
 
@@ -42,6 +42,22 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 
 - Chriscast (https://github.com/christophervistal25/christcast): Raycast-style file launcher for Linux; indexes 200K+ files in ~5s with sub-millisecond search (Go, GTK3, fsnotify).
 - Repository Cleaner (https://github.com/christophervistal25/repository-cleaner): terminal GitHub manager to search, multi-select and bulk-delete repositories with vim-style keys (Go, Bubbletea, GitHub API).
+
+## Services and engagement types
+
+- Web platforms end to end: case and records management with role-based access and audit trails, document automation, client portals, Go services for uploads and PDF signing, malware scanning on upload, deployment on AWS or on-premise.
+- Legacy modernization and internal tools: digitizing paper records, query performance work, payroll and tax automation, Git and code review workflow for existing teams.
+- On-device AI: offline speech-to-text with Whisper and CTranslate2.
+- Engagement types: full-time remote role; project build as the sole engineer; ongoing maintenance after launch.
+
+## Blog
+
+- Blog index (all posts and the YouTube channel): https://chris-dev.netlify.app/blog.html
+- Blog post: Building privileged-access case management for a law firm (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/ata-law-firm.html
+- Blog post: Digitizing paper personnel records and moving a government IT team onto Git (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/e-pds.html
+- Blog post: Transcribing confidential recordings entirely on-device (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/offline-transcriber.html
+- Blog post: Building a multi-campus file and submissions platform for a university (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/nemsu-data-hub.html
+- YouTube channel: https://www.youtube.com/@tophertips3387
 
 ## Skills
 
@@ -58,14 +74,16 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 ## Links
 
 - [Portfolio](https://chris-dev.netlify.app/)
-- [Résumé (PDF)](https://chris-dev.netlify.app/resume.pdf)
+- [Résumé (PDF)](https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view)
 - [GitHub](https://github.com/christophervistal25)
 - [LinkedIn](https://www.linkedin.com/in/christophervistal25/)
-- [About and references](https://chris-dev.netlify.app/aboutme.html)
+- [YouTube](https://www.youtube.com/@tophertips3387)
+- [About: bio, how I work, services, engagement types and references](https://chris-dev.netlify.app/aboutme.html)
 - [Résumé (HTML)](https://chris-dev.netlify.app/resume.html)
-- [Case study: case management platform](https://chris-dev.netlify.app/case/ata-law-firm.html)
-- [Case study: university data hub](https://chris-dev.netlify.app/case/nemsu-data-hub.html)
-- [Case study: provincial records platform](https://chris-dev.netlify.app/case/e-pds.html)
-- [Case study: offline AI transcriber](https://chris-dev.netlify.app/case/offline-transcriber.html)
+- [Blog: all posts](https://chris-dev.netlify.app/blog.html)
+- [Blog post:case management platform](https://chris-dev.netlify.app/case/ata-law-firm.html)
+- [Blog post:personnel records platform](https://chris-dev.netlify.app/case/e-pds.html)
+- [Blog post:offline AI transcriber](https://chris-dev.netlify.app/case/offline-transcriber.html)
+- [Blog post:multi-campus university file platform](https://chris-dev.netlify.app/case/nemsu-data-hub.html)
 - [Chriscast source](https://github.com/christophervistal25/christcast)
 - [Repository Cleaner source](https://github.com/christophervistal25/repository-cleaner)

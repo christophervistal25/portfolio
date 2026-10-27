@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
 (function () {
-  try {
-    var stored = localStorage.getItem("theme");
-    document.documentElement.setAttribute("data-theme", stored === "light" || stored === "dark" ? stored : "dark");
-  } catch (e) {
-    document.documentElement.setAttribute("data-theme", "dark");
+  var theme = null;
+  try { theme = localStorage.getItem("theme"); } catch (e) {}
+  if (theme !== "light" && theme !== "dark") {
+    theme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
+  document.documentElement.setAttribute("data-theme", theme);
 })();
+// The blog moved to its own page; send old index.html#blog / #writing links there.
+if (location.hash === "#blog" || location.hash === "#writing") location.replace("blog.html");
 </script>
 <title>Christopher Vistal — Software Engineer</title>
 <meta name="description" content="Christopher Vistal, software engineer. I design, build, and maintain web platforms from start to finish. Laravel, Vue, Go, AWS.">
@@ -39,6 +41,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="me" href="https://github.com/christophervistal25">
 <link rel="me" href="https://www.linkedin.com/in/christophervistal25/">
+<link rel="me" href="https://www.youtube.com/@tophertips3387">
 <link rel="alternate" type="text/plain" href="https://chris-dev.netlify.app/llms.txt" title="Plain-text profile for AI assistants">
 <link rel="sitemap" type="application/xml" href="https://chris-dev.netlify.app/sitemap.xml">
 <script type="application/ld+json">
@@ -49,6 +52,7 @@
   "image": "https://chris-dev.netlify.app/assets/images/og-card.png",
   "mainEntity": {
     "@type": "Person",
+    "@id": "https://chris-dev.netlify.app/#person",
     "name": "Christopher Vistal",
     "jobTitle": "Software Engineer",
     "description": "Software engineer. I design, build, and maintain web platforms from start to finish. Core stack is Laravel, Vue.js, and Go on AWS. Open to full-time remote roles and contracts.",
@@ -101,43 +105,184 @@
     ],
     "sameAs": [
       "https://github.com/christophervistal25",
-      "https://www.linkedin.com/in/christophervistal25/"
+      "https://www.linkedin.com/in/christophervistal25/",
+      "https://www.youtube.com/@tophertips3387"
     ]
   }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist+Mono:wght@400&amp;display=swap">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..700&amp;family=Instrument+Sans:wght@400..600&amp;display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=72">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
-<main id="content" class="page">
 
-<header class="mast">
-<div class="mast-top">
-<h1>Christopher Vistal</h1>
-<div class="mast-side">
-<p class="status"><span class="dot" aria-hidden="true"></span>Open to remote roles &amp; contracts</p>
-<button type="button" class="theme-toggle" aria-pressed="true" aria-label="Switch to light theme">
-<svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-<svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
-</button>
-</div>
-</div>
-<p class="pitch">I design, build, and maintain web platforms from start to finish.</p>
-<p class="meta">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years</p>
-<nav class="actions" aria-label="Contact">
-<a class="btn btn-primary" href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
-<a class="btn" href="resume.pdf">Résumé (PDF)</a>
-<a href="https://github.com/christophervistal25">GitHub</a>
-<a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
-</nav>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-current="page">CV<span class="sr-only">, Christopher Vistal, home</span></a>
+  <nav class="mainnav" aria-label="Main">
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="aboutme.html">About</a></li>
+      <li><a href="resume.html">Résumé</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="topbar-end">
+    <a class="icon-btn" href="https://github.com/christophervistal25"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg><span class="sr-only">GitHub</span></a>
+    <a class="icon-btn" href="https://www.linkedin.com/in/christophervistal25/"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M7.5 10.5v6M7.5 7.5v.01M11.5 16.5v-6m0 2.5a2.5 2.5 0 0 1 5 0v3.5"/></svg><span class="sr-only">LinkedIn</span></a>
+    <button type="button" class="theme-toggle" aria-pressed="false" aria-label="Dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+    </button>
+  </div>
 </header>
 
+<main id="content" class="page">
+
+<section class="hero" aria-labelledby="hero-heading">
+<div class="hero-media">
+<img class="hero-photo" src="assets/images/avatar.jpg" alt="Portrait of Christopher Vistal" width="400" height="400" fetchpriority="high">
+</div>
+<div class="hero-body">
+<h1 id="hero-heading">Hi, I’m Christopher and I’m a <span class="hl">Software Engineer.</span></h1>
+<p class="hero-sub">I design, build, and maintain web platforms from start to finish. Core stack: Laravel, Vue.js and Go on AWS.</p>
+<p class="meta">Tandag, Surigao del Sur, PH · UTC+8 · 5+ years · Open to remote roles &amp; contracts</p>
+<div class="actions">
+<a class="btn btn-primary" href="#contact">Get in touch</a>
+<a class="btn" href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">View résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
+</div>
+<div class="hero-links">
+<a href="resume.html">View résumé</a>
+<a href="#work">Check my work</a>
+<a href="https://github.com/christophervistal25">GitHub</a>
+<a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+</div>
+</div>
+</section>
+
+<section id="work" aria-labelledby="work-heading">
+<h2 id="work-heading" class="section-title has-dots">Work</h2>
+<p class="section-lede">Four systems in production use, each with a full blog post.<br>Ask me if you want more detail on any of them.</p>
+<!-- Filter chips stay hidden until assets/js/work-filter.js fills in the
+     counts from each card's data-tags; without JavaScript every card shows.
+     The arrows and progress line wait for assets/js/work-carousel.js the same
+     way; without it the track below is still a plain scrollable row. -->
+<div class="work-toolbar">
+<ul class="filters" aria-label="Filter projects by technology" hidden>
+<li><button type="button" class="chip" data-filter="all" aria-pressed="true">All</button></li>
+<li><button type="button" class="chip" data-filter="Laravel" aria-pressed="false">Laravel</button></li>
+<li><button type="button" class="chip" data-filter="Vue.js" aria-pressed="false">Vue.js</button></li>
+<li><button type="button" class="chip" data-filter="MySQL" aria-pressed="false">MySQL</button></li>
+<li><button type="button" class="chip" data-filter="Inertia.js" aria-pressed="false">Inertia.js</button></li>
+<li><button type="button" class="chip" data-filter="Tailwind CSS" aria-pressed="false">Tailwind CSS</button></li>
+<li><button type="button" class="chip" data-filter="AWS" aria-pressed="false">AWS</button></li>
+<li><button type="button" class="chip" data-filter="Go" aria-pressed="false">Go</button></li>
+<li><button type="button" class="chip" data-filter="Python" aria-pressed="false">Python</button></li>
+</ul>
+<div class="carousel-nav" hidden>
+<button type="button" class="carousel-btn carousel-toggle" aria-label="Pause carousel" aria-controls="work-track" aria-pressed="false"><svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 6v12M15 6v12"/></svg><svg class="icon-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 5.5v13l10.5-6.5z"/></svg></button>
+<button type="button" class="carousel-btn" data-dir="-1" aria-label="Previous projects" aria-controls="work-track" aria-disabled="true"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+<button type="button" class="carousel-btn" data-dir="1" aria-label="Next projects" aria-controls="work-track" aria-disabled="true"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</div>
+<p class="sr-only" id="work-status" role="status"></p>
+<div class="work-track" id="work-track" role="region" aria-roledescription="carousel" aria-label="Selected work" tabindex="0">
+<div class="work-slide" role="group" aria-roledescription="slide" aria-label="1 of 4" data-tags="Laravel|Vue.js|AWS|MySQL|Inertia.js|Tailwind CSS">
+<article class="work-card">
+<div class="work-shot"><img src="assets/imagesv2/ata_firm.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></div>
+<h3>Law-firm case management</h3>
+<ul class="card-tags" aria-label="Stack">
+<li>Laravel</li><li>Vue.js</li><li>AWS</li>
+<li><span aria-hidden="true">+3</span><span class="sr-only">MySQL, Inertia.js, Tailwind CSS</span></li>
+</ul>
+<p class="card-desc">Took a law firm off spreadsheets, with case-level access built around attorney-client privilege.</p>
+<div class="card-actions">
+<a class="btn btn-primary btn-sm" href="case/ata-law-firm.html"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M2 4.5h6a4 4 0 0 1 4 4V20a3 3 0 0 0-3-3H2zM22 4.5h-6a4 4 0 0 0-4 4V20a3 3 0 0 1 3-3h7z"/></svg>Read the post<span class="sr-only">: law-firm case management</span></a>
+</div>
+</article>
+</div>
+<div class="work-slide" role="group" aria-roledescription="slide" aria-label="2 of 4" data-tags="Laravel|Vue.js|SQL Server|MySQL|Java|Nginx">
+<article class="work-card">
+<div class="work-shot"><img src="assets/imagesv2/e_pds.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></div>
+<h3>Government personnel records</h3>
+<ul class="card-tags" aria-label="Stack">
+<li>Laravel</li><li>Vue.js</li><li>SQL Server</li>
+<li><span aria-hidden="true">+3</span><span class="sr-only">MySQL, Java, Nginx</span></li>
+</ul>
+<p class="card-desc">Replaced paper personnel files and Excel trackers, and cut reporting times by ~60%.</p>
+<div class="card-actions">
+<a class="btn btn-primary btn-sm" href="case/e-pds.html"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M2 4.5h6a4 4 0 0 1 4 4V20a3 3 0 0 0-3-3H2zM22 4.5h-6a4 4 0 0 0-4 4V20a3 3 0 0 1 3-3h7z"/></svg>Read the post<span class="sr-only">: government personnel records</span></a>
+</div>
+</article>
+</div>
+<div class="work-slide" role="group" aria-roledescription="slide" aria-label="3 of 4" data-tags="Python|Whisper|CTranslate2|PyQt|NumPy">
+<article class="work-card">
+<div class="work-shot"><img src="assets/imagesv2/transcriber.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></div>
+<h3>Offline AI transcriber</h3>
+<ul class="card-tags" aria-label="Stack">
+<li>Python</li><li>Whisper</li><li>CTranslate2</li>
+<li><span aria-hidden="true">+2</span><span class="sr-only">PyQt, NumPy</span></li>
+</ul>
+<p class="card-desc">Confidential session recordings turned into text without the audio ever leaving the machine.</p>
+<div class="card-actions">
+<a class="btn btn-primary btn-sm" href="case/offline-transcriber.html"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M2 4.5h6a4 4 0 0 1 4 4V20a3 3 0 0 0-3-3H2zM22 4.5h-6a4 4 0 0 0-4 4V20a3 3 0 0 1 3-3h7z"/></svg>Read the post<span class="sr-only">: offline AI transcriber</span></a>
+</div>
+</article>
+</div>
+<div class="work-slide" role="group" aria-roledescription="slide" aria-label="4 of 4" data-tags="Laravel|Go|Vue.js|MySQL|Inertia.js|Tailwind CSS|ONLYOFFICE">
+<article class="work-card">
+<div class="work-shot"><img src="assets/imagesv2/nemsu.png" alt="" width="1536" height="1024" loading="lazy" decoding="async"></div>
+<h3>Multi-campus university file platform</h3>
+<ul class="card-tags" aria-label="Stack">
+<li>Laravel</li><li>Go</li><li>Vue.js</li>
+<li><span aria-hidden="true">+4</span><span class="sr-only">MySQL, Inertia.js, Tailwind CSS, ONLYOFFICE</span></li>
+</ul>
+<p class="card-desc">One file and submissions platform shared across a university's campuses.</p>
+<div class="card-actions">
+<a class="btn btn-primary btn-sm" href="case/nemsu-data-hub.html"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M2 4.5h6a4 4 0 0 1 4 4V20a3 3 0 0 0-3-3H2zM22 4.5h-6a4 4 0 0 0-4 4V20a3 3 0 0 1 3-3h7z"/></svg>Read the post<span class="sr-only">: multi-campus university file platform</span></a>
+</div>
+</article>
+</div>
+</div>
+<div class="work-progress" aria-hidden="true" hidden><span></span></div>
+</section>
+
+<section id="focus" aria-labelledby="focus-heading">
+<h2 id="focus-heading" class="section-title">What I do</h2>
+<p class="section-lede">Four kinds of work, each backed by something you can read or use.</p>
+<ul class="areas">
+<li>
+<span class="num">01 · Engineering</span>
+<h3>Full-stack platforms</h3>
+<p>Laravel, Vue.js and Go, from database schema to AWS deployment: case management, records, file platforms, and on-device AI.</p>
+<a href="#work">See the selected work</a>
+</li>
+<li>
+<span class="num">02 · Design</span>
+<h3>Interface design</h3>
+<p>Access models built around attorney-client privilege, template authoring with visual placeholder chips, a mobile-first client portal, and a review tool built around a live waveform.</p>
+<a href="case/ata-law-firm.html#design-decisions">Read the design decisions behind the law-firm platform</a>
+</li>
+<li>
+<span class="num">03 · Blog</span>
+<h3>Blog and video</h3>
+<p>Long-form posts on what I built, what broke, and what I would change, plus a YouTube channel.</p>
+<a href="blog.html">Browse the blog</a>
+</li>
+<li>
+<span class="num">04 · Business</span>
+<h3>Client engagements</h3>
+<p>Freelance builds since 2024 with ongoing maintenance, and a provincial IT team moved from FTP deploys to Git, code review and CI/CD, with 3 engineers mentored.</p>
+<a href="aboutme.html#services">See services and engagement types</a>
+</li>
+</ul>
+</section>
+
 <section id="experience" aria-labelledby="experience-heading">
-<h2 id="experience-heading">Experience</h2>
+<h2 id="experience-heading" class="section-title">Experience</h2>
 
 <article class="job">
 <div class="job-head">
@@ -152,7 +297,7 @@
 <li>Built billing, document automation from versioned templates, and email notifications via AWS SES.</li>
 <li>Added a client portal with attorney messaging and an audit trail of every view, edit and download.</li>
 </ul>
-<p class="stack">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="case/ata-law-firm.html">Read more</a></p>
+<p class="stack">Laravel · Vue · Inertia · MySQL · AWS (EC2, RDS, S3, SES) · <a href="case/ata-law-firm.html">Read the law-firm post</a></p>
 </div>
 
 <div class="project">
@@ -161,7 +306,7 @@
 <li><strong>Live on all 4 campuses.</strong> Google Drive-style file and submissions platform with ONLYOFFICE for in-browser document collaboration.</li>
 <li>Wrote Go sidecars for resumable tus uploads that survive exam-week traffic on flaky campus networks, ClamAV virus scanning with quarantine, and X.509 PDF signing.</li>
 </ul>
-<p class="stack">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/">Live site</a> · <a href="case/nemsu-data-hub.html">Read more</a></p>
+<p class="stack">Laravel · Go · Vue · MySQL · S3 · ClamAV · ONLYOFFICE · <a href="https://udh.nemsu.edu.ph/">NEMSU Data Hub (live)</a> · <a href="case/nemsu-data-hub.html">Read the data hub post</a></p>
 </div>
 </article>
 
@@ -178,7 +323,7 @@
 <li>Introduced Git, code review and CI/CD; mentored 3 engineers.</li>
 </ul>
 <p class="stack">Laravel · Vue · MySQL · SQL Server · Python · Java (Android)</p>
-<p class="stack"><a href="https://epds.surigaodelsur.gov.ph/">Records (live)</a> · <a href="https://ars.surigaodelsur.gov.ph/login">Tourism (live)</a> · <a href="case/e-pds.html">Read more</a> · <a href="case/offline-transcriber.html">Transcriber</a></p>
+<p class="stack"><a href="https://epds.surigaodelsur.gov.ph/">E-PDS records platform (live)</a> · <a href="https://ars.surigaodelsur.gov.ph/login">Tourism dashboard (live)</a> · <a href="case/e-pds.html">Read the E-PDS post</a> · <a href="case/offline-transcriber.html">Read the offline transcriber post</a></p>
 </article>
 
 <article class="job">
@@ -194,50 +339,87 @@
 </section>
 
 <section id="after-hours" aria-labelledby="oss-heading">
-<h2 id="oss-heading">Open source</h2>
-<div class="builds">
+<h2 id="oss-heading" class="section-title">Open source</h2>
+<div class="builds measure">
 <article>
 <h3><a href="https://github.com/christophervistal25/christcast">Chriscast</a></h3>
 <p>Raycast-style file launcher for Linux. Indexes 200K+ files in ~5s with sub-millisecond search.</p>
-<p class="stack">Go · GTK3 · fsnotify · <a href="https://github.com/christophervistal25/christcast">GitHub</a></p>
+<p class="stack">Go · GTK3 · fsnotify</p>
+<a class="icon-link" href="https://github.com/christophervistal25/christcast"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>Chriscast source on GitHub</a>
 </article>
 <article>
 <h3><a href="https://github.com/christophervistal25/repository-cleaner">Repository Cleaner</a></h3>
 <p>Terminal GitHub manager: search, multi-select and bulk-delete repos with vim-style keys.</p>
-<p class="stack">Go · Bubbletea · GitHub API · <a href="https://github.com/christophervistal25/repository-cleaner">GitHub</a></p>
+<p class="stack">Go · Bubbletea · GitHub API</p>
+<a class="icon-link" href="https://github.com/christophervistal25/repository-cleaner"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>Repository Cleaner source on GitHub</a>
 </article>
 </div>
 </section>
 
 <section id="skills" aria-labelledby="skills-heading">
-<h2 id="skills-heading">Skills</h2>
+<h2 id="skills-heading" class="section-title">Stack</h2>
+<ul class="tech-row">
+<li><span class="tech-icon" aria-hidden="true">php</span>PHP</li>
+<li><span class="tech-icon is-round is-soft" aria-hidden="true">La</span>Laravel</li>
+<li><span class="tech-icon is-soft" aria-hidden="true">Vue</span>Vue.js</li>
+<li><span class="tech-icon is-round" aria-hidden="true">Go</span>Go</li>
+<li><span class="tech-icon is-soft" aria-hidden="true">SQL</span>MySQL</li>
+<li><span class="tech-icon" aria-hidden="true">aws</span>AWS</li>
+<li><span class="tech-icon is-round is-soft" aria-hidden="true">Py</span>Python</li>
+</ul>
 <dl class="skills">
-<div><dt>Languages</dt><dd>PHP, Go, TypeScript, JavaScript, Python, SQL</dd></div>
-<div><dt>Frameworks</dt><dd>Laravel, Vue.js, Inertia.js, Tailwind CSS, Node.js / Express, REST APIs, PHPUnit, Pest</dd></div>
-<div><dt>Data</dt><dd>MySQL, SQL Server, S3, queues</dd></div>
-<div><dt>Infra</dt><dd>AWS (EC2, S3, RDS, SES), Docker, Nginx, Cloudflare, ClamAV, Linux, CI/CD, RBAC</dd></div>
-<div><dt>AI / ML</dt><dd>Whisper, CTranslate2, on-device inference, NLP</dd></div>
+<div><dt><span class="hl-label">Languages</span></dt><dd><ul><li>PHP</li><li>Go</li><li>TypeScript</li><li>JavaScript</li><li>Python</li><li>SQL</li></ul></dd></div>
+<div><dt><span class="hl-label">Frameworks</span></dt><dd><ul><li>Laravel</li><li>Vue.js</li><li>Inertia.js</li><li>Tailwind CSS</li><li>Node.js / Express</li><li>REST APIs</li><li>PHPUnit</li><li>Pest</li></ul></dd></div>
+<div><dt><span class="hl-label">Data</span></dt><dd><ul><li>MySQL</li><li>SQL Server</li><li>S3</li><li>Queues</li></ul></dd></div>
+<div><dt><span class="hl-label">Infra</span></dt><dd><ul><li>AWS (EC2, S3, RDS, SES)</li><li>Docker</li><li>Nginx</li><li>Cloudflare</li><li>ClamAV</li><li>Linux</li><li>CI/CD</li><li>RBAC</li></ul></dd></div>
+<div><dt><span class="hl-label">AI / ML</span></dt><dd><ul><li>Whisper</li><li>CTranslate2</li><li>On-device inference</li><li>NLP</li></ul></dd></div>
 </dl>
 </section>
 
 <section id="education" aria-labelledby="education-heading">
-<h2 id="education-heading">Education</h2>
-<div class="edu-row">
-<span><span style="font-weight: 600">BS Computer Science</span>, Surigao del Sur State University (now NEMSU)</span>
+<h2 id="education-heading" class="section-title">Education</h2>
+<div class="edu-stack">
+<strong>BS Computer Science</strong>
+<span>Surigao del Sur State University (now NEMSU)</span>
 <span class="date">2015 – 2019</span>
 </div>
 </section>
 
-<footer class="site-footer">
-<span>© 2026 Christopher Vistal</span>
-<nav aria-label="Footer">
-<a href="aboutme.html">About &amp; references</a>
-<a href="mailto:vistalchris@gmail.com">Get in touch</a>
-<a href="resume.pdf">Résumé (PDF)</a>
-</nav>
-</footer>
+<section id="contact" aria-labelledby="contact-heading">
+<h2 id="contact-heading" class="section-title has-dots">Contact</h2>
+<p class="section-lede">Open to full-time remote roles and contracts.<br>Tell me about the role or the project you have in mind.</p>
+<div class="contact-block">
+<span class="hl-label">Let’s talk.</span>
+<a class="talk-link" href="mailto:vistalchris@gmail.com">vistalchris@gmail.com<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<p class="meta">Tandag, Surigao del Sur, PH · UTC+8</p>
+<div class="actions">
+<a class="btn btn-primary" href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">View résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
+<a href="resume.html">View résumé</a>
+</div>
+</div>
+</section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav aria-label="Footer">
+      <a href="aboutme.html">About</a>
+      <a href="https://github.com/christophervistal25">GitHub</a>
+      <a href="https://www.linkedin.com/in/christophervistal25/">LinkedIn</a>
+      <a href="https://www.youtube.com/@tophertips3387">YouTube</a>
+      <a href="https://drive.google.com/file/d/1Sxx8Ocnjs1eQGG45HDuc_99gWtDwXddZ/view" target="_blank" rel="noopener noreferrer">Résumé (PDF)<span class="sr-only"> (opens in a new tab)</span></a>
+      <a href="mailto:vistalchris@gmail.com">vistalchris@gmail.com</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2026 Christopher Vistal · Tandag, Surigao del Sur, PH (UTC+8)</span>
+      <span class="credit">Website by <b>Christopher Vistal</b></span>
+    </div>
+  </div>
+</footer>
+
 <script src="assets/js/theme.js"></script>
+<script src="assets/js/work-filter.js"></script>
+<script src="assets/js/work-carousel.js"></script>
 </body>
 </html>
