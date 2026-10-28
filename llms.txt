@@ -53,6 +53,7 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 ## Blog
 
 - Blog index (all posts and the YouTube channel): https://chris-dev.netlify.app/blog.html
+- Blog post: How I Built a Multiplayer Phone Game for My Daughter with Claude (published 2026-10-28): https://chris-dev.netlify.app/case/find-it-family-game.html
 - Blog post: How to Enforce Attorney-Client Privilege in a Laravel Case Management App (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/ata-law-firm.html
 - Blog post: How to Digitize Paper Personnel Records with Laravel and Move a Team from FTP to Git (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/e-pds.html
 - Blog post: How to Transcribe Confidential Audio Offline with Whisper and CTranslate2 (published 2026-05-16, updated 2026-10-27): https://chris-dev.netlify.app/case/offline-transcriber.html
@@ -80,6 +81,7 @@ Laravel, Vue.js, MySQL, SQL Server, Python, Android:
 - [YouTube](https://www.youtube.com/@tophertips3387)
 - [Résumé (HTML)](https://chris-dev.netlify.app/resume.html)
 - [Blog: all posts](https://chris-dev.netlify.app/blog.html)
+- [Blog post:multiplayer family phone game built with Claude](https://chris-dev.netlify.app/case/find-it-family-game.html)
 - [Blog post:case management platform](https://chris-dev.netlify.app/case/ata-law-firm.html)
 - [Blog post:personnel records platform](https://chris-dev.netlify.app/case/e-pds.html)
 - [Blog post:offline AI transcriber](https://chris-dev.netlify.app/case/offline-transcriber.html)
